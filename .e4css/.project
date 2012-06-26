@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>.e4css</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>e4_default_gtk.css</name>
+			<type>1</type>
+			<location>/home/vogella/EclipseInstallations/Eclipse42M7/eclipse/plugins/org.eclipse.platform_4.2.0.v20120503-1817/css/e4_default_gtk.css</location>
+		</link>
+	</linkedResources>
+</projectDescription>
