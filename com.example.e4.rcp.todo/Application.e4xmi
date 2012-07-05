@@ -18,6 +18,7 @@
         </children>
       </children>
     </children>
+    <mainMenu xmi:id="_TbH8MMZXEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menu.0"/>
   </children>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_kRdLcr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
