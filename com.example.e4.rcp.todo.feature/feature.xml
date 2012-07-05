@@ -24,4 +24,18 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="com.example.e4.rcp.todo.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.example.e4.rcp.todo.service"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
