@@ -41,6 +41,14 @@
   <handlers xmi:id="_tQuRIMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.new" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.NewTodoHandler" command="_IU7OYMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_vaZTYMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.remove" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.RemoveTodoHandler" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_163WwMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.test" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.TestHandler" command="_P3uRcMZYEeGbkqRLZ7osPQ"/>
+  <bindingTables xmi:id="_A-iiwMZwEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.bindingtable.mybinding" bindingContext="_2jk_wMZvEeGbkqRLZ7osPQ">
+    <bindings xmi:id="_E9aMEMZwEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.keybinding.save" keySequence="M1+S" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
+    <bindings xmi:id="_7bTRwMZxEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.keybinding.exit" keySequence="M1+X" command="_F8KnQMZYEeGbkqRLZ7osPQ"/>
+  </bindingTables>
+  <rootContext xmi:id="_2jk_wMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="Windows and Dialogs" description="Windows and Dialogs">
+    <children xmi:id="_52N1MMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.dialog" name="Dialogs" description="Dialogs"/>
+    <children xmi:id="_6r8jUMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.window" name="Window" description="Window"/>
+  </rootContext>
   <commands xmi:id="_vTZDkMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
   <commands xmi:id="_F8KnQMZYEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
   <commands xmi:id="_IU7OYMZYEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.new" commandName="New Todo"/>
