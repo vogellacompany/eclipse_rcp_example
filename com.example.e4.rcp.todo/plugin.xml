@@ -12,6 +12,10 @@
                name="appName"
                value="to-do">
          </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
+         </property>
       </product>
    </extension>
 
