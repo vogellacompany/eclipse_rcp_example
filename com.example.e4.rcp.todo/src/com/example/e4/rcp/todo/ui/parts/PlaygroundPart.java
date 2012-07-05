@@ -14,7 +14,34 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class PlaygroundPart {
+	private Text text;
 
+	@PostConstruct
+	public void createControls(Composite parent, final MDirtyable dirty) {
+		
+		text = new Text(parent, SWT.MULTI | SWT.LEAD | SWT.BORDER);
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		text.setSize(200, 100);
+		text.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				dirty.setDirty(true);
+			}
+		});
+		
+	}
+	@Focus
+	public void setFocus() {
+		text.setFocus();
+	}
+	
+	@Persist
+	public void persists(MDirtyable dirty) {
+		dirty.setDirty(false);
+		System.out.println("PlaygroundPart data persisted...");
+	}
+	
 	// Declare a field label, required for @Focus
 		Label label;
 
