@@ -14,7 +14,11 @@
          </property>
          <property
                name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
+               value="platform:/plugin/com.example.e4.rcp.todo/css/empty.css">
+         </property>
+         <property
+               name="rendererFactoryUri2"
+               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.renderer.MyRendererFactory">
          </property>
       </product>
    </extension>
