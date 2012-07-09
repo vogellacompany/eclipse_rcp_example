@@ -7,6 +7,13 @@
       <fragment
             uri="fragment.e4xmi">
       </fragment>
+      <processor
+            beforefragment="false"
+            class="de.vogella.e4.todo.contribute.MenuProcessor">
+         <element
+               id="org.eclipse.ui.file.menu">
+         </element>
+      </processor>
    </extension>
 
 </plugin>
