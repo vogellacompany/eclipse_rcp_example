@@ -10,9 +10,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>e4_classic_winxp.css</name>
+			<type>1</type>
+			<location>/home/vogella/EclipseInstallations/Eclipse42/eclipse/plugins/org.eclipse.platform_4.2.0.v201206081400/css/e4_classic_winxp.css</location>
+		</link>
+		<link>
 			<name>e4_default_gtk.css</name>
 			<type>1</type>
-			<location>/home/vogella/EclipseInstallations/Eclipse42M7/eclipse/plugins/org.eclipse.platform_4.2.0.v20120503-1817/css/e4_default_gtk.css</location>
+			<location>/home/vogella/EclipseInstallations/Eclipse42/eclipse/plugins/org.eclipse.platform_4.2.0.v201206081400/css/e4_default_gtk.css</location>
 		</link>
 	</linkedResources>
 </projectDescription>
