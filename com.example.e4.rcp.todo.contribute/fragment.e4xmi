@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_rZhXgMmjEeGPooPvZggIBQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_OAz7oMmkEeGPooPvZggIBQ" featurename="commands" parentElementId="com.example.e4.rcp.todo.application">
+    <elements xsi:type="commands:Command" xmi:id="_X8UtEMmlEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.command.openmap" commandName="Open Map"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_enQUAMmlEeGPooPvZggIBQ" featurename="handlers" parentElementId="com.example.e4.rcp.todo.application">
+    <elements xsi:type="commands:Handler" xmi:id="_iZdk4MmmEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.handler.openmap" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/de.vogella.e4.todo.contribute.handler.OpenMapHandler" command="_X8UtEMmlEeGPooPvZggIBQ"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_GRLPEMmnEeGPooPvZggIBQ" featurename="children" parentElementId="org.eclipse.ui.main.menu">
+    <elements xsi:type="menu:Menu" xmi:id="_TR89wMmnEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.menu.map" label="Map">
+      <children xsi:type="menu:HandledMenuItem" xmi:id="_40IJMMmoEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.menuitem.open" label="Open Map" command="_X8UtEMmlEeGPooPvZggIBQ"/>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_XtpJIMmrEeGPooPvZggIBQ" featurename="children" parentElementId="com.example.e4.rcp.todo.partstack.topleft" positionInList="after:com.example.e4.rcp.todo.part.todooverview">
+    <elements xsi:type="basic:Part" xmi:id="_xLk8EMmrEeGPooPvZggIBQ" elementId="test" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/de.vogella.e4.todo.contribute.parts.MapPart" label="Map TEst"/>
+  </fragments>
+</fragment:ModelFragments>
