@@ -75,7 +75,6 @@ public class TodoOverviewPart {
 	
 
 
-	
 	protected DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		//

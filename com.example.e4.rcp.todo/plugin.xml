@@ -13,14 +13,35 @@
                value="to-do">
          </property>
          <property
-               name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/empty.css">
+               name="applicationCSS2"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
          <property
                name="rendererFactoryUri2"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.renderer.MyRendererFactory">
          </property>
+         <property
+               name="applicationCSSResources2"
+               value="platform:/plugin/com.example.e4.rcp.todo/">
+         </property>
+         <property
+               name="cssTheme"
+               value="de.vogella.e4.todo.darktheme">
+         </property>
       </product>
+   </extension>
+   <extension
+         point="org.eclipse.e4.ui.css.swt.theme">
+      <theme
+            basestylesheeturi="css/default.css"
+            id="de.vogella.e4.todo.redtheme"
+            label="Red">
+      </theme>
+      <theme
+            basestylesheeturi="css/red.css"
+            id="de.vogella.e4.todo.darktheme"
+            label="Dark">
+      </theme>
    </extension>
 
 </plugin>
