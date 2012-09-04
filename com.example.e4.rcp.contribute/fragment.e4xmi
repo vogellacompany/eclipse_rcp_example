@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_hVpIMNI9EeGRQsAWu_XMKQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_msdb4NI9EeGRQsAWu_XMKQ" featurename="commands" parentElementId="com.example.e4.rcp.todo.application" positionInList="">
+    <elements xsi:type="commands:Command" xmi:id="_U_TBINI-EeGRQsAWu_XMKQ" elementId="meineID" commandName="MeineName"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_YE6HMNI-EeGRQsAWu_XMKQ" featurename="handlers" parentElementId="com.example.e4.rcp.todo.application">
+    <elements xsi:type="commands:Handler" xmi:id="_azyIQNI-EeGRQsAWu_XMKQ" elementId="kdslkdskfds" command="_U_TBINI-EeGRQsAWu_XMKQ"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_hXqsANI-EeGRQsAWu_XMKQ" featurename="children">
+    <elements xsi:type="menu:Menu" xmi:id="_m3smENI-EeGRQsAWu_XMKQ"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_4RzFcNI-EeGRQsAWu_XMKQ" featurename="children" parentElementId="dskkdsk"/>
+</fragment:ModelFragments>

@@ -39,14 +39,14 @@
          unpack="false"/>
 
    <plugin
-         id="com.example.e4.rcp.todo.contribute"
+         id="org.eclipse.emf.databinding"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.databinding"
+         id="com.example.e4.rcp.contribute"
          download-size="0"
          install-size="0"
          version="0.0.0"

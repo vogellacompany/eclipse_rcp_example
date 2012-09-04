@@ -24,6 +24,7 @@ public class PlaygroundPart {
 
 	@PostConstruct
 	public void createControls(Composite parent, final MDirtyable dirty) {
+		dirty.setDirty(true);
 		parent.setLayout(new GridLayout(1, false));
 		eins = new Text(parent, SWT.BORDER);
 		eins.setText("Hello1");
