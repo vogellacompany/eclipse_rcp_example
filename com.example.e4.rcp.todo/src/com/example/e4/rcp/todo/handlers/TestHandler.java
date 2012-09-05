@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public class TestHandler {
 	@Execute
-	public void execute(final Shell shell, EModelService service, MWindow window) {
+	public void execute(final Shell shell,  MWindow window) {
 		IWindowCloseHandler handler = new IWindowCloseHandler() {
 			@Override
 			public boolean close(MWindow window) {

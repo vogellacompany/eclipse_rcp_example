@@ -86,6 +86,7 @@
    </features>
 
    <configurations>
+      <plugin id="com.example.e4.bundleresourceloader" autoStart="true" startLevel="3" />
       <plugin id="com.example.e4.rcp.todo.service" autoStart="true" startLevel="3" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="3" />
    </configurations>

@@ -13,8 +13,8 @@
                value="to-do">
          </property>
          <property
-               name="applicationCSS2"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
          </property>
          <property
                name="rendererFactoryUri2"
@@ -25,7 +25,7 @@
                value="platform:/plugin/com.example.e4.rcp.todo/">
          </property>
          <property
-               name="cssTheme"
+               name="cssTheme2"
                value="de.vogella.e4.todo.darktheme">
          </property>
       </product>

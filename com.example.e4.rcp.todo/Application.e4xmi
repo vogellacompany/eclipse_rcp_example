@@ -53,6 +53,7 @@
     <children xmi:id="_52N1MMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.dialog" name="Dialogs" description="Dialogs"/>
     <children xmi:id="_6r8jUMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.window" name="Window" description="Window"/>
   </rootContext>
+  <descriptors xmi:id="_kj7uEPdpEeGO27-iquqWqg" elementId="com.example.e4.rcp.todo.partdescriptor.0" label="kadskds" iconURI="" tooltip="dsf" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.TodoDetailsPart"/>
   <commands xmi:id="_vTZDkMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
   <commands xmi:id="_F8KnQMZYEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
   <commands xmi:id="_IU7OYMZYEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.new" commandName="New Todo"/>
