@@ -51,7 +51,7 @@ public class TodoOverviewPart {
 
 		btnNewButton.setText("Load Data");
 
-		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL);
+		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL| SWT.ICON_SEARCH);
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
 		search.setMessage("Filter");
