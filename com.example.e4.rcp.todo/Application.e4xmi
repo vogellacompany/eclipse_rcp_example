@@ -28,6 +28,7 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_kjQ08MZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="New Todo" command="_IU7OYMZYEeGbkqRLZ7osPQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_mjK3MMZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_onjw0MZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="Testing" command="_P3uRcMZYEeGbkqRLZ7osPQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_rsi7cPepEeGaHLRm1KH-aQ" elementId="com.example.e4.rcp.todo.handledmenuitem.credentials" label="Enter Credentials" command="_ZIxwMPenEeGaHLRm1KH-aQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_DuKW4NJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.menu.styling" label="Styling">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_OhvOMNJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="Switch Styling" command="_QmLyMNJGEeGRQsAWu_XMKQ"/>
@@ -45,6 +46,7 @@
   <handlers xmi:id="_vaZTYMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.remove" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.RemoveTodoHandler" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_163WwMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.test" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.TestHandler" command="_P3uRcMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_TC33ENJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.handler.0" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.ThemeSwitchHandler" command="_QmLyMNJGEeGRQsAWu_XMKQ"/>
+  <handlers xmi:id="_cb9YMPenEeGaHLRm1KH-aQ" elementId="com.example.e4.rcp.todo.handler.credentials" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.EnterCredentialsHandler" command="_ZIxwMPenEeGaHLRm1KH-aQ"/>
   <bindingTables xmi:id="_A-iiwMZwEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.bindingtable.mybinding" bindingContext="_2jk_wMZvEeGbkqRLZ7osPQ">
     <bindings xmi:id="_E9aMEMZwEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.keybinding.save" keySequence="M1+S" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
     <bindings xmi:id="_7bTRwMZxEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.keybinding.exit" keySequence="M1+X" command="_F8KnQMZYEeGbkqRLZ7osPQ"/>
@@ -60,6 +62,7 @@
   <commands xmi:id="_MlAjgMZYEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.remove" commandName="Remove Todo"/>
   <commands xmi:id="_P3uRcMZYEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.test" commandName="For testing"/>
   <commands xmi:id="_QmLyMNJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.command.styling" commandName="Styling"/>
+  <commands xmi:id="_ZIxwMPenEeGaHLRm1KH-aQ" elementId="com.example.e4.rcp.todo.command.credential" commandName="Credentials"/>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_kRdLcr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_kRdLc7-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
