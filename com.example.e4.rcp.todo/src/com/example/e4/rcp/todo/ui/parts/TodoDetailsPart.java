@@ -107,6 +107,9 @@ public class TodoDetailsPart {
 			summary.setText(todo.getSummary());
 			// TODO more updates
 		}
+		if (dirty!=null) {
+			dirty.setDirty(false);
+		}
 	}
 	
 }
