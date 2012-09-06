@@ -7,10 +7,6 @@
       <fragment
             uri="fragment.e4xmi">
       </fragment>
-      <processor
-            beforefragment="true"
-            class="com.example.e4.rcp.contribute.Processor1">
-      </processor>
    </extension>
 
 </plugin>
