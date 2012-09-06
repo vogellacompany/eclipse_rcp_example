@@ -9,10 +9,15 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -26,7 +31,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
-import org.osgi.framework.BundleContext;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
@@ -39,6 +43,8 @@ public class TodoOverviewPart {
 	private TableViewer viewer;
 
 	private List<Todo> list;
+	@Inject
+	ESelectionService service;
 
 	@PostConstruct
 	public void createControls(Composite parent, final ITodoModel model,
@@ -132,8 +138,15 @@ public class TodoOverviewPart {
 			}
 		});
 
-		// Fast immer als letztes
-		viewer.setInput(model.getTodos());
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				IStructuredSelection selection = 
+						(IStructuredSelection) viewer.getSelection();
+				service.setSelection(selection.getFirstElement());
+			}
+		});
+
 	}
 
 	@Inject

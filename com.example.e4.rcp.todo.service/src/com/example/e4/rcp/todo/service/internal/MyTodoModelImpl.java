@@ -3,6 +3,7 @@ package com.example.e4.rcp.todo.service.internal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
@@ -19,6 +20,12 @@ public class MyTodoModelImpl implements ITodoModel {
 	// Always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		ArrayList<Todo> list = new ArrayList<Todo>();
 		for (Todo todo : model) {
 			list.add(todo.copy());

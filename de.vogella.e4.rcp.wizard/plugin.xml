@@ -12,10 +12,6 @@
                value="de.vogella.e4.rcp.wizard">
          </property>
          <property
-               name="applicationXMI"
-               value="de.vogella.e4.rcp.wizard/Application.e4xmi">
-         </property>
-         <property
                name="applicationCSS"
                value="platform:/plugin/de.vogella.e4.rcp.wizard/css/default.css">
          </property>
