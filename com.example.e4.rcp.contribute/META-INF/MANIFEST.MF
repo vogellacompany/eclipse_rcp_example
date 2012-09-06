@@ -1,7 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Contribute
-Bundle-SymbolicName: com.example.e4.rcp.contribute
+Bundle-SymbolicName: com.example.e4.rcp.contribute;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.e4.ui.workbench,
+ javax.inject;bundle-version="1.0.0",
+ org.eclipse.swt;bundle-version="3.100.0",
+ org.eclipse.jface;bundle-version="3.8.0",
+ org.eclipse.e4.core.di;bundle-version="1.1.0",
+ org.eclipse.e4.ui.di;bundle-version="0.10.1"
