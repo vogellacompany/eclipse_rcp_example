@@ -1,5 +1,7 @@
 package com.example.e4.rcp.todo.wizards;
 
+import javax.inject.Inject;
+
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 
@@ -8,7 +10,8 @@ import com.example.e4.rcp.todo.model.Todo;
 public class TodoWizard extends Wizard {
 
 	private Todo todo;
-
+	
+	@Inject
 	public TodoWizard(Todo todo) {
 		this.todo = todo;
 		setWindowTitle("New Wizard");

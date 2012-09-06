@@ -3,8 +3,11 @@ package com.example.e4.rcp.todo.ui.parts;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
@@ -23,7 +26,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.framework.BundleContext;
 
+import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -36,7 +41,8 @@ public class TodoOverviewPart {
 	private List<Todo> list;
 
 	@PostConstruct
-	public void createControls(Composite parent, final ITodoModel model, final MWindow window) {
+	public void createControls(Composite parent, final ITodoModel model,
+			final MWindow window) {
 		list = model.getTodos();
 		System.out.println(model.getTodos().size());
 		parent.setLayout(new GridLayout(1, false));
@@ -46,12 +52,13 @@ public class TodoOverviewPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				viewer.setInput(model.getTodos());
-			} 
+			}
 		});
 
 		btnNewButton.setText("Load Data");
 
-		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL| SWT.ICON_SEARCH);
+		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
+				| SWT.ICON_SEARCH);
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
 		search.setMessage("Filter");
@@ -70,9 +77,10 @@ public class TodoOverviewPart {
 				| SWT.V_SCROLL | SWT.FULL_SELECTION);
 		Table table = viewer.getTable();
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
-		
-		// TODO show subwords
-		
+
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+
 		viewer.setContentProvider(ArrayContentProvider.getInstance());
 		TableViewerColumn column = new TableViewerColumn(viewer, SWT.NONE);
 
@@ -113,7 +121,7 @@ public class TodoOverviewPart {
 			}
 		});
 		column = new TableViewerColumn(viewer, SWT.NONE);
-		
+
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Description");
 		column.setLabelProvider(new ColumnLabelProvider() {
@@ -126,7 +134,13 @@ public class TodoOverviewPart {
 
 		// Fast immer als letztes
 		viewer.setInput(model.getTodos());
+	}
 
+	@Inject
+	@Optional
+	private void getNotified(
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
+		System.out.println(topic);
 	}
 
 	@Focus

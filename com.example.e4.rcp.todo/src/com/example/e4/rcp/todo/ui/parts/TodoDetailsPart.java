@@ -5,9 +5,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -17,16 +19,27 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
+	private final class MyListener implements ModifyListener {
+		@Override
+		public void modifyText(ModifyEvent e) {
+			if (dirty!=null) {
+				dirty.setDirty(true);
+			}
+		}
+	}
+
 	private Text summary;
 	private Text description;
 	@Inject
 	MDirtyable dirty;
 	private Todo todo;
+	private MyListener listener= new MyListener();
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -42,15 +55,7 @@ public class TodoDetailsPart {
 
 		summary = new Text(parent, SWT.BORDER);
 		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		summary.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				if (dirty!=null) {
-					dirty.setDirty(true);
-				}
-				// Sei bereit zum speichern
-			}
-		});
+		summary.addModifyListener(listener);
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
@@ -60,6 +65,10 @@ public class TodoDetailsPart {
 				1);
 		gd_text_1.heightHint = 122;
 		description.setLayoutData(gd_text_1);
+		
+		
+		description.addModifyListener(listener);
+
 
 		Label lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setText("Due Date");
@@ -99,5 +108,5 @@ public class TodoDetailsPart {
 			// TODO more updates
 		}
 	}
-
+	
 }

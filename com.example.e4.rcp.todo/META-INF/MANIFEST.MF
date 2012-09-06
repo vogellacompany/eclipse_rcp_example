@@ -23,6 +23,7 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.100.0",
  org.eclipse.emf.databinding,
  org.eclipse.e4.ui.css.swt.theme;bundle-version="0.9.2",
  org.eclipse.e4.ui.services;bundle-version="0.10.1",
- org.eclipse.e4.core.di.extensions;bundle-version="0.11.0"
+ org.eclipse.e4.core.di.extensions;bundle-version="0.11.0",
+ org.eclipse.e4.core.services;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.example.e4.bundleresourceloader
