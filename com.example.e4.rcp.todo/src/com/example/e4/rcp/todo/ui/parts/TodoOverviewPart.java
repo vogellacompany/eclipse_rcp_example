@@ -5,16 +5,20 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -42,22 +46,35 @@ public class TodoOverviewPart {
 	private Label lblNewLabel;
 	private TableViewer viewer;
 
-	private List<Todo> list;
+	@Inject
+	UISynchronize sync;
 	@Inject
 	ESelectionService service;
 
 	@PostConstruct
 	public void createControls(Composite parent, final ITodoModel model,
 			final MWindow window) {
-		list = model.getTodos();
-		System.out.println(model.getTodos().size());
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				viewer.setInput(model.getTodos());
+				Job job = new Job("loading") {
+					@Override
+					protected IStatus run(IProgressMonitor monitor) {
+						List<Todo> list = model.getTodos();
+						sync.asyncExec(new Runnable() {
+							@Override
+							public void run() {
+								viewer.setInput(model.getTodos());
+							}
+						});
+						return Status.OK_STATUS;
+					}
+				};
+				job.schedule();
+			
 			}
 		});
 
@@ -141,8 +158,8 @@ public class TodoOverviewPart {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection selection = 
-						(IStructuredSelection) viewer.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) viewer
+						.getSelection();
 				service.setSelection(selection.getFirstElement());
 			}
 		});
