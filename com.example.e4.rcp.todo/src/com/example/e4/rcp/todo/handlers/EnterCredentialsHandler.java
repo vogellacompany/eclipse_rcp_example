@@ -30,6 +30,7 @@ public class EnterCredentialsHandler {
 			dialog.setPassword(passwordPref);
 		}
 		
+		// Get the new values from the dialog
 		if (dialog.open() == Window.OK) {
 			prefs.put("user", dialog.getUser());
 			prefs.put("password", dialog.getPassword());

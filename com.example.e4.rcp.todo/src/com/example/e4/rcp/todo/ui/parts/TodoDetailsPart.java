@@ -1,15 +1,20 @@
 package com.example.e4.rcp.todo.ui.parts;
 
+import java.text.SimpleDateFormat;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.databinding.swt.ISWTObservableValue;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -19,7 +24,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.model.Todo;
@@ -28,7 +32,7 @@ public class TodoDetailsPart {
 	private final class MyListener implements ModifyListener {
 		@Override
 		public void modifyText(ModifyEvent e) {
-			if (dirty!=null) {
+			if (dirty != null) {
 				dirty.setDirty(true);
 			}
 		}
@@ -36,13 +40,20 @@ public class TodoDetailsPart {
 
 	private Text summary;
 	private Text description;
+	private Button btnDone;
+
 	@Inject
 	MDirtyable dirty;
+
 	private Todo todo;
-	private MyListener listener= new MyListener();
+	private MyListener listener = new MyListener();
+	private DataBindingContext ctx = new DataBindingContext();
+	private DateTime dateTime;
+	
 
 	@PostConstruct
 	public void createControls(Composite parent) {
+
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
 		gl_parent.marginLeft = 10;
@@ -54,32 +65,32 @@ public class TodoDetailsPart {
 		lblSummary.setText("Summary");
 
 		summary = new Text(parent, SWT.BORDER);
-		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+				1, 1));
 		summary.addModifyListener(listener);
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
 
-		description = new Text(parent, SWT.BORDER| SWT.MULTI);
+		description = new Text(parent, SWT.BORDER | SWT.MULTI);
 		GridData gd_text_1 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
 				1);
 		gd_text_1.heightHint = 122;
 		description.setLayoutData(gd_text_1);
-		
-		
-		description.addModifyListener(listener);
 
+		description.addModifyListener(listener);
 
 		Label lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setText("Due Date");
 
-		DateTime dateTime = new DateTime(parent, SWT.BORDER);
+		dateTime = new DateTime(parent, SWT.BORDER);
 		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
 		new Label(parent, SWT.NONE);
 
-		Button btnDone = new Button(parent, SWT.CHECK);
+		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
+		ctx = initDataBindings();
 	}
 
 	@Persist
@@ -100,16 +111,47 @@ public class TodoDetailsPart {
 	}
 
 	private void updateUserInterface(Todo todo) {
+		ctx.dispose();
+
 		// Check if Ui is available
 		// Assumes that one of your fields
 		// is called summary
 		if (summary != null && !summary.isDisposed()) {
-			summary.setText(todo.getSummary());
-			// TODO more updates
+			
+			IObservableValue target = WidgetProperties.text(SWT.Modify)
+					.observe(summary);
+			IObservableValue model = PojoProperties.value("summary").observe(
+					todo);
+			ctx.bindValue(target, model);
+			
+			target = WidgetProperties.text(SWT.Modify)
+					.observe(description);
+			model = PojoProperties.value("description").observe(
+					todo);
+			ctx.bindValue(target, model);
+			target = WidgetProperties.selection()
+					.observe(btnDone);
+			model = PojoProperties.value("done").observe(
+					todo);
+			ctx.bindValue(target, model);
+			
+			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
+					.selection().observe(dateTime);
+			IObservableValue dueDateTodoObserveValue = PojoProperties.value(
+					"dueDate").observe(todo);
+			ctx.bindValue(observeSelectionDateTimeObserveWidget,
+					dueDateTodoObserveValue, null, null);
 		}
-		if (dirty!=null) {
+		if (dirty != null) {
 			dirty.setDirty(false);
 		}
 	}
-	
+
+	protected DataBindingContext initDataBindings() {
+		DataBindingContext bindingContext = new DataBindingContext();
+		//
+		
+		//
+		return bindingContext;
+	}
 }

@@ -50,9 +50,12 @@ public class TodoOverviewPart {
 	UISynchronize sync;
 	@Inject
 	ESelectionService service;
+	
+	@Inject
+	ITodoModel model;
 
 	@PostConstruct
-	public void createControls(Composite parent, final ITodoModel model,
+	public void createControls(Composite parent, 
 			final MWindow window) {
 		parent.setLayout(new GridLayout(1, false));
 
@@ -169,8 +172,12 @@ public class TodoOverviewPart {
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
-		System.out.println(topic);
+			@UIEventTopic(
+					MyEventConstants.TOPIC_TODO_DATA_UPDATE) 
+			 	    String topic) {
+		if (viewer!=null) {
+			viewer.setInput(model.getTodos());
+		}
 	}
 
 	@Focus
