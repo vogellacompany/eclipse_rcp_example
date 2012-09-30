@@ -10,3 +10,4 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.100.0",
  org.eclipse.jface;bundle-version="3.8.0"
 Service-Component: component.xml
 Export-Package: com.example.e4.bundleresourceloader
+Bundle-ActivationPolicy: lazy
