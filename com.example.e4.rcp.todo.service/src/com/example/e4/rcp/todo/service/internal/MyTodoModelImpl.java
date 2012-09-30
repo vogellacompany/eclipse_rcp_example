@@ -27,6 +27,7 @@ public class MyTodoModelImpl implements ITodoModel {
 		return list;
 	}
 
+	// Saves or updates
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
 		Todo updateTodo = null;
