@@ -28,8 +28,24 @@ public class MyTodoModelImpl implements ITodoModel {
 	}
 
 	@Override
-	public boolean saveTodo(Todo todo) {
-		throw new UnsupportedOperationException("Not supported yet");
+	public synchronized boolean saveTodo(Todo newTodo) {
+		Todo updateTodo = null;
+		for (Todo todo : model) {
+			if (todo.getId() == newTodo.getId()) {
+				updateTodo = todo;
+			}
+		}
+		if (updateTodo!=null) {
+			updateTodo.setSummary(newTodo.getSummary());
+			updateTodo.setDescription(newTodo.getDescription());
+			updateTodo.setDone(newTodo.isDone());
+			updateTodo.setDueDate(newTodo.getDueDate());
+		} else {
+			newTodo.setId(current++);
+			model.add(newTodo);
+		}
+		 
+		return true;
 	}
 
 	@Override
@@ -60,10 +76,12 @@ public class MyTodoModelImpl implements ITodoModel {
 	// Example data, change if you like
 	private List<Todo> createInitialModel() {
 		ArrayList<Todo> list = new ArrayList<Todo>();
+		list.add(createTodo("Application model", "Learn the application model"));
+		list.add(createTodo("DI", "@Inject looks interesting"));
 		list.add(createTodo("SWT", "Learn Widgets"));
 		list.add(createTodo("JFace", "Especially Viewers!"));
-		list.add(createTodo("DI", "@Inject looks interesting"));
 		list.add(createTodo("OSGi", "Services"));
+		list.add(createTodo("CSS Styling", "Learn how to style your application"));
 		list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
 		return list;
 	}
