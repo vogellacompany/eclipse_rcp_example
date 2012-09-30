@@ -7,4 +7,5 @@ Bundle-Vendor: EXAMPLE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: com.example.e4.rcp.todo.model;bundle-version="1.0.0",
  org.eclipse.osgi;bundle-version="3.8.0"
+Bundle-ActivationPolicy: lazy
 Service-Component: component.xml
