@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
@@ -94,8 +95,8 @@ public class TodoDetailsPart {
 	}
 
 	@Persist
-	public void save(MDirtyable dirty) {
-		// TODO speichern...
+	public void save(MDirtyable dirty, ITodoModel model) {
+		model.saveTodo(todo);
 		dirty.setDirty(false);
 	}
 
@@ -147,11 +148,8 @@ public class TodoDetailsPart {
 		}
 	}
 
-	protected DataBindingContext initDataBindings() {
+	private DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
-		//
-		
-		//
 		return bindingContext;
 	}
 }
