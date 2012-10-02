@@ -3,7 +3,6 @@ package com.example.e4.rcp.todo.service.internal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
