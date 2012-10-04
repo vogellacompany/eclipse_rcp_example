@@ -4,7 +4,7 @@
     <elements xsi:type="commands:Command" xmi:id="_X8UtEMmlEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.command.openmap" commandName="Open Map"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_enQUAMmlEeGPooPvZggIBQ" featurename="handlers" parentElementId="com.example.e4.rcp.todo.application">
-    <elements xsi:type="commands:Handler" xmi:id="_iZdk4MmmEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.handler.openmap" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/de.vogella.e4.todo.contribute.handler.OpenMapHandler" command="_X8UtEMmlEeGPooPvZggIBQ"/>
+    <elements xsi:type="commands:Handler" xmi:id="_iZdk4MmmEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.handler.openmap" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/com.vogella.e4.todo.contribute.handler.OpenMapHandler" command="_X8UtEMmlEeGPooPvZggIBQ"/>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_GRLPEMmnEeGPooPvZggIBQ" featurename="children" parentElementId="org.eclipse.ui.main.menu">
     <elements xsi:type="menu:Menu" xmi:id="_TR89wMmnEeGPooPvZggIBQ" elementId="com.example.e4.rcp.todo.contribute.menu.map" label="Map">
