@@ -1,7 +1,5 @@
 package com.example.e4.rcp.todo.ui.parts;
 
-import java.text.SimpleDateFormat;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +11,6 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -30,6 +27,10 @@ import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
+	
+	@Inject
+	MDirtyable dirty;
+	
 	private final class MyListener implements ModifyListener {
 		@Override
 		public void modifyText(ModifyEvent e) {
@@ -43,8 +44,6 @@ public class TodoDetailsPart {
 	private Text description;
 	private Button btnDone;
 
-	@Inject
-	MDirtyable dirty;
 
 	private Todo todo;
 	private MyListener listener = new MyListener();
