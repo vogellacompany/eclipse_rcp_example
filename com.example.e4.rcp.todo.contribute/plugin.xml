@@ -9,7 +9,7 @@
       </fragment>
       <processor
             beforefragment="false"
-            class="de.vogella.e4.todo.contribute.MenuProcessor">
+            class="com.vogella.e4.todo.contribute.MenuProcessor">
          <element
                id="org.eclipse.ui.file.menu">
          </element>

@@ -1,5 +1,5 @@
 
-package de.vogella.e4.todo.contribute.dialogs;
+package com.vogella.e4.todo.contribute.dialogs;
 
 import javax.inject.Inject;
 import javax.inject.Named;

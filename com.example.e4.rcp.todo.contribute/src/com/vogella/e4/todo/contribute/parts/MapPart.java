@@ -1,4 +1,4 @@
-package de.vogella.e4.todo.contribute.parts;
+package com.vogella.e4.todo.contribute.parts;
 
 public class MapPart {
 	public MapPart() {

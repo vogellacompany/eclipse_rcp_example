@@ -1,4 +1,4 @@
-package de.vogella.e4.todo.contribute;
+package com.vogella.e4.todo.contribute;
 
 import java.util.ArrayList;
 import java.util.List;
