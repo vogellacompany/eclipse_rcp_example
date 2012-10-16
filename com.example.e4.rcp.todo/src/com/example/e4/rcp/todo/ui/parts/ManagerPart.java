@@ -15,7 +15,6 @@ import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -37,11 +36,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.addons.MyModelAddon;
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
-public class TodoOverviewPart {
+public class ManagerPart {
 
 	private Button btnNewButton;
 	private Label lblNewLabel;
@@ -54,10 +54,13 @@ public class TodoOverviewPart {
 	
 	@Inject
 	ITodoModel model;
+	
+	@Inject 
+	MyModelAddon addon;
 
 	@PostConstruct
 	public void createControls(Composite parent, 
-			final MWindow window, EMenuService menuService) {
+			final MWindow window) {
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.NONE);
@@ -167,7 +170,7 @@ public class TodoOverviewPart {
 				service.setSelection(selection.getFirstElement());
 			}
 		});
-		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table");
+
 	}
 
 	@Inject

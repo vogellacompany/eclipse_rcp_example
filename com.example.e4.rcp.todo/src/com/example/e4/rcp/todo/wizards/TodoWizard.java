@@ -10,6 +10,7 @@ import com.example.e4.rcp.todo.model.Todo;
 public class TodoWizard extends Wizard {
 
 	private Todo todo;
+	boolean finish = false;
 	
 	@Inject
 	public TodoWizard(Todo todo) {
@@ -30,7 +31,7 @@ public class TodoWizard extends Wizard {
 
 	@Override
 	public boolean canFinish() {
-		return true;
+		return finish;
 	}
 	
 	@Override

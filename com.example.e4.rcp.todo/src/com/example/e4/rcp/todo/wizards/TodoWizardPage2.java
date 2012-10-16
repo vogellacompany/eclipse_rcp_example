@@ -1,5 +1,6 @@
 package com.example.e4.rcp.todo.wizards;
 
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -39,6 +40,10 @@ public class TodoWizardPage2 extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				checked = ((Button) e.getSource()).getSelection();
+				TodoWizard wizard = (TodoWizard) getWizard();
+				wizard.finish=checked;
+				System.out.println(checked);
+				wizard.getContainer().updateButtons();
 			}
 		});
 		setControl(container);
@@ -47,6 +52,7 @@ public class TodoWizardPage2 extends WizardPage {
 	public boolean isChecked() {
 		return checked;
 	}
+	
 	
 }
 

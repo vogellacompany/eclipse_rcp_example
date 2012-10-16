@@ -61,10 +61,6 @@ public class PlaygroundPart {
 		
 		// This assumes you have a vogella.png file
 		// in folder images
-		
-		
-		
-
 	}
 
 	@Focus
