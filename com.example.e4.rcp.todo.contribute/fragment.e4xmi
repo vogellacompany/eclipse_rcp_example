@@ -12,6 +12,6 @@
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_XtpJIMmrEeGPooPvZggIBQ" featurename="children" parentElementId="com.example.e4.rcp.todo.partstack.topleft" positionInList="after:com.example.e4.rcp.todo.part.todooverview">
-    <elements xsi:type="basic:Part" xmi:id="_xLk8EMmrEeGPooPvZggIBQ" elementId="test" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/de.vogella.e4.todo.contribute.parts.MapPart" label="Map Test"/>
+    <elements xsi:type="basic:Part" xmi:id="_xLk8EMmrEeGPooPvZggIBQ" elementId="test" contributionURI="bundleclass://com.example.e4.rcp.todo.contribute/com.vogella.e4.todo.contribute.parts.MapPart" label="Map Test"/>
   </fragments>
 </fragment:ModelFragments>
