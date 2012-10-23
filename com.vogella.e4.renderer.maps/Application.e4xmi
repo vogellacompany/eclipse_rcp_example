@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_E3uAYBsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ide.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_E3uAYRsKEeKo4rq_mLcq-A" label="com.vogella.e4.renderer.maps" width="500" height="400">
+    <children xsi:type="basic:PartSashContainer" xmi:id="_7Ev1ABsKEeKo4rq_mLcq-A" elementId="com.vogella.e4.renderer.maps.partsashcontainer.0">
+      <children xsi:type="basic:PartStack" xmi:id="_8f7ZkBsKEeKo4rq_mLcq-A" elementId="com.vogella.e4.renderer.maps.partstack.0"/>
+    	
+    	 <!-- Use your new model elements -->
+            <children xsi:type="extension:GoogleMapContainer" xmi:id="_2P4QMGjBEd-aouR9UfDgRw"
+              elementId="partID" label="My Part">                          
+              <children xsi:type="extension:GoogleMap" label="my Map"></children>
+            </children>
+    
+    </children>
+  </children>
+  <addons xmi:id="_E3uAYhsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_E3uAYxsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_E3uAZBsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_E3uAZRsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_E3uAZhsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_E3uAZxsKEeKo4rq_mLcq-A" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>
