@@ -8,7 +8,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package de.vogella.e4.rcp.wizard.handlers;
+package com.example.e4.rcp.wizard.handlers;
 
 import java.lang.reflect.InvocationTargetException;
 

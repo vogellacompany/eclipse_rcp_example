@@ -5,15 +5,19 @@
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            name="de.vogella.e4.rcp.wizard"
+            name="com.example.e4.rcp.wizard"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
-               name="appName"
-               value="de.vogella.e4.rcp.wizard">
+               name="RICH_SAMPLE"
+               value="TRUE">
+         </property>
+         <property
+               name="clearPersistedState"
+               value="true">
          </property>
          <property
                name="applicationCSS"
-               value="platform:/plugin/de.vogella.e4.rcp.wizard/css/default.css">
+               value="platform:/plugin/com.example.e4.rcp.wizard/css/default.css">
          </property>
       </product>
    </extension>
