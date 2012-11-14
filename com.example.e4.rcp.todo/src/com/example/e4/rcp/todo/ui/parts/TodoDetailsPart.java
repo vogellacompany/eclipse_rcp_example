@@ -43,12 +43,13 @@ public class TodoDetailsPart {
 	private Text summary;
 	private Text description;
 	private Button btnDone;
+	private DateTime dateTime;
 
 
 	private Todo todo;
 	private MyListener listener = new MyListener();
 	private DataBindingContext ctx = new DataBindingContext();
-	private DateTime dateTime;
+	
 	
 
 	@PostConstruct
