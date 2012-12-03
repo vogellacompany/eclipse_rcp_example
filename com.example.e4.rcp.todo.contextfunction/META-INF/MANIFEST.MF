@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Contextfunction
+Bundle-SymbolicName: com.example.e4.rcp.todo.contextfunction
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EXAMPLE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.e4.core.contexts;bundle-version="1.1.0",
+ com.example.e4.rcp.todo.model;bundle-version="1.0.0"
+Service-Component: OSGI-INF/component.xml
+Bundle-ActivationPolicy: lazy
