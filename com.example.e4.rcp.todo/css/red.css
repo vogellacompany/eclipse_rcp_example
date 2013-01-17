@@ -1,4 +1,14 @@
 CTabItem, ToolBar, Button, CBanner, CoolBar {
 	font-size: 9;
-	background-color: red;
+	background-color: blue red;
+
+
+Composite {
+	background-color: #314112 orange 60%;
 }
+
+.MPartStack {
+	font-size: 100em;
+	color:orange;
+	background:grey;
+}	
