@@ -3,6 +3,7 @@ package com.example.e4.rcp.todo.model;
 import java.util.List;
 
 public interface ITodoModel {
+	
 	List<Todo> getTodos();
 
 	boolean saveTodo(Todo todo);
@@ -10,4 +11,5 @@ public interface ITodoModel {
 	Todo getTodo(long id);
 
 	boolean deleteTodo(long id);
+
 }

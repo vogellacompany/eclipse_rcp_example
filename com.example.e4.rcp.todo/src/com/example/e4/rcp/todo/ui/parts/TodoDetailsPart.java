@@ -4,10 +4,15 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
@@ -27,30 +32,26 @@ import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
-	
+
 	@Inject
 	MDirtyable dirty;
-	
-	private final class MyListener implements ModifyListener {
-		@Override
-		public void modifyText(ModifyEvent e) {
-			if (dirty != null) {
-				dirty.setDirty(true);
-			}
-		}
-	}
 
 	private Text summary;
 	private Text description;
 	private Button btnDone;
 	private DateTime dateTime;
-
-
-	private Todo todo;
-	private MyListener listener = new MyListener();
 	private DataBindingContext ctx = new DataBindingContext();
-	
-	
+
+	// Define listener for the databinding
+	IChangeListener listener = new IChangeListener() {
+		@Override
+		public void handleChange(ChangeEvent event) {
+			if (dirty!=null){
+				dirty.setDirty(true);
+			}
+		}
+	};
+	private Todo todo;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -66,20 +67,15 @@ public class TodoDetailsPart {
 		lblSummary.setText("Summary");
 
 		summary = new Text(parent, SWT.BORDER);
-		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-				1, 1));
-		summary.addModifyListener(listener);
+		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
 
 		description = new Text(parent, SWT.BORDER | SWT.MULTI);
-		GridData gd_text_1 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
-				1);
-		gd_text_1.heightHint = 122;
-		description.setLayoutData(gd_text_1);
-
-		description.addModifyListener(listener);
+		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gd.heightHint = 122;
+		description.setLayoutData(gd);
 
 		Label lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setText("Due Date");
@@ -91,7 +87,6 @@ public class TodoDetailsPart {
 
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
-		ctx = initDataBindings();
 	}
 
 	@Persist
@@ -118,31 +113,36 @@ public class TodoDetailsPart {
 		// Assumes that one of your fields
 		// is called summary
 		if (summary != null && !summary.isDisposed()) {
-			
+
 			IObservableValue target = WidgetProperties.text(SWT.Modify)
 					.observe(summary);
 			IObservableValue model = PojoProperties.value("summary").observe(
 					todo);
 			ctx.bindValue(target, model);
-			
-			target = WidgetProperties.text(SWT.Modify)
-					.observe(description);
-			model = PojoProperties.value("description").observe(
-					todo);
+
+			target = WidgetProperties.text(SWT.Modify).observe(description);
+			model = PojoProperties.value("description").observe(todo);
 			ctx.bindValue(target, model);
-			target = WidgetProperties.selection()
-					.observe(btnDone);
-			model = PojoProperties.value("done").observe(
-					todo);
+			target = WidgetProperties.selection().observe(btnDone);
+			model = PojoProperties.value("done").observe(todo);
 			ctx.bindValue(target, model);
-			
+
 			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
 					.selection().observe(dateTime);
 			IObservableValue dueDateTodoObserveValue = PojoProperties.value(
 					"dueDate").observe(todo);
 			ctx.bindValue(observeSelectionDateTimeObserveWidget,
 					dueDateTodoObserveValue, null, null);
+			
+			IObservableList providers = ctx.getValidationStatusProviders();
+			for (Object o : providers) {
+				Binding b = (Binding) o;
+				b.getTarget().addChangeListener(listener);
+			}
 		}
+		
+		// After setting the new Todo set the part to
+		// not dirty
 		if (dirty != null) {
 			dirty.setDirty(false);
 		}
@@ -151,5 +151,12 @@ public class TodoDetailsPart {
 	private DataBindingContext initDataBindings() {
 		DataBindingContext bindingContext = new DataBindingContext();
 		return bindingContext;
+	}
+
+	@Focus
+	public void onFocus() {
+		// The following assumes that you have a Text field
+		// called summary
+		summary.setFocus();
 	}
 }

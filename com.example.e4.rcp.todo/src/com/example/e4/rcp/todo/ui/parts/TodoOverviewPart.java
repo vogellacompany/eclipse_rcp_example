@@ -51,13 +51,13 @@ public class TodoOverviewPart {
 	UISynchronize sync;
 	@Inject
 	ESelectionService service;
-	
+
 	@Inject
 	ITodoModel model;
 
 	@PostConstruct
-	public void createControls(Composite parent, 
-			final MWindow window, EMenuService menuService) {
+	public void createControls(Composite parent, final MWindow window,
+			EMenuService menuService) {
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.NONE);
@@ -67,21 +67,19 @@ public class TodoOverviewPart {
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
-						List<Todo> list = model.getTodos();
+						final List<Todo> list = model.getTodos();
 						sync.asyncExec(new Runnable() {
 							@Override
 							public void run() {
-								viewer.setInput(model.getTodos());
+								viewer.setInput(list);
 							}
 						});
 						return Status.OK_STATUS;
 					}
 				};
 				job.schedule();
-			
 			}
 		});
-
 		btnNewButton.setText("Load Data");
 
 		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
@@ -167,17 +165,24 @@ public class TodoOverviewPart {
 				service.setSelection(selection.getFirstElement());
 			}
 		});
-		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table");
+		menuService.registerContextMenu(viewer.getControl(),
+				"com.example.e4.rcp.todo.popupmenu.table");
 	}
 
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(
-					MyEventConstants.TOPIC_TODO_DATA_UPDATE) 
-			 	    String topic) {
-		if (viewer!=null) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
+		if (viewer != null) {
 			viewer.setInput(model.getTodos());
+		}
+	}
+
+	@Inject
+	@Optional
+	public void updateViewer(@UIEventTopic("finish") List<Todo> list) {
+		if (viewer != null) {
+			viewer.setInput(list);
 		}
 	}
 

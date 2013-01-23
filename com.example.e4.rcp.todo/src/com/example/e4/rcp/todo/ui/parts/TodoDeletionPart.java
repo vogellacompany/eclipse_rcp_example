@@ -6,7 +6,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -24,6 +27,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 
+import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -35,7 +39,7 @@ public class TodoDeletionPart {
 	@PostConstruct
 	public void postConstruct(Composite parent) {
 		parent.setLayout(new GridLayout(2, false));
-		viewer = new ComboViewer(parent, SWT.DROP_DOWN);
+		viewer = new ComboViewer(parent, SWT.READ_ONLY| SWT.DROP_DOWN);
 		viewer.setLabelProvider(new LabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -62,7 +66,7 @@ public class TodoDeletionPart {
 
 			}
 		});
-		button.setText("Delete Selection");
+		button.setText("Delete selected");
 	}
 
 	private void updateViewer(List<Todo> todos) {
@@ -70,6 +74,15 @@ public class TodoDeletionPart {
 		if (todos.size() > 0) {
 			viewer.setSelection(new StructuredSelection(todos.get(0)));
 		}
+	}
+	
+	@Inject
+	@Optional
+	private void getNotified(
+			@UIEventTopic(
+					MyEventConstants.TOPIC_TODO_DATA_UPDATE) 
+			 	    String topic) {
+		updateViewer(model.getTodos());
 	}
 
 	@Focus

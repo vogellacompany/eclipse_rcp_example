@@ -21,9 +21,5 @@ public class NewTodoHandler {
 			// asynchronously
 			broker.post(MyEventConstants.TOPIC_TODO_DATA_UPDATE_NEW, "New data");
 		}
-		
-//		// Only for demo purposes 
-//		// No receiver registered
-//		broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE, todo);
 	}
 }

@@ -10,14 +10,6 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 public class DynamicPartHandler {
 	// Used as reference
 	@Execute
-	public void execute(MWindow window ) {
-		MPart part = MBasicFactory.INSTANCE.createPart();
-		part.setElementId("mynewid");
-		part.setLabel("A new Part");
-		part.setContributorURI("bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.TodoOverviewPart");
-		window.getChildren().add(part);
-	}
-	@Execute
 	public void execute(EPartService service ) {
 		// Create Part based on PartDescriptor
 		MPart part = 
