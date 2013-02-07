@@ -46,7 +46,7 @@ public class MenuProcessor {
 		menuItem.setLabel("Another Exit");
 		menuItem.setContributionURI("bundleclass://"
 				+ "com.example.e4.rcp.todo.contribute/"
-				+ "de.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
+				+ "com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
 		menu.getChildren().add(menuItem);
 	}
 }

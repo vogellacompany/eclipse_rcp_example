@@ -22,7 +22,7 @@ public class ExitDialog extends Dialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Label label = new Label(parent, SWT.NONE);
-		label.setText("Closing this application may result in data loss. "
+		label.setText("New!!! Closing this application may result in data loss. "
 				+ "Are you sure you want that");
 		return parent;
 	}
