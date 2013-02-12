@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -16,6 +18,7 @@ import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
+import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -26,7 +29,11 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -38,6 +45,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
+import com.example.e4.rcp.todo.i18n.Messages;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -54,6 +62,8 @@ public class TodoOverviewPart {
 
 	@Inject
 	ITodoModel model;
+	private WritableList writableList;
+	protected String searchString = "";
 
 	@PostConstruct
 	public void createControls(Composite parent, final MWindow window,
@@ -71,7 +81,7 @@ public class TodoOverviewPart {
 						sync.asyncExec(new Runnable() {
 							@Override
 							public void run() {
-								viewer.setInput(list);
+								updateViewer(list);
 							}
 						});
 						return Status.OK_STATUS;
@@ -84,9 +94,25 @@ public class TodoOverviewPart {
 
 		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
 				| SWT.ICON_SEARCH);
+
+		// Assuming that GridLayout is used
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
 		search.setMessage("Filter");
+
+		// Filter at every keystroke
+		search.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				Text source = (Text) e.getSource();
+				searchString = source.getText();
+				// Trigger update in the viewer
+				viewer.refresh();
+			}
+		});
+
+		// SWT.SEARCH | SWT.CANCEL not supported under Windows7
+		// This does not work under Windows7
 		search.addSelectionListener(new SelectionAdapter() {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
@@ -95,7 +121,6 @@ public class TodoOverviewPart {
 					//
 				}
 			}
-			// MORE...
 		});
 
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL
@@ -106,7 +131,6 @@ public class TodoOverviewPart {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		viewer.setContentProvider(ArrayContentProvider.getInstance());
 		TableViewerColumn column = new TableViewerColumn(viewer, SWT.NONE);
 
 		column.getColumn().setWidth(100);
@@ -117,7 +141,6 @@ public class TodoOverviewPart {
 				Todo todo = (Todo) element;
 				return todo.getSummary();
 			}
-
 		});
 
 		column.setEditingSupport(new EditingSupport(viewer) {
@@ -157,6 +180,17 @@ public class TodoOverviewPart {
 			}
 		});
 
+		// We search in the summary and description field
+		viewer.addFilter(new ViewerFilter() {
+			@Override
+			public boolean select(Viewer viewer, Object parentElement,
+					Object element) {
+				Todo todo = (Todo) element;
+				return todo.getSummary().contains(searchString)
+						|| todo.getDescription().contains(searchString);
+			}
+		});
+
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
@@ -167,6 +201,14 @@ public class TodoOverviewPart {
 		});
 		menuService.registerContextMenu(viewer.getControl(),
 				"com.example.e4.rcp.todo.popupmenu.table");
+		viewer.setContentProvider(ArrayContentProvider.getInstance());
+		writableList = new WritableList(model.getTodos(), Todo.class);
+		ViewerSupport.bind(
+				viewer,
+				writableList,
+				BeanProperties.values(new String[] {
+						Messages.TodoOverviewPart_0, "description" }));
+
 	}
 
 	@Inject
@@ -174,7 +216,8 @@ public class TodoOverviewPart {
 	private void getNotified(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
 		if (viewer != null) {
-			viewer.setInput(model.getTodos());
+			writableList.clear();
+			writableList.addAll(model.getTodos());
 		}
 	}
 
@@ -182,7 +225,8 @@ public class TodoOverviewPart {
 	@Optional
 	public void updateViewer(@UIEventTopic("finish") List<Todo> list) {
 		if (viewer != null) {
-			viewer.setInput(list);
+			writableList.clear();
+			writableList.addAll(list);
 		}
 	}
 
