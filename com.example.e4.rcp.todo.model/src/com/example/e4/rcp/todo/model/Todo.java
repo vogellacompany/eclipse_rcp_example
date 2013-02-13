@@ -48,9 +48,8 @@ public class Todo {
 	}
 
 	public void setSummary(String summary) {
-		String oldSummary = this.summary;
-		this.summary = summary;
-		changes.firePropertyChange("summary", oldSummary, summary);
+		changes.firePropertyChange(FIELD_SUMMARY, this.summary,
+				this.summary = summary);
 	}
 
 	public void addPropertyChangeListener(PropertyChangeListener l) {
