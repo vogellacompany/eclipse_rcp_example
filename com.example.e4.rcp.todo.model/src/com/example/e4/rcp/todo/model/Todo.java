@@ -1,27 +1,38 @@
 package com.example.e4.rcp.todo.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Date;
 
 public class Todo {
-	private long id;
-	String summary = "";
-	String description = "";
-	boolean done = false;
-	Date dueDate;
-	
 
-	public Todo() {
-		super();
+	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+
+	public static final String FIELD_ID = "id";
+	public static final String FIELD_SUMMARY = "summary";
+	public static final String FIELD_DESCRIPTION = "description";
+	public static final String FIELD_DONE = "done";
+	public static final String FIELD_DUEDATE = "duedate";
+
+	public long id;
+	private String summary;
+	private String description;
+	private boolean done;
+	private Date dueDate;
+
+	public Todo(long i) {
+		id = i;
 	}
 
-	public Todo(long id, String summary, String description, boolean done,
-			Date dueDate) {
-		super();
-		this.id = id;
+	public Todo(long i, String summary, String description, boolean b, Date date) {
+		this.id = i;
 		this.summary = summary;
 		this.description = description;
-		this.done = done;
-		this.dueDate = dueDate;
+		this.done = b;
+		this.dueDate = date;
+	}
+
+	public Todo() {
 	}
 
 	public long getId() {
@@ -37,7 +48,17 @@ public class Todo {
 	}
 
 	public void setSummary(String summary) {
+		String oldSummary = this.summary;
 		this.summary = summary;
+		changes.firePropertyChange("summary", oldSummary, summary);
+	}
+
+	public void addPropertyChangeListener(PropertyChangeListener l) {
+		changes.addPropertyChangeListener(l);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener l) {
+		changes.removePropertyChangeListener(l);
 	}
 
 	public String getDescription() {
@@ -50,6 +71,18 @@ public class Todo {
 
 	public boolean isDone() {
 		return done;
+	}
+
+	public void setDone(boolean isDone) {
+		this.done = isDone;
+	}
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	@Override
@@ -74,26 +107,12 @@ public class Todo {
 		return true;
 	}
 
-	public void setDone(boolean done) {
-		this.done = done;
-	}
-
-	public Date getDueDate() {
-		return dueDate;
-	}
-
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
-
 	@Override
 	public String toString() {
 		return "Todo [id=" + id + ", summary=" + summary + "]";
 	}
 
 	public Todo copy() {
-		return new Todo(this.id, this.summary, this.description, this.done,
-				this.dueDate);
+		return new Todo(id, summary, description, done, dueDate);
 	}
-
 }
