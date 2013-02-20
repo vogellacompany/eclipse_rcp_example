@@ -105,46 +105,56 @@ public class TodoDetailsPart {
 			updateUserInterface(todo);
 		}
 	}
+	
 
 	private void updateUserInterface(Todo todo) {
-		ctx.dispose();
-
+		
 		// Check if Ui is available
 		// Assumes that one of your fields
 		// is called summary
+		
 		if (summary != null && !summary.isDisposed()) {
-
+			
+			// New todo not dirty
+			dirty.setDirty(false);
+			
+			// Deregister change listener to the old binding
+			IObservableList providers = ctx.getValidationStatusProviders();
+			for (Object o : providers) {
+				Binding b = (Binding) o;
+				b.getTarget().removeChangeListener(listener);
+			}
+			
+			// Remove bindings
+			ctx.dispose();
+			
 			IObservableValue target = WidgetProperties.text(SWT.Modify)
 					.observe(summary);
-			IObservableValue model = PojoProperties.value("summary").observe(
+			IObservableValue model = PojoProperties.value(Todo.FIELD_SUMMARY).observe(
 					todo);
 			ctx.bindValue(target, model);
 
 			target = WidgetProperties.text(SWT.Modify).observe(description);
-			model = PojoProperties.value("description").observe(todo);
+			model = PojoProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
 			ctx.bindValue(target, model);
+			
 			target = WidgetProperties.selection().observe(btnDone);
-			model = PojoProperties.value("done").observe(todo);
+			model = PojoProperties.value(Todo.FIELD_DONE).observe(todo);
 			ctx.bindValue(target, model);
 
 			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
 					.selection().observe(dateTime);
 			IObservableValue dueDateTodoObserveValue = PojoProperties.value(
-					"dueDate").observe(todo);
+					Todo.FIELD_DUEDATE).observe(todo);
 			ctx.bindValue(observeSelectionDateTimeObserveWidget,
 					dueDateTodoObserveValue, null, null);
 			
-			IObservableList providers = ctx.getValidationStatusProviders();
+			// Register for the changes
+			providers = ctx.getValidationStatusProviders();
 			for (Object o : providers) {
 				Binding b = (Binding) o;
 				b.getTarget().addChangeListener(listener);
 			}
-		}
-		
-		// After setting the new Todo set the part to
-		// not dirty
-		if (dirty != null) {
-			dirty.setDirty(false);
 		}
 	}
 

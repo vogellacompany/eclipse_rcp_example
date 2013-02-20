@@ -6,7 +6,10 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_p7QWcL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartSashContainer" xmi:id="_8TWJ8AzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partsashcontainer.1" containerData="40">
             <children xsi:type="basic:PartStack" xmi:id="_3wNUEL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partstack.topleft" containerData="60">
+              <tags>NoAutoCollapse</tags>
+              <tags>NoMove</tags>
               <children xsi:type="basic:Part" xmi:id="_SLnb4L-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.TodoOverviewPart" label="To-Dos" closeable="true">
+                <tags>NoMove</tags>
                 <menus xsi:type="menu:PopupMenu" xmi:id="_vqfykBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
                   <children xsi:type="menu:HandledMenuItem" xmi:id="_0reZIBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
                 </menus>
@@ -34,6 +37,7 @@
         </children>
       </children>
     </children>
+    <variables>shellMaximized</variables>
     <mainMenu xmi:id="_TbH8MMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_ZgLCUMZsEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.menu" label="File">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_iEOuEMZsEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menuitem.save" label="Save" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>

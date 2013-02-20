@@ -9,14 +9,13 @@ public class ThemeSwitchHandler {
 	@Execute
 	public void switchTheme(IThemeEngine engine) {
 		System.out.println("ThemeSwitchHandler called");
-		// The last argument controls
-		// whether the change should be persisted and
-		// restored on restart
+		// second argument defines that change is 
+		//persisted and restored on restart
 		if (!defaulttheme) {
 			engine.setTheme("com.vogella.e4.todo.defaulttheme", true);
 			
 		} else {
-			engine.setTheme("com.vogella.e4.todo.redtheme", true);
+			engine.setTheme("com.vogella.e4.todo.darktheme", true);
 		}
 		defaulttheme= !defaulttheme;
 	}

@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
@@ -51,14 +52,17 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 
+	private static final String LOCAL_EVENT_FINISH = "finish";
 	private Button btnNewButton;
 	private Label lblNewLabel;
 	private TableViewer viewer;
 
 	@Inject
 	UISynchronize sync;
+	
 	@Inject
 	ESelectionService service;
+	@Inject IEventBroker broker;
 
 	@Inject
 	ITodoModel model;
@@ -78,12 +82,7 @@ public class TodoOverviewPart {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
 						final List<Todo> list = model.getTodos();
-						sync.asyncExec(new Runnable() {
-							@Override
-							public void run() {
-								updateViewer(list);
-							}
-						});
+						broker.post(LOCAL_EVENT_FINISH, list);
 						return Status.OK_STATUS;
 					}
 				};
@@ -135,13 +134,13 @@ public class TodoOverviewPart {
 
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Summary");
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				Todo todo = (Todo) element;
-				return todo.getSummary();
-			}
-		});
+//		column.setLabelProvider(new ColumnLabelProvider() {
+//			@Override
+//			public String getText(Object element) {
+//				Todo todo = (Todo) element;
+//				return todo.getSummary();
+//			}
+//		});
 
 		column.setEditingSupport(new EditingSupport(viewer) {
 
@@ -172,13 +171,13 @@ public class TodoOverviewPart {
 
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Description");
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				Todo todo = (Todo) element;
-				return todo.getDescription();
-			}
-		});
+//		column.setLabelProvider(new ColumnLabelProvider() {
+//			@Override
+//			public String getText(Object element) {
+//				Todo todo = (Todo) element;
+//				return todo.getDescription();
+//			}
+//		});
 
 		// We search in the summary and description field
 		viewer.addFilter(new ViewerFilter() {
@@ -201,13 +200,12 @@ public class TodoOverviewPart {
 		});
 		menuService.registerContextMenu(viewer.getControl(),
 				"com.example.e4.rcp.todo.popupmenu.table");
-		viewer.setContentProvider(ArrayContentProvider.getInstance());
 		writableList = new WritableList(model.getTodos(), Todo.class);
 		ViewerSupport.bind(
 				viewer,
 				writableList,
 				BeanProperties.values(new String[] {
-						Messages.TodoOverviewPart_0, "description" }));
+						Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
 
 	}
 
@@ -223,7 +221,7 @@ public class TodoOverviewPart {
 
 	@Inject
 	@Optional
-	public void updateViewer(@UIEventTopic("finish") List<Todo> list) {
+	public void updateViewer(@UIEventTopic(LOCAL_EVENT_FINISH) List<Todo> list) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(list);

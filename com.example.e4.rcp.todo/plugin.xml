@@ -14,7 +14,7 @@
          </property>
          <property
                name="applicationCSS2"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
+               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
         
          <property
@@ -29,6 +29,14 @@
          <property
                name="cssTheme"
                value="com.vogella.e4.todo.defaulttheme">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
+         </property>
+         <property
+               name="lifeCycleURI"
+               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
          </property>
         
       </product>
@@ -45,6 +53,11 @@
             basestylesheeturi="css/red.css"
             id="com.vogella.e4.todo.redtheme"
             label="Red Theme">
+      </theme>
+      <theme
+            basestylesheeturi="css/dark-gradient.css"
+            id="com.vogella.e4.todo.darktheme"
+            label="Dark Theme">
       </theme>
    </extension>
 
