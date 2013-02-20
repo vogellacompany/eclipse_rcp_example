@@ -19,6 +19,10 @@
                name="applicationCSS"
                value="platform:/plugin/com.example.e4.rcp.wizard/css/default.css">
          </property>
+         <property
+               name="appName"
+               value="com.example.e4.rcp.wizard">
+         </property>
       </product>
    </extension>
 

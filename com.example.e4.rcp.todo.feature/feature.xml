@@ -73,4 +73,18 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="com.example.e4.rcp.todo.i18n"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.example.e4.rcp.todo.events"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
