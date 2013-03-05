@@ -15,6 +15,7 @@ public class NewTodoHandler {
 	@Execute
 	public void execute(Shell shell, ITodoModel model, IEventBroker broker ) {
 		Todo todo = new Todo();
+		todo.setSummary("Databinding is the best ever!!");
 		WizardDialog dialog = new WizardDialog(shell, new TodoWizard(todo));
 		if (dialog.open()== WizardDialog.OK) {
 			model.saveTodo(todo);

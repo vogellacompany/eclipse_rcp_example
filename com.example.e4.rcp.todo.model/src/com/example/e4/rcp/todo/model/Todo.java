@@ -52,20 +52,13 @@ public class Todo {
 				this.summary = summary);
 	}
 
-	public void addPropertyChangeListener(PropertyChangeListener l) {
-		changes.addPropertyChangeListener(l);
-	}
-
-	public void removePropertyChangeListener(PropertyChangeListener l) {
-		changes.removePropertyChangeListener(l);
-	}
-
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		changes.firePropertyChange(FIELD_DESCRIPTION, this.description,
+				this.description = description);
 	}
 
 	public boolean isDone() {
@@ -113,5 +106,13 @@ public class Todo {
 
 	public Todo copy() {
 		return new Todo(id, summary, description, done, dueDate);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener l) {
+		changes.addPropertyChangeListener(l);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener l) {
+		changes.removePropertyChangeListener(l);
 	}
 }

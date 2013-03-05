@@ -97,7 +97,9 @@ public class TodoDetailsPart {
 
 	@Inject
 	public void setTodo(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
+			@Optional 
+			@Named(IServiceConstants.ACTIVE_SELECTION) 
+			Todo todo) {
 		if (todo != null) {
 			// Remember the todo as field
 			this.todo = todo;
@@ -116,7 +118,9 @@ public class TodoDetailsPart {
 		if (summary != null && !summary.isDisposed()) {
 			
 			// New todo not dirty
-			dirty.setDirty(false);
+			if (dirty!=null){
+				dirty.setDirty(false);
+			}
 			
 			// Deregister change listener to the old binding
 			IObservableList providers = ctx.getValidationStatusProviders();

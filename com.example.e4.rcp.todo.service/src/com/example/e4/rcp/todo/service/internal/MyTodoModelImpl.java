@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.eclipse.e4.core.services.events.IEventBroker;
 
+import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -13,6 +16,7 @@ public class MyTodoModelImpl implements ITodoModel {
 
 	static int current = 1;
 	private List<Todo> model;
+	private IEventBroker broker;
 
 	public MyTodoModelImpl() {
 		model = createInitialModel();
@@ -42,9 +46,13 @@ public class MyTodoModelImpl implements ITodoModel {
 			updateTodo.setDescription(newTodo.getDescription());
 			updateTodo.setDone(newTodo.isDone());
 			updateTodo.setDueDate(newTodo.getDueDate());
+			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_UPDATED,
+					updateTodo);
 		} else {
 			newTodo.setId(current++);
 			model.add(newTodo);
+			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_NEW,
+					updateTodo);
 		}
 
 		return true;
@@ -70,6 +78,8 @@ public class MyTodoModelImpl implements ITodoModel {
 		}
 		if (deleteTodo != null) {
 			model.remove(deleteTodo);
+			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_DELETE,
+					deleteTodo);
 			return true;
 		}
 		return false;
@@ -94,8 +104,9 @@ public class MyTodoModelImpl implements ITodoModel {
 		return new Todo(current++, summary, description, false, new Date());
 	}
 
-	@Override
+	@Inject
 	public void setEventBroker(IEventBroker broker) {
-		
+		this.broker = broker;
+
 	}
 }

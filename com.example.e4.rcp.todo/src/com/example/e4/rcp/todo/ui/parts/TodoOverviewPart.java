@@ -134,13 +134,6 @@ public class TodoOverviewPart {
 
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Summary");
-//		column.setLabelProvider(new ColumnLabelProvider() {
-//			@Override
-//			public String getText(Object element) {
-//				Todo todo = (Todo) element;
-//				return todo.getSummary();
-//			}
-//		});
 
 		column.setEditingSupport(new EditingSupport(viewer) {
 
@@ -171,13 +164,6 @@ public class TodoOverviewPart {
 
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Description");
-//		column.setLabelProvider(new ColumnLabelProvider() {
-//			@Override
-//			public String getText(Object element) {
-//				Todo todo = (Todo) element;
-//				return todo.getDescription();
-//			}
-//		});
 
 		// We search in the summary and description field
 		viewer.addFilter(new ViewerFilter() {
