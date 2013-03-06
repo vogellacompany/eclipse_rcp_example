@@ -66,7 +66,7 @@ public class Todo {
 	}
 
 	public void setDone(boolean isDone) {
-		this.done = isDone;
+		changes.firePropertyChange(FIELD_DONE, this.done, this.done = isDone);
 	}
 
 	public Date getDueDate() {
@@ -74,7 +74,8 @@ public class Todo {
 	}
 
 	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
+		changes.firePropertyChange(FIELD_DUEDATE, this.dueDate,
+				this.dueDate = dueDate);
 	}
 
 	@Override
@@ -107,7 +108,7 @@ public class Todo {
 	public Todo copy() {
 		return new Todo(id, summary, description, done, dueDate);
 	}
-	
+
 	public void addPropertyChangeListener(PropertyChangeListener l) {
 		changes.addPropertyChangeListener(l);
 	}
