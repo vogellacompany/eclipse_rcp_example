@@ -1,5 +1,6 @@
 bin
 .metadata
+target
 External Plug-in Libraries
 
 # You can use wildcards as well
