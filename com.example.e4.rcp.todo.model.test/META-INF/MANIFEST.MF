@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model Tests
+Bundle-SymbolicName: com.example.e4.rcp.todo.model.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EXAMPLE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.example.e4.rcp.todo.model;bundle-version="1.0.0",
+ org.junit
