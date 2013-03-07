@@ -12,7 +12,7 @@ public class Todo {
 	public static final String FIELD_SUMMARY = "summary";
 	public static final String FIELD_DESCRIPTION = "description";
 	public static final String FIELD_DONE = "done";
-	public static final String FIELD_DUEDATE = "duedate";
+	public static final String FIELD_DUEDATE = "dueDate";
 
 	public long id;
 	private String summary;
