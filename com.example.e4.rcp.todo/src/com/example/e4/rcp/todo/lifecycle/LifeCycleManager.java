@@ -13,9 +13,8 @@ import com.example.e4.rcp.todo.model.ITodoModel;
 // https://bugs.eclipse.org/382224
 public class LifeCycleManager {
 	@PostContextCreate
-	void postContextCreate(final IEventBroker broker, ITodoModel model) {
+	void postContextCreate() {
 		// Inject the EventBroker into the ITodoModel
-		model.setEventBroker(broker);
 		final Shell shell = new Shell(SWT.TOOL | SWT.NO_TRIM);
 		PasswordDialog dialog = new PasswordDialog(shell);
 		if (dialog.open()!=Window.OK){
