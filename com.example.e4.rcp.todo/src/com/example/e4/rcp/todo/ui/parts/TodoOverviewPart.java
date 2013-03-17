@@ -20,9 +20,7 @@ import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
-import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -46,7 +44,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
-import com.example.e4.rcp.todo.i18n.Messages;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
