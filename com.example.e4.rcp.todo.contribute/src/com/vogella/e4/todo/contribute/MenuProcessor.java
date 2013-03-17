@@ -38,15 +38,16 @@ public class MenuProcessor {
 				}
 			}
 			menu.getChildren().removeAll(list);
+
+			// Now add a new menu entry
+			MDirectMenuItem menuItem = MMenuFactory.INSTANCE.
+					createDirectMenuItem();
+			menuItem.setLabel("Another Exit");
+			menuItem.setContributionURI("bundleclass://"
+					+ "com.example.e4.rcp.todo.contribute/"
+					+ "com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
+			menu.getChildren().add(menuItem);
 		}
 
-		// Now add a new menu entry
-		MDirectMenuItem menuItem = MMenuFactory.INSTANCE.
-				createDirectMenuItem();
-		menuItem.setLabel("Another Exit");
-		menuItem.setContributionURI("bundleclass://"
-				+ "com.example.e4.rcp.todo.contribute/"
-				+ "com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
-		menu.getChildren().add(menuItem);
 	}
 }
