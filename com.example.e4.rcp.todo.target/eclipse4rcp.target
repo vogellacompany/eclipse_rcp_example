@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="eclipse4rcp" sequenceNumber="3">
+<?pde version="3.8"?><target name="eclipse4rcp" sequenceNumber="12">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.platform.sdk" version="4.2.2.M20130204-1200"/>
-<unit id="org.eclipse.sdk.ide" version="4.2.2.M20130204-1200"/>
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.8.0.v20121212-203907-7M7fA78g4_y-gDvtH0ZcFvhMPDZJ"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.2"/>
+<unit id="org.eclipse.swtbot.forms.feature.group" version="2.1.0.201303100321"/>
+<unit id="org.eclipse.swtbot.eclipse.feature.group" version="2.1.0.201303100321"/>
+<unit id="org.eclipse.swtbot.eclipse.gef.feature.group" version="2.1.0.201303100321"/>
+<unit id="org.eclipse.swtbot.feature.group" version="2.1.0.201303100321"/>
+<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="2.1.0.201303100321"/>
+<repository location="http://download.eclipse.org/technology/swtbot/snapshots"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.gef.sdk.feature.group" version="3.9.0.201212170307"/>
+<repository location="http://download.eclipse.org/releases/kepler"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.sdk.ide" version="4.3.0.I20130314-1330"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.9.0.v20130314-0217"/>
+<unit id="org.eclipse.rcp.feature.group" version="4.3.0.v20130314-1730"/>
+<unit id="org.eclipse.platform.sdk" version="4.3.0.I20130314-1330"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.3milestones"/>
 </location>
 </locations>
 </target>

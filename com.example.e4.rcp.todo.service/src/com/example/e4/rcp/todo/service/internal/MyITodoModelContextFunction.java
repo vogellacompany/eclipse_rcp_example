@@ -6,8 +6,7 @@ public class MyITodoModelContextFunction implements
 		org.eclipse.e4.core.contexts.IContextFunction {
 
 	@Override
-	public Object compute(IEclipseContext context) {
+	public Object compute(IEclipseContext context, String key) {
 		return null;
 	}
-
 }
