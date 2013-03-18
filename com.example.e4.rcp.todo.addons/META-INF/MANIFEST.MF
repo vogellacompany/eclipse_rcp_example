@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Addons
+Bundle-SymbolicName: com.example.e4.rcp.todo.addons
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EXAMPLE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.e4.core.services;bundle-version="1.0.0",
+ javax.inject;bundle-version="1.0.0",
+ org.eclipse.equinox.app;bundle-version="1.3.100",
+ org.eclipse.e4.ui.workbench;bundle-version="0.10.3"
+Import-Package: javax.annotation;version="1.0.0"
+Export-Package: com.example.e4.rcp.todo.addons
