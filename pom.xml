@@ -43,6 +43,7 @@
 		<module>com.example.e4.rcp.todo.model.test</module>
 
 		<!-- SWTBot tests -->
+		<module>com.example.e4.rcp.todo.uitest</module>
 
 		<!-- features -->
 		<module>com.example.e4.rcp.todo.feature</module>

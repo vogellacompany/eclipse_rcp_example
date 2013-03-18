@@ -34,11 +34,12 @@
                name="applicationCSS"
                value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
+         <!-- commented to simplify SWTBot test example
          <property
                name="lifeCycleURI"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
          </property>
-        
+         -->
       </product>
    </extension>
  
