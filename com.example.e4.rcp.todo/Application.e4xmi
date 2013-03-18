@@ -104,4 +104,5 @@
   <addons xmi:id="_kRdLdb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_kRdLdr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
   <addons xmi:id="_UY8rwL_HEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.addon.myaddon" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.MyModelAddon"/>
+  <addons xmi:id="_nSYbMI1wEeK-pvjEKDi5hg" elementId="com.example.e4.rcp.todo.addon.0" contributionURI="bundleclass://com.example.e4.rcp.todo.addons/com.example.e4.rcp.todo.addons.SetPerspectiveAddon"/>
 </application:Application>
