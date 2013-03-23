@@ -32,7 +32,7 @@
 		<module>com.example.e4.bundleresourceloader</module>
 		<module>com.example.e4.rcp.todo</module>
 		<module>com.example.e4.rcp.todo.model</module>
-		<module>com.example.e4.rcp.todo.contextfunction</module>
+		<module>com.example.e4.rcp.todo.addons</module>
 		<module>com.example.e4.rcp.todo.contribute</module>
 		<module>com.example.e4.rcp.todo.events</module>
 		<module>com.example.e4.rcp.todo.i18n</module>
