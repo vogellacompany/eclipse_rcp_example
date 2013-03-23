@@ -46,13 +46,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.example.e4.rcp.todo.contextfunction"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.example.e4.rcp.todo.ownannotation"
          download-size="0"
          install-size="0"
