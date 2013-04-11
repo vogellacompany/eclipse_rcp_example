@@ -75,7 +75,7 @@ public class TodoDeletionPart {
 	@Optional
 	private void getNotified(
 			@UIEventTopic(
-					MyEventConstants.TOPIC_TODO_DATA_UPDATE) 
+					MyEventConstants.TOPIC_TODO_ALLTOPICS) 
 			 	    String topic) {
 		updateViewer(model.getTodos());
 	}

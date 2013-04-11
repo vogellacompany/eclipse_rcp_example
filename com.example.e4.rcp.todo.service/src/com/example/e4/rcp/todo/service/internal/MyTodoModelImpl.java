@@ -46,12 +46,12 @@ public class MyTodoModelImpl implements ITodoModel {
 			updateTodo.setDescription(newTodo.getDescription());
 			updateTodo.setDone(newTodo.isDone());
 			updateTodo.setDueDate(newTodo.getDueDate());
-			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_UPDATED,
+			broker.send(MyEventConstants.TOPIC_TODO_UPDATE,
 					updateTodo);
 		} else {
 			newTodo.setId(current++);
 			model.add(newTodo);
-			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_NEW,
+			broker.send(MyEventConstants.TOPIC_TODO_NEW,
 					updateTodo);
 		}
 
@@ -78,7 +78,7 @@ public class MyTodoModelImpl implements ITodoModel {
 		}
 		if (deleteTodo != null) {
 			model.remove(deleteTodo);
-			broker.send(MyEventConstants.TOPIC_TODO_DATA_UPDATE_DELETE,
+			broker.send(MyEventConstants.TOPIC_TODO_DELETE,
 					deleteTodo);
 			return true;
 		}

@@ -11,7 +11,7 @@ public class SaveAllHandler {
 	@Execute
 	public void execute(EPartService service, IEventBroker broker) {
 		service.saveAll(false);
-		broker.post(MyEventConstants.TOPIC_TODO_DATA_UPDATE_UPDATED, "saved");
+		broker.post(MyEventConstants.TOPIC_TODO_UPDATE, "saved");
 	}
 
 }

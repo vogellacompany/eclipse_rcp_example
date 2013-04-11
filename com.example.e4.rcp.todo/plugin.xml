@@ -13,7 +13,7 @@
                value="to-do">
          </property>
          <property
-               name="applicationCSS2"
+               name="applicationCSS"
                value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
         
@@ -27,7 +27,7 @@
          </property>
           -->
          <property
-               name="cssTheme"
+               name="cssTheme2"
                value="com.vogella.e4.todo.defaulttheme">
          </property>
          <property

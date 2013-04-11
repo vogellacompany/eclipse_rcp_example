@@ -177,7 +177,7 @@ public class ManagerPart {
 	@Optional
 	private void getNotified(
 			@UIEventTopic(
-					MyEventConstants.TOPIC_TODO_DATA_UPDATE) 
+					MyEventConstants.TOPIC_TODO_ALLTOPICS) 
 			 	    String topic) {
 		if (viewer!=null) {
 			viewer.setInput(model.getTodos());

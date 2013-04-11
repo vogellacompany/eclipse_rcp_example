@@ -30,7 +30,7 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.100.0",
  com.example.e4.rcp.todo.i18n;bundle-version="1.0.0",
  com.example.e4.rcp.todo.events;bundle-version="1.0.0",
  com.example.e4.rcp.todo.addons;bundle-version="1.0.0",
- org.eclipse.e4.ui.model.workbench;bundle-version="1.0.0"
+ org.eclipse.e4.ui.model.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.example.e4.bundleresourceloader,
  javax.annotation;version="1.0.0"

@@ -20,7 +20,7 @@ public class NewTodoHandler {
 		if (dialog.open()== WizardDialog.OK) {
 			model.saveTodo(todo);
 			// asynchronously
-			broker.post(MyEventConstants.TOPIC_TODO_DATA_UPDATE_NEW, "New data");
+			broker.post(MyEventConstants.TOPIC_TODO_NEW, "New data");
 		}
 	}
 }

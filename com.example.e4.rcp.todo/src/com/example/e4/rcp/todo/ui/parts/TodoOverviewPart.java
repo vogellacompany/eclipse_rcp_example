@@ -195,7 +195,7 @@ public class TodoOverviewPart {
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String topic) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(model.getTodos());

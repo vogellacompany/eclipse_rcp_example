@@ -1,14 +1,17 @@
-CTabItem, ToolBar, Button, CBanner, CoolBar {
-	font-size: 9;
-	background-color: blue red;
-
-
-Composite {
-	background-color: #314112 orange 60%;
+Shell {
+	background-color: red orange yellow green orange 30% 60% 75% 95%
 }
 
 .MPartStack {
-	font-size: 100em;
+	font-size: 22px;
 	color:orange;
-	background:grey;
 }	
+
+.MPart:selected {
+   visible:gone;
+   background-color:black;
+}
+
+.MPartStack {
+border-visible:false;
+}
