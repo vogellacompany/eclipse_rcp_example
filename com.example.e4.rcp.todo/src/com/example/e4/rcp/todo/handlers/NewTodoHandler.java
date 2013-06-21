@@ -7,13 +7,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 import com.example.e4.rcp.todo.wizards.TodoWizard;
 
 public class NewTodoHandler {
 	@Execute
-	public void execute(Shell shell, ITodoModel model, IEventBroker broker ) {
+	public void execute(Shell shell, ITodoService model, IEventBroker broker ) {
 		Todo todo = new Todo();
 		todo.setSummary("Databinding is the best ever!!");
 		WizardDialog dialog = new WizardDialog(shell, new TodoWizard(todo));

@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
@@ -90,7 +90,7 @@ public class TodoDetailsPart {
 	}
 
 	@Persist
-	public void save(MDirtyable dirty, ITodoModel model) {
+	public void save(MDirtyable dirty, ITodoService model) {
 		model.saveTodo(todo);
 		dirty.setDirty(false);
 	}

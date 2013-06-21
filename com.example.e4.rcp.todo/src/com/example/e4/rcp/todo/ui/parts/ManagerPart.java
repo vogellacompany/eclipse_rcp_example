@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.addons.MyModelAddon;
 import com.example.e4.rcp.todo.events.MyEventConstants;
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class ManagerPart {
@@ -53,7 +53,7 @@ public class ManagerPart {
 	ESelectionService service;
 	
 	@Inject
-	ITodoModel model;
+	ITodoService model;
 	
 	@Inject 
 	MyModelAddon addon;

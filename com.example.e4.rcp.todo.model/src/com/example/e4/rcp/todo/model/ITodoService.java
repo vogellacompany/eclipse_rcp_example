@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
 
-public interface ITodoModel {
+public interface ITodoService {
 	
 	List<Todo> getTodos();
 

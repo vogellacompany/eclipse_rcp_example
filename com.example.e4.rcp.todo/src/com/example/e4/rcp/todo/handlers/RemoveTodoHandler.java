@@ -8,12 +8,12 @@ import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class RemoveTodoHandler {
 	@Execute
-	public void execute(ITodoModel model,
+	public void execute(ITodoService model,
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
 			Shell shell
 			) {

@@ -7,14 +7,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 
 import com.example.e4.rcp.todo.dialogs.PasswordDialog;
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 
 // For a extended example see
 // https://bugs.eclipse.org/382224
 public class LifeCycleManager {
 	@PostContextCreate
 	void postContextCreate() {
-		// Inject the EventBroker into the ITodoModel
+		// Inject the EventBroker into the ITodoService
 		final Shell shell = new Shell(SWT.TOOL | SWT.NO_TRIM);
 		PasswordDialog dialog = new PasswordDialog(shell);
 		if (dialog.open()!=Window.OK){

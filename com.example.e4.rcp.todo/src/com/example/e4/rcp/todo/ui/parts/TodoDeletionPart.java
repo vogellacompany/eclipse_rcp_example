@@ -23,12 +23,12 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.i18n.Messages;
-import com.example.e4.rcp.todo.model.ITodoModel;
+import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDeletionPart {
 	@Inject
-	private ITodoModel model;
+	private ITodoService model;
 	private ComboViewer viewer;
 
 	@PostConstruct
