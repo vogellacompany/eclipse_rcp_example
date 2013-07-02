@@ -11,7 +11,9 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <launcher>
+   <splash
+      location="com.example.e4.rcp.todo" />
+   <launcher name="todo">
       <solaris/>
       <win useIco="false">
          <bmp/>

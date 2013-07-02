@@ -111,16 +111,11 @@ public class TodoDetailsPart {
 
 	private void updateUserInterface(Todo todo) {
 		
-		// Check if Ui is available
-		// Assumes that one of your fields
-		// is called summary
-		
+		// Check if the user interface is available
+		// assume you have a field called "summary"
+		// for a widget
 		if (summary != null && !summary.isDisposed()) {
 			
-			// New todo not dirty
-			if (dirty!=null){
-				dirty.setDirty(false);
-			}
 			
 			// Deregister change listener to the old binding
 			IObservableList providers = ctx.getValidationStatusProviders();
@@ -146,10 +141,10 @@ public class TodoDetailsPart {
 			model = PojoProperties.value(Todo.FIELD_DONE).observe(todo);
 			ctx.bindValue(target, model);
 
-			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
-					.selection().observe(dateTime);
-			IObservableValue dueDateTodoObserveValue = PojoProperties.value(
-					Todo.FIELD_DUEDATE).observe(todo);
+			IObservableValue observeSelectionDateTimeObserveWidget = 
+					WidgetProperties.selection().observe(dateTime);
+			IObservableValue dueDateTodoObserveValue = 
+					PojoProperties.value(Todo.FIELD_DUEDATE).observe(todo);
 			ctx.bindValue(observeSelectionDateTimeObserveWidget,
 					dueDateTodoObserveValue, null, null);
 			

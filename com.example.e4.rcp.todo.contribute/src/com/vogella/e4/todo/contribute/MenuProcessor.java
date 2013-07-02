@@ -12,6 +12,8 @@ import org.eclipse.e4.ui.model.application.ui.menu.MMenu;
 import org.eclipse.e4.ui.model.application.ui.menu.MMenuElement;
 import org.eclipse.e4.ui.model.application.ui.menu.MMenuFactory;
 
+import com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck;
+
 @SuppressWarnings("restriction")
 public class MenuProcessor {
 	
@@ -45,7 +47,7 @@ public class MenuProcessor {
 			menuItem.setLabel("Another Exit");
 			menuItem.setContributionURI("bundleclass://"
 					+ "com.example.e4.rcp.todo.contribute/"
-					+ "com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
+					+ ExitHandlerWithCheck.class.getName());
 			menu.getChildren().add(menuItem);
 		}
 
