@@ -28,7 +28,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	// Always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
-		ArrayList<Todo> list = new ArrayList<Todo>();
+		List<Todo> list = new ArrayList<Todo>();
 		for (Todo todo : todos) {
 			list.add(todo.copy());
 		}
@@ -78,7 +78,7 @@ public class MyTodoServiceImpl implements ITodoService {
 
 	// Example data, change if you like
 	private List<Todo> createInitialModel() {
-		ArrayList<Todo> list = new ArrayList<Todo>();
+		List<Todo> list = new ArrayList<Todo>();
 		list.add(createTodo("Application model", "Flexible and extensible"));
 		list.add(createTodo("DI", "@Inject as programming mode"));
 		list.add(createTodo("SWT", "Widgets"));
