@@ -14,5 +14,4 @@ public interface ITodoService {
 
 	boolean deleteTodo(long id);
 
-    void setEventBroker(IEventBroker broker);
 }

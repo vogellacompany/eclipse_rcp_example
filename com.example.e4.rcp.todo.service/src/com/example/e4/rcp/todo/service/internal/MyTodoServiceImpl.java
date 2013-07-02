@@ -15,18 +15,21 @@ import com.example.e4.rcp.todo.model.Todo;
 public class MyTodoServiceImpl implements ITodoService {
 
 	static int current = 1;
-	private List<Todo> model;
+	private List<Todo> todos;
+	
+	// Can now use @Inject in the MyTodoServiceImpl!
+	@Inject
 	private IEventBroker broker;
-
+	
 	public MyTodoServiceImpl() {
-		model = createInitialModel();
+		todos = createInitialModel();
 	}
 
 	// Always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
 		ArrayList<Todo> list = new ArrayList<Todo>();
-		for (Todo todo : model) {
+		for (Todo todo : todos) {
 			list.add(todo.copy());
 		}
 		return list;
@@ -44,7 +47,7 @@ public class MyTodoServiceImpl implements ITodoService {
 			broker.send(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
 		} else {
 			newTodo.setId(current++);
-			model.add(newTodo);
+			todos.add(newTodo);
 			broker.send(MyEventConstants.TOPIC_TODO_NEW, updateTodo);
 		}
 
@@ -66,7 +69,7 @@ public class MyTodoServiceImpl implements ITodoService {
 		Todo deleteTodo = findById(id);
 
 		if (deleteTodo != null) {
-			model.remove(deleteTodo);
+			todos.remove(deleteTodo);
 			broker.send(MyEventConstants.TOPIC_TODO_DELETE, deleteTodo);
 			return true;
 		}
@@ -93,7 +96,7 @@ public class MyTodoServiceImpl implements ITodoService {
 
 	private Todo findById(long id) {
 		Todo item = null;
-		for (Todo todo : model) {
+		for (Todo todo : todos) {
 			if (id == todo.getId()) {
 				item = todo;
 			}
@@ -101,9 +104,4 @@ public class MyTodoServiceImpl implements ITodoService {
 		return item;
 	}
 
-	@Inject
-	public void setEventBroker(IEventBroker broker) {
-		this.broker = broker;
-
-	}
 }
