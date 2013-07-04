@@ -16,11 +16,11 @@ public class MyTodoServiceImpl implements ITodoService {
 
 	static int current = 1;
 	private List<Todo> todos;
-	
+
 	// @Inject in the MyTodoServiceImpl!
 	@Inject
 	private IEventBroker broker;
-	
+
 	public MyTodoServiceImpl() {
 		todos = createInitialModel();
 	}
@@ -62,7 +62,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	@Override
 	public Todo getTodo(long id) {
 		Todo todo = findById(id);
-		
+
 		if (todo != null) {
 			return todo.copy();
 		}
@@ -89,8 +89,8 @@ public class MyTodoServiceImpl implements ITodoService {
 		list.add(createTodo("SWT", "Widgets"));
 		list.add(createTodo("JFace", "Nice, especially Viewers!"));
 		list.add(createTodo("OSGi", "Services"));
-		list.add(createTodo("CSS Styling","style your application"));
-		list.add(createTodo("Eclipse services","Core"));
+		list.add(createTodo("CSS Styling", "style your application"));
+		list.add(createTodo("Eclipse services", "Core"));
 		list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
 		return list;
 	}
@@ -103,7 +103,7 @@ public class MyTodoServiceImpl implements ITodoService {
 		Todo item = null;
 		for (Todo todo : todos) {
 			if (id == todo.getId()) {
-				item = todo;
+				return todo;
 			}
 		}
 		return item;
