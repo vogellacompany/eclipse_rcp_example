@@ -12,45 +12,42 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class PasswordDialog extends Dialog {
-	private Text userText;
-	private Text passwordText;
+	private Text txtUser;
+	private Text txtPassword;
 	private String user="";
 	private String password="";
 
 	public PasswordDialog(Shell parentShell) {
 		super(parentShell);
 	}
-
-	/**
-	 * Create contents of the dialog.
-	 */	
+	
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
-		GridLayout gl_container = new GridLayout(2, false);
-		gl_container.marginRight = 5;
-		gl_container.marginLeft = 10;
-		container.setLayout(gl_container);
+		GridLayout layout = new GridLayout(2, false);
+		layout.marginRight = 5;
+		layout.marginLeft = 10;
+		container.setLayout(layout);
 
 		Label lblUser = new Label(container, SWT.NONE);
 		lblUser.setText("User:");
 
-		userText = new Text(container, SWT.BORDER);
-		userText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+		txtUser = new Text(container, SWT.BORDER);
+		txtUser.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
 				1, 1));
-		userText.setText(user);
+		txtUser.setText(user);
 
-		Label lblNewLabel = new Label(container, SWT.NONE);
+		Label lblPassword = new Label(container, SWT.NONE);
 		GridData gd_lblNewLabel = new GridData(SWT.LEFT, SWT.CENTER, false,
 				false, 1, 1);
 		gd_lblNewLabel.horizontalIndent = 1;
-		lblNewLabel.setLayoutData(gd_lblNewLabel);
-		lblNewLabel.setText("Password:");
+		lblPassword.setLayoutData(gd_lblNewLabel);
+		lblPassword.setText("Password:");
 
-		passwordText = new Text(container, SWT.BORDER);
-		passwordText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+		txtPassword = new Text(container, SWT.BORDER);
+		txtPassword.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1));
-		passwordText.setText(password);
+		txtPassword.setText(password);
 		return container;
 	}
 
@@ -64,8 +61,8 @@ public class PasswordDialog extends Dialog {
 
 	@Override
 	protected void okPressed() {
-		user = userText.getText();
-		password = passwordText.getText();
+		user = txtUser.getText();
+		password = txtPassword.getText();
 
 		super.okPressed();
 	}

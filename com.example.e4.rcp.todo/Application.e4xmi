@@ -23,7 +23,7 @@
             <children xsi:type="basic:PartStack" xmi:id="_69BOUL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partstack.0">
               <children xsi:type="basic:Part" xmi:id="_YrtEwL-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.tododetails" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.TodoDetailsPart" label="Details"/>
             </children>
-            <children xsi:type="basic:PartStack" xmi:id="_-ORjsL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partstack.0">
+            <children xsi:type="basic:PartStack" xmi:id="_-ORjsL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partstack.botton">
               <children xsi:type="basic:Part" xmi:id="_ZHOjIL-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.playground" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.PlaygroundPart" label="Playground"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_5KwzAA5xEeK9y8PCk5W1FQ" elementId="com.example.e4.rcp.todo.placeholder.0" ref="_0Aiw4A5xEeK9y8PCk5W1FQ"/>
             </children>

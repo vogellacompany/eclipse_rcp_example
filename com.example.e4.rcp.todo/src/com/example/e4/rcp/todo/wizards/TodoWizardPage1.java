@@ -20,7 +20,7 @@ public class TodoWizardPage1 extends WizardPage {
 	}
 
 	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NULL);
+		Composite container = new Composite(parent, SWT.NONE);
 		// We reuse the part and
 		// inject the values
 		TodoDetailsPart part = new TodoDetailsPart();

@@ -17,7 +17,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	static int current = 1;
 	private List<Todo> todos;
 	
-	// Can now use @Inject in the MyTodoServiceImpl!
+	// @Inject in the MyTodoServiceImpl!
 	@Inject
 	private IEventBroker broker;
 	
