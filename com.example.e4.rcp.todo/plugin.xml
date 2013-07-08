@@ -13,13 +13,13 @@
                value="to-do">
          </property>
          <property
-               name="applicationCSS"
+               name="applicationCSS2"
                value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
         
          <property
                name="rendererFactoryUri2"
-               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.renderer.MyRendererFactory">
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
          </property>
          <property
                name="applicationCSSResources2"
@@ -29,10 +29,6 @@
          <property
                name="cssTheme2"
                value="com.vogella.e4.todo.defaulttheme">
-         </property>
-         <property
-               name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
          </property>
          <!-- commented to simplify SWTBot test example
          <property

@@ -1,4 +1,4 @@
-package com.example.e4.rcp.todo.renderer;
+package com.example.e4.renderer.swt;
 
 import org.eclipse.e4.ui.model.application.ui.MUIElement;
 import org.eclipse.e4.ui.workbench.renderers.swt.SWTPartRenderer;
@@ -8,7 +8,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class BrowserRenderer extends SWTPartRenderer {
+public class MyPartRenderer extends SWTPartRenderer {
 	public static final String ID = "de.vogella.javascript.maps.view";
 
 	@Override
