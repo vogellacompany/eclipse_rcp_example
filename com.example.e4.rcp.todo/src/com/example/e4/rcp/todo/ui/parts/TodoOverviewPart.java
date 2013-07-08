@@ -195,22 +195,13 @@ public class TodoOverviewPart {
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String topic) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String todo) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(model.getTodos());
 		}
 	}
-
-	@Inject
-	@Optional
-	public void updateViewer(@UIEventTopic(LOCAL_EVENT_FINISH) List<Todo> list) {
-		if (viewer != null) {
-			writableList.clear();
-			writableList.addAll(list);
-		}
-	}
-
+	
 	@Focus
 	private void setFocus() {
 		btnNewButton.setFocus();
