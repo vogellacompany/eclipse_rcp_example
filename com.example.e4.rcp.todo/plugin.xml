@@ -30,6 +30,10 @@
                name="cssTheme2"
                value="com.vogella.e4.todo.defaulttheme">
          </property>
+         <property
+               name="lifeCycleURI"
+               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
+         </property>
          <!-- commented to simplify SWTBot test example
          <property
                name="lifeCycleURI"
