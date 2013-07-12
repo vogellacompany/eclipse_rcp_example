@@ -71,7 +71,7 @@ public class PlaygroundPart {
 	@Inject
 	@Optional
 	public void trackUserSettings(
-			@Preference(nodePath = "com.example.e4.rcp.todo", value = "user") String user) {
+			@Preference(value = "user") String user) {
 		System.out.println("New user: " + user);
 		System.out.println("Field: " + userTodo);
 	}
@@ -79,7 +79,7 @@ public class PlaygroundPart {
 	@Inject
 	@Optional
 	public void trackPasswordSettings(
-			@Preference(nodePath = "com.example.e4.rcp.todo", value = "password") String password) {
+			@Preference(value = "password") String password) {
 		System.out.println("New password: " + password);
 	}
 

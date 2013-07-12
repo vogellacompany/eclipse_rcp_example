@@ -1,40 +1,43 @@
 package com.example.e4.rcp.todo.lifecycle;
 
-import org.eclipse.e4.core.services.events.IEventBroker;
+import javax.inject.Inject;
+
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
+import org.osgi.service.prefs.BackingStoreException;
 
 import com.example.e4.rcp.todo.dialogs.PasswordDialog;
-import com.example.e4.rcp.todo.model.ITodoService;
 
-// For a extended example see
-// https://bugs.eclipse.org/382224
 public class LifeCycleManager {
+
+	// We add the nodePath in case you move the lifecycle handler to
+	// another plug-in later
+	@Inject
+	@Preference(nodePath = "com.example.e4.rcp.todo", value = "user")
+	private String user;
+
 	@PostContextCreate
-	void postContextCreate() {
-		// Inject the EventBroker into the ITodoService
+	public void postContextCreate(@Preference IEclipsePreferences prefs) {
 		final Shell shell = new Shell(SWT.TOOL | SWT.NO_TRIM);
 		PasswordDialog dialog = new PasswordDialog(shell);
-		if (dialog.open()!=Window.OK){
+		if (user != null) {
+			dialog.setUser(user);
+		}
+		if (dialog.open() != Window.OK) {
 			// close the application
 			System.exit(-1);
-		};
-		
-		// Will close the shell once a part gets activated
-		// Should be easier
-		// See the following bug reports
-		// https://bugs.eclipse.org/376821
-//		broker.subscribe(UIEvents.UILifeCycle.ACTIVATE,
-//				new EventHandler() {
-//					@Override
-//					public void handleEvent(Event event) {
-//						shell.close();
-//						shell.dispose();
-//						broker.unsubscribe(this);
-//					}
-//				});
+		} else {
+			// Store the user values in the preferences
+			prefs.put("user", dialog.getUser());
+			try {
+				prefs.flush();
+			} catch (BackingStoreException e) {
+				e.printStackTrace();
+			}
+		}
 	}
-
 }
