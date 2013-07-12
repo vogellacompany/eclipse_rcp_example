@@ -38,19 +38,24 @@ public class MyTodoServiceImpl implements ITodoService {
 	// Saves or updates
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
+		boolean created =false;
 		Todo updateTodo = findById(newTodo.getId());
-		if (updateTodo != null) {
-			updateTodo.setSummary(newTodo.getSummary());
-			updateTodo.setDescription(newTodo.getDescription());
-			updateTodo.setDone(newTodo.isDone());
-			updateTodo.setDueDate(newTodo.getDueDate());
-			broker.send(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
-		} else {
-			newTodo.setId(current++);
-			todos.add(newTodo);
+		if (updateTodo == null) {
+			created=true;
+			updateTodo= new Todo(current++);
+			todos.add(updateTodo);
+		} 
+		updateTodo.setSummary(newTodo.getSummary());
+		updateTodo.setDescription(newTodo.getDescription());
+		updateTodo.setDone(newTodo.isDone());
+		updateTodo.setDueDate(newTodo.getDueDate());
+		
+		// Send out events
+		if (created){
 			broker.send(MyEventConstants.TOPIC_TODO_NEW, updateTodo);
+		} else {
+			broker.send(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
 		}
-
 		return true;
 	}
 
