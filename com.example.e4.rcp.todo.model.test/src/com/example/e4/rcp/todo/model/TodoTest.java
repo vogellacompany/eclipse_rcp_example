@@ -21,9 +21,5 @@ public class TodoTest {
 		assertTrue(t.isDone());
 	}
 	
-	@Test
-	public void testSetId() {
-		t.setId(1L);
-		assertTrue(t.getId() == 1L);
-	}
+	
 }
