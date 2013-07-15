@@ -12,6 +12,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.di.extensions.EventTopic;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -56,10 +57,11 @@ public class TodoOverviewPart {
 
 	@Inject
 	UISynchronize sync;
-	
+
 	@Inject
 	ESelectionService service;
-	@Inject IEventBroker broker;
+	@Inject
+	IEventBroker broker;
 
 	@Inject
 	ITodoService model;
@@ -187,21 +189,22 @@ public class TodoOverviewPart {
 		ViewerSupport.bind(
 				viewer,
 				writableList,
-				BeanProperties.values(new String[] {
-						Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
+				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY,
+						Todo.FIELD_DESCRIPTION }));
 
 	}
 
+	
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String todo) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Todo todo) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(model.getTodos());
 		}
 	}
-	
+
 	@Focus
 	private void setFocus() {
 		btnNewButton.setFocus();
