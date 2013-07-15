@@ -12,26 +12,14 @@
                name="appName"
                value="to-do">
          </property>
-         <property
-               name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
-         </property>
         
-         <property
-               name="rendererFactoryUri2"
-               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
-         </property>
-         <property
-               name="applicationCSSResources2"
-               value="platform:/plugin/com.example.e4.rcp.todo/">
-         </property>
           -->
          <property
                name="cssTheme"
                value="com.example.e4.rcp.todo.default">
          </property>
          <property
-               name="lifeCycleURI2"
+               name="lifeCycleURI"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
          </property>
          <!-- commented to simplify SWTBot test example
