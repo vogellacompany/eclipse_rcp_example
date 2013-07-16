@@ -14,7 +14,7 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class MyTodoServiceImpl implements ITodoService {
 
-	static int current = 1;
+	private static int current = 1;
 	private List<Todo> todos;
 
 	// @Inject in the MyTodoServiceImpl!
@@ -100,13 +100,12 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	private Todo findById(long id) {
-		Todo item = null;
 		for (Todo todo : todos) {
 			if (id == todo.getId()) {
 				return todo;
 			}
 		}
-		return item;
+		return null;
 	}
 
 }

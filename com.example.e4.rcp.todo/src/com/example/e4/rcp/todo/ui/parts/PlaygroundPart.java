@@ -32,6 +32,11 @@ public class PlaygroundPart {
 	private Label label;
 	private Text text2;
 	private Text text1;
+	
+	/**
+	 * 
+	 * @param parent
+	 */
 
 	@PostConstruct
 	public void createControls(Composite parent) {

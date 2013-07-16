@@ -13,6 +13,9 @@
                 <menus xsi:type="menu:PopupMenu" xmi:id="_vqfykBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
                   <children xsi:type="menu:HandledMenuItem" xmi:id="_0reZIBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
                 </menus>
+                <toolbar xmi:id="_6RH10O5XEeK3xqtJRs1xyA" elementId="com.example.e4.rcp.todo.toolbar.1">
+                  <children xsi:type="menu:DirectToolItem" xmi:id="_7St1sO5XEeK3xqtJRs1xyA" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Text" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.NewTodoHandler"/>
+                </toolbar>
               </children>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_9SkyUAzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partstack.1" containerData="40">
