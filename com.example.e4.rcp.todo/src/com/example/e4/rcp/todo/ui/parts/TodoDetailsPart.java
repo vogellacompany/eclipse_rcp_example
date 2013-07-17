@@ -87,6 +87,8 @@ public class TodoDetailsPart {
 
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
+		
+		updateUserInterface(todo);
 	}
 
 	@Persist
