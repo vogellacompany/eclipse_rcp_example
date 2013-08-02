@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.dialogs;
 
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -14,13 +15,13 @@ import org.eclipse.swt.widgets.Text;
 public class PasswordDialog extends Dialog {
 	private Text txtUser;
 	private Text txtPassword;
-	private String user="";
-	private String password="";
+	private String user = "";
+	private String password = "";
 
 	public PasswordDialog(Shell parentShell) {
 		super(parentShell);
 	}
-	
+
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
@@ -49,6 +50,16 @@ public class PasswordDialog extends Dialog {
 				false, 1, 1));
 		txtPassword.setText(password);
 		return container;
+	}
+
+	// Override method to use "Login" as label for the OK button
+	// You could add more buttons
+	
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		createButton(parent, IDialogConstants.OK_ID, "Login", true);
+		createButton(parent, IDialogConstants.CANCEL_ID,
+				IDialogConstants.CANCEL_LABEL, false);
 	}
 
 	/**
