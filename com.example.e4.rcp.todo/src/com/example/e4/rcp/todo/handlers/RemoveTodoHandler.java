@@ -15,7 +15,7 @@ public class RemoveTodoHandler {
 	@Execute
 	public void execute(ITodoService model,
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
-			Shell shell
+			@Named (IServiceConstants.ACTIVE_SHELL) Shell shell
 			) {
 		if (todo != null) {
 			model.deleteTodo(todo.getId());
