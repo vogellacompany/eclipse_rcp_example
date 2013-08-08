@@ -73,7 +73,7 @@ public class TodoOverviewPart {
 			EMenuService menuService) {
 		parent.setLayout(new GridLayout(1, false));
 
-		btnNewButton = new Button(parent, SWT.NONE);
+		btnNewButton = new Button(parent, SWT.PUSH);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -129,12 +129,12 @@ public class TodoOverviewPart {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		TableViewerColumn column = new TableViewerColumn(viewer, SWT.NONE);
+		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
 
-		column.getColumn().setWidth(100);
-		column.getColumn().setText("Summary");
+		colSummary.getColumn().setWidth(100);
+		colSummary.getColumn().setText("Summary");
 
-		column.setEditingSupport(new EditingSupport(viewer) {
+		colSummary.setEditingSupport(new EditingSupport(viewer) {
 
 			@Override
 			protected void setValue(Object element, Object value) {
@@ -159,10 +159,10 @@ public class TodoOverviewPart {
 				return true;
 			}
 		});
-		column = new TableViewerColumn(viewer, SWT.NONE);
+		TableViewerColumn colDescription= new TableViewerColumn(viewer, SWT.NONE);
 
-		column.getColumn().setWidth(100);
-		column.getColumn().setText("Description");
+		colDescription.getColumn().setWidth(100);
+		colDescription.getColumn().setText("Description");
 
 		// We search in the summary and description field
 		viewer.addFilter(new ViewerFilter() {
