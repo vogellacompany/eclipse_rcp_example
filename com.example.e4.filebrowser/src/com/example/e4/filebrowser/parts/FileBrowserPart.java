@@ -52,7 +52,8 @@ public class FileBrowserPart {
 
 		@Override
 		public Object getParent(Object element) {
-			return ((File) element).getParentFile();
+			File file = (File) element;
+			return file.getParentFile();
 		}
 
 		@Override
