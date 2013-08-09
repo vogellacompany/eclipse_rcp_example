@@ -21,7 +21,7 @@ import org.osgi.framework.FrameworkUtil;
 
 public class FileBrowserPart {
 	private TreeViewer viewer;
-	
+
 	@PostConstruct
 	public void createControls(Composite parent) {
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -29,7 +29,6 @@ public class FileBrowserPart {
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setInput(File.listRoots());
 	}
-
 
 	class ViewContentProvider implements ITreeContentProvider {
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
@@ -72,15 +71,13 @@ public class FileBrowserPart {
 		public String getText(Object element) {
 			File file = (File) element;
 			String name = file.getName();
-			if (name.length() > 0) {
-				return name;
-			}
-			return file.getPath();
+			return name.length() > 0 ? name : file.getPath();
 		}
 
 		public Image getImage(Object obj) {
 			Bundle bundle = FrameworkUtil.getBundle(this.getClass());
-			URL url = FileLocator.find(bundle, new Path("icons/test.gif"), null);
+			URL url = FileLocator
+					.find(bundle, new Path("icons/test.gif"), null);
 			ImageDescriptor image = ImageDescriptor.createFromURL(url);
 			return image.createImage();
 		}
