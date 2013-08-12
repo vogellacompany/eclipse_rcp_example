@@ -13,6 +13,16 @@
 
    <windowImages/>
 
+   <launcher name="mywizard">
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
    <plugins>
       <plugin id="com.example.e4.rcp.wizard"/>
       <plugin id="com.ibm.icu"/>
