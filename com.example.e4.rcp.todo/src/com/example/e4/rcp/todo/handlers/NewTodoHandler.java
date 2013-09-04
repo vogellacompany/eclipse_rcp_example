@@ -13,7 +13,7 @@ import com.example.e4.rcp.todo.wizards.TodoWizard;
 
 public class NewTodoHandler {
 	@Execute
-	public void execute(Shell shell, ITodoService model, IEventBroker broker ) {
+	public void execute(Shell shell, ITodoService model) {
 		Todo todo = new Todo();
 		todo.setDueDate(new Date());
 		WizardDialog dialog = new WizardDialog(shell, new TodoWizard(todo));
