@@ -82,18 +82,19 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	// Example data, change if you like
-	private List<Todo> createInitialModel() {
-		List<Todo> list = new ArrayList<Todo>();
-		list.add(createTodo("Application model", "Flexible and extensible"));
-		list.add(createTodo("DI", "@Inject as programming mode"));
-		list.add(createTodo("SWT", "Widgets"));
-		list.add(createTodo("JFace", "Nice, especially Viewers!"));
-		list.add(createTodo("OSGi", "Services"));
-		list.add(createTodo("CSS Styling", "style your application"));
-		list.add(createTodo("Eclipse services", "Core"));
-		list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
-		return list;
-	}
+		private List<Todo> createInitialModel() {
+			List<Todo> list = new ArrayList<Todo>();
+			list.add(createTodo("Application model", "Flexible and extensible"));
+			list.add(createTodo("DI", "@Inject as programming mode"));
+			list.add(createTodo("OSGi", "Services"));
+			list.add(createTodo("SWT", "Widgets"));
+			list.add(createTodo("JFace", "Especially Viewers!"));
+			list.add(createTodo("CSS Styling","Style your application"));
+			list.add(createTodo("Eclipse services","Selection, model, Part"));
+			list.add(createTodo("Renderer","Different UI toolkit"));
+			list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
+			return list;
+		}
 
 	private Todo createTodo(String summary, String description) {
 		return new Todo(current++, summary, description, false, new Date());

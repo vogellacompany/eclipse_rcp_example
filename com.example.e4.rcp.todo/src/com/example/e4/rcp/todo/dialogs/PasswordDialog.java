@@ -2,15 +2,15 @@ package com.example.e4.rcp.todo.dialogs;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.layout.GridData;
 
 public class PasswordDialog extends Dialog {
 	private Text txtUser;
@@ -52,9 +52,7 @@ public class PasswordDialog extends Dialog {
 		return container;
 	}
 
-	// Override method to use "Login" as label for the OK button
-	// You could add more buttons
-	
+	// override method to use "Login" as label for the OK button
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, "Login", true);
@@ -62,9 +60,6 @@ public class PasswordDialog extends Dialog {
 				IDialogConstants.CANCEL_LABEL, false);
 	}
 
-	/**
-	 * Return the initial size of the dialog.
-	 */
 	@Override
 	protected Point getInitialSize() {
 		return new Point(450, 300);
@@ -74,7 +69,6 @@ public class PasswordDialog extends Dialog {
 	protected void okPressed() {
 		user = txtUser.getText();
 		password = txtPassword.getText();
-
 		super.okPressed();
 	}
 

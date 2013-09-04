@@ -45,7 +45,7 @@ public class TodoDeletionPart {
 	private ComboViewer viewer;
 
 	@PostConstruct
-	public void postConstruct(Composite parent ) {
+	public void createControls(Composite parent ) {
 		parent.setLayout(new GridLayout(2, false));
 		viewer = new ComboViewer(parent, SWT.READ_ONLY| SWT.DROP_DOWN);
 		viewer.setLabelProvider(new LabelProvider() {

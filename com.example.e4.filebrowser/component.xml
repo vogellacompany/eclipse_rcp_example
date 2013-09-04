@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.example.e4.filebrowser">
+   <implementation class="com.example.e4.filebrowser.services.EditorService"/>
+   <service>
+      <provide interface="com.example.e4.filebrowser.services.EditorService"/>
+   </service>
+</scr:component>

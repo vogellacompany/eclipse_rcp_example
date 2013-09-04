@@ -40,7 +40,9 @@ public class TodoWizardPage2 extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				checked = ((Button) e.getSource()).getSelection();
 				TodoWizard wizard = (TodoWizard) getWizard();
-				wizard.finish=checked;
+				wizard.finish = checked;
+				// the following updates the button
+				// it calls anFinish() in the wizard
 				wizard.getContainer().updateButtons();
 			}
 		});
@@ -50,7 +52,5 @@ public class TodoWizardPage2 extends WizardPage {
 	public boolean isChecked() {
 		return checked;
 	}
-	
-	
-}
 
+}

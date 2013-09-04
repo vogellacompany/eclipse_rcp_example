@@ -15,13 +15,6 @@ Label, Button[style~='SWT.CHECK'] {
 	color: rgb(240, 240, 240);
 }
 
-Button {
-     	background-color: rgb(100, 100, 100);
-	color: white;
-}
-
-
-
 Composite Label {
 	color: white;
 }

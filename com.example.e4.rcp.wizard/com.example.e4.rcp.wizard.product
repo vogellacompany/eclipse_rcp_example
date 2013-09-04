@@ -23,6 +23,10 @@
    <vm>
    </vm>
 
+
+   <splash
+      location="com.example.e4.rcp.wizard" />
+
    <plugins>
       <plugin id="com.example.e4.rcp.wizard"/>
       <plugin id="com.ibm.icu"/>

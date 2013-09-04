@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Processor
+Bundle-SymbolicName: com.example.e4.rcp.todo.contribute.processor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EXAMPLE
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.e4.ui.workbench,
+ org.eclipse.e4.core.di,
+ org.eclipse.e4.ui.model.workbench;bundle-version="1.0.0"

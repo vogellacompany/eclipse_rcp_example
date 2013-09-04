@@ -15,10 +15,6 @@
         
           -->
          <property
-               name="cssTheme"
-               value="com.example.e4.rcp.todo.default">
-         </property>
-         <property
                name="lifeCycleURI"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
          </property>

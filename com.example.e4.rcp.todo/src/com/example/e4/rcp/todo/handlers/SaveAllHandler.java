@@ -18,15 +18,9 @@ public class SaveAllHandler {
 	}
 
 	@CanExecute
-	boolean canExecute(@Optional MWindow window) {
-		if (window != null) {
-			IEclipseContext context = window.getContext();
-			if (context != null) {
-				EPartService partService = context.get(EPartService.class);
-				if (partService != null) {
-					return !partService.getDirtyParts().isEmpty();
-				}
-			}
+	boolean canExecute(@Optional EPartService partService) {
+		if (partService != null) {
+			return !partService.getDirtyParts().isEmpty();
 		}
 		return false;
 	}
