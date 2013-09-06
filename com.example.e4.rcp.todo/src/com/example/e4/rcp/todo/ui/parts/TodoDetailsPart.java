@@ -162,11 +162,6 @@ public class TodoDetailsPart {
 		}
 	}
 
-	private DataBindingContext initDataBindings() {
-		DataBindingContext bindingContext = new DataBindingContext();
-		return bindingContext;
-	}
-
 	@Focus
 	public void onFocus() {
 		// The following assumes that you have a Text field
