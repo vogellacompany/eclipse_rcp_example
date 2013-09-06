@@ -35,13 +35,13 @@ public class OpenEditorHandler {
 
 		// if the editor is open show it
 		for (MPart mPart : parts) {
-			String string = mPart.getPersistedState().get(Todo.FIELD_ID);
-			if (string != null && string.equals(id)) {
+			String currentId = mPart.getPersistedState().get(Todo.FIELD_ID);
+			if (currentId != null && currentId.equals(id)) {
 				partService.showPart(mPart, PartState.ACTIVATE);
 				return;
 			}
 		}
-
+		
 		// editor was not open, create it and show it
 
 		// create an Input part
@@ -59,7 +59,7 @@ public class OpenEditorHandler {
 
 		// add it an existing stack
 		MPartStack stack = (MPartStack) modelService.find(
-				"com.example.e4.rcp.todo.partstack.botton", application);
+				"com.example.e4.rcp.todo.partstack.bottom", application);
 		stack.getChildren().add(part);
 		partService.showPart(part, PartState.ACTIVATE);
 
