@@ -3,7 +3,6 @@ package com.example.e4.rcp.todo.handlers;
 import java.util.Date;
 
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 

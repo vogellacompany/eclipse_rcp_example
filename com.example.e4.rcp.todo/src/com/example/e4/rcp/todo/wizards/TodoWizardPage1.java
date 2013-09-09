@@ -1,6 +1,5 @@
 package com.example.e4.rcp.todo.wizards;
 
-import org.eclipse.e4.ui.model.application.ui.basic.MBasicFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
