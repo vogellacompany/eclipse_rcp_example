@@ -35,8 +35,8 @@ public class TodoDetailsPart {
 	@Inject
 	MDirtyable dirty;
 
-	private Text summary;
-	private Text description;
+	private Text txtSummary;
+	private Text txtDescription;
 	private Button btnDone;
 	private DateTime dateTime;
 	private DataBindingContext ctx = new DataBindingContext();
@@ -55,6 +55,7 @@ public class TodoDetailsPart {
 	@PostConstruct
 	public void createControls(Composite parent) {
 
+
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
 		gl_parent.marginLeft = 10;
@@ -65,16 +66,16 @@ public class TodoDetailsPart {
 		Label lblSummary = new Label(parent, SWT.NONE);
 		lblSummary.setText("Summary");
 
-		summary = new Text(parent, SWT.BORDER);
-		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSummary = new Text(parent, SWT.BORDER);
+		txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
 
-		description = new Text(parent, SWT.BORDER | SWT.MULTI);
+		txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gd.heightHint = 122;
-		description.setLayoutData(gd);
+		txtDescription.setLayoutData(gd);
 
 		Label lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setText("Due Date");
@@ -107,12 +108,31 @@ public class TodoDetailsPart {
 		}
 	}
 
+    // allows to disable/ eable the user interface fields
+	// if no todo is et
+	private void enableUserInterface(boolean enabled) {
+		txtSummary.setEnabled(enabled);
+		txtDescription.setEnabled(enabled);
+		dateTime.setEnabled(enabled);
+		btnDone.setEnabled(enabled);
+	}
+
+	
 	private void updateUserInterface(Todo todo) {
 
+		// check if todo is set
+		if (todo==null){
+			enableUserInterface(false);
+			return;
+		}
+		else {
+			enableUserInterface(true);
+		}
+		
 		// Check if the user interface is available
 		// assume you have a field called "summary"
 		// for a widget
-		if (summary != null && !summary.isDisposed()) {
+		if (txtSummary != null && !txtSummary.isDisposed()) {
 
 			// Deregister change listener to the old binding
 			IObservableList providers = ctx.getValidationStatusProviders();
@@ -125,7 +145,7 @@ public class TodoDetailsPart {
 			ctx.dispose();
 
 			IObservableValue target = WidgetProperties.text(SWT.Modify)
-					.observe(summary);
+					.observe(txtSummary);
 			IObservableValue model = PojoProperties.value(Todo.FIELD_SUMMARY)
 					.observe(todo);
 			
@@ -134,7 +154,7 @@ public class TodoDetailsPart {
 					ctx.bindValue(target, model);
 			ControlDecorationSupport.create(bindValue, SWT.TOP | SWT.LEFT);
 
-			target = WidgetProperties.text(SWT.Modify).observe(description);
+			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
 			model = PojoProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
 			ctx.bindValue(target, model);
 
@@ -162,6 +182,6 @@ public class TodoDetailsPart {
 	public void onFocus() {
 		// The following assumes that you have a Text field
 		// called summary
-		summary.setFocus();
+		txtSummary.setFocus();
 	}
 }
