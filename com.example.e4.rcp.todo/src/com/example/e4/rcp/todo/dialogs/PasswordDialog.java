@@ -45,7 +45,7 @@ public class PasswordDialog extends Dialog {
 		lblPassword.setLayoutData(gd_lblNewLabel);
 		lblPassword.setText("Password:");
 
-		txtPassword = new Text(container, SWT.BORDER);
+		txtPassword = new Text(container, SWT.BORDER| SWT.PASSWORD);
 		txtPassword.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1));
 		txtPassword.setText(password);
