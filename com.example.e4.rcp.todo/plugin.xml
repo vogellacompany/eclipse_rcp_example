@@ -18,6 +18,17 @@
                name="lifeCycleURI"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.LifeCycleManager">
          </property>
+          <!-- comments out of testing purposes
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/rainbow.css">
+         </property>
+         
+         <property
+               name="rendererFactoryUri"
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
+         -->
          <!-- commented to simplify SWTBot test example
          <property
                name="lifeCycleURI"

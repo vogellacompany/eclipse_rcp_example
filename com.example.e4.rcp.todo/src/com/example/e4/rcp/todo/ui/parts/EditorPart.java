@@ -147,10 +147,6 @@ public class EditorPart {
 		}
 	}
 
-	private DataBindingContext initDataBindings() {
-		DataBindingContext bindingContext = new DataBindingContext();
-		return bindingContext;
-	}
 
 	@Focus
 	public void onFocus() {
