@@ -55,7 +55,6 @@ public class TodoDetailsPart {
 	@PostConstruct
 	public void createControls(Composite parent) {
 
-
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
 		gl_parent.marginLeft = 10;
@@ -67,7 +66,8 @@ public class TodoDetailsPart {
 		lblSummary.setText("Summary");
 
 		txtSummary = new Text(parent, SWT.BORDER);
-		txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSummary
+				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
@@ -108,7 +108,7 @@ public class TodoDetailsPart {
 		}
 	}
 
-    // allows to disable/ eable the user interface fields
+	// allows to disable/ eable the user interface fields
 	// if no todo is et
 	private void enableUserInterface(boolean enabled) {
 		txtSummary.setEnabled(enabled);
@@ -117,18 +117,16 @@ public class TodoDetailsPart {
 		btnDone.setEnabled(enabled);
 	}
 
-	
 	private void updateUserInterface(Todo todo) {
 
 		// check if todo is set
-		if (todo==null){
+		if (todo == null) {
 			enableUserInterface(false);
 			return;
-		}
-		else {
+		} else {
 			enableUserInterface(true);
 		}
-		
+
 		// Check if the user interface is available
 		// assume you have a field called "summary"
 		// for a widget
@@ -148,10 +146,8 @@ public class TodoDetailsPart {
 					.observe(txtSummary);
 			IObservableValue model = PojoProperties.value(Todo.FIELD_SUMMARY)
 					.observe(todo);
-			
 
-			Binding bindValue = 
-					ctx.bindValue(target, model);
+			Binding bindValue = ctx.bindValue(target, model);
 			ControlDecorationSupport.create(bindValue, SWT.TOP | SWT.LEFT);
 
 			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);

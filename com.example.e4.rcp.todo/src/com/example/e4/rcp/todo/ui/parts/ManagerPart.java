@@ -36,7 +36,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
-import com.example.e4.rcp.todo.addons.MyModelAddon;
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
@@ -51,16 +50,12 @@ public class ManagerPart {
 	UISynchronize sync;
 	@Inject
 	ESelectionService service;
-	
+
 	@Inject
 	ITodoService model;
-	
-	@Inject 
-	MyModelAddon addon;
 
 	@PostConstruct
-	public void createControls(Composite parent, 
-			final MWindow window) {
+	public void createControls(Composite parent, final MWindow window) {
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.NONE);
@@ -81,7 +76,7 @@ public class ManagerPart {
 					}
 				};
 				job.schedule();
-			
+
 			}
 		});
 
@@ -176,10 +171,8 @@ public class ManagerPart {
 	@Inject
 	@Optional
 	private void getNotified(
-			@UIEventTopic(
-					MyEventConstants.TOPIC_TODO_ALLTOPICS) 
-			 	    String topic) {
-		if (viewer!=null) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String topic) {
+		if (viewer != null) {
 			viewer.setInput(model.getTodos());
 		}
 	}
