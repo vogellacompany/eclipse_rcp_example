@@ -1,4 +1,4 @@
-package com.example.e4.rcp.todo.ui.parts;
+package com.example.e4.rcp.todo.parts;
 
 import javax.annotation.PostConstruct;
 

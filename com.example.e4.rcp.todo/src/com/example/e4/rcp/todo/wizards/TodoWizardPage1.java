@@ -5,7 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.example.e4.rcp.todo.model.Todo;
-import com.example.e4.rcp.todo.ui.parts.TodoDetailsPart;
+import com.example.e4.rcp.todo.parts.TodoDetailsPart;
 
 public class TodoWizardPage1 extends WizardPage {
 
