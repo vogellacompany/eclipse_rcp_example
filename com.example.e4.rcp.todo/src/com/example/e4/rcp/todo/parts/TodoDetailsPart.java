@@ -108,18 +108,20 @@ public class TodoDetailsPart {
 		}
 	}
 
-	// allows to disable/ eable the user interface fields
+	// allows to disable/ enable the user interface fields
 	// if no todo is et
 	private void enableUserInterface(boolean enabled) {
-		txtSummary.setEnabled(enabled);
-		txtDescription.setEnabled(enabled);
-		dateTime.setEnabled(enabled);
-		btnDone.setEnabled(enabled);
+		if (txtSummary != null && !txtSummary.isDisposed()) {
+			txtSummary.setEnabled(enabled);
+			txtDescription.setEnabled(enabled);
+			dateTime.setEnabled(enabled);
+			btnDone.setEnabled(enabled);
+		}
 	}
 
 	private void updateUserInterface(Todo todo) {
 
-		// check if todo is set
+		// check if Todo is null
 		if (todo == null) {
 			enableUserInterface(false);
 			return;

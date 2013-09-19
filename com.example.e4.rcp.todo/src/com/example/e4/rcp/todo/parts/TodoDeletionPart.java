@@ -47,7 +47,7 @@ public class TodoDeletionPart {
 	@PostConstruct
 	public void createControls(Composite parent ) {
 		parent.setLayout(new GridLayout(2, false));
-		viewer = new ComboViewer(parent, SWT.READ_ONLY| SWT.DROP_DOWN);
+		viewer = new ComboViewer(parent, SWT.READ_ONLY);
 		viewer.setLabelProvider(new LabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -98,6 +98,6 @@ public class TodoDeletionPart {
 
 	@Focus
 	public void focus() {
-		viewer.getCombo().setFocus();
+		viewer.getControl().setFocus();
 	}
 }

@@ -14,8 +14,12 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -28,6 +32,18 @@ public class FileBrowserPart {
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setInput(File.listRoots());
+		Tree tree = (Tree) viewer.getControl();
+		tree.addSelectionListener(new SelectionAdapter() {
+		  @Override
+		  public void widgetSelected(SelectionEvent e) {
+			  TreeItem item = (TreeItem) e.item;
+			  	if (item.getItemCount() > 0) {
+			  		item.setExpanded(!item.getExpanded());
+			  		// update the viewer
+			  		viewer.refresh();
+			  	}
+		  	}
+		});
 	}
 
 	class ViewContentProvider implements ITreeContentProvider {
