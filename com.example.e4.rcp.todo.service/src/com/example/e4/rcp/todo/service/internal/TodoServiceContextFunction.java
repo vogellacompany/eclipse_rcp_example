@@ -15,12 +15,12 @@ public class TodoServiceContextFunction extends ContextFunction {
 		// because MyTodoServiceImpl itself uses injection
 		ITodoService todoService = ContextInjectionFactory.make(MyTodoServiceImpl.class, context);
 		
-		// cache the newly created todoService in the Aaplication context for 
+		// cache the newly created todoService in the application context for 
 		// the next time somebody requests it (this prevents this ContextFunction 
 		// from being called again).
 		
 		// get application ctx (to make it available to all parts)
-		// and register todoService obj with app ctxt
+		// and register todoService obj with appCtx
 		MApplication app = context.get(MApplication.class);
 		IEclipseContext appCtx = app.getContext();
 		appCtx.set(ITodoService.class, todoService);
