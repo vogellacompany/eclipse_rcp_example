@@ -74,7 +74,7 @@
       </children>
     </trimBars>
   </children>
-  <handlers xmi:id="_V35JgMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.save" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.SaveAllHandler" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
+  <handlers xmi:id="_V35JgMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.saveall" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.SaveAllHandler" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_rB5CEMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.exit" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.ExitHandler" command="_F8KnQMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_tQuRIMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.new" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.NewTodoHandler" command="_IU7OYMZYEeGbkqRLZ7osPQ"/>
   <handlers xmi:id="_vaZTYMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.remove" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.RemoveTodoHandler" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
