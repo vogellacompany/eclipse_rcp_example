@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.creatable.YourObject;
+
 public class PlaygroundPart {
 	@Inject
 	@Preference(nodePath = "com.example.e4.rcp.todo", value = "user")
@@ -22,7 +24,7 @@ public class PlaygroundPart {
 	private Label label;
 	private Text text2;
 	private Text text1;
-	
+
 	/**
 	 * 
 	 * @param parent
@@ -31,29 +33,32 @@ public class PlaygroundPart {
 	@PostConstruct
 	public void createControls(Composite parent) {
 		DataBindingContext ctx = new DataBindingContext();
-		text1 = new Text(parent, SWT.LEAD | SWT.BORDER| SWT.MULTI);
-		
+		text1 = new Text(parent, SWT.LEAD | SWT.BORDER | SWT.MULTI);
+
 		text1.setText("Hallo");
-	
-		text2 = new Text(parent, SWT.LEAD | SWT.BORDER| SWT.MULTI);
+
+		text2 = new Text(parent, SWT.LEAD | SWT.BORDER | SWT.MULTI);
 		text2.setText("Moin");
-		
-		ISWTObservableValue model = WidgetProperties.text(SWT.Modify).observe(text1);
-		ISWTObservableValue target = WidgetProperties.text(SWT.Modify).observeDelayed(2000, text2);
-		
+
+		ISWTObservableValue model = WidgetProperties.text(SWT.Modify).observe(
+				text1);
+		ISWTObservableValue target = WidgetProperties.text(SWT.Modify)
+				.observeDelayed(2000, text2);
+
 		Button button = new Button(parent, SWT.CHECK);
 		button.setText("Hello");
-//		button.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetSelected(SelectionEvent e) {
-//				
-//			}
-//		});
-		
-		ISWTObservableValue model1 = WidgetProperties.selection().observe(button);
+		// button.addSelectionListener(new SelectionAdapter() {
+		// @Override
+		// public void widgetSelected(SelectionEvent e) {
+		//
+		// }
+		// });
+
+		ISWTObservableValue model1 = WidgetProperties.selection().observe(
+				button);
 		ISWTObservableValue target1 = WidgetProperties.enabled().observe(text1);
 		ctx.bindValue(target1, model1);
-		
+
 		// This assumes you have a vogella.png file
 		// in folder images
 	}
@@ -65,8 +70,7 @@ public class PlaygroundPart {
 
 	@Inject
 	@Optional
-	public void trackUserSettings(
-			@Preference(value = "user") String user) {
+	public void trackUserSettings(@Preference(value = "user") String user) {
 		System.out.println("New user: " + user);
 		System.out.println("Field: " + userTodo);
 	}
@@ -78,4 +82,8 @@ public class PlaygroundPart {
 		System.out.println("New password: " + password);
 	}
 
+	@Inject
+	public void setYourObject(YourObject object) {
+		System.out.println(object);
+	}
 }
