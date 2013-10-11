@@ -32,13 +32,14 @@ public class EditorPart {
 	@Inject
 	MDirtyable dirty;
 
-	private Text summary;
-	private Text description;
+	private Text txtSummary;
+	private Text txtDescription;
 	private Button btnDone;
 	private DateTime dateTime;
+	
 	private DataBindingContext ctx = new DataBindingContext();
 
-	// Define listener for the databinding
+	// define listener for the data binding
 	IChangeListener listener = new IChangeListener() {
 		@Override
 		public void handleChange(ChangeEvent event) {
@@ -68,16 +69,16 @@ public class EditorPart {
 		Label lblSummary = new Label(parent, SWT.NONE);
 		lblSummary.setText("Summary");
 
-		summary = new Text(parent, SWT.BORDER);
-		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSummary = new Text(parent, SWT.BORDER);
+		txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
 
-		description = new Text(parent, SWT.BORDER | SWT.MULTI);
+		txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		gd.heightHint = 122;
-		description.setLayoutData(gd);
+		txtDescription.setLayoutData(gd);
 
 		Label lblNewLabel = new Label(parent, SWT.NONE);
 		lblNewLabel.setText("Due Date");
@@ -101,10 +102,10 @@ public class EditorPart {
 
 	private void updateUserInterface(Todo todo) {
 		
-		// Check if the user interface is available
+		// check if the user interface is available
 		// assume you have a field called "summary"
 		// for a widget
-		if (summary != null && !summary.isDisposed()) {
+		if (txtSummary != null && !txtSummary.isDisposed()) {
 			
 			
 			// Deregister change listener to the old binding
@@ -118,12 +119,12 @@ public class EditorPart {
 			ctx.dispose();
 			
 			IObservableValue target = WidgetProperties.text(SWT.Modify)
-					.observe(summary);
+					.observe(txtSummary);
 			IObservableValue model = PojoProperties.value(Todo.FIELD_SUMMARY).observe(
 					todo);
 			ctx.bindValue(target, model);
 
-			target = WidgetProperties.text(SWT.Modify).observe(description);
+			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
 			model = PojoProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
 			ctx.bindValue(target, model);
 			
@@ -147,11 +148,10 @@ public class EditorPart {
 		}
 	}
 
-
 	@Focus
 	public void onFocus() {
-		// The following assumes that you have a Text field
+		// the following assumes that you have a Text field
 		// called summary
-		summary.setFocus();
+		txtSummary.setFocus();
 	}
 }
