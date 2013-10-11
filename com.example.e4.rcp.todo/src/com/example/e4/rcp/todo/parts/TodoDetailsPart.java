@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -16,7 +16,6 @@ import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
-import org.eclipse.jface.databinding.fieldassist.ControlDecorationSupport;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -146,26 +145,31 @@ public class TodoDetailsPart {
 
 			IObservableValue target = WidgetProperties.text(SWT.Modify)
 					.observe(txtSummary);
-			IObservableValue model = PojoProperties.value(Todo.FIELD_SUMMARY)
+			IObservableValue model = BeanProperties.value(Todo.FIELD_SUMMARY)
 					.observe(todo);
-
-			Binding bindValue = ctx.bindValue(target, model);
-			ControlDecorationSupport.create(bindValue, SWT.TOP | SWT.LEFT);
-
-			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-			model = PojoProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
 			ctx.bindValue(target, model);
 
 			target = WidgetProperties.selection().observe(btnDone);
-			model = PojoProperties.value(Todo.FIELD_DONE).observe(todo);
+			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
+			ctx.bindValue(target, model);
+
+			target = WidgetProperties.selection().observe(btnDone);
+			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
 			ctx.bindValue(target, model);
 
 			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
 					.selection().observe(dateTime);
-			IObservableValue dueDateTodoObserveValue = PojoProperties.value(
+			IObservableValue dueDateTodoObserveValue = BeanProperties.value(
 					Todo.FIELD_DUEDATE).observe(todo);
 			ctx.bindValue(observeSelectionDateTimeObserveWidget,
-					dueDateTodoObserveValue, null, null);
+					dueDateTodoObserveValue);
+
+			// register listener for any changes
+			providers = ctx.getValidationStatusProviders();
+			for (Object o : providers) {
+				Binding b = (Binding) o;
+				b.getTarget().addChangeListener(listener);
+			}
 
 			// Register for the changes
 			providers = ctx.getValidationStatusProviders();
