@@ -16,7 +16,7 @@ import org.osgi.service.prefs.BackingStoreException;
 
 import com.example.e4.rcp.todo.dialogs.PasswordDialog;
 
-public class LifeCycleManager {
+public class Manager {
 
 	// We add the nodePath in case you move the lifecycle handler to
 	// another plug-in later
