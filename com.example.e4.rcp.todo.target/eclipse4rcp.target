@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="eclipse4rcp" sequenceNumber="23">
+<?pde version="3.8"?><target name="eclipse4rcp" sequenceNumber="25">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.ecore.feature.group" version="2.9.1.v20130827-0309"/>
-<unit id="org.eclipse.e4.rcp.source.feature.group" version="1.2.1.v20130910-2014"/>
-<unit id="org.eclipse.emf.common.feature.group" version="2.9.1.v20130827-0309"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.3"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.swtbot.eclipse.feature.group" version="2.1.2.201310170841"/>
 <unit id="org.eclipse.swtbot.feature.group" version="2.1.2.201310170841"/>
 <repository location="http://download.eclipse.org/technology/swtbot/snapshots"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.emf.ecore.feature.group" version="2.9.1.v20130827-0309"/>
+<unit id="org.eclipse.equinox.executable.feature.group" version="3.6.0.v20130807-1835"/>
+<unit id="org.eclipse.emf.common.feature.group" version="2.9.1.v20130827-0309"/>
+<unit id="org.eclipse.jdt.feature.group" version="3.9.1.v20130911-1000"/>
+<unit id="org.eclipse.e4.rcp.source.feature.group" version="1.2.1.v20130910-2014"/>
+<unit id="org.eclipse.equinox.executable" version="3.6.0.v20130807-1835"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.3"/>
 </location>
 </locations>
 </target>
