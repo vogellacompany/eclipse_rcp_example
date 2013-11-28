@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -14,36 +15,29 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 public class FileBrowserPart {
 	private TreeViewer viewer;
+	private Image image;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
+		createImage();
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setInput(File.listRoots());
-		Tree tree = (Tree) viewer.getControl();
-		tree.addSelectionListener(new SelectionAdapter() {
-		  @Override
-		  public void widgetSelected(SelectionEvent e) {
-			  TreeItem item = (TreeItem) e.item;
-			  	if (item.getItemCount() > 0) {
-			  		item.setExpanded(!item.getExpanded());
-			  		// update the viewer
-			  		viewer.refresh();
-			  	}
-		  	}
-		});
+	}
+
+	private void createImage() {
+		Bundle bundle = FrameworkUtil.getBundle(ViewLabelProvider.class);
+		URL url = FileLocator.find(bundle, new Path("icons/folder.png"), null);
+		ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
+		this.image = imageDcr.createImage();
 	}
 
 	class ViewContentProvider implements ITreeContentProvider {
@@ -87,21 +81,25 @@ public class FileBrowserPart {
 		public String getText(Object element) {
 			File file = (File) element;
 			String name = file.getName();
-			return name.length() > 0 ? name : file.getPath();
+			return name.isEmpty() ? file.getPath() : name;
 		}
 
-		public Image getImage(Object obj) {
-			Bundle bundle = FrameworkUtil.getBundle(this.getClass());
-			URL url = FileLocator
-					.find(bundle, new Path("icons/test.gif"), null);
-			ImageDescriptor image = ImageDescriptor.createFromURL(url);
-			return image.createImage();
+		public Image getImage(Object element) {
+			File file = (File) element;
+			if (file.isDirectory()){
+				return image;
+			}
+			return null;
 		}
 	}
 
 	@Focus
-	public boolean setFocus() {
+	public void setFocus() {
 		viewer.getControl().setFocus();
-		return true;
+	}
+	
+	@PreDestroy
+	public void dispose() {
+		image.dispose();
 	}
 }
