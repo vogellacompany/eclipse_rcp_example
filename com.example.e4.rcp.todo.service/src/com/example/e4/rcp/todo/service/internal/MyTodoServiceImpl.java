@@ -52,9 +52,9 @@ public class MyTodoServiceImpl implements ITodoService {
 		
 		// Send out events
 		if (created){
-			broker.send(MyEventConstants.TOPIC_TODO_NEW, updateTodo);
+			broker.post(MyEventConstants.TOPIC_TODO_NEW, updateTodo);
 		} else {
-			broker.send(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
+			broker.post(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
 		}
 		return true;
 	}
@@ -75,7 +75,7 @@ public class MyTodoServiceImpl implements ITodoService {
 
 		if (deleteTodo != null) {
 			todos.remove(deleteTodo);
-			broker.send(MyEventConstants.TOPIC_TODO_DELETE, deleteTodo);
+			broker.post(MyEventConstants.TOPIC_TODO_DELETE, deleteTodo);
 			return true;
 		}
 		return false;
