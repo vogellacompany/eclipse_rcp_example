@@ -20,13 +20,15 @@ public class OpenEditorHandler {
 	@Execute
 	public void execute(
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
-			MApplication application, EModelService modelService,
+			MApplication application, 
+			EModelService modelService,
 			EPartService partService) {
 
 		// sanity check
 		if (todo == null) {
 			return;
 		}
+
 		String id = String.valueOf(todo.getId());
 
 		// maybe the editor is already open?
@@ -47,7 +49,7 @@ public class OpenEditorHandler {
 		MPart part = modelService.createModelElement(MPart.class);
 
 		// Pointing to the contributing class
-		part.setContributionURI("bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.ui.parts.EditorPart");
+		part.setContributionURI("bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.EditorPart");
 		part.getPersistedState().put(Todo.FIELD_ID, id);
 
 		// create a nice label for the part header
