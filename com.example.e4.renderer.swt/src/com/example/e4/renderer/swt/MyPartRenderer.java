@@ -9,7 +9,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 public class MyPartRenderer extends SWTPartRenderer {
-	public static final String ID = "de.vogella.javascript.maps.view";
 
 	@Override
 	public Object createWidget(MUIElement element, Object parent) {
