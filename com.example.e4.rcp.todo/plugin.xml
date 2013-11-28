@@ -12,28 +12,23 @@
                name="appName"
                value="to-do">
          </property>
-         <property
-               name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
-         </property>
         
-         <property
-               name="rendererFactoryUri2"
-               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.renderer.MyRendererFactory">
-         </property>
-         <property
-               name="applicationCSSResources2"
-               value="platform:/plugin/com.example.e4.rcp.todo/">
-         </property>
           -->
          <property
-               name="cssTheme2"
-               value="com.vogella.e4.todo.defaulttheme">
+               name="lifeCycleURI"
+               value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.Manager">
          </property>
+          <!-- comments out of testing purposes
          <property
                name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp.todo/css/red.css">
+               value="platform:/plugin/com.example.e4.rcp.todo/css/rainbow.css">
          </property>
+         
+         <property
+               name="rendererFactoryUri"
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
+         -->
          <!-- commented to simplify SWTBot test example
          <property
                name="lifeCycleURI"
@@ -42,24 +37,19 @@
          -->
       </product>
    </extension>
- 
    <extension
          point="org.eclipse.e4.ui.css.swt.theme">
       <theme
             basestylesheeturi="css/default.css"
-            id="com.vogella.e4.todo.defaulttheme"
+            id="com.example.e4.rcp.todo.default"
             label="Default Theme">
       </theme>
       <theme
-            basestylesheeturi="css/red.css"
-            id="com.vogella.e4.todo.redtheme"
-            label="Red Theme">
-      </theme>
-      <theme
-            basestylesheeturi="css/dark-gradient.css"
-            id="com.vogella.e4.todo.darktheme"
-            label="Dark Theme">
+            basestylesheeturi="css/rainbow.css"
+            id="com.example.e4.rcp.todo.rainbow"
+            label="Rainbow">
       </theme>
    </extension>
+ 
 
 </plugin>

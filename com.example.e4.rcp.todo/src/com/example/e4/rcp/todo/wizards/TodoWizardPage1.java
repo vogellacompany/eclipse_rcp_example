@@ -1,12 +1,11 @@
 package com.example.e4.rcp.todo.wizards;
 
-import org.eclipse.e4.ui.model.application.ui.basic.MBasicFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import com.example.e4.rcp.todo.model.Todo;
-import com.example.e4.rcp.todo.ui.parts.TodoDetailsPart;
+import com.example.e4.rcp.todo.parts.TodoDetailsPart;
 
 public class TodoWizardPage1 extends WizardPage {
 
@@ -20,7 +19,7 @@ public class TodoWizardPage1 extends WizardPage {
 	}
 
 	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NULL);
+		Composite container = new Composite(parent, SWT.NONE);
 		// We reuse the part and
 		// inject the values
 		TodoDetailsPart part = new TodoDetailsPart();

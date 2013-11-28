@@ -1,0 +1,18 @@
+Shell {
+	background-color: red orange yellow green orange 30% 60% 75% 95%
+}
+
+.MPartStack {
+	font-size: 22px;
+	color:orange;
+}	
+
+.MPart:selected {
+   visible:gone;
+   background-color:black;
+}
+
+.MPartStack {
+border-visible:false;
+}
+

@@ -3,7 +3,6 @@ package com.example.e4.rcp.todo.addons;
 import javax.annotation.PostConstruct;
 
 import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.e4.ui.model.application.MAddon;
 
 public class MyModelAddon {
 	public static final String TOPIC_TODO_DATA_UPDATE 

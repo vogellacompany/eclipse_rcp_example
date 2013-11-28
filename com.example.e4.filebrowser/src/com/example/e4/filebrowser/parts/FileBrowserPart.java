@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -21,15 +22,23 @@ import org.osgi.framework.FrameworkUtil;
 
 public class FileBrowserPart {
 	private TreeViewer viewer;
-	
+	private Image image;
+
 	@PostConstruct
 	public void createControls(Composite parent) {
+		createImage();
 		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setInput(File.listRoots());
 	}
 
+	private void createImage() {
+		Bundle bundle = FrameworkUtil.getBundle(ViewLabelProvider.class);
+		URL url = FileLocator.find(bundle, new Path("icons/folder.png"), null);
+		ImageDescriptor imageDcr = ImageDescriptor.createFromURL(url);
+		this.image = imageDcr.createImage();
+	}
 
 	class ViewContentProvider implements ITreeContentProvider {
 		public void inputChanged(Viewer v, Object oldInput, Object newInput) {
@@ -52,7 +61,8 @@ public class FileBrowserPart {
 
 		@Override
 		public Object getParent(Object element) {
-			return ((File) element).getParentFile();
+			File file = (File) element;
+			return file.getParentFile();
 		}
 
 		@Override
@@ -71,23 +81,25 @@ public class FileBrowserPart {
 		public String getText(Object element) {
 			File file = (File) element;
 			String name = file.getName();
-			if (name.length() > 0) {
-				return name;
-			}
-			return file.getPath();
+			return name.isEmpty() ? file.getPath() : name;
 		}
 
-		public Image getImage(Object obj) {
-			Bundle bundle = FrameworkUtil.getBundle(this.getClass());
-			URL url = FileLocator.find(bundle, new Path("icons/test.gif"), null);
-			ImageDescriptor image = ImageDescriptor.createFromURL(url);
-			return image.createImage();
+		public Image getImage(Object element) {
+			File file = (File) element;
+			if (file.isDirectory()){
+				return image;
+			}
+			return null;
 		}
 	}
 
 	@Focus
-	public boolean setFocus() {
+	public void setFocus() {
 		viewer.getControl().setFocus();
-		return true;
+	}
+	
+	@PreDestroy
+	public void dispose() {
+		image.dispose();
 	}
 }

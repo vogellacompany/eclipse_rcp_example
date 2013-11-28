@@ -20,6 +20,9 @@ public class Todo {
 	private boolean done;
 	private Date dueDate;
 
+	public Todo() {
+	}
+	
 	public Todo(long i) {
 		id = i;
 	}
@@ -32,17 +35,12 @@ public class Todo {
 		this.dueDate = date;
 	}
 
-	public Todo() {
-	}
+	
 
 	public long getId() {
 		return id;
 	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getSummary() {
 		return summary;
 	}

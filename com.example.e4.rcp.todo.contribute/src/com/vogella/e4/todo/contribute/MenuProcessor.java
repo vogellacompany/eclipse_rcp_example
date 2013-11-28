@@ -12,7 +12,8 @@ import org.eclipse.e4.ui.model.application.ui.menu.MMenu;
 import org.eclipse.e4.ui.model.application.ui.menu.MMenuElement;
 import org.eclipse.e4.ui.model.application.ui.menu.MMenuFactory;
 
-@SuppressWarnings("restriction")
+import com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck;
+
 public class MenuProcessor {
 	
 	// I get this via the parameter 
@@ -20,6 +21,7 @@ public class MenuProcessor {
 	@Inject
 	@Named("org.eclipse.ui.file.menu")
 	private MMenu menu;
+	
 	@Execute
 	public void execute() {
 //		System.out.println("Starting processor");
@@ -45,7 +47,7 @@ public class MenuProcessor {
 			menuItem.setLabel("Another Exit");
 			menuItem.setContributionURI("bundleclass://"
 					+ "com.example.e4.rcp.todo.contribute/"
-					+ "com.vogella.e4.todo.contribute.handler.ExitHandlerWithCheck");
+					+ ExitHandlerWithCheck.class.getName());
 			menu.getChildren().add(menuItem);
 		}
 

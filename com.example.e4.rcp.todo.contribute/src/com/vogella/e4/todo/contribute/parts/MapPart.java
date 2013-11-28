@@ -17,7 +17,7 @@ public class MapPart {
 	private Text text;
 
 	@PostConstruct
-	public void postConstruct(Composite parent) {
+	public void createControls(Composite parent) {
 		parent.setLayout(new GridLayout(2, false));
 		try {
 			new Label(parent, SWT.NONE);

@@ -11,7 +11,9 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <launcher>
+   <splash
+      location="com.example.e4.rcp.todo" />
+   <launcher name="todo">
       <solaris/>
       <win useIco="false">
          <bmp/>
@@ -80,7 +82,7 @@
 
    <features>
       <feature id="com.example.e4.rcp.todo.feature"/>
-      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.e4.rcp" version="1.2.0.v20130605-1738"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.emf.common"/>
    </features>

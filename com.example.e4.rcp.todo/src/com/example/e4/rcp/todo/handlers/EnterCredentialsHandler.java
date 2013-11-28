@@ -13,13 +13,13 @@ import com.example.e4.rcp.todo.dialogs.PasswordDialog;
 
 public class EnterCredentialsHandler {
 	
-	@Inject @Preference(nodePath = "com.example.e4.rcp.todo", value="user") String userPref;
-	@Inject @Preference(nodePath = "com.example.e4.rcp.todo", value="password") String passwordPref;
+	@Inject @Preference(value="user") String userPref;
+	@Inject @Preference(value="password") String passwordPref;
 	
 	@Execute
 	public void execute(
 			Shell shell,
-			@Preference(nodePath = "com.example.e4.rcp.todo") IEclipsePreferences prefs) {
+			@Preference IEclipsePreferences prefs) {
 		PasswordDialog dialog = new PasswordDialog(shell);
 		
 		if (userPref!=null) {
@@ -30,7 +30,7 @@ public class EnterCredentialsHandler {
 			dialog.setPassword(passwordPref);
 		}
 		
-		// Get the new values from the dialog
+		// get the new values from the dialog
 		if (dialog.open() == Window.OK) {
 			prefs.put("user", dialog.getUser());
 			prefs.put("password", dialog.getPassword());

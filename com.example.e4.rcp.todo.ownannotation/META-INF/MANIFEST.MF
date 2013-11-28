@@ -11,4 +11,4 @@ Require-Bundle: javax.inject;bundle-version="1.0.0",
  com.example.e4.rcp.todo.model;bundle-version="1.0.0"
 Export-Package: com.example.e4.rcp.todo.ownannotation
 Bundle-ActivationPolicy: lazy
-Service-Component: component.xml
+Service-Component: OSGI-INF/component.xml

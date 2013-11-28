@@ -53,13 +53,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.example.e4.rcp.todo.contribute"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.example.e4.rcp.todo.i18n"
          download-size="0"
          install-size="0"
@@ -75,6 +68,34 @@
 
    <plugin
          id="com.example.e4.rcp.todo.addons"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.example.e4.renderer.swt"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.example.e4.rcp.todo.contribute"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.vogella.extensionpoint.contribution"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.vogella.extensionpoint.definition"
          download-size="0"
          install-size="0"
          version="0.0.0"
