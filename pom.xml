@@ -43,9 +43,6 @@
 		<!-- Junit tests -->
 		<module>com.example.e4.rcp.todo.model.test</module>
 
-		<!-- SWTBot tests -->
-		<module>com.example.e4.rcp.todo.uitest</module>
-
 		<!-- features -->
 		<module>com.example.e4.rcp.todo.feature</module>
 
@@ -53,6 +50,8 @@
 
 		<!-- product related -->
 		<module>com.example.e4.rcp.todo.product</module>
+		<module>com.vogella.extensionpoint.contribution</module>
+		<module>com.vogella.extensionpoint.definition</module>
 
 	</modules>
 
@@ -66,7 +65,7 @@
 		<!-- http://maven.apache.org/general.html#encoding-warning  -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<tycho-version>0.18.0</tycho-version>
+		<tycho-version>0.19.0</tycho-version>
 
 		<!-- no default here -->
 		<tycho.test.vm.argline>-Xmx500m -Xdebug -Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=n</tycho.test.vm.argline>
