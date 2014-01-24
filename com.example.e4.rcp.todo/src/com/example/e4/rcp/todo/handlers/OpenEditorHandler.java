@@ -45,7 +45,7 @@ public class OpenEditorHandler {
 		
 		// editor was not open, create it and show it
 
-		// create an Input part
+		// create an new part
 		MPart part = modelService.createModelElement(MPart.class);
 
 		// Pointing to the contributing class
