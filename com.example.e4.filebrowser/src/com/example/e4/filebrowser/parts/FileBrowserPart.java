@@ -11,9 +11,11 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StyledCellLabelProvider;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -76,20 +78,32 @@ public class FileBrowserPart {
 
 	}
 
-	class ViewLabelProvider extends LabelProvider {
+	class ViewLabelProvider extends StyledCellLabelProvider {
 		@Override
-		public String getText(Object element) {
+		public void update(ViewerCell cell) {
+			Object element = cell.getElement();
+			StyledString text = new StyledString();
 			File file = (File) element;
-			String name = file.getName();
-			return name.isEmpty() ? file.getPath() : name;
+			if (file.isDirectory()) {
+				text.append(getFileName(file));
+				cell.setImage(image);
+				String[] files = file.list();
+				if (files != null) {
+					text.append(" ( " + files.length + " ) ",
+							StyledString.COUNTER_STYLER);
+				}
+			} else {
+				text.append(getFileName(file));
+			}
+			cell.setText(text.toString());
+			cell.setStyleRanges(text.getStyleRanges());
+			super.update(cell);
+
 		}
 
-		public Image getImage(Object element) {
-			File file = (File) element;
-			if (file.isDirectory()){
-				return image;
-			}
-			return null;
+		private String getFileName(File file) {
+			String name = file.getName();
+			return name.isEmpty() ? file.getPath() : name;
 		}
 	}
 
@@ -97,7 +111,7 @@ public class FileBrowserPart {
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}
-	
+
 	@PreDestroy
 	public void dispose() {
 		image.dispose();
