@@ -34,14 +34,7 @@ public class UpdateHandler {
 			final UISynchronize sync, final IWorkbench workbench) {
 		Job j = new Job("Update Job") {
 			private boolean doInstall = false;
- 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see
-			 * org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime
-			 * .IProgressMonitor)
-			 */
+
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {
  
@@ -81,11 +74,7 @@ public class UpdateHandler {
 				// Failed to find updates (inform user and exit)
 				if (status.getCode() == UpdateOperation.STATUS_NOTHING_TO_UPDATE) {
 					sync.syncExec(new Runnable() {
-						/*
-						 * (non-Javadoc)
-						 * 
-						 * @see java.lang.Runnable#run()
-						 */
+
 						@Override
 						public void run() {
 							MessageDialog
@@ -102,11 +91,6 @@ public class UpdateHandler {
 				if (status.isOK() && status.getSeverity() != IStatus.ERROR) {
 					sync.syncExec(new Runnable() {
  
-						/*
-						 * (non-Javadoc)
-						 * 
-						 * @see java.lang.Runnable#run()
-						 */
 						@Override
 						public void run() {
 							String updates = "";
@@ -116,7 +100,7 @@ public class UpdateHandler {
 								updates += update + "\n";
 							}
 							doInstall = MessageDialog.openQuestion(parent,
-									"Relly install updates?", updates);
+									"Really install updates?", updates);
 						}
 					});
 				}
