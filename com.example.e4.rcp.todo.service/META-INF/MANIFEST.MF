@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Service
-Bundle-SymbolicName: com.example.e4.rcp.todo.service
+Bundle-SymbolicName: com.example.e4.rcp.todo.services
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

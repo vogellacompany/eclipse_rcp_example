@@ -1,4 +1,4 @@
-package com.example.e4.rcp.todo.service.internal;
+package com.example.e4.rcp.todo.services.internal;
 
 import org.eclipse.e4.core.contexts.ContextFunction;
 import org.eclipse.e4.core.contexts.ContextInjectionFactory;

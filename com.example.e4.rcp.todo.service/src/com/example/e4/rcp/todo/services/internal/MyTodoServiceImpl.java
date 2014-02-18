@@ -1,4 +1,4 @@
-package com.example.e4.rcp.todo.service.internal;
+package com.example.e4.rcp.todo.services.internal;
 
 import java.util.ArrayList;
 import java.util.Date;

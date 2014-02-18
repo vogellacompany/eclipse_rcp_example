@@ -56,7 +56,7 @@ public class EditorPart {
 		String string = part.getPersistedState().get(Todo.FIELD_ID);
 		Long idOfTodo = Long.valueOf(string);
 		
-		// retrieve the todo based on the MInput
+		// retrieve the todo based on the persistedState
 		todo = todoService.getTodo(idOfTodo);
 		
 		GridLayout gl_parent = new GridLayout(2, false);
