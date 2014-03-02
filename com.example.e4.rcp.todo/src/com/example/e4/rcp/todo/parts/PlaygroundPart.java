@@ -82,8 +82,4 @@ public class PlaygroundPart {
 		System.out.println("New password: " + password);
 	}
 
-	@Inject
-	public void setYourObject(YourObject object) {
-		System.out.println(object);
-	}
 }
