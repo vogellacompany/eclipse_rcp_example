@@ -18,6 +18,14 @@
                name="lifeCycleURI"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.Manager">
          </property>
+         <property
+               name="rendererFactoryUri2"
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
+         </property>
           <!-- comments out of testing purposes
          <property
                name="applicationCSS"

@@ -13,9 +13,10 @@ public class DynamicPartHandler {
 	public void execute(MApplication application, EPartService partService, EModelService modelService  ) {
 		// 
 		modelService.find("", application);
-		// Create Part based on PartDescriptor
+		// create Part based on PartDescriptor
 		MPart part = 
 				partService.createPart("com.example.e4.rcp.todo.partdescriptor.dynamic");
+		// activates the part
 		partService.showPart(part, PartState.ACTIVATE);
 	}
 }
