@@ -9,7 +9,6 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 public class MyContextFunction extends ContextFunction {
 	@Override
 	public Object compute(IEclipseContext context, String contextKey) {
-		System.out.println("Called");
 		MPerspective mPerspective = context.get(MPerspective.class);
 
 		// no perspective found
