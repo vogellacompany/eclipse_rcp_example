@@ -4,6 +4,7 @@ package extensions;
 
 import org.eclipse.e4.ui.model.application.ui.basic.impl.BasicPackageImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -38,7 +39,7 @@ public interface ExtensionsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://vogella.com/extensions";
+	String eNS_URI = "http://www.vogella.com/extensions";
 
 	/**
 	 * The package namespace name.
@@ -373,13 +374,22 @@ public interface ExtensionsPackage extends EPackage {
 	int BROWSER_PART__LOCALIZED_DESCRIPTION = BasicPackageImpl.PART__LOCALIZED_DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BROWSER_PART__URI = BasicPackageImpl.PART_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Browser Part</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BROWSER_PART_FEATURE_COUNT = BasicPackageImpl.PART_FEATURE_COUNT + 0;
+	int BROWSER_PART_FEATURE_COUNT = BasicPackageImpl.PART_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Update Localization</em>' operation.
@@ -409,6 +419,17 @@ public interface ExtensionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBrowserPart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link extensions.BrowserPart#getUri <em>Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uri</em>'.
+	 * @see extensions.BrowserPart#getUri()
+	 * @see #getBrowserPart()
+	 * @generated
+	 */
+	EAttribute getBrowserPart_Uri();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -442,6 +463,13 @@ public interface ExtensionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BROWSER_PART = eINSTANCE.getBrowserPart();
+		/**
+		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BROWSER_PART__URI = eINSTANCE.getBrowserPart_Uri();
 
 	}
 

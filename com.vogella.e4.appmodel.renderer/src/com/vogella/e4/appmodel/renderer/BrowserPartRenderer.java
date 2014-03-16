@@ -8,16 +8,20 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
+import extensions.BrowserPart;
+
 public class BrowserPartRenderer extends SWTPartRenderer {
 
 	@Override
 	public Object createWidget(MUIElement element, Object parent) {
+		BrowserPart part = (BrowserPart) element;
+		String uri = part.getUri();
 		final Composite mapComposite = new Composite((Composite) parent,
 				SWT.NONE);
 		System.out.println(parent.getClass());
 		mapComposite.setLayout(new GridLayout(1, false));
 		final Browser browser = new Browser(mapComposite, SWT.NONE);
-		browser.setUrl("http://www.vogella.com");
+		browser.setUrl(uri);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		browser.setLayoutData(data);
 		return mapComposite;

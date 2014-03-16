@@ -10,6 +10,7 @@ import org.eclipse.e4.ui.model.application.impl.ApplicationPackageImpl;
 
 import org.eclipse.e4.ui.model.application.ui.basic.impl.BasicPackageImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -107,6 +108,15 @@ public class ExtensionsPackageImpl extends EPackageImpl implements ExtensionsPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBrowserPart_Uri() {
+		return (EAttribute)browserPartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExtensionsFactory getExtensionsFactory() {
 		return (ExtensionsFactory)getEFactoryInstance();
 	}
@@ -131,6 +141,7 @@ public class ExtensionsPackageImpl extends EPackageImpl implements ExtensionsPac
 
 		// Create classes and their features
 		browserPartEClass = createEClass(BROWSER_PART);
+		createEAttribute(browserPartEClass, BROWSER_PART__URI);
 	}
 
 	/**
@@ -168,6 +179,7 @@ public class ExtensionsPackageImpl extends EPackageImpl implements ExtensionsPac
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(browserPartEClass, BrowserPart.class, "BrowserPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBrowserPart_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, BrowserPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

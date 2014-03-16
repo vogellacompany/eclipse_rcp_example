@@ -10,7 +10,7 @@ xmi:id="_7VkpUKo8EeO_NLPjBpVjeQ" elementId="org.eclipse.e4.ide.application" bind
         <children xsi:type="basic:PartSashContainer" xmi:id="_7VlQdao8EeO_NLPjBpVjeQ">
           <children xsi:type="basic:PartStack" xmi:id="_7VlQdqo8EeO_NLPjBpVjeQ">
             <children xsi:type="basic:Part" xmi:id="_7VlQd6o8EeO_NLPjBpVjeQ" contributionURI="bundleclass://com.vogella.e4.appmodel.app/com.vogella.e4.appmodel.app.parts.SamplePart" label="Sample Part"/>
-            <children xsi:type="extensions:BrowserPart" xmi:id="_sDctoKo9EeO_NLPjBpVjeQ" elementId="com.vogella.e4.appmodel.app.part.0" label="Test"/>
+            <children xsi:type="extensions:BrowserPart" xmi:id="_sDctoKo9EeO_NLPjBpVjeQ" elementId="com.vogella.e4.appmodel.app.part.0" uri="http://www.google.com" label="Test"/>
           </children>
         </children>
       </children>
