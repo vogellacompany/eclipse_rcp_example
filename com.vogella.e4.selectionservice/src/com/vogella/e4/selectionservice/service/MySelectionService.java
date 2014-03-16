@@ -7,10 +7,11 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 
 public class MySelectionService {
 
+	public static final String MYSELECTION = "myselection";
 	@Inject
 	IEclipseContext ctx;
 
 	public void setSelection(Object obj) {
-		ctx.set("myselection", obj);
+		ctx.set(MYSELECTION, obj);
 	}
 }

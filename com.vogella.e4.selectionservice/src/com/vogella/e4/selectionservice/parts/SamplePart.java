@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2010 - 2013 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Lars Vogel <lars.Vogel@gmail.com> - Bug 419770
- *******************************************************************************/
 package com.vogella.e4.selectionservice.parts;
 
 import javax.annotation.PostConstruct;
@@ -69,7 +58,6 @@ public class SamplePart {
 	public void setSelectionService(MySelectionService service) {
 		System.out.println("Selection service set");
 		if (service != null){
-			System.out.println(service);
 			this.service = service;
 			
 		} else {

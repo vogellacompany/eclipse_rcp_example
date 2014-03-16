@@ -23,6 +23,6 @@ public class MyContextFunction extends ContextFunction {
 				MySelectionService.class, ctx);
 		ctx.set(MySelectionService.class.getName(),service);
 
-		return super.compute(context, contextKey);
+		return service;
 	}
 }

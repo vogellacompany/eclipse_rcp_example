@@ -2,7 +2,7 @@
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_vZKnYKtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ide.application" bindingContexts="_vZKnaatdEeORs4m4rNC0FQ">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_vZKnYatdEeORs4m4rNC0FQ" label="com.vogella.e4.selectionservice" width="500" height="400">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_vZLOhKtdEeORs4m4rNC0FQ">
-      <children xsi:type="advanced:Perspective" xmi:id="_vZLOhatdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.perspective.first">
+      <children xsi:type="advanced:Perspective" xmi:id="_vZLOhatdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.perspective.first" label="First perspective">
         <children xsi:type="basic:PartSashContainer" xmi:id="_vZLOhqtdEeORs4m4rNC0FQ">
           <children xsi:type="basic:PartStack" xmi:id="_vZLOh6tdEeORs4m4rNC0FQ">
             <children xsi:type="basic:Part" xmi:id="_vZLOiKtdEeORs4m4rNC0FQ" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.SamplePart" label="Sample Part"/>
@@ -15,10 +15,10 @@
       <children xsi:type="advanced:Perspective" xmi:id="_T9SNIKt1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.perspective.second">
         <children xsi:type="basic:PartSashContainer" xmi:id="_UuiD4Kt1EeOKZeeiD0x5FQ">
           <children xsi:type="basic:PartStack" xmi:id="_UuiD4at1EeOKZeeiD0x5FQ">
-            <children xsi:type="basic:Part" xmi:id="_UuiD4qt1EeOKZeeiD0x5FQ" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.SamplePart" label="Sample Part"/>
+            <children xsi:type="basic:Part" xmi:id="_UuiD4qt1EeOKZeeiD0x5FQ" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.SamplePart" label="Part in second perspective"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_UuiD46t1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.partstack.0">
-            <children xsi:type="basic:Part" xmi:id="_UuiD5Kt1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.part.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.ListenerPart" label="Listener"/>
+            <children xsi:type="basic:Part" xmi:id="_UuiD5Kt1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.part.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.ListenerPart" label="Second listener"/>
           </children>
         </children>
       </children>

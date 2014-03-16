@@ -17,7 +17,6 @@ public class ReplaceSelectionService {
 
 	@PostConstruct
 	public void replace(MApplication app) {
-		System.out.println("Model add-on called");
 		IEclipseContext appContext = app.getContext();
 		appContext.set(MySelectionService.class.getName(),
 				new MyContextFunction());
