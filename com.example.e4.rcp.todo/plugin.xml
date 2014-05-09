@@ -23,7 +23,7 @@
                value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
          </property>
          <property
-               name="applicationCSS"
+               name="applicationCSS2"
                value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
          </property>
           <!-- comments out of testing purposes

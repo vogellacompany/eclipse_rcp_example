@@ -10,14 +10,21 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.ProgressProvider;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
+import org.eclipse.e4.ui.model.application.MApplication;
+import org.eclipse.e4.ui.model.application.ui.MUIElement;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
+import org.eclipse.e4.ui.model.application.ui.menu.MToolBar;
+import org.eclipse.e4.ui.model.application.ui.menu.MToolControl;
 import org.eclipse.e4.ui.services.EMenuService;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.CellEditor;
@@ -59,6 +66,13 @@ public class TodoOverviewPart {
 
 	@Inject
 	ESelectionService service;
+
+	@Inject
+	EModelService modelService;
+
+	@Inject
+	MApplication application;
+
 	@Inject
 	IEventBroker broker;
 
@@ -76,14 +90,35 @@ public class TodoOverviewPart {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				
+				final MToolControl toolControl = (MToolControl) modelService.find(
+						"statusbar", application);
+				toolControl.setVisible(true);
+				
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
 						final List<Todo> list = model.getTodos();
+						toolControl.setVisible(false);
 						broker.post(LOCAL_EVENT_FINISH, list);
 						return Status.OK_STATUS;
 					}
 				};
+				if (toolControl != null) {
+					IJobManager jobManager = job.getJobManager();
+					Object widget = toolControl.getObject();
+					final IProgressMonitor p = (IProgressMonitor) widget;
+					ProgressProvider provider = new ProgressProvider() {
+
+						@Override
+						public IProgressMonitor createMonitor(Job job) {
+							return p;
+						}
+					};
+					jobManager.setProgressProvider(provider);
+
+				}
 				job.schedule();
 			}
 		});
@@ -158,7 +193,8 @@ public class TodoOverviewPart {
 				return true;
 			}
 		});
-		TableViewerColumn colDescription= new TableViewerColumn(viewer, SWT.NONE);
+		TableViewerColumn colDescription = new TableViewerColumn(viewer,
+				SWT.NONE);
 
 		colDescription.getColumn().setWidth(100);
 		colDescription.getColumn().setText("Description");
@@ -193,7 +229,6 @@ public class TodoOverviewPart {
 
 	}
 
-	
 	@Inject
 	@Optional
 	private void getNotified(

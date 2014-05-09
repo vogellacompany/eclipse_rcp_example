@@ -13,4 +13,4 @@ Require-Bundle: com.example.e4.rcp.todo.model;bundle-version="1.0.0",
  org.eclipse.e4.core.di,
  org.eclipse.e4.ui.model.workbench
 Bundle-ActivationPolicy: lazy
-Service-Component: todoservice.xml
+Service-Component: OSGI-INF/service.xml

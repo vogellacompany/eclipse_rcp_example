@@ -10,8 +10,10 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
@@ -24,6 +26,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -31,6 +34,8 @@ public class EditorPart {
 
 	@Inject
 	MDirtyable dirty;
+	
+	@Inject MPart part;
 
 	private Text txtSummary;
 	private Text txtDescription;
@@ -162,5 +167,14 @@ public class EditorPart {
 		// the following assumes that you have a Text field
 		// called summary
 		txtSummary.setFocus();
+	}
+	
+	@Inject
+	@Optional
+	private void getNotified(
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
+		if (this.todo.equals(todo)){
+			part.setToBeRendered(false);
+		}
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.model.application.MApplication;
@@ -20,8 +21,7 @@ public class OpenEditorHandler {
 	@Execute
 	public void execute(
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
-			MApplication application, 
-			EModelService modelService,
+			MApplication application, EModelService modelService,
 			EPartService partService) {
 
 		// sanity check
@@ -42,7 +42,7 @@ public class OpenEditorHandler {
 				return;
 			}
 		}
-		
+
 		// editor was not open, create it and show it
 
 		// create an new part
@@ -65,4 +65,14 @@ public class OpenEditorHandler {
 		partService.showPart(part, PartState.ACTIVATE);
 
 	}
+
+	@CanExecute
+	public boolean canExecute(
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
+		if (todo != null) {
+			return true;
+		}
+		return false;
+	}
+
 }

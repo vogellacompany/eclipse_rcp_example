@@ -1,85 +1,59 @@
 package com.example.e4.rcp.todo.parts;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
-import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.di.extensions.Preference;
+import javax.annotation.PostConstruct;
+
 import org.eclipse.e4.ui.di.Focus;
-import org.eclipse.jface.databinding.swt.ISWTObservableValue;
-import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.example.e4.rcp.todo.creatable.YourObject;
-
 public class PlaygroundPart {
-	@Inject
-	@Preference(nodePath = "com.example.e4.rcp.todo", value = "user")
-	String userTodo;
-	private Label label;
-	private Text text2;
-	private Text text1;
-
-	/**
-	 * 
-	 * @param parent
-	 */
+	private Text text;
+	private Browser browser;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
-		DataBindingContext ctx = new DataBindingContext();
-		text1 = new Text(parent, SWT.LEAD | SWT.BORDER | SWT.MULTI);
+		parent.setLayout(new GridLayout(2, false));
 
-		text1.setText("Hallo");
+		text = new Text(parent, SWT.BORDER);
+		text.setMessage("Enter City");
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
-		text2 = new Text(parent, SWT.LEAD | SWT.BORDER | SWT.MULTI);
-		text2.setText("Moin");
+		Button button = new Button(parent, SWT.PUSH);
+		button.setText("Search");
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String city = text.getText();
+				if (city.isEmpty()) {
+					return;
+				}
+				try {
+					browser.setUrl("https://www.google.com/maps/place/"
+							+ URLEncoder.encode(city, "UTF-8")
+							+ "/&output=embed");
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
-		ISWTObservableValue model = WidgetProperties.text(SWT.Modify).observe(
-				text1);
-		ISWTObservableValue target = WidgetProperties.text(SWT.Modify)
-				.observeDelayed(2000, text2);
+		browser = new Browser(parent, SWT.NONE);
+		browser.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
-		Button button = new Button(parent, SWT.CHECK);
-		button.setText("Hello");
-		// button.addSelectionListener(new SelectionAdapter() {
-		// @Override
-		// public void widgetSelected(SelectionEvent e) {
-		//
-		// }
-		// });
-
-		ISWTObservableValue model1 = WidgetProperties.selection().observe(
-				button);
-		ISWTObservableValue target1 = WidgetProperties.enabled().observe(text1);
-		ctx.bindValue(target1, model1);
-
-		// This assumes you have a vogella.png file
-		// in folder images
 	}
 
 	@Focus
-	public void setFocus() {
-		text1.setFocus();
+	public void onFocus() {
+		text.setFocus();
 	}
-
-	@Inject
-	@Optional
-	public void trackUserSettings(@Preference(value = "user") String user) {
-		System.out.println("New user: " + user);
-		System.out.println("Field: " + userTodo);
-	}
-
-	@Inject
-	@Optional
-	public void trackPasswordSettings(
-			@Preference(value = "password") String password) {
-		System.out.println("New password: " + password);
-	}
-
 }
