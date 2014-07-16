@@ -95,6 +95,9 @@
   <handlers xmi:id="_kDBA0A37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handler.switchperspective" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.PerspectiveSwitchHandler" command="_W75ZkA37EeK2jbXfW93tpw"/>
   <handlers xmi:id="_pGsdwA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.handler.3" contributionURI="bundleclass://com.vogella.extensionpoint.definition/com.vogella.extensionpoint.definition.EvaluateContributionsHandler" command="_nTLRsA9fEeOcRapkQEuH9Q"/>
   <handlers xmi:id="_sipJgBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.handler.dynamicpartmodelservice" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.DynamicPartHandlerCode" command="_n9YOkBAKEeO5vsQ2T1hWpw"/>
+  <bindingTables xmi:id="_kbPZsAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.bindingtable.0" bindingContext="_2jk_wMZvEeGbkqRLZ7osPQ">
+    <bindings xmi:id="_l08XkAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.keybinding.0" keySequence="M1+S" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
+  </bindingTables>
   <rootContext xmi:id="_2jk_wMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="Windows and Dialogs" description="Windows and Dialogs"/>
   <descriptors xmi:id="_CR1k0AzIEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partdescriptor.dynamic" label="Dynamic Part" allowMultiple="true" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.DynamicPart"/>
   <commands xmi:id="_vTZDkMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
