@@ -35,7 +35,7 @@
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_fWUeoA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.perspective.0" label="Manager">
+      <children xsi:type="advanced:Perspective" xmi:id="_fWUeoA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.perspective.manager" label="Manager">
         <children xsi:type="basic:PartStack" xmi:id="_jdXMgA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.partstack.2">
           <children xsi:type="basic:Part" xmi:id="_hYoUoA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.part.0" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.ManagerPart" label="Manager Monitor"/>
           <children xsi:type="advanced:Placeholder" xmi:id="_6qW9gA5xEeK9y8PCk5W1FQ" elementId="com.example.e4.rcp.todo.placeholder.1" ref="_0Aiw4A5xEeK9y8PCk5W1FQ"/>
@@ -57,12 +57,17 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_LxYWQA1pEeKOKKJWLEQDhw" elementId="com.example.e4.rcp.todo.handledmenuitem.2" label="Edit Todo" command="_vGK5kA1pEeKkaoNsQKzVcw"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_UQ8gMBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.menu.0" label="Window">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_U9_icA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Switch Perspective" command="_W75ZkA37EeK2jbXfW93tpw">
-          <parameters xmi:id="_yulf8LmTEeOGGb8l8_qEMg" elementId="com.example.e4.rcp.todo.parameter.0" name="perspective_parameter" value="lars"/>
-        </children>
         <children xsi:type="menu:Menu" xmi:id="_dd1GgBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.menu.1" label="Show View">
           <children xsi:type="menu:HandledMenuItem" xmi:id="_e8tfUBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.handledmenuitem.5" label="Create Part (based on Descriptor)" command="_H4GNQAzJEeKhVv5pZDR7bA"/>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_lN9a8BAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.handledmenuitem.6" label="Create Part (dynamically)" command="_n9YOkBAKEeO5vsQ2T1hWpw"/>
+        </children>
+        <children xsi:type="menu:Menu" xmi:id="_WriWMAzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.menu.switchPerspective" label="Switch Perspective">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_U9_icA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Todo" command="_W75ZkA37EeK2jbXfW93tpw">
+            <parameters xmi:id="_yulf8LmTEeOGGb8l8_qEMg" elementId="com.example.e4.rcp.todo.parameter.0" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_Yabg8AzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Manager" command="_W75ZkA37EeK2jbXfW93tpw">
+            <parameters xmi:id="_Yabg8QzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.parameter.0" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective.manager"/>
+          </children>
         </children>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_DuKW4NJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.menu.styling" label="Styling">
@@ -71,6 +76,9 @@
       <children xsi:type="menu:Menu" xmi:id="_brJrkAzKEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.menu.dynamic" label="Test">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_dMhXsAzKEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.handledmenuitem.1" label="Add Part" command="_H4GNQAzJEeKhVv5pZDR7bA"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_j_48AA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.handledmenuitem.4" label="Evaluate extensions" command="_nTLRsA9fEeOcRapkQEuH9Q"/>
+        <children xsi:type="menu:Menu" xmi:id="_pZZycA0HEeS9gJmKbVJtOg" elementId="com.example.e4.rcp.todo.menu.lastEdited" label="Last edited...">
+          <children xsi:type="menu:DynamicMenuContribution" xmi:id="_PtBBsAzkEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.dynamicmenucontribution.0" label="DynamicMenu" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.menu.DynamicMenuEntries"/>
+        </children>
       </children>
     </mainMenu>
     <sharedElements xsi:type="basic:Part" xmi:id="_0Aiw4A5xEeK9y8PCk5W1FQ" elementId="com.example.e4.rcp.todo.part.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="LazyTable"/>

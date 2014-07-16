@@ -17,14 +17,12 @@ public class PerspectiveSwitchHandler {
 			EModelService modelService,
 			@Named("perspective_parameter") String perspectiveId) {
 		 System.out.println(perspectiveId);
-		List<MPerspective> perspectives = modelService.findElements(app, null,
+		List<MPerspective> perspectives = modelService.findElements(app, perspectiveId,
 				MPerspective.class, null);
 		// Assume you have only two perspectives and you always
 		// switch between them
-		for (MPerspective perspective : perspectives) {
-			if (!perspective.equals(activePerspective)) {
-				partService.switchPerspective(perspective);
-			}
+		if (perspectives.size()>0){
+			partService.switchPerspective(perspectives.get(0));
 		}
 	}
 }
