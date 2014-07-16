@@ -148,6 +148,12 @@ public class TodoDetailsPart {
 			IObservableValue model = BeanProperties.value(Todo.FIELD_SUMMARY)
 					.observe(todo);
 			ctx.bindValue(target, model);
+			
+			target = WidgetProperties.text(SWT.Modify)
+					.observe(txtDescription);
+			model = BeanProperties.value(Todo.FIELD_DESCRIPTION)
+					.observe(todo);
+			ctx.bindValue(target, model);
 
 			target = WidgetProperties.selection().observe(btnDone);
 			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
