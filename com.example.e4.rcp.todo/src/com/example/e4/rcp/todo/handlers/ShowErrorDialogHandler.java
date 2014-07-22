@@ -12,8 +12,6 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class ShowErrorDialogHandler {
-	static String lineSeparator = System.getProperty("line.separator");
-
 	@Execute
 	public void execute(final Shell shell, MWindow window) {
 		// create exception on purpose to demonstrate ErrorDialog
@@ -21,15 +19,13 @@ public class ShowErrorDialogHandler {
 			String s = null;
 			System.out.println(s.length());
 		} catch (NullPointerException e) {
-			// I want to add the current stack trace
-			
+			// build the error message and include the current stack trace
 			MultiStatus status = createMultiStatus(e.getLocalizedMessage(), e);
+			// show error dialog
 			ErrorDialog.openError(shell, "Error", "This is an error", status);
 		}
 	}
 
-	// helper method to show the stack trace in the detailed message
-	// not 
 	private static MultiStatus createMultiStatus(String msg, Throwable t) {
 
 		List<Status> childStatuses = new ArrayList<Status>();
