@@ -3,11 +3,12 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_3wev8L-ZEeGFAvs8os6Opw" elementId="com.example.e4.rcp.todo.trimmedwindow" label="To-do" x="100" y="100" width="800" height="600">
     <tags>shellMaximized</tags>
     <tags>lars</tags>
-    <children xsi:type="advanced:PerspectiveStack" xmi:id="_JajEUL-iEeGIRPhGyuFE7Q" elementId="1">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_JajEUL-iEeGIRPhGyuFE7Q" elementId="meinperspectivestack">
       <children xsi:type="advanced:Perspective" xmi:id="_KqWfUL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.perspective" label="To-Do">
         <children xsi:type="basic:PartSashContainer" xmi:id="_p7QWcL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartSashContainer" xmi:id="_8TWJ8AzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partsashcontainer.1" containerData="40">
             <children xsi:type="basic:Part" xmi:id="_SLnb4L-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="To-Dos" closeable="true">
+              <persistedState key="uri" value="http://www.google.com"/>
               <tags>NoMove</tags>
               <menus xsi:type="menu:PopupMenu" xmi:id="_vqfykBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_0reZIBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
@@ -33,12 +34,6 @@
               <children xsi:type="basic:Part" xmi:id="_ZHOjIL-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.playground" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.PlaygroundPart" label="Playground"/>
             </children>
           </children>
-        </children>
-      </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_fWUeoA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.perspective.manager" label="Manager">
-        <children xsi:type="basic:PartStack" xmi:id="_jdXMgA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.partstack.2">
-          <children xsi:type="basic:Part" xmi:id="_hYoUoA3vEeKrY60eQznlvw" elementId="com.example.e4.rcp.todo.part.0" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.ManagerPart" label="Manager Monitor"/>
-          <children xsi:type="advanced:Placeholder" xmi:id="_6qW9gA5xEeK9y8PCk5W1FQ" elementId="com.example.e4.rcp.todo.placeholder.1" ref="_0Aiw4A5xEeK9y8PCk5W1FQ"/>
         </children>
       </children>
       <children xsi:type="advanced:Perspective" xmi:id="_XJX-oNa3EeOp9psr8FhdAw" elementId="com.example.e4.rcp.todo.perspective.1"/>
