@@ -143,41 +143,31 @@ public class TodoDetailsPart {
 			// Remove bindings
 			ctx.dispose();
 
-			IObservableValue target = WidgetProperties.text(SWT.Modify)
+			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify)
 					.observe(txtSummary);
-			IObservableValue model = BeanProperties.value(Todo.FIELD_SUMMARY)
+			IObservableValue oTodoSummary = BeanProperties.value(Todo.FIELD_SUMMARY)
 					.observe(todo);
-			ctx.bindValue(target, model);
+			ctx.bindValue(oWidgetSummary, oTodoSummary);
 			
-			target = WidgetProperties.text(SWT.Modify)
+			IObservableValue oWidgetDescription = WidgetProperties.text(SWT.Modify)
 					.observe(txtDescription);
-			model = BeanProperties.value(Todo.FIELD_DESCRIPTION)
+			IObservableValue oTodoDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION)
 					.observe(todo);
-			ctx.bindValue(target, model);
+			ctx.bindValue(oWidgetDescription, oTodoDescription);
 
-			target = WidgetProperties.selection().observe(btnDone);
-			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
-			ctx.bindValue(target, model);
 
-			target = WidgetProperties.selection().observe(btnDone);
-			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
-			ctx.bindValue(target, model);
+			IObservableValue oWidgetButton = WidgetProperties.selection().observe(btnDone);
+			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
+			ctx.bindValue(oWidgetButton, oTodoDone);
 
-			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties
+			IObservableValue oWidgetSelectionDateTime = WidgetProperties
 					.selection().observe(dateTime);
-			IObservableValue dueDateTodoObserveValue = BeanProperties.value(
+			IObservableValue oTodoDueDate = BeanProperties.value(
 					Todo.FIELD_DUEDATE).observe(todo);
-			ctx.bindValue(observeSelectionDateTimeObserveWidget,
-					dueDateTodoObserveValue);
+			ctx.bindValue(oWidgetSelectionDateTime,
+					oTodoDueDate);
 
 			// register listener for any changes
-			providers = ctx.getValidationStatusProviders();
-			for (Object o : providers) {
-				Binding b = (Binding) o;
-				b.getTarget().addChangeListener(listener);
-			}
-
-			// Register for the changes
 			providers = ctx.getValidationStatusProviders();
 			for (Object o : providers) {
 				Binding b = (Binding) o;
