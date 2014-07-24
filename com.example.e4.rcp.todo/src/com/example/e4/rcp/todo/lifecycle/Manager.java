@@ -45,8 +45,10 @@ public class Manager {
 			// close the application
 			System.exit(-1);
 		} else {
-			// Store the user values in the preferences
-			prefs.put("user", dialog.getUser());
+			// get the user from the dialog
+			String userValue = dialog.getUser();
+			// store the user values in the preferences
+			prefs.put("user", userValue );
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
