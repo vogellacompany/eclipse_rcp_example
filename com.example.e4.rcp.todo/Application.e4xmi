@@ -96,6 +96,7 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_8aI_8MZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledtoolitem.save" label="" iconURI="" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_XSak8BMHEeSNqd-3fauTUQ" elementId="com.example.e4.rcp.todo.toolcontrol.0" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.perspectiveswitcher/org.eclipse.e4.ui.workbench.perspectiveswitcher.tools.PerspectiveSwitcherSwtTrim"/>
+      <children xsi:type="menu:ToolControl" xmi:id="_mQav4BO4EeS5RO-5PCVTqQ" elementId="com.example.e4.rcp.todo.toolcontrol.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.SwitchLanguageToolControl"/>
     </trimBars>
     <trimBars xmi:id="_O6v78NXpEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.trimbar.0" side="Bottom">
       <children xsi:type="menu:ToolControl" xmi:id="_QA6SwNXpEeODCZCgwFhKTQ" elementId="statusbar" visible="false" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.ProgressMonitorControl"/>

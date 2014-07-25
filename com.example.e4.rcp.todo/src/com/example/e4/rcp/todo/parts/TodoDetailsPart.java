@@ -12,6 +12,7 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
@@ -26,6 +27,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.i18n.Messages;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
@@ -51,8 +53,12 @@ public class TodoDetailsPart {
 	};
 	private Todo todo;
 
+	private Label lblSummary;
+
+	private Label lblDescription;
+
 	@PostConstruct
-	public void createControls(Composite parent) {
+	public void createControls(Composite parent, @Translation Messages message) {
 
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
@@ -61,14 +67,13 @@ public class TodoDetailsPart {
 		gl_parent.marginWidth = 0;
 		parent.setLayout(gl_parent);
 
-		Label lblSummary = new Label(parent, SWT.NONE);
-		lblSummary.setText("Summary");
+		lblSummary = new Label(parent, SWT.NONE);
 
 		txtSummary = new Text(parent, SWT.BORDER);
 		txtSummary
 				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		Label lblDescription = new Label(parent, SWT.NONE);
+		lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setText("Description");
 
 		txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
@@ -87,7 +92,17 @@ public class TodoDetailsPart {
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
 
+		translate(message);
 		updateUserInterface(todo);
+		
+	}
+
+	@Inject
+	private void translate(@Translation Messages message) {
+		if (txtSummary != null && !txtSummary.isDisposed()) {
+			lblSummary.setText(message.txtSummary);
+			lblDescription.setText(message.txtDescription);
+		}
 	}
 
 	@Persist
@@ -145,27 +160,27 @@ public class TodoDetailsPart {
 
 			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify)
 					.observe(txtSummary);
-			IObservableValue oTodoSummary = BeanProperties.value(Todo.FIELD_SUMMARY)
-					.observe(todo);
+			IObservableValue oTodoSummary = BeanProperties.value(
+					Todo.FIELD_SUMMARY).observe(todo);
 			ctx.bindValue(oWidgetSummary, oTodoSummary);
-			
-			IObservableValue oWidgetDescription = WidgetProperties.text(SWT.Modify)
-					.observe(txtDescription);
-			IObservableValue oTodoDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION)
-					.observe(todo);
+
+			IObservableValue oWidgetDescription = WidgetProperties.text(
+					SWT.Modify).observe(txtDescription);
+			IObservableValue oTodoDescription = BeanProperties.value(
+					Todo.FIELD_DESCRIPTION).observe(todo);
 			ctx.bindValue(oWidgetDescription, oTodoDescription);
 
-
-			IObservableValue oWidgetButton = WidgetProperties.selection().observe(btnDone);
-			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
+			IObservableValue oWidgetButton = WidgetProperties.selection()
+					.observe(btnDone);
+			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE)
+					.observe(todo);
 			ctx.bindValue(oWidgetButton, oTodoDone);
 
 			IObservableValue oWidgetSelectionDateTime = WidgetProperties
 					.selection().observe(dateTime);
 			IObservableValue oTodoDueDate = BeanProperties.value(
 					Todo.FIELD_DUEDATE).observe(todo);
-			ctx.bindValue(oWidgetSelectionDateTime,
-					oTodoDueDate);
+			ctx.bindValue(oWidgetSelectionDateTime, oTodoDueDate);
 
 			// register listener for any changes
 			providers = ctx.getValidationStatusProviders();

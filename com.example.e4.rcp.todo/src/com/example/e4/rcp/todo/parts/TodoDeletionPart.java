@@ -10,6 +10,7 @@ import org.eclipse.e4.core.commands.ECommandService;
 import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -34,6 +35,10 @@ import com.example.e4.rcp.todo.model.Todo;
 public class TodoDeletionPart {
 	@Inject
 	private ITodoService model;
+	
+	@Inject
+	@Translation
+	Messages message;
 	
 	@Inject 
 	ESelectionService selectionService;
@@ -77,7 +82,7 @@ public class TodoDeletionPart {
 
 			}
 		});
-		button.setText(Messages.TodoDeletionPart_0);
+		button.setText(message.buttonDeletionTodo);
 	}
 
 	private void updateViewer(List<Todo> todos) {
