@@ -13,7 +13,8 @@ import com.example.e4.rcp.todo.wizards.TodoWizard;
 public class NewTodoHandler {
 	@Execute
 	public void execute(Shell shell, ITodoService model) {
-		Todo todo = new Todo();
+		// use -1 to indicate a not existing id
+		Todo todo = new Todo(-1);
 		todo.setDueDate(new Date());
 		WizardDialog dialog = new WizardDialog(shell, new TodoWizard(todo));
 		if (dialog.open()== WizardDialog.OK) {

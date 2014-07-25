@@ -14,7 +14,7 @@ public class PerspectiveSwitchHandler {
 	@Execute
 	public void switchPersepctive(MPerspective activePerspective,
 			MApplication app, EPartService partService,
-			EModelService modelService,
+			EModelService modelService, 
 			@Named("perspective_parameter") String perspectiveId) {
 		 System.out.println(perspectiveId);
 		List<MPerspective> perspectives = modelService.findElements(app, perspectiveId,
