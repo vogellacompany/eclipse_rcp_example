@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 @javax.inject.Qualifier
 @Documented
-@Target({ ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD })
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueTodo {
 }
