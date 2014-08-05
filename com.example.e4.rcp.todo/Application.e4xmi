@@ -42,9 +42,7 @@
         </children>
       </children>
       <children xsi:type="advanced:Perspective" xmi:id="_iYITMBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.perspective.third" label="Third">
-        <children xsi:type="basic:PartStack" xmi:id="_lTsscBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.partstack.3">
-          <children xsi:type="basic:Part" xmi:id="_l_2AwBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.part.todoDetailsPart" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoDetailsPart" label="Todo Details Part"/>
-        </children>
+        <children xsi:type="basic:Part" xmi:id="_l_2AwBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.part.todoDetailsPart" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoDetailsPart" label="Todo Details Part"/>
       </children>
     </children>
     <mainMenu xmi:id="_TbH8MMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.main.menu">
@@ -66,14 +64,14 @@
           <children xsi:type="menu:HandledMenuItem" xmi:id="_lN9a8BAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.handledmenuitem.6" label="Create Part (dynamically)" command="_n9YOkBAKEeO5vsQ2T1hWpw"/>
         </children>
         <children xsi:type="menu:Menu" xmi:id="_WriWMAzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.menu.switchPerspective" label="Switch Perspective">
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_U9_icA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Todo" command="_W75ZkA37EeK2jbXfW93tpw">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_U9_icA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Switch to main perspective" command="_W75ZkA37EeK2jbXfW93tpw">
             <parameters xmi:id="_yulf8LmTEeOGGb8l8_qEMg" elementId="com.example.e4.rcp.todo.parameter.0" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective"/>
           </children>
           <children xsi:type="menu:HandledMenuItem" xmi:id="_Yabg8AzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.handledmenuitem.3" label="Manager" command="_W75ZkA37EeK2jbXfW93tpw">
             <parameters xmi:id="_Yabg8QzoEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.parameter.0" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective.manager"/>
           </children>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_eg14kBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.handledmenuitem.10">
-            <parameters xmi:id="_-FnG4BJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.parameter.1"/>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_eg14kBJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.handledmenuitem.10" command="_W75ZkA37EeK2jbXfW93tpw">
+            <parameters xmi:id="_-FnG4BJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.parameter.1" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective.third"/>
           </children>
         </children>
       </children>
@@ -129,6 +127,9 @@
     <children xsi:type="basic:Part" xmi:id="_4lVM0BJnEeSuNNb0T4ePkA" elementId="com.example.e4.rcp.todo.part.testPart" label="Test Part"/>
     <children xsi:type="basic:Part" xmi:id="_5kKzoBJnEeSuNNb0T4ePkA" elementId="com.example.e4.rcp.todo.part.testPart2" label="Test Part 2"/>
   </snippets>
+  <commands xmi:id="_W75ZkA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.command.switchperspective" commandName="Switch Perspective">
+    <parameters xmi:id="_-pujoLmQEeOGGb8l8_qEMg" elementId="perspective_parameter" name="perspective" typeId="" optional="false"/>
+  </commands>
   <commands xmi:id="_vTZDkMZXEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
   <commands xmi:id="_F8KnQMZYEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
   <commands xmi:id="_IU7OYMZYEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.new" commandName="New Todo"/>
@@ -138,9 +139,6 @@
   <commands xmi:id="_ZIxwMPenEeGaHLRm1KH-aQ" elementId="com.example.e4.rcp.todo.command.credential" commandName="Credentials"/>
   <commands xmi:id="_H4GNQAzJEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.command.dynamicpart" commandName="Create Part dynamically"/>
   <commands xmi:id="_vGK5kA1pEeKkaoNsQKzVcw" elementId="com.example.e4.rcp.todo.command.edit" commandName="Open Editor"/>
-  <commands xmi:id="_W75ZkA37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.command.switchperspective" commandName="Switch Perspective">
-    <parameters xmi:id="_-pujoLmQEeOGGb8l8_qEMg" elementId="perspective_parameter" name="perspective" typeId="" optional="false"/>
-  </commands>
   <commands xmi:id="_nTLRsA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.command.extensions" commandName="Evaluate extensions"/>
   <commands xmi:id="_n9YOkBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.command.dynamicpartcode" commandName="Create Part dynamically  via model service"/>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>

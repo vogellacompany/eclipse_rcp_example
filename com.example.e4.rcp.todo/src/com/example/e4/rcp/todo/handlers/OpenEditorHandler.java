@@ -21,7 +21,8 @@ public class OpenEditorHandler {
 	@Execute
 	public void execute(
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
-			MApplication application, EModelService modelService,
+			MApplication application, 
+			EModelService modelService,
 			EPartService partService) {
 
 		// sanity check
@@ -43,9 +44,7 @@ public class OpenEditorHandler {
 			}
 		}
 
-		// editor was not open, create it and show it
-
-		// create an new part
+		// editor was not open, create it
 		MPart part = modelService.createModelElement(MPart.class);
 
 		// pointing to the contributing class
@@ -58,7 +57,7 @@ public class OpenEditorHandler {
 		part.setElementId(id);
 		part.setCloseable(true);
 
-		// add it an existing stack
+		// add it an existing stack and show it
 		MPartStack stack = (MPartStack) modelService.find(
 				"com.example.e4.rcp.todo.partstack.bottom", application);
 		stack.getChildren().add(part);

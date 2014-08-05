@@ -100,7 +100,7 @@ public class EditorPart {
 	}
 
 	@Persist
-	public void save(MDirtyable dirty, ITodoService model) {
+	public void save(ITodoService model) {
 		model.saveTodo(todo);
 		dirty.setDirty(false);
 	}
