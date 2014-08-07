@@ -10,7 +10,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.example.e4.rcp</groupId>
-  <artifactId>com.example.e4.rcp.todo.service</artifactId>
+  <artifactId>com.example.e4.rcp.todo.services</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

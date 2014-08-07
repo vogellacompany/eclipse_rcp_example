@@ -66,7 +66,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<tycho-version>0.20.0</tycho-version>
-
+		<eclipse-repo.url>http://download.eclipse.org/releases/luna</eclipse-repo.url>
 		<!-- no default here -->
 		<tycho.test.vm.argline>-Xmx500m -Xdebug -Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=n</tycho.test.vm.argline>
 		<tycho.test.vm.useUiThread>false</tycho.test.vm.useUiThread>
@@ -89,7 +89,13 @@
 	      </releases>
 	    </pluginRepository>
 	  </pluginRepositories>
-
+	<repositories>
+		<repository>
+		<id>luna</id>
+			<url>${eclipse-repo.url}</url>
+		<layout>p2</layout>
+	</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<!-- enable tycho build extension -->
@@ -127,7 +133,7 @@
 					<!-- recommended: use p2-based target platform resolver -->
 					<resolver>p2</resolver>
 					<ignoreTychoRepositories>true</ignoreTychoRepositories>
-					<!-- use existing target platform definition -->
+					<!-- use existing target platform definition 
 					<target>
 					 <artifact>
 					    <groupId>com.example.e4.rcp</groupId>
@@ -136,7 +142,7 @@
 					    <classifier>eclipse44</classifier>
 					 </artifact>
 					</target> 
-
+					-->
 					<!-- configure the p2 target environments for multi-platform build -->
 					<environments>
 
