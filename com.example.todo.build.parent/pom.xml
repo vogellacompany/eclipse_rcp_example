@@ -35,7 +35,7 @@
 		<!-- http://maven.apache.org/general.html#encoding-warning -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<tycho-version>0.20.0</tycho-version>
+		<tycho-version>0.21.0</tycho-version>
 		<eclipse-repo.url>http://download.eclipse.org/releases/luna</eclipse-repo.url>
 		<!-- no default here -->
 		<tycho.test.vm.argline>-Xmx500m -Xdebug
@@ -45,22 +45,7 @@
 
 	<!-- explicitly define plugin repositories to make tycho SNAPSHOT builds 
 		available -->
-	<pluginRepositories>
-
-		<!-- main Maven repository (do not remove) -->
-		<pluginRepository>
-			<id>central</id>
-			<name>Maven Plugin Repository</name>
-			<url>http://repo1.maven.org/maven2</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
+	
 	<repositories>
 		<repository>
 			<id>luna</id>
@@ -68,6 +53,7 @@
 			<layout>p2</layout>
 		</repository>
 	</repositories>
+	
 	<build>
 		<plugins>
 			<!-- enable tycho build extension -->
@@ -112,11 +98,6 @@
 					<environments>
 
 						<!-- Linux -->
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
 						<environment>
 							<os>linux</os>
 							<ws>gtk</ws>
