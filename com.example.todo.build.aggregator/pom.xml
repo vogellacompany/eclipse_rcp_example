@@ -29,7 +29,7 @@
 		<module>../com.example.e4.rcp.todo.events</module>
 		<module>../com.example.e4.rcp.todo.i18n</module>
 		<module>../com.example.e4.rcp.todo.ownannotation</module>
-		<module>../com.example.e4.rcp.todo.service</module>
+		<module>../com.example.e4.rcp.todo.services</module>
 		<module>../com.example.e4.renderer.swt</module>
 
 		<!-- Junit tests -->
