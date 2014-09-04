@@ -1,5 +1,6 @@
 package com.example.e4.rcp.todo.parts;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -48,6 +49,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.service.event.Event;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.i18n.Messages;
@@ -56,7 +58,6 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 
-	private static final String LOCAL_EVENT_FINISH = "finish";
 	private Button btnNewButton;
 	private Label lblNewLabel;
 	private TableViewer viewer;
@@ -102,9 +103,13 @@ public class TodoOverviewPart {
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
-						final List<Todo> list = model.getTodos();
 						toolControl.setVisible(false);
-						broker.post(LOCAL_EVENT_FINISH, list);
+						final List<Todo> list = model.getTodos();
+						System.out.println(list);
+						broker.post(
+								MyEventConstants.TOPIC_TODOS_CHANGED, 
+								new Event(MyEventConstants.TOPIC_TODOS_CHANGED, 
+										new HashMap<String, String>()));
 						return Status.OK_STATUS;
 					}
 				};
@@ -234,8 +239,8 @@ public class TodoOverviewPart {
 
 	@Inject
 	@Optional
-	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Todo todo) {
+	private void subscribeTopicTodoAllTopics(
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Event event) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(model.getTodos());

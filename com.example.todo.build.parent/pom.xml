@@ -24,7 +24,7 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	
+
 	<!-- tycho requires maven >= 3.0 -->
 	<prerequisites>
 		<maven>3.0</maven>
@@ -91,9 +91,15 @@
 					<!-- recommended: use p2-based target platform resolver -->
 					<resolver>p2</resolver>
 					<ignoreTychoRepositories>true</ignoreTychoRepositories>
-					<!-- use existing target platform definition <target> <artifact> <groupId>com.example.e4.rcp</groupId> 
-						<artifactId>com.example.e4.rcp.todo.target</artifactId> <version>1.0.0-SNAPSHOT</version> 
-						<classifier>eclipse44</classifier> </artifact> </target> -->
+					<!-- use existing target platform definition -->
+					<target>
+						<artifact>
+							<groupId>com.example.e4.rcp</groupId>
+							<artifactId>com.example.e4.rcp.todo.target</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+							<classifier>eclipse44</classifier>
+						</artifact>
+					</target>
 					<!-- configure the p2 target environments for multi-platform build -->
 					<environments>
 
