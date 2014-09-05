@@ -15,13 +15,14 @@ import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.prefs.BackingStoreException;
 
 import com.example.e4.rcp.todo.dialogs.PasswordDialog;
+import com.example.e4.rcp.todo.preferences.PreferenceConstants;
 
 public class Manager {
 
 	// We add the nodePath in case you move the lifecycle handler to
 	// another plug-in later
 	@Inject
-	@Preference(nodePath = "com.example.e4.rcp.todo", value = "user")
+	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.USER_PREF_KEY)
 	private String user;
 
 	@PostContextCreate

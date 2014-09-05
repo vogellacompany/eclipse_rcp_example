@@ -10,11 +10,16 @@ import org.eclipse.swt.widgets.Shell;
 import org.osgi.service.prefs.BackingStoreException;
 
 import com.example.e4.rcp.todo.dialogs.PasswordDialog;
+import com.example.e4.rcp.todo.preferences.PreferenceConstants;
 
 public class EnterCredentialsHandler {
 	
-	@Inject @Preference(value="user") String userPref;
-	@Inject @Preference(value="password") String passwordPref;
+	@Inject
+	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.USER_PREF_KEY)
+	String userPref;
+	@Inject
+	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.PASSWORD_PREF_KEY)
+	String passwordPref;
 	
 	@Execute
 	public void execute(
