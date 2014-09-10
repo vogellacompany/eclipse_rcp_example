@@ -13,11 +13,13 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPartStack;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
-import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 
 import com.example.e4.rcp.todo.model.Todo;
 
 public class OpenEditorHandler {
+	
+	private static final String bundleName= "com.example.e4.rcp.todo";
+	private static final String className = "com.example.e4.rcp.todo.parts.EditorPart";
 	@Execute
 	public void execute(
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
@@ -39,7 +41,7 @@ public class OpenEditorHandler {
 		for (MPart mPart : parts) {
 			String currentId = mPart.getPersistedState().get(Todo.FIELD_ID);
 			if (currentId != null && currentId.equals(id)) {
-				partService.showPart(mPart, PartState.ACTIVATE);
+				partService.showPart(mPart, EPartService.PartState.ACTIVATE);
 				return;
 			}
 		}
@@ -48,7 +50,7 @@ public class OpenEditorHandler {
 		MPart part = modelService.createModelElement(MPart.class);
 
 		// pointing to the contributing class
-		part.setContributionURI("bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.EditorPart");
+		part.setContributionURI("bundleclass://" +bundleName + "/" + className);
 		part.getPersistedState().put(Todo.FIELD_ID, id);
 
 		// create a nice label for the part header
@@ -61,7 +63,7 @@ public class OpenEditorHandler {
 		MPartStack stack = (MPartStack) modelService.find(
 				"com.example.e4.rcp.todo.partstack.bottom", application);
 		stack.getChildren().add(part);
-		partService.showPart(part, PartState.ACTIVATE);
+		partService.showPart(part, EPartService.PartState.ACTIVATE);
 
 	}
 

@@ -35,6 +35,7 @@ public class EditorPart {
 	@Inject
 	MDirtyable dirty;
 	
+	@Inject MPart part;
 
 	private Text txtSummary;
 	private Text txtDescription;
@@ -55,7 +56,7 @@ public class EditorPart {
 	private Todo todo;
 
 	@PostConstruct
-	public void createControls(Composite parent, MPart part, ITodoService todoService) {
+	public void createControls(Composite parent, ITodoService todoService) {
 		// extract the id of the todo item
 		String string = part.getPersistedState().get(Todo.FIELD_ID);
 		Long idOfTodo = Long.valueOf(string);
@@ -173,7 +174,7 @@ public class EditorPart {
 	private void getNotified(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
 		if (this.todo.equals(todo)){
-//			part.setToBeRendered(false);
+			part.setToBeRendered(false);
 		}
 	}
 }
