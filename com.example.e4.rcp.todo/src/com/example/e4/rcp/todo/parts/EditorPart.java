@@ -35,7 +35,6 @@ public class EditorPart {
 	@Inject
 	MDirtyable dirty;
 	
-	@Inject MPart part;
 
 	private Text txtSummary;
 	private Text txtDescription;
@@ -174,7 +173,7 @@ public class EditorPart {
 	private void getNotified(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
 		if (this.todo.equals(todo)){
-			part.setToBeRendered(false);
+//			part.setToBeRendered(false);
 		}
 	}
 }
