@@ -154,6 +154,7 @@ public class TodoOverviewPart {
 		// SWT.SEARCH | SWT.CANCEL not supported under Windows7
 		// This does not work under Windows7
 		search.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
 					Text text = (Text) e.getSource();
@@ -255,8 +256,8 @@ public class TodoOverviewPart {
 	@Inject
 	public void translateTable(@Translation Messages message){
 		if (viewer !=null && !viewer.getTable().isDisposed()) {
-			colSummary.getColumn().setText(message.txtSummary);
-			colDescription.getColumn().setText(message.txtDescription);
+			colSummary.getColumn().setText(message.todo_summary);
+			colDescription.getColumn().setText(message.todo_description);
 		}
 	}
 }

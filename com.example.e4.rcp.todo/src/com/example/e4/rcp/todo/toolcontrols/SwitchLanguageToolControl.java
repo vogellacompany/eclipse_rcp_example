@@ -1,6 +1,5 @@
 package com.example.e4.rcp.todo.toolcontrols;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.eclipse.e4.core.services.nls.ILocaleChangeService;
@@ -49,8 +48,8 @@ public class SwitchLanguageToolControl {
 	@Inject
 	public void translate(@Translation Messages messages) {
 		// button localization via Eclipse Translation Pattern
-		if (button!=null && !button.isDisposed()){
-			button.setText(messages.buttonChangeLocal);
+		if (button != null && !button.isDisposed()) {
+			button.setText(messages.toolbar_main_changelocale);
 		}
-	}	
+	}
 }

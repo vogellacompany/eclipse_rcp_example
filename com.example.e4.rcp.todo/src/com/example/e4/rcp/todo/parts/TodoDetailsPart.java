@@ -94,14 +94,14 @@ public class TodoDetailsPart {
 
 		translate(message);
 		updateUserInterface(todo);
-		
+
 	}
 
 	@Inject
 	private void translate(@Translation Messages message) {
 		if (txtSummary != null && !txtSummary.isDisposed()) {
-			lblSummary.setText(message.txtSummary);
-			lblDescription.setText(message.txtDescription);
+			lblSummary.setText(message.todo_summary);
+			lblDescription.setText(message.todo_description);
 		}
 	}
 
