@@ -15,10 +15,13 @@ import com.example.e4.rcp.todo.preferences.PreferenceConstants;
 public class EnterCredentialsHandler {
 	
 	@Inject
-	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.USER_PREF_KEY)
+	@Preference(nodePath = PreferenceConstants.NODEPATH, 
+				value = PreferenceConstants.USER_PREF_KEY)
 	String userPref;
+	
 	@Inject
-	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.PASSWORD_PREF_KEY)
+	@Preference(nodePath = PreferenceConstants.NODEPATH, 
+				value = PreferenceConstants.PASSWORD_PREF_KEY)
 	String passwordPref;
 	
 	@Execute
@@ -37,8 +40,8 @@ public class EnterCredentialsHandler {
 		
 		// get the new values from the dialog
 		if (dialog.open() == Window.OK) {
-			prefs.put("user", dialog.getUser());
-			prefs.put("password", dialog.getPassword());
+			prefs.put(PreferenceConstants.USER_PREF_KEY, dialog.getUser());
+			prefs.put(PreferenceConstants.PASSWORD_PREF_KEY, dialog.getPassword());
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
