@@ -22,7 +22,8 @@ public class Manager {
 	// We add the nodePath in case you move the lifecycle handler to
 	// another plug-in later
 	@Inject
-	@Preference(nodePath = PreferenceConstants.NODEPATH, value = PreferenceConstants.USER_PREF_KEY)
+	@Preference(nodePath = PreferenceConstants.NODEPATH, 
+				value = PreferenceConstants.USER_PREF_KEY)
 	private String user;
 
 	@PostContextCreate
@@ -49,7 +50,7 @@ public class Manager {
 			// get the user from the dialog
 			String userValue = dialog.getUser();
 			// store the user values in the preferences
-			prefs.put("user", userValue );
+			prefs.put(PreferenceConstants.USER_PREF_KEY, userValue );
 			try {
 				prefs.flush();
 			} catch (BackingStoreException e) {
