@@ -3,7 +3,11 @@ package com.example.e4.rcp.todo.lifecycle;
 import javax.inject.Inject;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.extensions.Preference;
+import org.eclipse.e4.ui.internal.workbench.E4Workbench;
+import org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine;
+import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.jface.window.Window;
@@ -28,7 +32,7 @@ public class Manager {
 
 	@PostContextCreate
 	public void postContextCreate(@Preference IEclipsePreferences prefs,
-			IApplicationContext appContext, Display display) {
+			IApplicationContext appContext, Display display, IEclipseContext context) {
 
 		final Shell shell = new Shell(SWT.TOOL | SWT.NO_TRIM);
 		PasswordDialog dialog = new PasswordDialog(shell);
@@ -41,7 +45,13 @@ public class Manager {
 
 		// position the shell
 		 setLocation(display, shell);
-		
+		 String cssURI = "platform:/plugin/com.example.e4.rcp.todo/css/rainbow.css";
+//       Not needed
+//	     context.set(E4Workbench.CSS_RESOURCE_URI_ARG, "platform:/plugin/com.example.e4.rcp.todo/css/dark-gradient.css");
+//	     context.set("cssTheme", "com.example.e4.rcp.todo.rainbow");
+	     
+	     context.set(E4Workbench.CSS_URI_ARG, cssURI);
+	     PartRenderingEngine.initializeStyling(shell.getDisplay(), context);
 		// open the dialog
 		if (dialog.open() != Window.OK) {
 			// close the application
