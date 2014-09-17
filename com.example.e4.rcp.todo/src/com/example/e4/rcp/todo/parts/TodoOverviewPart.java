@@ -86,7 +86,7 @@ public class TodoOverviewPart {
 	private TableViewerColumn colSummary;
 
 	@PostConstruct
-	public void createControls(Composite parent, final MWindow window,
+	public void createControls(Composite parent,
 			EMenuService menuService, @Translation Messages message) {
 		parent.setLayout(new GridLayout(1, false));
 
