@@ -256,8 +256,8 @@ public class TodoOverviewPart {
 	@Inject
 	public void translateTable(@Translation Messages message){
 		if (viewer !=null && !viewer.getTable().isDisposed()) {
-			colSummary.getColumn().setText(message.todo_summary);
-			colDescription.getColumn().setText(message.todo_description);
+			colSummary.getColumn().setText(message.todoSummary);
+			colDescription.getColumn().setText(message.todoDescription);
 		}
 	}
 }

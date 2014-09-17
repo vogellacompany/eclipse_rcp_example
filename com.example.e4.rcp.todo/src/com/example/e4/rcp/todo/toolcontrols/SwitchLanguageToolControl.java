@@ -49,7 +49,7 @@ public class SwitchLanguageToolControl {
 	public void translate(@Translation Messages messages) {
 		// button localization via Eclipse Translation Pattern
 		if (button != null && !button.isDisposed()) {
-			button.setText(messages.toolbar_main_changelocale);
+			button.setText(messages.toolbarMainChangelocale);
 		}
 	}
 }

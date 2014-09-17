@@ -100,8 +100,8 @@ public class TodoDetailsPart {
 	@Inject
 	private void translate(@Translation Messages message) {
 		if (txtSummary != null && !txtSummary.isDisposed()) {
-			lblSummary.setText(message.todo_summary);
-			lblDescription.setText(message.todo_description);
+			lblSummary.setText(message.todoSummary);
+			lblDescription.setText(message.todoDescription);
 		}
 	}
 
