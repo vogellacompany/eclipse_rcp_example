@@ -1,17 +1,26 @@
 package com.example.e4.rcp.todo.i18n;
 
+/**
+ * The member of a Messages class can be mapped to "." separated keys in the
+ * *.properties files.<br/>
+ * The property key "part.overview" can be mapped to "part_overview" or a camel
+ * case variant "partOverview".
+ * 
+ *
+ */
 public final class Messages {
 
-	public String part_overview;
-	public String part_details;
+	public String partOverview;
+	public String partDetails;
 
-	public String part_overview_button_loaddata;
+	public String partOverviewButtonLoaddata;
+	public String partOverviewSearchTextMessage;
 
-	public String part_deletion_button_deletetodo;
+	public String partDeletionButtonDeletetodo;
 
-	public String toolbar_main_changelocale;
+	public String toolbarMainChangelocale;
 
-	public String todo_summary;
-	public String todo_description;
+	public String todoSummary;
+	public String todoDescription;
 
 }

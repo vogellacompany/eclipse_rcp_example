@@ -82,7 +82,7 @@ public class TodoDeletionPart {
 
 			}
 		});
-		button.setText(message.part_deletion_button_deletetodo);
+		button.setText(message.partDeletionButtonDeletetodo);
 	}
 
 	private void updateViewer(List<Todo> todos) {

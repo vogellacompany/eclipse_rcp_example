@@ -46,7 +46,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 import org.osgi.service.event.Event;
@@ -58,9 +57,6 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 
-	private Button btnNewButton;
-	private Label lblNewLabel;
-	private TableViewer viewer;
 
 	@Inject
 	UISynchronize sync;
@@ -79,19 +75,23 @@ public class TodoOverviewPart {
 
 	@Inject
 	ITodoService model;
+
 	private WritableList writableList;
 	protected String searchString = "";
 	
+	private Button loadDataButton;
+	private TableViewer viewer;
 	private TableViewerColumn colDescription;
 	private TableViewerColumn colSummary;
+	private Text search;
 
 	@PostConstruct
 	public void createControls(Composite parent, final MWindow window,
 			EMenuService menuService, @Translation Messages message) {
 		parent.setLayout(new GridLayout(1, false));
 
-		btnNewButton = new Button(parent, SWT.PUSH);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		loadDataButton = new Button(parent, SWT.PUSH);
+		loadDataButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
@@ -130,15 +130,13 @@ public class TodoOverviewPart {
 				job.schedule();
 			}
 		});
-		btnNewButton.setText("Load Data");
 
-		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
+		search = new Text(parent, SWT.SEARCH | SWT.CANCEL
 				| SWT.ICON_SEARCH);
 
 		// Assuming that GridLayout is used
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
-		search.setMessage("Filter");
 
 		// Filter at every keystroke
 		search.addModifyListener(new ModifyListener() {
@@ -234,7 +232,7 @@ public class TodoOverviewPart {
 				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY,
 						Todo.FIELD_DESCRIPTION }));
 		
-		translateTable(message);
+		translate(message);
 
 	}
 
@@ -250,14 +248,23 @@ public class TodoOverviewPart {
 
 	@Focus
 	private void setFocus() {
-		btnNewButton.setFocus();
+		loadDataButton.setFocus();
 	}
 	
 	@Inject
-	public void translateTable(@Translation Messages message){
+	public void translate(@Translation Messages message){
 		if (viewer !=null && !viewer.getTable().isDisposed()) {
-			colSummary.getColumn().setText(message.todo_summary);
-			colDescription.getColumn().setText(message.todo_description);
+			colSummary.getColumn().setText(message.todoSummary);
+			colDescription.getColumn().setText(message.todoDescription);
+		}
+		if (search != null && !search.isDisposed()) {
+			search.setMessage(message.partOverviewSearchTextMessage);
+		}
+		if (loadDataButton != null && !loadDataButton.isDisposed()) {
+			loadDataButton.setText(message.partOverviewButtonLoaddata);
+			// relayout parent so that the button grows, if the new translated
+			// text is larger
+			loadDataButton.getParent().layout();
 		}
 	}
 }
