@@ -14,7 +14,6 @@ public final class Messages {
 	public String partDetails;
 
 	public String partOverviewButtonLoaddata;
-	public String partOverviewSearchTextMessage;
 
 	public String partDeletionButtonDeletetodo;
 
@@ -22,5 +21,6 @@ public final class Messages {
 
 	public String todoSummary;
 	public String todoDescription;
+	public String partOverviewSearchTextMessage;
 
 }

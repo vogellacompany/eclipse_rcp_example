@@ -262,8 +262,7 @@ public class TodoOverviewPart {
 		}
 		if (loadDataButton != null && !loadDataButton.isDisposed()) {
 			loadDataButton.setText(message.partOverviewButtonLoaddata);
-			// relayout parent so that the button grows, if the new translated
-			// text is larger
+			// relayout parent so that the button grows, if the new translated text is larger
 			loadDataButton.getParent().layout();
 		}
 	}
