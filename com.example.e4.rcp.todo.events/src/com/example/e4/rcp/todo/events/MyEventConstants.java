@@ -1,5 +1,9 @@
 package com.example.e4.rcp.todo.events;
 
+/**
+ * @noimplement only used for constant definition
+ */
+
 public interface MyEventConstants {
 
 	// this key can only used for event registration, you cannot
