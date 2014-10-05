@@ -1,7 +1,9 @@
 package com.example.e4.rcp.todo.events;
 
 /**
- * @noimplement only used for constant definition
+ * @noimplement This interface is not intended to be implemented by clients.
+ * 
+ * Only used for constant interfaces
  */
 
 public interface MyEventConstants {
