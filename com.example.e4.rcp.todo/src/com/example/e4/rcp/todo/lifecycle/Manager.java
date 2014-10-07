@@ -45,11 +45,8 @@ public class Manager {
 
 		// position the shell
 		 setLocation(display, shell);
-		 String cssURI = "platform:/plugin/com.example.e4.rcp.todo/css/rainbow.css";
-//       Not needed
-//	     context.set(E4Workbench.CSS_RESOURCE_URI_ARG, "platform:/plugin/com.example.e4.rcp.todo/css/dark-gradient.css");
-//	     context.set("cssTheme", "com.example.e4.rcp.todo.rainbow");
 	     
+		 String cssURI = "platform:/plugin/com.example.e4.rcp.todo/css/rainbow.css";
 	     context.set(E4Workbench.CSS_URI_ARG, cssURI);
 	     PartRenderingEngine.initializeStyling(shell.getDisplay(), context);
 		// open the dialog

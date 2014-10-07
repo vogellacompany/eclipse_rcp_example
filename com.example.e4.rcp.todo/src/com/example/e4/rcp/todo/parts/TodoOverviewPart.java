@@ -130,7 +130,7 @@ public class TodoOverviewPart {
 				job.schedule();
 			}
 		});
-		btnNewButton.setText("Load Data");
+		
 
 		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
 				| SWT.ICON_SEARCH);
@@ -256,8 +256,9 @@ public class TodoOverviewPart {
 	@Inject
 	public void translateTable(@Translation Messages message){
 		if (viewer !=null && !viewer.getTable().isDisposed()) {
-			colSummary.getColumn().setText(message.todo_summary);
-			colDescription.getColumn().setText(message.todo_description);
+			colSummary.getColumn().setText(message.txtSummary);
+			colDescription.getColumn().setText(message.txtDescription);
+			btnNewButton.setText(message.buttonLoadData);
 		}
 	}
 }
