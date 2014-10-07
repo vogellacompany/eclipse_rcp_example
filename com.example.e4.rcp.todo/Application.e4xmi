@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_kRdLcL-ZEeGFAvs8os6Opw" elementId="com.example.e4.rcp.todo.application">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_kRdLcL-ZEeGFAvs8os6Opw" elementId="com.example.e4.rcp.todo.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_3wev8L-ZEeGFAvs8os6Opw" elementId="com.example.e4.rcp.todo.trimmedwindow" label="Task Manager" x="100" y="100" width="800" height="600">
     <tags>shellMaximized</tags>
     <tags>lars</tags>
@@ -19,6 +19,17 @@
                 </menus>
                 <toolbar xmi:id="_vN3fANXeEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.toolbar.1">
                   <children xsi:type="menu:DirectToolItem" xmi:id="_yBk8wNXeEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Find" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.FindAllToolbarsHandler"/>
+                </toolbar>
+              </children>
+              <children xsi:type="basic:Part" xmi:id="_s1vhsEQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="%part.overview" bindingContexts="_rym-gBI2EeSz0MOyJTR0RQ" closeable="true">
+                <persistedState key="uri" value="http://www.google.com"/>
+                <tags>NoMove</tags>
+                <menus xsi:type="menu:PopupMenu" xmi:id="_s1vhsUQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
+                  <children xsi:type="menu:HandledMenuItem" xmi:id="_s1vhskQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
+                  <children xsi:type="menu:HandledMenuItem" xmi:id="_s1vhs0QWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.handledmenuitem.openeditor" label="Open in editor" command="_vGK5kA1pEeKkaoNsQKzVcw"/>
+                </menus>
+                <toolbar xmi:id="_s1vhtEQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.toolbar.1">
+                  <children xsi:type="menu:DirectToolItem" xmi:id="_s1vhtUQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Find" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.FindAllToolbarsHandler"/>
                 </toolbar>
               </children>
             </children>
@@ -53,7 +64,9 @@
       </children>
       <children xsi:type="menu:Menu" xmi:id="_Z8qxEMZsEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menu.edit" label="Edit">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_kjQ08MZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="New Todo" command="_IU7OYMZYEeGbkqRLZ7osPQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_mjK3MMZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.7" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_mjK3MMZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.7" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ">
+          <visibleWhen xsi:type="ui:CoreExpression" xmi:id="_Afu1wE07EeSRXIUIGVZfbQ"/>
+        </children>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_onjw0MZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.8" label="Testing" command="_P3uRcMZYEeGbkqRLZ7osPQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_rsi7cPepEeGaHLRm1KH-aQ" elementId="com.example.e4.rcp.todo.handledmenuitem.credentials" label="Enter Credentials" command="_ZIxwMPenEeGaHLRm1KH-aQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_LxYWQA1pEeKOKKJWLEQDhw" elementId="com.example.e4.rcp.todo.handledmenuitem.2" label="Edit Todo" command="_vGK5kA1pEeKkaoNsQKzVcw"/>
@@ -141,6 +154,7 @@
   <commands xmi:id="_vGK5kA1pEeKkaoNsQKzVcw" elementId="com.example.e4.rcp.todo.command.edit" commandName="Open Editor"/>
   <commands xmi:id="_nTLRsA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.command.extensions" commandName="Evaluate extensions"/>
   <commands xmi:id="_n9YOkBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.command.dynamicpartcode" commandName="Create Part dynamically  via model service"/>
+  <commands xmi:id="_a-KjcD_1EeSnXpvH_y2VIg" elementId="org.eclipse.ui.file.close" commandName="%command.close.name" description="%command.close.description"/>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_kRdLcr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_kRdLc7-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -148,6 +162,6 @@
   <addons xmi:id="_kRdLdb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
   <addons xmi:id="_kRdLdr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
   <addons xmi:id="_c3RRkKDUEeKOb431BOI1yA" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
-  <addons xmi:id="_UY8rwL_HEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.addon.myaddon" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.MyModelAddon"/>
-  <addons xmi:id="_nSYbMI1wEeK-pvjEKDi5hg" elementId="com.example.e4.rcp.todo.addon.0" contributionURI="bundleclass://com.example.e4.rcp.todo.addons/com.example.e4.rcp.todo.addons.SetPerspectiveAddon"/>
+  <addons xmi:id="_rphcED65EeSPDP4SyCxE4g" elementId="com.example.e4.rcp.todo.addon.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.WindowCloseListenerAddon"/>
+  <addons xmi:id="_KpRVUE2uEeSJFpjHPXZFWg" elementId="com.example.e4.rcp.todo.addon.0" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.MyModelAddon"/>
 </application:Application>
