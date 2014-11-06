@@ -34,7 +34,7 @@ public class Manager {
 	public void postContextCreate(@Preference IEclipsePreferences prefs,
 			IApplicationContext appContext, Display display, IEclipseContext context) {
 
-		final Shell shell = new Shell(SWT.TOOL | SWT.NO_TRIM);
+		final Shell shell = new Shell(SWT.SHELL_TRIM);
 		PasswordDialog dialog = new PasswordDialog(shell);
 		if (user != null) {
 			dialog.setUser(user);
