@@ -87,6 +87,8 @@
             <parameters xmi:id="_-FnG4BJZEeStBuw_1Fm9tw" elementId="com.example.e4.rcp.todo.parameter.1" name="perspective_parameter" value="com.example.e4.rcp.todo.perspective.third"/>
           </children>
         </children>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="__K92oGtUEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.handledmenuitem.11" command="_cTRK4GtHEeSlAc3VvFo52g"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_CGpkoGtVEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.handledmenuitem.12" command="_HltgQGtTEeSlAc3VvFo52g"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_DuKW4NJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.menu.styling" label="Styling">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_OhvOMNJGEeGRQsAWu_XMKQ" elementId="com.example.e4.rcp.todo.handledmenuitem.9" label="Switch Styling" command="_QmLyMNJGEeGRQsAWu_XMKQ"/>
@@ -125,6 +127,8 @@
   <handlers xmi:id="_kDBA0A37EeK2jbXfW93tpw" elementId="com.example.e4.rcp.todo.handler.switchperspective" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.PerspectiveSwitchHandler" command="_W75ZkA37EeK2jbXfW93tpw"/>
   <handlers xmi:id="_pGsdwA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.handler.3" contributionURI="bundleclass://com.vogella.extensionpoint.definition/com.vogella.extensionpoint.definition.EvaluateContributionsHandler" command="_nTLRsA9fEeOcRapkQEuH9Q"/>
   <handlers xmi:id="_sipJgBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.handler.dynamicpartmodelservice" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.DynamicPartHandlerCode" command="_n9YOkBAKEeO5vsQ2T1hWpw"/>
+  <handlers xmi:id="_Yi4CcGtHEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.handler.saveperspective" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.SavePerspectiveHandler" command="_cTRK4GtHEeSlAc3VvFo52g"/>
+  <handlers xmi:id="_BUI0gGtTEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.handler.restoreperspective" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.RestorePerspectiveHandler" command="_HltgQGtTEeSlAc3VvFo52g"/>
   <bindingTables xmi:id="_kbPZsAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.bindingtable.0" bindingContext="_2jk_wMZvEeGbkqRLZ7osPQ">
     <bindings xmi:id="_l08XkAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.keybinding.0" keySequence="M1+S" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
   </bindingTables>
@@ -155,6 +159,8 @@
   <commands xmi:id="_nTLRsA9fEeOcRapkQEuH9Q" elementId="com.example.e4.rcp.todo.command.extensions" commandName="Evaluate extensions"/>
   <commands xmi:id="_n9YOkBAKEeO5vsQ2T1hWpw" elementId="com.example.e4.rcp.todo.command.dynamicpartcode" commandName="Create Part dynamically  via model service"/>
   <commands xmi:id="_a-KjcD_1EeSnXpvH_y2VIg" elementId="org.eclipse.ui.file.close" commandName="%command.close.name" description="%command.close.description"/>
+  <commands xmi:id="_cTRK4GtHEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.command.saveperspective" commandName="Save Perspective"/>
+  <commands xmi:id="_HltgQGtTEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.command.restoreperspective" commandName="Restore Perspective"/>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_kRdLcr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_kRdLc7-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
