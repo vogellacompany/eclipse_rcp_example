@@ -10,21 +10,24 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoWizard extends Wizard {
 
-	private Todo todo;
 	boolean finish = false;
-	private Messages messages;
 	
 	@Inject
-	public TodoWizard(Todo todo, Messages messages) {
-		this.todo = todo;
-		this.messages = messages;
+	TodoWizardPage1 page1;
+	@Inject
+	TodoWizardPage2 page2;
+	
+	
+	@Inject
+	public TodoWizard() {
 		setWindowTitle("New Wizard");
 	}
 
 	@Override
 	public void addPages() {
-		addPage(new TodoWizardPage1(todo, messages));
-		addPage(new TodoWizardPage2());
+		
+		addPage(page1);
+		addPage(page2);
 	}
 
 	@Override

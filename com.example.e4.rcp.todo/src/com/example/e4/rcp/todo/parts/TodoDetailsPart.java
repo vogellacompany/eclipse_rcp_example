@@ -58,7 +58,7 @@ public class TodoDetailsPart {
 	private Label lblDescription;
 
 	@PostConstruct
-	public void createControls(Composite parent, @Translation Messages message) {
+	public void createControls(Composite parent) {
 
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
@@ -92,7 +92,6 @@ public class TodoDetailsPart {
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
 
-		translate(message);
 		updateUserInterface(todo);
 
 	}
