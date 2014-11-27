@@ -1,7 +1,7 @@
 package com.example.e4.bundleresourceloader;
 
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 public interface IBundleResourceLoader {
-	public Image loadImage(Class<?> clazz, String path);
+	public ImageDescriptor loadImage(Class<?> clazz, String path);
 }
