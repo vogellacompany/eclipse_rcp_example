@@ -13,7 +13,7 @@ import com.example.e4.bundleresourceloader.IBundleResourceLoader;
 public class BundleResourceLoaderImpl implements IBundleResourceLoader {
 
 	@Override
-	public ImageDescriptor loadImage(Class<?> clazz, String path) {
+	public ImageDescriptor getImageDescriptor(Class<?> clazz, String path) {
 		Bundle bundle = FrameworkUtil.getBundle(clazz);
 		URL url = FileLocator.find(bundle, 
 		  new Path(path), null);
