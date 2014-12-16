@@ -14,14 +14,11 @@ public class Todo {
 	public static final String FIELD_DONE = "done";
 	public static final String FIELD_DUEDATE = "dueDate";
 
-	public long id;
-	private String summary;
-	private String description;
-	private boolean done;
+	public final long id;
+	private String summary ="" ;
+	private String description ="";
+	private boolean done = false;
 	private Date dueDate;
-
-	public Todo() {
-	}
 	
 	public Todo(long i) {
 		id = i;
