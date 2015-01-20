@@ -35,7 +35,7 @@
 		<!-- http://maven.apache.org/general.html#encoding-warning -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<tycho-version>0.21.0</tycho-version>
+		<tycho-version>0.22.0</tycho-version>
 		<eclipse-repo.url>http://download.eclipse.org/releases/luna</eclipse-repo.url>
 		<!-- no default here -->
 		<tycho.test.vm.argline>-Xmx500m -Xdebug
@@ -68,8 +68,8 @@
 				<artifactId>tycho-compiler-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
@@ -97,7 +97,6 @@
 							<groupId>com.example.e4.rcp</groupId>
 							<artifactId>com.example.e4.rcp.todo.target</artifactId>
 							<version>1.0.0-SNAPSHOT</version>
-							<classifier>eclipse44</classifier>
 						</artifact>
 					</target>
 					<!-- configure the p2 target environments for multi-platform build -->

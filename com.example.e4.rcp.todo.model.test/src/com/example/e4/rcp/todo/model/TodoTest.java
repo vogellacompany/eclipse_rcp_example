@@ -12,6 +12,7 @@ public class TodoTest {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("TodoTest#setup");
+		Todo todo = new Todo(-1);
 	}
 
 	@Test
