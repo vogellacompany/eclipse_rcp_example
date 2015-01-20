@@ -1,6 +1,6 @@
 package com.example.e4.rcp.todo.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,6 @@ public class TodoTest {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("TodoTest#setup");
-		t = new Todo();
 	}
 
 	@Test
