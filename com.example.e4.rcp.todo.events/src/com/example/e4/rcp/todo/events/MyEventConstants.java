@@ -1,17 +1,17 @@
 package com.example.e4.rcp.todo.events;
-
 /**
+ *
  * @noimplement This interface is not intended to be implemented by clients.
- * 
- * Only used for constant interfaces
+ *
+ * Only used for constant definition
  */
 
 public interface MyEventConstants {
 
 	// topic identifier for all todo topics
-	String TOPIC_TODO= "TOPIC_TODOS";
+	String TOPIC_TODO = "TOPIC_TODOS";
 	
-	// this key can only used for event registration, you cannot
+	// this key can only be used for event registration, you cannot
 	// send out generic events
 	String TOPIC_TODO_ALLTOPICS = "TOPIC_TODOS/*";
 
