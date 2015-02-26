@@ -27,7 +27,7 @@ public class MyTodoServiceImpl implements ITodoService {
 		todos = createInitialModel();
 	}
 
-	// always return a new copy of the data
+	// Always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
 		List<Todo> list = new ArrayList<Todo>();
@@ -37,7 +37,7 @@ public class MyTodoServiceImpl implements ITodoService {
 		return list;
 	}
 
-	// create or update an existing instance of Todo
+	// Saves or updates
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
 		boolean created = false;
@@ -54,16 +54,13 @@ public class MyTodoServiceImpl implements ITodoService {
 
 		// configure the event
 
-		// send out events
+		// Send out events
 		if (created) {
 			broker.post(MyEventConstants.TOPIC_TODO_NEW,
-					createEventData(MyEventConstants.TOPIC_TODO_NEW, 
-							String.valueOf(updateTodo.getId())));
+					createEventData(MyEventConstants.TOPIC_TODO_NEW, String.valueOf(updateTodo.getId())));
 		} else {
-			broker.
-			post(MyEventConstants.TOPIC_TODO_UPDATE,
-			 createEventData(MyEventConstants.TOPIC_TODO_UPDATE, 
-					 String.valueOf(updateTodo.getId())));
+			broker.post(MyEventConstants.TOPIC_TODO_UPDATE,
+					createEventData(MyEventConstants.TOPIC_TODO_UPDATE, String.valueOf(updateTodo.getId())));
 		}
 		return true;
 	}
@@ -85,10 +82,8 @@ public class MyTodoServiceImpl implements ITodoService {
 		if (deleteTodo != null) {
 			todos.remove(deleteTodo);
 			// configure the event
-			broker.
-				post(MyEventConstants.TOPIC_TODO_DELETE,
-				 createEventData(MyEventConstants.TOPIC_TODO_DELETE, 
-						 String.valueOf(deleteTodo.getId())));
+			broker.post(MyEventConstants.TOPIC_TODO_DELETE,
+					createEventData(MyEventConstants.TOPIC_TODO_DELETE, String.valueOf(deleteTodo.getId())));
 			return true;
 		}
 		return false;
@@ -98,7 +93,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	private List<Todo> createInitialModel()         {
 		List<Todo> list = new ArrayList<Todo>();
 		list.add(createTodo("Application model", "Flexible and extensible"));
-		list.add(createTodo("DI", "@Inject as programming mode"));		
+		list.add(createTodo("DI", "@Inject as programming mode"));
 		list.add(createTodo("OSGi", "Services"));
 		list.add(createTodo("SWT", "Widgets"));
 		list.add(createTodo("JFace", "Especially Viewers!"));

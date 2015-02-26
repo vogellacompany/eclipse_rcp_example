@@ -2,6 +2,7 @@ package com.example.e4.rcp.todo.parts;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -11,7 +12,9 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.ProgressProvider;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.core.services.nls.Translation;
@@ -77,53 +80,57 @@ public class TodoOverviewPart {
 	@Inject
 	ITodoService todoService;
 	
-	private MToolControl toolControl;
-
-	
 	private WritableList writableList;
 	protected String searchString = "";
-	
+
 	private TableViewerColumn colDescription;
 	private TableViewerColumn colSummary;
 
 	@PostConstruct
-	public void createControls(Composite parent,
-			EMenuService menuService, @Translation Messages message) {
+	public void createControls(Composite parent, EMenuService menuService, @Translation Messages message) {
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.PUSH);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
-				
+
+				final MToolControl toolControl = (MToolControl) modelService.find("statusbar", application);
+				toolControl.setVisible(true);
+
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
-						
-						monitor.worked(50);
+						toolControl.setVisible(false);
 						final List<Todo> list = todoService.getTodos();
-						
-						broker.post(
-								MyEventConstants.TOPIC_TODOS_CHANGED, 
-								new Event(MyEventConstants.TOPIC_TODO, 
-										new HashMap<String, String>()));
-						monitor.done();
+						System.out.println(list);
+						broker.post(MyEventConstants.TOPIC_TODOS_CHANGED,
+								new Event(MyEventConstants.TOPIC_TODOS_CHANGED, new HashMap<String, String>()));
 						return Status.OK_STATUS;
 					}
 				};
+				if (toolControl != null) {
+					IJobManager jobManager = job.getJobManager();
+					Object widget = toolControl.getObject();
+					final IProgressMonitor p = (IProgressMonitor) widget;
+					ProgressProvider provider = new ProgressProvider() {
+
+						@Override
+						public IProgressMonitor createMonitor(Job job) {
+							return p;
+						}
+					};
+					jobManager.setProgressProvider(provider);
+
+				}
 				job.schedule();
 			}
 		});
-		
 
-		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
-				| SWT.ICON_SEARCH);
+		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL | SWT.ICON_SEARCH);
 
 		// Assuming that GridLayout is used
-		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
-				1, 1));
+		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		search.setMessage("Filter");
 
 		// Filter at every keystroke
@@ -150,8 +157,7 @@ public class TodoOverviewPart {
 			}
 		});
 
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL
-				| SWT.V_SCROLL | SWT.FULL_SELECTION);
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		Table table = viewer.getTable();
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
@@ -187,42 +193,31 @@ public class TodoOverviewPart {
 				return true;
 			}
 		});
-		colDescription = new TableViewerColumn(viewer,
-				SWT.NONE);
+		colDescription = new TableViewerColumn(viewer, SWT.NONE);
 
 		colDescription.getColumn().setWidth(100);
 
 		// We search in the summary and description field
 		viewer.addFilter(new ViewerFilter() {
 			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
 				Todo todo = (Todo) element;
-				return todo.getSummary().contains(searchString)
-						|| todo.getDescription().contains(searchString);
+				return todo.getSummary().contains(searchString) || todo.getDescription().contains(searchString);
 			}
 		});
 
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) viewer
-						.getSelection();
-				Todo todo = (Todo) selection.getFirstElement();
-				if (todo!=null) {
-					service.setSelection(todo.copy());
-				}
+				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+				service.setSelection(selection.getFirstElement());
 			}
 		});
-		menuService.registerContextMenu(viewer.getControl(),
-				"com.example.e4.rcp.todo.popupmenu.table");
+		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table");
 		writableList = new WritableList(todoService.getTodos(), Todo.class);
-		ViewerSupport.bind(
-				viewer,
-				writableList,
-				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY,
-						Todo.FIELD_DESCRIPTION }));
-		
+		ViewerSupport.bind(viewer, writableList,
+				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
+
 		translateTable(message);
 
 	}
@@ -230,7 +225,7 @@ public class TodoOverviewPart {
 	@Inject
 	@Optional
 	private void subscribeTopicTodoAllTopics(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Event event) {
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Map<String, String> event) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(todoService.getTodos());
@@ -241,14 +236,13 @@ public class TodoOverviewPart {
 	private void setFocus() {
 		btnNewButton.setFocus();
 	}
-	
+
 	@Inject
-	public void translateTable(@Translation Messages message){
-		if (viewer !=null && !viewer.getTable().isDisposed()) {
+	public void translateTable(@Translation Messages message) {
+		if (viewer != null && !viewer.getTable().isDisposed()) {
 			colSummary.getColumn().setText(message.txtSummary);
 			colDescription.getColumn().setText(message.txtDescription);
 			btnNewButton.setText(message.buttonLoadData);
 		}
 	}
 }
-	
