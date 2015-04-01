@@ -17,9 +17,7 @@ public class DynamicPartHandler {
 	private final String STACK_ID = "com.example.e4.rcp.todo.partstack.bottom";
 	@Execute
 	public void execute(MApplication application, EPartService partService, EModelService modelService, Shell shell) {
-		//
-		modelService.find("", application);
-		// create Part based on PartDescriptor
+		// create part based on part descriptor
 		MPart part = partService.createPart("com.example.e4.rcp.todo.partdescriptor.dynamic");
 
 		// search for the part stack to add the part to
