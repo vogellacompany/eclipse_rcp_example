@@ -15,7 +15,7 @@
       <processor
             apply="always"
             beforefragment="true"
-            class="com.vogella.e4.todo.contribute.MenuProcessor">
+            class="com.example.e4.rcp.todo.contribute.processors.MenuProcessor">
          <element
                id="org.eclipse.ui.file.menu">
          </element>
