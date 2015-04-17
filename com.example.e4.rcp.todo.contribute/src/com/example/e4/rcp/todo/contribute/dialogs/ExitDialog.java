@@ -1,5 +1,4 @@
-
-package com.vogella.e4.todo.contribute.dialogs;
+package com.example.e4.rcp.todo.contribute.dialogs;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,16 +13,15 @@ import org.eclipse.swt.widgets.Shell;
 
 public class ExitDialog extends Dialog {
 	@Inject
-	public ExitDialog(@Named(IServiceConstants.
-			ACTIVE_SHELL) Shell shell) {
+	public ExitDialog(@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
 		super(shell);
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Label label = new Label(parent, SWT.NONE);
-		label.setText("New!!! Closing this application may result in data loss. "
-				+ "Are you sure you want that");
+		label.setText("Closing this application may result in data loss. "
+				+ "Are you sure you want that?");
 		return parent;
 	}
 

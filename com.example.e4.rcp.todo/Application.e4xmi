@@ -61,7 +61,7 @@
       <children xsi:type="menu:Menu" xmi:id="_ZgLCUMZsEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.file.menu" label="File">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_iEOuEMZsEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menuitem.save" label="" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
         <children xsi:type="menu:MenuSeparator" xmi:id="_cAdi4MZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menuseparator.0"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_dkEDoMZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menuitem.Exit" label="Exit" command="_F8KnQMZYEeGbkqRLZ7osPQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_dkEDoMZuEeGbkqRLZ7osPQ" elementId="org.eclipse.file.exit" label="Exit" command="_F8KnQMZYEeGbkqRLZ7osPQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_Z8qxEMZsEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.menu.edit" label="Edit">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_kjQ08MZvEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledmenuitem.0" label="New Todo" command="_IU7OYMZYEeGbkqRLZ7osPQ"/>

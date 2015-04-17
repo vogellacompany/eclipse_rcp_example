@@ -1,4 +1,4 @@
-package com.example.e4.rcp.contribute.handler;
+package com.example.e4.rcp.todo.contribute.handlers;
 
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.jface.dialogs.MessageDialog;
