@@ -12,9 +12,7 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.jobs.ProgressProvider;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.core.services.nls.Translation;
@@ -22,7 +20,6 @@ import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.model.application.MApplication;
-import org.eclipse.e4.ui.model.application.ui.menu.MToolControl;
 import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -49,7 +46,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
-import org.osgi.service.event.Event;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.i18n.Messages;
@@ -94,36 +90,7 @@ public class TodoOverviewPart {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-
-				final MToolControl toolControl = (MToolControl) modelService.find("statusbar", application);
-				toolControl.setVisible(true);
-
-				Job job = new Job("loading") {
-					@Override
-					protected IStatus run(IProgressMonitor monitor) {
-						toolControl.setVisible(false);
-						final List<Todo> list = todoService.getTodos();
-						System.out.println(list);
-						broker.post(MyEventConstants.TOPIC_TODOS_CHANGED,
-								new Event(MyEventConstants.TOPIC_TODOS_CHANGED, new HashMap<String, String>()));
-						return Status.OK_STATUS;
-					}
-				};
-				if (toolControl != null) {
-					IJobManager jobManager = job.getJobManager();
-					Object widget = toolControl.getObject();
-					final IProgressMonitor p = (IProgressMonitor) widget;
-					ProgressProvider provider = new ProgressProvider() {
-
-						@Override
-						public IProgressMonitor createMonitor(Job job) {
-							return p;
-						}
-					};
-					jobManager.setProgressProvider(provider);
-
-				}
-				job.schedule();
+				broker.post(MyEventConstants.TOPIC_TODOS_CHANGED, new HashMap<String, String>());
 			}
 		});
 
@@ -226,10 +193,25 @@ public class TodoOverviewPart {
 	@Optional
 	private void subscribeTopicTodoAllTopics(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Map<String, String> event) {
-		if (viewer != null) {
-			writableList.clear();
-			writableList.addAll(todoService.getTodos());
-		}
+		Job job = new Job("loading") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				final List<Todo> list = todoService.getTodos();
+				sync.asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						if (viewer != null) {
+							writableList.clear();
+							writableList.addAll(list);
+						}
+					}
+				});
+				return Status.OK_STATUS;
+			}
+		};
+		job.schedule();
+		
+		
 	}
 
 	@Focus
