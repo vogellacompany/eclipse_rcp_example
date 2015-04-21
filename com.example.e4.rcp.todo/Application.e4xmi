@@ -113,7 +113,7 @@
       <children xsi:type="menu:ToolControl" xmi:id="_mQav4BO4EeS5RO-5PCVTqQ" elementId="com.example.e4.rcp.todo.toolcontrol.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.SwitchLanguageToolControl"/>
     </trimBars>
     <trimBars xmi:id="_O6v78NXpEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.trimbar.0" side="Bottom">
-      <children xsi:type="menu:ToolControl" xmi:id="_QA6SwNXpEeODCZCgwFhKTQ" elementId="statusbar" visible="false" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.ProgressMonitorControl"/>
+      <children xsi:type="menu:ToolControl" xmi:id="_QA6SwNXpEeODCZCgwFhKTQ" elementId="statusbar" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.ProgressMonitorControl"/>
     </trimBars>
   </children>
   <handlers xmi:id="_V35JgMZrEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handlers.saveall" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.SaveAllHandler" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
