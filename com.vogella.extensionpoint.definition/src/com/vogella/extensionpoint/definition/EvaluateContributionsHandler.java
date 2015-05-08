@@ -12,10 +12,6 @@ public class EvaluateContributionsHandler {
 			"com.vogella.extensionpoint.definition.greeter";
 	@Execute
 	public void execute(IExtensionRegistry registry) {
-		evaluate(registry);
-	}
-	
-	private void evaluate(IExtensionRegistry registry) {
 		IConfigurationElement[] config =
 				registry.getConfigurationElementsFor(IGREETER_ID);
 		try {
