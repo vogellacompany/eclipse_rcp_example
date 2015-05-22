@@ -109,7 +109,6 @@
       <children xsi:type="menu:ToolBar" xmi:id="_7hjLEMZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.toolbar.0">
         <children xsi:type="menu:HandledToolItem" xmi:id="_8aI_8MZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledtoolitem.save" label="Save" iconURI="platform:/plugin/com.example.e4.rcp.todo/icons/save_edit.png" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_XSak8BMHEeSNqd-3fauTUQ" elementId="com.example.e4.rcp.todo.toolcontrol.0" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.perspectiveswitcher/org.eclipse.e4.ui.workbench.perspectiveswitcher.tools.PerspectiveSwitcherSwtTrim"/>
       <children xsi:type="menu:ToolControl" xmi:id="_mQav4BO4EeS5RO-5PCVTqQ" elementId="com.example.e4.rcp.todo.toolcontrol.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.SwitchLanguageToolControl"/>
     </trimBars>
     <trimBars xmi:id="_O6v78NXpEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.trimbar.0" side="Bottom">
