@@ -25,7 +25,6 @@ public class ProgressMonitorControl implements IProgressMonitor {
     sync.syncExec(new Runnable() {
       @Override
       public void run() {
-        System.out.println("Worked");
         progressBar.setSelection(progressBar.getSelection() + work);
       }
     });
@@ -57,8 +56,6 @@ public class ProgressMonitorControl implements IProgressMonitor {
 
   @Override
   public void done() {
-    System.out.println("Done");
-
   }
 
   @Override
@@ -70,6 +67,5 @@ public class ProgressMonitorControl implements IProgressMonitor {
         progressBar.setToolTipText(name);
       }
     });
-    System.out.println("Starting");
   }
 } 
