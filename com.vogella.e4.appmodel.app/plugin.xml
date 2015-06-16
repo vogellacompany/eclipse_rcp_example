@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            name="com.vogella.e4.appmodel.app"
+            application="org.eclipse.e4.ui.workbench.swt.E4Application">
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.vogella.e4.appmodel.app/css/default.css">
+         </property>
+         <property
+               name="appName"
+               value="com.vogella.e4.appmodel.app">
+         </property>
+         <property
+               name="rendererFactoryUri"
+               value="bundleclass://com.vogella.e4.appmodel.renderer/com.vogella.e4.appmodel.renderer.MyRendererFactory">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

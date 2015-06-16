@@ -14,10 +14,14 @@ public class MyPartRenderer extends SWTPartRenderer {
 	public Object createWidget(MUIElement element, Object parent) {
 		final Composite mapComposite = new Composite((Composite) parent,
 				SWT.NONE);
-		System.out.println(parent.getClass());
+		String string="http://www.vogella.com";
+		if (element.getPersistedState().containsKey("uri")){
+			string = element.getPersistedState().get("uri");
+		}
 		mapComposite.setLayout(new GridLayout(1, false));
 		final Browser browser = new Browser(mapComposite, SWT.NONE);
-		browser.setUrl("http://www.vogella.com");
+		 
+		browser.setUrl(string);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		browser.setLayoutData(data);
 		return mapComposite;

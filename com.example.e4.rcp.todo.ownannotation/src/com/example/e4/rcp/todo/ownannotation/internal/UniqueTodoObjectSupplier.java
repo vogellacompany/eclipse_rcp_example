@@ -18,7 +18,7 @@ public Object get(IObjectDescriptor descriptor, IRequestor requestor,
       // return a hard-coded Todo
       // You could add checks which makes this Todo unique, e.g. 
       // be access the TodoService and reading all existing ID's
-      Todo todo = new Todo(15, "Checked", "Checked", false, new Date());
+      Todo todo = new Todo(42, "Checked", "Checked", false, new Date());
       return todo;
    }
 } 

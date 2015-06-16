@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example.e4.rcp</groupId>
+	<artifactId>com.example.todo.build.parent</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<organization>
+		<name>vogella GmbH</name>
+		<url>http://www.vogella.com/</url>
+	</organization>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/vogella/eclipse4book/issues</url>
+	</issueManagement>
+
+	<scm>
+		<connection>scm:git:git://github.com/vogella/eclipse4book.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:vogella/eclipse4book.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+
+	<!-- tycho requires maven >= 3.0 -->
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<!-- Minimum Tycho version build work with -->
+	<properties>
+		<!-- http://maven.apache.org/general.html#encoding-warning -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<tycho-version>0.22.0</tycho-version>
+		<eclipse-repo.url>http://download.eclipse.org/releases/luna</eclipse-repo.url>
+		<!-- no default here -->
+		<tycho.test.vm.argline>-Xmx500m -Xdebug
+			-Xrunjdwp:transport=dt_socket,address=1044,server=y,suspend=n</tycho.test.vm.argline>
+		<tycho.test.vm.useUiThread>false</tycho.test.vm.useUiThread>
+	</properties>
+
+	<!-- explicitly define plugin repositories to make tycho SNAPSHOT builds 
+		available -->
+	
+	<repositories>
+		<repository>
+			<id>luna</id>
+			<url>${eclipse-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+	</repositories>
+	
+	<build>
+		<plugins>
+			<!-- enable tycho build extension -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<!-- recommended: use p2-based target platform resolver -->
+					<resolver>p2</resolver>
+					<ignoreTychoRepositories>true</ignoreTychoRepositories>
+					<!-- use existing target platform definition -->
+					<target>
+						<artifact>
+							<groupId>com.example.e4.rcp</groupId>
+							<artifactId>com.example.e4.rcp.todo.target</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</artifact>
+					</target>
+					<!-- configure the p2 target environments for multi-platform build -->
+					<environments>
+
+						<!-- Linux -->
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+
+						<!-- Windows -->
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+
+						<!-- Mac -->
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+
+					</environments>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<!-- pass mac specific SWT properties on mac (OS check is based on identifying 
+		the VM) -->
+	<profiles>
+		<profile>
+			<id>macosx</id>
+			<activation>
+				<property>
+					<name>java.vendor.url</name>
+					<value>http://www.apple.com/</value>
+				</property>
+			</activation>
+			<properties>
+				<tycho.test.vm.argline>-Dosgi.ws=cocoa -XstartOnFirstThread</tycho.test.vm.argline>
+				<tycho.test.vm.useUiThread>false</tycho.test.vm.useUiThread>
+			</properties>
+		</profile>
+	</profiles>
+</project>

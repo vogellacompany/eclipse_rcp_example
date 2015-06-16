@@ -15,8 +15,16 @@
         
           -->
          <property
-               name="lifeCycleURI"
+               name="lifeCycleURI2"
                value="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.lifecycle.Manager">
+         </property>
+         <property
+               name="rendererFactoryUri2"
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
+         <property
+               name="applicationCSS2"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
          </property>
           <!-- comments out of testing purposes
          <property
@@ -50,6 +58,16 @@
             label="Rainbow">
       </theme>
    </extension>
+   <extension point="org.eclipse.core.expressions.definitions">
+		<definition 	id="com.example.e4.rcp.todo.selectionset">
+			<with variable="org.eclipse.ui.selection">
+			<iterate ifEmpty="false" operator="or">
+				<instanceof value="com.example.e4.rcp.todo.model.Todo">
+			</instanceof>
+			</iterate>
+		</with>
+	</definition>
+</extension>
  
 
 </plugin>

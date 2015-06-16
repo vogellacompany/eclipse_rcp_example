@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example.e4.rcp</groupId>
+	<artifactId>com.example.todo.build.aggregator</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.example.e4.rcp</groupId>
+		<artifactId>com.example.todo.build.parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../com.example.todo.build.parent</relativePath>
+	</parent>
+	
+
+	<modules>
+		<!-- target 
+		<module>com.example.e4.rcp.todo.target</module>
+-->
+		<!-- bundles -->
+		<module>../com.example.e4.rcp.todo.target</module>
+		<module>../com.example.e4.bundleresourceloader</module>
+		<module>../com.example.e4.rcp.todo</module>
+		<module>../com.example.e4.rcp.todo.model</module>
+		<module>../com.example.e4.rcp.todo.addons</module>
+		<module>../com.example.e4.rcp.todo.contribute</module>
+		<module>../com.example.e4.rcp.todo.events</module>
+		<module>../com.example.e4.rcp.todo.i18n</module>
+		<module>../com.example.e4.rcp.todo.ownannotation</module>
+		<module>../com.example.e4.rcp.todo.services</module>
+		<module>../com.example.e4.renderer.swt</module>
+
+		<!-- Junit tests -->
+		<module>../com.example.e4.rcp.todo.model.test</module>
+
+		<!-- features -->
+		<module>../com.example.e4.rcp.todo.feature</module>
+
+		<!-- p2 repository for updates -->
+
+		<!-- product related -->
+		<module>../com.example.e4.rcp.todo.product</module>
+		<module>../com.vogella.extensionpoint.contribution</module>
+		<module>../com.vogella.extensionpoint.definition</module>
+
+	</modules>
+
+</project>

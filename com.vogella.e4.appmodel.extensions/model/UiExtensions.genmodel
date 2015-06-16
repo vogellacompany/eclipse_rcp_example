@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/com.vogella.e4.appmodel.extensions/src" modelPluginID="com.vogella.e4.appmodel.extensions"
+    modelName="UiExtensions" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.e4.ui.model.workbench/model/UIElements.genmodel#//application"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>UiExtensions.ecore</foreignModel>
+  <genPackages prefix="Extensions" disposableProviderFactory="true" ecorePackage="UiExtensions.ecore#/">
+    <genClasses ecoreClass="UiExtensions.ecore#//BrowserPart"/>
+  </genPackages>
+</genmodel:GenModel>

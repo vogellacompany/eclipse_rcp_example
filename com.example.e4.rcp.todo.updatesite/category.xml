@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.example.e4.rcp.todo.feature_1.0.0.qualifier.jar" id="com.example.e4.rcp.todo.feature" version="1.0.0.qualifier">
+      <category name="task_application"/>
+   </feature>
+   <category-def name="task_application" label="Task Management Application"/>
+</site>

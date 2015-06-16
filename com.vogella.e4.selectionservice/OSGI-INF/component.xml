@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.vogella.e4.selectionservice">
+   <implementation class="com.vogella.e4.selectionservice.service.MyContextFunction"/>
+   <service>
+      <provide interface="org.eclipse.e4.core.contexts.IContextFunction"/>
+   </service>
+   <property name="service.context.key" type="String" value="org.eclipse.e4.ui.workbench.modeling.ESelectionService"/>
+   <property name="service.ranking" type="Integer" value="9999999"/>
+</scr:component>

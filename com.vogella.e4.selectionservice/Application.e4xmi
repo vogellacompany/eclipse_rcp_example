@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_vZKnYKtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ide.application" bindingContexts="_vZKnaatdEeORs4m4rNC0FQ">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_vZKnYatdEeORs4m4rNC0FQ" label="com.vogella.e4.selectionservice" width="500" height="400">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_vZLOhKtdEeORs4m4rNC0FQ">
+      <children xsi:type="advanced:Perspective" xmi:id="_vZLOhatdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.perspective.first" label="First perspective">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_vZLOhqtdEeORs4m4rNC0FQ">
+          <children xsi:type="basic:PartStack" xmi:id="_vZLOh6tdEeORs4m4rNC0FQ">
+            <children xsi:type="basic:Part" xmi:id="_vZLOiKtdEeORs4m4rNC0FQ" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.SamplePart" label="Sample Part"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_gflVQKtjEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.partstack.0">
+            <children xsi:type="basic:Part" xmi:id="_g_7pQKtjEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.part.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.ListenerPart" label="Listener"/>
+          </children>
+        </children>
+      </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_T9SNIKt1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.perspective.second">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_UuiD4Kt1EeOKZeeiD0x5FQ">
+          <children xsi:type="basic:PartStack" xmi:id="_UuiD4at1EeOKZeeiD0x5FQ">
+            <children xsi:type="basic:Part" xmi:id="_UuiD4qt1EeOKZeeiD0x5FQ" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.SamplePart" label="Part in second perspective"/>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_UuiD46t1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.partstack.0">
+            <children xsi:type="basic:Part" xmi:id="_UuiD5Kt1EeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.part.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.parts.ListenerPart" label="Second listener"/>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_vZLOfatdEeORs4m4rNC0FQ" elementId="menu:org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_vZLOfqtdEeORs4m4rNC0FQ" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vZLOf6tdEeORs4m4rNC0FQ" label="Open" iconURI="platform:/plugin/com.vogella.e4.selectionservice/icons/sample.png" command="_vZLOdKtdEeORs4m4rNC0FQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vZLOgKtdEeORs4m4rNC0FQ" label="Save" iconURI="platform:/plugin/com.vogella.e4.selectionservice/icons/save_edit.png" command="_vZLOd6tdEeORs4m4rNC0FQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vZLOgatdEeORs4m4rNC0FQ" label="Quit" command="_vZLOcKtdEeORs4m4rNC0FQ"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_vZLOgqtdEeORs4m4rNC0FQ" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_vZLOg6tdEeORs4m4rNC0FQ" label="About" command="_vZLOeqtdEeORs4m4rNC0FQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_ZQKG4KtzEeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.handledmenuitem.0" label="Switch" command="_W8Jc4KtzEeOKZeeiD0x5FQ"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_vZLOiatdEeORs4m4rNC0FQ">
+      <children xsi:type="menu:ToolBar" xmi:id="_vZLOiqtdEeORs4m4rNC0FQ" elementId="toolbar:org.eclipse.ui.main.toolbar">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_vZL1gKtdEeORs4m4rNC0FQ" iconURI="platform:/plugin/com.vogella.e4.selectionservice/icons/sample.png" command="_vZLOdKtdEeORs4m4rNC0FQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_vZL1gatdEeORs4m4rNC0FQ" iconURI="platform:/plugin/com.vogella.e4.selectionservice/icons/save_edit.png" command="_vZLOd6tdEeORs4m4rNC0FQ"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_vZLOcatdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.handler.quitCommand" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.handlers.QuitHandler" command="_vZLOcKtdEeORs4m4rNC0FQ"/>
+  <handlers xmi:id="_vZLOdatdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.handler.openCommand" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.handlers.OpenHandler" command="_vZLOdKtdEeORs4m4rNC0FQ"/>
+  <handlers xmi:id="_vZLOeKtdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.handler.saveCommand" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.handlers.SaveHandler" command="_vZLOd6tdEeORs4m4rNC0FQ"/>
+  <handlers xmi:id="_vZLOe6tdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.handler.aboutCommand" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.handlers.AboutHandler" command="_vZLOeqtdEeORs4m4rNC0FQ"/>
+  <handlers xmi:id="_WH0c8KtzEeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.handler.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.handlers.SwitchPerspectiveHandler" command="_W8Jc4KtzEeOKZeeiD0x5FQ"/>
+  <bindingTables xmi:id="_vZLOcqtdEeORs4m4rNC0FQ" bindingContext="_vZKnaatdEeORs4m4rNC0FQ">
+    <bindings xmi:id="_vZLOc6tdEeORs4m4rNC0FQ" keySequence="M1+Q" command="_vZLOcKtdEeORs4m4rNC0FQ"/>
+    <bindings xmi:id="_vZLOdqtdEeORs4m4rNC0FQ" keySequence="M1+O" command="_vZLOdKtdEeORs4m4rNC0FQ"/>
+    <bindings xmi:id="_vZLOeatdEeORs4m4rNC0FQ" keySequence="M1+S" command="_vZLOd6tdEeORs4m4rNC0FQ"/>
+    <bindings xmi:id="_vZLOfKtdEeORs4m4rNC0FQ" keySequence="M1+A" command="_vZLOeqtdEeORs4m4rNC0FQ"/>
+  </bindingTables>
+  <rootContext xmi:id="_vZKnaatdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_vZKnaqtdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_vZKna6tdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_vZLOcKtdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <commands xmi:id="_vZLOdKtdEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.open" commandName="openCommand"/>
+  <commands xmi:id="_vZLOd6tdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
+  <commands xmi:id="_vZLOeqtdEeORs4m4rNC0FQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_W8Jc4KtzEeOKZeeiD0x5FQ" elementId="com.vogella.e4.selectionservice.command.0" commandName="Switch"/>
+  <addons xmi:id="_vZKnYqtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_vZKnY6tdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_vZKnZKtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_vZKnZatdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_vZKnZqtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_vZKnZ6tdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_vZKnaKtdEeORs4m4rNC0FQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <addons xmi:id="_KfVQgKtrEeORs4m4rNC0FQ" elementId="com.vogella.e4.selectionservice.addon.0" contributionURI="bundleclass://com.vogella.e4.selectionservice/com.vogella.e4.selectionservice.addon.ReplaceSelectionService"/>
+</application:Application>

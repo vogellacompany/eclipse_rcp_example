@@ -6,5 +6,3 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.example.e4.rcp.todo.model
-Require-Bundle: org.eclipse.equinox.event;bundle-version="1.2.200",
- org.eclipse.e4.core.services;bundle-version="1.0.0"

@@ -1,5 +1,6 @@
 package com.example.e4.rcp.todo.parts;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,15 +11,21 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.ProgressProvider;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
+import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
+import org.eclipse.e4.ui.model.application.ui.menu.MToolControl;
+import org.eclipse.e4.ui.services.EMenuService;
+import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -42,14 +49,15 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.osgi.service.event.Event;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
+import com.example.e4.rcp.todo.i18n.Messages;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 
-	private static final String LOCAL_EVENT_FINISH = "finish";
 	private Button btnNewButton;
 	private Label lblNewLabel;
 	private TableViewer viewer;
@@ -59,6 +67,13 @@ public class TodoOverviewPart {
 
 	@Inject
 	ESelectionService service;
+
+	@Inject
+	EModelService modelService;
+
+	@Inject
+	MApplication application;
+
 	@Inject
 	IEventBroker broker;
 
@@ -66,28 +81,56 @@ public class TodoOverviewPart {
 	ITodoService model;
 	private WritableList writableList;
 	protected String searchString = "";
+	
+	private TableViewerColumn colDescription;
+	private TableViewerColumn colSummary;
 
 	@PostConstruct
-	public void createControls(Composite parent, final MWindow window,
-			EMenuService menuService) {
+	public void createControls(Composite parent,
+			EMenuService menuService, @Translation Messages message) {
 		parent.setLayout(new GridLayout(1, false));
 
 		btnNewButton = new Button(parent, SWT.PUSH);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				
+				final MToolControl toolControl = (MToolControl) modelService.find(
+						"statusbar", application);
+				toolControl.setVisible(true);
+				
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
+						toolControl.setVisible(false);
 						final List<Todo> list = model.getTodos();
-						broker.post(LOCAL_EVENT_FINISH, list);
+						System.out.println(list);
+						broker.post(
+								MyEventConstants.TOPIC_TODOS_CHANGED, 
+								new Event(MyEventConstants.TOPIC_TODOS_CHANGED, 
+										new HashMap<String, String>()));
 						return Status.OK_STATUS;
 					}
 				};
+				if (toolControl != null) {
+					IJobManager jobManager = job.getJobManager();
+					Object widget = toolControl.getObject();
+					final IProgressMonitor p = (IProgressMonitor) widget;
+					ProgressProvider provider = new ProgressProvider() {
+
+						@Override
+						public IProgressMonitor createMonitor(Job job) {
+							return p;
+						}
+					};
+					jobManager.setProgressProvider(provider);
+
+				}
 				job.schedule();
 			}
 		});
-		btnNewButton.setText("Load Data");
+		
 
 		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL
 				| SWT.ICON_SEARCH);
@@ -111,6 +154,7 @@ public class TodoOverviewPart {
 		// SWT.SEARCH | SWT.CANCEL not supported under Windows7
 		// This does not work under Windows7
 		search.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
 					Text text = (Text) e.getSource();
@@ -128,10 +172,9 @@ public class TodoOverviewPart {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
+		colSummary = new TableViewerColumn(viewer, SWT.NONE);
 
 		colSummary.getColumn().setWidth(100);
-		colSummary.getColumn().setText("Summary");
 
 		colSummary.setEditingSupport(new EditingSupport(viewer) {
 
@@ -158,10 +201,10 @@ public class TodoOverviewPart {
 				return true;
 			}
 		});
-		TableViewerColumn colDescription= new TableViewerColumn(viewer, SWT.NONE);
+		colDescription = new TableViewerColumn(viewer,
+				SWT.NONE);
 
 		colDescription.getColumn().setWidth(100);
-		colDescription.getColumn().setText("Description");
 
 		// We search in the summary and description field
 		viewer.addFilter(new ViewerFilter() {
@@ -190,14 +233,15 @@ public class TodoOverviewPart {
 				writableList,
 				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY,
 						Todo.FIELD_DESCRIPTION }));
+		
+		translateTable(message);
 
 	}
 
-	
 	@Inject
 	@Optional
-	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Todo todo) {
+	private void subscribeTopicTodoAllTopics(
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Event event) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(model.getTodos());
@@ -208,5 +252,14 @@ public class TodoOverviewPart {
 	private void setFocus() {
 		btnNewButton.setFocus();
 	}
-
+	
+	@Inject
+	public void translateTable(@Translation Messages message){
+		if (viewer !=null && !viewer.getTable().isDisposed()) {
+			colSummary.getColumn().setText(message.txtSummary);
+			colDescription.getColumn().setText(message.txtDescription);
+			btnNewButton.setText(message.buttonLoadData);
+		}
+	}
 }
+	

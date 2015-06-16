@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="ITodoService context function">
+   <implementation 
+   	class="com.example.e4.rcp.todo.services.internal.TodoServiceContextFunction"/>
+   <property name="service.context.key" type="String" 
+   		value="com.example.e4.rcp.todo.model.ITodoService"/>
+   <service>
+      <provide interface="org.eclipse.e4.core.contexts.IContextFunction"/>
+   </service>
+</scr:component>

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Renderer
+Bundle-SymbolicName: com.vogella.e4.appmodel.renderer
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: VOGELLA
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.e4.ui.workbench.renderers.swt,
+ com.vogella.e4.appmodel.extensions;bundle-version="1.0.0",
+ org.eclipse.swt;bundle-version="3.103.0",
+ org.eclipse.e4.ui.model.workbench;bundle-version="1.1.0",
+ org.eclipse.e4.ui.workbench.swt;bundle-version="0.12.100",
+ org.eclipse.e4.core.contexts;bundle-version="1.3.100"
