@@ -8,11 +8,13 @@ package com.example.e4.rcp.todo.events;
 
 public interface MyEventConstants {
 
+	// topic identifier for all todo topics
+	String TOPIC_TODO= "TOPIC_TODOS";
+	
 	// this key can only used for event registration, you cannot
 	// send out generic events
 	String TOPIC_TODO_ALLTOPICS = "TOPIC_TODOS/*";
 
-	// events to be send out
 	String TOPIC_TODOS_CHANGED = "TOPIC_TODOS/CHANGED";
 	
 	String TOPIC_TODO_NEW = "TOPIC_TODOS/TODO/NEW";

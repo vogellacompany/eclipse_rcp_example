@@ -2,7 +2,9 @@ package com.example.e4.rcp.todo.services.internal;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -17,7 +19,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	private static int current = 1;
 	private List<Todo> todos;
 
-	// @Inject in the MyTodoServiceImpl!
+	// use dependency injection in MyTodoServiceImpl
 	@Inject
 	private IEventBroker broker;
 
@@ -25,7 +27,7 @@ public class MyTodoServiceImpl implements ITodoService {
 		todos = createInitialModel();
 	}
 
-	// Always return a new copy of the data
+	// always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
 		List<Todo> list = new ArrayList<Todo>();
@@ -35,26 +37,33 @@ public class MyTodoServiceImpl implements ITodoService {
 		return list;
 	}
 
-	// Saves or updates
+	// create or update an existing instance of Todo
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
-		boolean created =false;
+		boolean created = false;
 		Todo updateTodo = findById(newTodo.getId());
 		if (updateTodo == null) {
-			created=true;
-			updateTodo= new Todo(current++);
+			created = true;
+			updateTodo = new Todo(current++);
 			todos.add(updateTodo);
-		} 
+		}
 		updateTodo.setSummary(newTodo.getSummary());
 		updateTodo.setDescription(newTodo.getDescription());
 		updateTodo.setDone(newTodo.isDone());
 		updateTodo.setDueDate(newTodo.getDueDate());
-		
-		// Send out events
-		if (created){
-			broker.post(MyEventConstants.TOPIC_TODO_NEW, updateTodo);
+
+		// configure the event
+
+		// send out events
+		if (created) {
+			broker.post(MyEventConstants.TOPIC_TODO_NEW,
+					createEventData(MyEventConstants.TOPIC_TODO_NEW, 
+							String.valueOf(updateTodo.getId())));
 		} else {
-			broker.post(MyEventConstants.TOPIC_TODO_UPDATE, updateTodo);
+			broker.
+			post(MyEventConstants.TOPIC_TODO_UPDATE,
+			 createEventData(MyEventConstants.TOPIC_TODO_UPDATE, 
+					 String.valueOf(updateTodo.getId())));
 		}
 		return true;
 	}
@@ -75,26 +84,30 @@ public class MyTodoServiceImpl implements ITodoService {
 
 		if (deleteTodo != null) {
 			todos.remove(deleteTodo);
-			broker.post(MyEventConstants.TOPIC_TODO_DELETE, deleteTodo);
+			// configure the event
+			broker.
+				post(MyEventConstants.TOPIC_TODO_DELETE,
+				 createEventData(MyEventConstants.TOPIC_TODO_DELETE, 
+						 String.valueOf(deleteTodo.getId())));
 			return true;
 		}
 		return false;
 	}
 
 	// Example data, change if you like
-		private List<Todo> createInitialModel() {
-			List<Todo> list = new ArrayList<Todo>();
-			list.add(createTodo("Application model", "Flexible and extensible"));
-			list.add(createTodo("DI", "@Inject as programming mode"));
-			list.add(createTodo("OSGi", "Services"));
-			list.add(createTodo("SWT", "Widgets"));
-			list.add(createTodo("JFace", "Especially Viewers!"));
-			list.add(createTodo("CSS Styling","Style your application"));
-			list.add(createTodo("Eclipse services","Selection, model, Part"));
-			list.add(createTodo("Renderer","Different UI toolkit"));
-			list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
-			return list;
-		}
+	private List<Todo> createInitialModel()         {
+		List<Todo> list = new ArrayList<Todo>();
+		list.add(createTodo("Application model", "Flexible and extensible"));
+		list.add(createTodo("DI", "@Inject as programming mode"));		
+		list.add(createTodo("OSGi", "Services"));
+		list.add(createTodo("SWT", "Widgets"));
+		list.add(createTodo("JFace", "Especially Viewers!"));
+		list.add(createTodo("CSS Styling", "Style your application"));
+		list.add(createTodo("Eclipse services", "Selection, model, Part"));
+		list.add(createTodo("Renderer", "Different UI toolkit"));
+		list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
+		return list;
+	}
 
 	private Todo createTodo(String summary, String description) {
 		return new Todo(current++, summary, description, false, new Date());
@@ -109,4 +122,12 @@ public class MyTodoServiceImpl implements ITodoService {
 		return null;
 	}
 
+	private Map<String, String> createEventData(String topic, String todoId) {
+		Map<String, String> map = new HashMap<String, String>();
+		// in case the receiver wants to check the topic
+		map.put(MyEventConstants.TOPIC_TODO, topic);
+		// which todo has changed
+		map.put(Todo.FIELD_ID, todoId);
+		return map;
+	}
 }
