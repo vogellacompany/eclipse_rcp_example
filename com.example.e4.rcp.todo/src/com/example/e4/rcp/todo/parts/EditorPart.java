@@ -3,6 +3,7 @@ package com.example.e4.rcp.todo.parts;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
@@ -10,6 +11,8 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.e4.core.commands.ECommandService;
+import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
@@ -18,6 +21,8 @@ import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -34,6 +39,13 @@ public class EditorPart {
 
 	@Inject
 	MDirtyable dirty;
+	
+	@Inject
+	ECommandService commandService;
+	
+	@Inject
+	EHandlerService handlerService;
+	
 	
 	@Inject MPart part;
 
@@ -95,6 +107,17 @@ public class EditorPart {
 
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
+		
+		Button button = new Button(parent, SWT.PUSH);
+		button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		button.setText("Save");
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ParameterizedCommand command = commandService.createCommand("org.eclipse.ui.file.saveAll", null);
+				handlerService.executeHandler(command);
+			}
+		});
 		
 		updateUserInterface(todo);
 	}
