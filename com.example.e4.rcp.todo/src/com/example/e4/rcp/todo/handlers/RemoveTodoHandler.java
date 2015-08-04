@@ -13,12 +13,12 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class RemoveTodoHandler {
 	@Execute
-	public void execute(ITodoService model,
+	public void execute(ITodoService todoService,
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
 			@Named (IServiceConstants.ACTIVE_SHELL) Shell shell
 			) {
 		if (todo != null) {
-			model.deleteTodo(todo.getId());
+			todoService.deleteTodo(todo.getId());
 		} else {
 			MessageDialog.openInformation(shell, "Deletion not possible",
 					"No todo selected");
