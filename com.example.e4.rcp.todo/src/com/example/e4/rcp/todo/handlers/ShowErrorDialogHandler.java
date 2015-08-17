@@ -28,7 +28,7 @@ public class ShowErrorDialogHandler {
 
 	private static MultiStatus createMultiStatus(String msg, Throwable t) {
 
-		List<Status> childStatuses = new ArrayList<Status>();
+		List<Status> childStatuses = new ArrayList<>();
 		StackTraceElement[] stackTraces = Thread.currentThread().getStackTrace();
 
  		for (StackTraceElement stackTrace: stackTraces) {

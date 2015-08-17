@@ -78,7 +78,7 @@ public class WindowCloseListenerAddon {
 	}
 
 	private static Collection<EPartService> getAllPartServices(MApplication application) {
-		List<EPartService> partServices = new ArrayList<EPartService>();
+		List<EPartService> partServices = new ArrayList<>();
 
 		EModelService modelService = application.getContext().get(EModelService.class);
 		List<MWindow> elements = modelService.findElements(application, MWindow.class, EModelService.IN_ACTIVE_PERSPECTIVE,

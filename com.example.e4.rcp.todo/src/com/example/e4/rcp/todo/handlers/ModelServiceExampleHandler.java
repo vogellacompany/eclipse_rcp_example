@@ -45,7 +45,7 @@ public class ModelServiceExampleHandler {
 	// example for search by tag
 	private void findObjectsByTag(MApplication application,
 			EModelService service) {
-		List<String> tags = new ArrayList<String>();
+		List<String> tags = new ArrayList<>();
 		tags.add("justatag");
 		List<MUIElement> elementsWithTags = service.findElements(application,
 				null, null, tags);
