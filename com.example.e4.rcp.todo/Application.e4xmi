@@ -107,6 +107,7 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_0Aiw4A5xEeK9y8PCk5W1FQ" elementId="com.example.e4.rcp.todo.part.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="LazyTable"/>
     <trimBars xmi:id="_5T5nwMZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.trimbar.first">
       <children xsi:type="menu:ToolBar" xmi:id="_7hjLEMZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.toolbar.0">
+        <tags>com.example.e4.rcp.todo.perspective</tags>
         <children xsi:type="menu:HandledToolItem" xmi:id="_8aI_8MZuEeGbkqRLZ7osPQ" elementId="com.example.e4.rcp.todo.handledtoolitem.save" label="Save" iconURI="platform:/plugin/com.example.e4.rcp.todo/icons/save_edit.png" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_mQav4BO4EeS5RO-5PCVTqQ" elementId="com.example.e4.rcp.todo.toolcontrol.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.toolcontrols.SwitchLanguageToolControl"/>
@@ -170,4 +171,5 @@
   <addons xmi:id="_c3RRkKDUEeKOb431BOI1yA" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_rphcED65EeSPDP4SyCxE4g" elementId="com.example.e4.rcp.todo.addon.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.WindowCloseListenerAddon"/>
   <addons xmi:id="_KpRVUE2uEeSJFpjHPXZFWg" elementId="com.example.e4.rcp.todo.addon.0" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.MyModelAddon"/>
+  <addons xmi:id="_9kh-wDqhEeWtccj_NovoLg" elementId="com.example.e4.rcp.todo.addon.2" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.addons.ToolbarsVisiblePerPerspectiveAddon"/>
 </application:Application>
