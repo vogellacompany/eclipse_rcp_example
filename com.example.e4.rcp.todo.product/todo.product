@@ -105,4 +105,12 @@
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
    </configurations>
 
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+      <file path="/com.example.e4.rcp.todo/css/default.css"/>
+   </cssInfo>
+
 </product>

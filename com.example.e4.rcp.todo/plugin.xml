@@ -26,6 +26,10 @@
                name="applicationCSS2"
                value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
          </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/com.example.e4.rcp.todo/css/default.css">
+         </property>
           <!-- comments out of testing purposes
          <property
                name="applicationCSS"
