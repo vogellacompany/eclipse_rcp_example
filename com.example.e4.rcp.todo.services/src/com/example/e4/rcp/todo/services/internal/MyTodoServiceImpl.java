@@ -30,7 +30,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	// always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
-		List<Todo> list = new ArrayList<Todo>();
+		List<Todo> list = new ArrayList<>();
 		for (Todo todo : todos) {
 			list.add(todo.copy());
 		}
@@ -96,7 +96,7 @@ public class MyTodoServiceImpl implements ITodoService {
 
 	// Example data, change if you like
 	private List<Todo> createInitialModel()         {
-		List<Todo> list = new ArrayList<Todo>();
+		List<Todo> list = new ArrayList<>();
 		list.add(createTodo("Application model", "Flexible and extensible"));
 		list.add(createTodo("DI", "@Inject as programming mode"));		
 		list.add(createTodo("OSGi", "Services"));
@@ -123,7 +123,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	private Map<String, String> createEventData(String topic, String todoId) {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		// in case the receiver wants to check the topic
 		map.put(MyEventConstants.TOPIC_TODO, topic);
 		// which todo has changed
