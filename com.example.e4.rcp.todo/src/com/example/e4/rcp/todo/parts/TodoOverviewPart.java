@@ -66,7 +66,7 @@ public class TodoOverviewPart {
 	private ITodoService todoService;
 	
 	private WritableList writableList;
-	protected String searchString = "";
+	protected String searchString = ""; //$NON-NLS-1$
 
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService, MessagesRegistry messageRegistry) {
@@ -86,7 +86,7 @@ public class TodoOverviewPart {
 
 		// Assuming that GridLayout is used
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		search.setMessage("Filter");
+		messageRegistry.register(search::setText, m -> m.txtSearchMessage);
 
 		// Filter at every keystroke
 		search.addModifyListener(new ModifyListener() {
@@ -106,7 +106,7 @@ public class TodoOverviewPart {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
 					Text text = (Text) e.getSource();
-					text.setText("");
+					text.setText(""); //$NON-NLS-1$
 					//
 				}
 			}
@@ -170,7 +170,7 @@ public class TodoOverviewPart {
 				service.setSelection(selection.getFirstElement());
 			}
 		});
-		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table");
+		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
 		writableList = new WritableList(todoService.getTodos(), Todo.class);
 		ViewerSupport.bind(viewer, writableList,
 				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));

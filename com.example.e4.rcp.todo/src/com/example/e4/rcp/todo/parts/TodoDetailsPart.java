@@ -83,8 +83,9 @@ public class TodoDetailsPart {
 		gd.heightHint = 122;
 		txtDescription.setLayoutData(gd);
 
-		Label lblNewLabel = new Label(parent, SWT.NONE);
-		lblNewLabel.setText("Due Date");
+		Label lblDueDate = new Label(parent, SWT.NONE);
+		// set Label text and register Label text locale changes
+		messagesRegistry.register(lblDueDate::setText, m -> m.lblDueDate);
 
 		dateTime = new DateTime(parent, SWT.BORDER);
 		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
@@ -92,7 +93,8 @@ public class TodoDetailsPart {
 		new Label(parent, SWT.NONE);
 
 		btnDone = new Button(parent, SWT.CHECK);
-		btnDone.setText("Done");
+		// set Label text and register Label text locale changes
+		messagesRegistry.register(btnDone::setText, m -> m.buttonDone);
 
 		updateUserInterface(todo);
 	}
