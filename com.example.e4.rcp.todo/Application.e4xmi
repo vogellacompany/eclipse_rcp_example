@@ -21,17 +21,6 @@
                   <children xsi:type="menu:DirectToolItem" xmi:id="_yBk8wNXeEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Find" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.FindAllToolbarsHandler"/>
                 </toolbar>
               </children>
-              <children xsi:type="basic:Part" xmi:id="_s1vhsEQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="%part.overview" bindingContexts="_rym-gBI2EeSz0MOyJTR0RQ" closeable="true">
-                <persistedState key="uri" value="http://www.google.com"/>
-                <tags>NoMove</tags>
-                <menus xsi:type="menu:PopupMenu" xmi:id="_s1vhsUQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
-                  <children xsi:type="menu:HandledMenuItem" xmi:id="_s1vhskQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
-                  <children xsi:type="menu:HandledMenuItem" xmi:id="_s1vhs0QWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.handledmenuitem.openeditor" label="Open in editor" command="_vGK5kA1pEeKkaoNsQKzVcw"/>
-                </menus>
-                <toolbar xmi:id="_s1vhtEQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.toolbar.1">
-                  <children xsi:type="menu:DirectToolItem" xmi:id="_s1vhtUQWEeSW8es77oIZLw" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Find" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.FindAllToolbarsHandler"/>
-                </toolbar>
-              </children>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_9SkyUAzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partstack.1" containerData="40">
               <children xsi:type="basic:Part" xmi:id="_9uFpoAzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.part.tododelete" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoDeletionPart" label="Delete "/>
