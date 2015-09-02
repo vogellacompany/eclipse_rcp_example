@@ -12,7 +12,6 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
@@ -27,7 +26,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.example.e4.rcp.todo.i18n.Messages;
+import com.example.e4.rcp.todo.i18n.MessagesRegistry;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 import com.example.e4.rcp.todo.ownannotation.DirectTodo;
@@ -35,7 +34,7 @@ import com.example.e4.rcp.todo.ownannotation.DirectTodo;
 public class TodoDetailsPart {
 
 	@Inject
-	MDirtyable dirty;
+	private MDirtyable dirty;
 
 	private Text txtSummary;
 	private Text txtDescription;
@@ -44,7 +43,7 @@ public class TodoDetailsPart {
 	private DataBindingContext ctx = new DataBindingContext();
 
 	// Define listener for the databinding
-	IChangeListener listener = new IChangeListener() {
+	private IChangeListener listener = new IChangeListener() {
 		@Override
 		public void handleChange(ChangeEvent event) {
 			if (dirty != null) {
@@ -57,12 +56,8 @@ public class TodoDetailsPart {
 	@DirectTodo(id=1)
 	private Todo todo;
 
-	private Label lblSummary;
-
-	private Label lblDescription;
-
 	@PostConstruct
-	public void createControls(Composite parent) {
+	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
 
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
@@ -71,14 +66,17 @@ public class TodoDetailsPart {
 		gl_parent.marginWidth = 0;
 		parent.setLayout(gl_parent);
 
-		lblSummary = new Label(parent, SWT.NONE);
+		Label lblSummary = new Label(parent, SWT.NONE);
+		// set Label text and register Label text locale changes
+		messagesRegistry.register(lblSummary::setText, m -> m.txtSummary);
 
 		txtSummary = new Text(parent, SWT.BORDER);
 		txtSummary
 				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-		lblDescription = new Label(parent, SWT.NONE);
-		lblDescription.setText("Description");
+		Label lblDescription = new Label(parent, SWT.NONE);
+		// set Label text and register Label text locale changes
+		messagesRegistry.register(lblDescription::setText, m -> m.txtDescription);
 
 		txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
@@ -97,15 +95,6 @@ public class TodoDetailsPart {
 		btnDone.setText("Done");
 
 		updateUserInterface(todo);
-
-	}
-
-	@Inject
-	private void translate(@Translation Messages message) {
-		if (txtSummary != null && !txtSummary.isDisposed()) {
-			lblSummary.setText(message.txtSummary);
-			lblDescription.setText(message.txtDescription);
-		}
 	}
 
 	@Persist
@@ -196,8 +185,6 @@ public class TodoDetailsPart {
 
 	@Focus
 	public void onFocus() {
-		// The following assumes that you have a Text field
-		// called summary
 		txtSummary.setFocus();
 	}
 }

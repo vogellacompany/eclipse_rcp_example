@@ -15,13 +15,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.di.UISynchronize;
-import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.e4.ui.services.EMenuService;
-import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.CellEditor;
@@ -43,51 +40,42 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
-import com.example.e4.rcp.todo.i18n.Messages;
+import com.example.e4.rcp.todo.i18n.MessagesRegistry;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 
-	private Button btnNewButton;
-	private Label lblNewLabel;
+	private Button loadTableDataButton;
 	private TableViewer viewer;
 
 	@Inject
-	UISynchronize sync;
+	private UISynchronize sync;
 
 	@Inject
-	ESelectionService service;
+	private ESelectionService service;
 
 	@Inject
-	EModelService modelService;
+	private IEventBroker broker;
 
 	@Inject
-	MApplication application;
-
-	@Inject
-	IEventBroker broker;
-
-	@Inject
-	ITodoService todoService;
+	private ITodoService todoService;
 	
 	private WritableList writableList;
 	protected String searchString = "";
 
-	private TableViewerColumn colDescription;
-	private TableViewerColumn colSummary;
-
 	@PostConstruct
-	public void createControls(Composite parent, EMenuService menuService, @Translation Messages message) {
+	public void createControls(Composite parent, EMenuService menuService, MessagesRegistry messageRegistry) {
 		parent.setLayout(new GridLayout(1, false));
 
-		btnNewButton = new Button(parent, SWT.PUSH);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
+		loadTableDataButton = new Button(parent, SWT.PUSH);
+		// set column text and register column text locale changes
+		messageRegistry.register(loadTableDataButton::setText, m -> m.buttonLoadData);
+		loadTableDataButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				broker.post(MyEventConstants.TOPIC_TODOS_CHANGED, new HashMap<String, String>());
@@ -111,8 +99,8 @@ public class TodoOverviewPart {
 			}
 		});
 
-		// SWT.SEARCH | SWT.CANCEL not supported under Windows7
-		// This does not work under Windows7
+		// SWT.SEARCH | SWT.CANCEL are not supported under Windows 7
+		// This does not work under Windows 7
 		search.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -131,8 +119,9 @@ public class TodoOverviewPart {
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		colSummary = new TableViewerColumn(viewer, SWT.NONE);
-
+		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
+		// set column text and register column text locale changes
+		messageRegistry.register(colSummary.getColumn()::setText, m -> m.txtSummary);
 		colSummary.getColumn().setWidth(100);
 
 		colSummary.setEditingSupport(new EditingSupport(viewer) {
@@ -160,8 +149,9 @@ public class TodoOverviewPart {
 				return true;
 			}
 		});
-		colDescription = new TableViewerColumn(viewer, SWT.NONE);
-
+		TableViewerColumn colDescription = new TableViewerColumn(viewer, SWT.NONE);
+		// set column text and register column text locale changes
+		messageRegistry.register(colDescription.getColumn()::setText, (m) -> m.txtDescription);
 		colDescription.getColumn().setWidth(100);
 
 		// We search in the summary and description field
@@ -184,8 +174,6 @@ public class TodoOverviewPart {
 		writableList = new WritableList(todoService.getTodos(), Todo.class);
 		ViewerSupport.bind(viewer, writableList,
 				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
-
-		translateTable(message);
 
 	}
 
@@ -215,16 +203,7 @@ public class TodoOverviewPart {
 	}
 
 	@Focus
-	private void setFocus() {
-		btnNewButton.setFocus();
-	}
-
-	@Inject
-	public void translateTable(@Translation Messages message) {
-		if (viewer != null && !viewer.getTable().isDisposed()) {
-			colSummary.getColumn().setText(message.txtSummary);
-			colDescription.getColumn().setText(message.txtDescription);
-			btnNewButton.setText(message.buttonLoadData);
-		}
+	public void setFocus() {
+		loadTableDataButton.setFocus();
 	}
 }

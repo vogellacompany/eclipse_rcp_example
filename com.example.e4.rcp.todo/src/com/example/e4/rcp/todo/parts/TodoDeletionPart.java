@@ -10,7 +10,6 @@ import org.eclipse.e4.core.commands.ECommandService;
 import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -28,29 +27,30 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
-import com.example.e4.rcp.todo.i18n.Messages;
+import com.example.e4.rcp.todo.i18n.MessagesRegistry;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDeletionPart {
 	@Inject
 	private ITodoService model;
-	
+
 	@Inject
-	@Translation
-	Messages message;
-	
-	@Inject 
-	ESelectionService selectionService;
-	
-	@Inject EHandlerService handlerService;
-	@Inject ECommandService commandService;
-	@Inject IEclipseContext ctx;
-	
+	private ESelectionService selectionService;
+
+	@Inject
+	private EHandlerService handlerService;
+
+	@Inject
+	private ECommandService commandService;
+
+	@Inject
+	private IEclipseContext ctx;
+
 	private ComboViewer viewer;
 
 	@PostConstruct
-	public void createControls(Composite parent ) {
+	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
 		parent.setLayout(new GridLayout(2, false));
 		viewer = new ComboViewer(parent, SWT.READ_ONLY);
 		viewer.setLabelProvider(new LabelProvider() {
@@ -74,15 +74,17 @@ public class TodoDeletionPart {
 				if (sel.size() > 0) {
 					selectionService.setSelection(sel.getFirstElement());
 					// assure that "com.example.e4.rcp.todo.remove" is the ID
-					// of the command which deletes todos in your application model
-					ParameterizedCommand cmd =
-							commandService.createCommand("com.example.e4.rcp.todo.remove", null);
+					// of the command which deletes todos in your application
+					// model
+					ParameterizedCommand cmd = commandService.createCommand("com.example.e4.rcp.todo.remove", null);
 					handlerService.executeHandler(cmd, ctx);
 				}
 
 			}
 		});
-		button.setText(message.part_deletion_button_deletetodo);
+		
+		// set button text and register button text locale changes
+		messagesRegistry.register(button::setText, m -> m.part_deletion_button_deletetodo);
 	}
 
 	private void updateViewer(List<Todo> todos) {
@@ -91,13 +93,10 @@ public class TodoDeletionPart {
 			viewer.setSelection(new StructuredSelection(todos.get(0)));
 		}
 	}
-	
+
 	@Inject
 	@Optional
-	private void getNotified(
-			@UIEventTopic(
-					MyEventConstants.TOPIC_TODO_ALLTOPICS) 
-			 	    Todo todo) {
+	private void getNotified(@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Todo todo) {
 		updateViewer(model.getTodos());
 	}
 
