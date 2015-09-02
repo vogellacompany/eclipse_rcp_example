@@ -19,9 +19,7 @@ import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -157,13 +155,10 @@ public class ManagerPart {
 			}
 		});
 
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) viewer
-						.getSelection();
-				service.setSelection(selection.getFirstElement());
-			}
+		viewer.addSelectionChangedListener(event -> {
+			IStructuredSelection selection = (IStructuredSelection) viewer
+					.getSelection();
+			service.setSelection(selection.getFirstElement());
 		});
 
 	}

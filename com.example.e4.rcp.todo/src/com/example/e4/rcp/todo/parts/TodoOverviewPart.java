@@ -23,17 +23,13 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -89,14 +85,11 @@ public class TodoOverviewPart {
 		messageRegistry.register(search::setText, m -> m.txtSearchMessage);
 
 		// Filter at every keystroke
-		search.addModifyListener(new ModifyListener() {
-			@Override
-			public void modifyText(ModifyEvent e) {
-				Text source = (Text) e.getSource();
-				searchString = source.getText();
-				// Trigger update in the viewer
-				viewer.refresh();
-			}
+		search.addModifyListener(e -> {
+			Text source = (Text) e.getSource();
+			searchString = source.getText();
+			// Trigger update in the viewer
+			viewer.refresh();
 		});
 
 		// SWT.SEARCH | SWT.CANCEL are not supported under Windows 7
@@ -163,12 +156,9 @@ public class TodoOverviewPart {
 			}
 		});
 
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-				service.setSelection(selection.getFirstElement());
-			}
+		viewer.addSelectionChangedListener(event -> {
+			IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+			service.setSelection(selection.getFirstElement());
 		});
 		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
 		writableList = new WritableList(todoService.getTodos(), Todo.class);

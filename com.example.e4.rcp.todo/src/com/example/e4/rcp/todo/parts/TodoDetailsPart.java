@@ -7,7 +7,6 @@ import javax.inject.Named;
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
-import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -43,12 +42,9 @@ public class TodoDetailsPart {
 	private DataBindingContext ctx = new DataBindingContext();
 
 	// Define listener for the databinding
-	private IChangeListener listener = new IChangeListener() {
-		@Override
-		public void handleChange(ChangeEvent event) {
-			if (dirty != null) {
-				dirty.setDirty(true);
-			}
+	private IChangeListener listener = event -> {
+		if (dirty != null) {
+			dirty.setDirty(true);
 		}
 	};
 	

@@ -7,7 +7,6 @@ import org.eclipse.core.commands.ParameterizedCommand;
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
-import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -57,12 +56,9 @@ public class EditorPart {
 	private DataBindingContext ctx = new DataBindingContext();
 
 	// define listener for the data binding
-	IChangeListener listener = new IChangeListener() {
-		@Override
-		public void handleChange(ChangeEvent event) {
-			if (dirty!=null){
-				dirty.setDirty(true);
-			}
+	IChangeListener listener = event -> {
+		if (dirty!=null){
+			dirty.setDirty(true);
 		}
 	};
 	private Todo todo;
