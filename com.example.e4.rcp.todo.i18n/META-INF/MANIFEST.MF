@@ -4,6 +4,6 @@ Bundle-Name: I18n
 Bundle-SymbolicName: com.example.e4.rcp.todo.i18n
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime
 Export-Package: com.example.e4.rcp.todo.i18n
