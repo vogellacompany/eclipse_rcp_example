@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 @Documented
 @Target({ ElementType.PARAMETER, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueTodo {
+public @interface DirectTodo {
+	long id() default 0;
 }

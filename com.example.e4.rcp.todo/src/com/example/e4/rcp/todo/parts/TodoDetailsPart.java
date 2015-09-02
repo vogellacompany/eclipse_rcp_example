@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Text;
 import com.example.e4.rcp.todo.i18n.Messages;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Todo;
+import com.example.e4.rcp.todo.ownannotation.DirectTodo;
 
 public class TodoDetailsPart {
 
@@ -51,6 +52,9 @@ public class TodoDetailsPart {
 			}
 		}
 	};
+	
+	@Inject
+	@DirectTodo(id=1)
 	private Todo todo;
 
 	private Label lblSummary;
