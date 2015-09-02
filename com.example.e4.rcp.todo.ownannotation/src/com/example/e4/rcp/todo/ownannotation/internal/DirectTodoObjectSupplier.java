@@ -17,8 +17,6 @@ public class DirectTodoObjectSupplier extends ExtendedObjectSupplier {
 	
 	@Override
 	public Object get(IObjectDescriptor descriptor, IRequestor requestor, boolean track, boolean group) {
-		System.out.println("Own annotation processor");
-
 		// get the DirectTodo from the IObjectDescriptor 
 		DirectTodo uniqueTodo = descriptor.getQualifier(DirectTodo.class);
 		
