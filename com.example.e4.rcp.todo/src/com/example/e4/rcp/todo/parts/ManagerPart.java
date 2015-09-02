@@ -1,7 +1,5 @@
 package com.example.e4.rcp.todo.parts;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -30,7 +28,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
@@ -41,7 +38,6 @@ import com.example.e4.rcp.todo.model.Todo;
 public class ManagerPart {
 
 	private Button btnNewButton;
-	private Label lblNewLabel;
 	private TableViewer viewer;
 
 	@Inject
@@ -63,7 +59,6 @@ public class ManagerPart {
 				Job job = new Job("loading") {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
-						List<Todo> list = model.getTodos();
 						sync.asyncExec(new Runnable() {
 							@Override
 							public void run() {
@@ -86,6 +81,7 @@ public class ManagerPart {
 				1, 1));
 		search.setMessage("Filter");
 		search.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
 					Text text = (Text) e.getSource();

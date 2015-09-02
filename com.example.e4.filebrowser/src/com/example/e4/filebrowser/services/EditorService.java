@@ -3,7 +3,6 @@ package com.example.e4.filebrowser.services;
 import java.net.URI;
 
 import org.eclipse.e4.ui.model.application.MApplication;
-import org.eclipse.e4.ui.model.application.ui.MUIElement;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
@@ -13,7 +12,6 @@ public class EditorService {
 
 	public void createPart(MApplication application, EPartService partService,
 			EModelService modelService, URI uri) {
-		MUIElement find = modelService.find("editorarea", application);
 		MPart part = partService
 				.createPart("com.example.e4.rcp.todo.partdescriptor.fileeditor");
 		part.setLabel("New Dynamic Part");

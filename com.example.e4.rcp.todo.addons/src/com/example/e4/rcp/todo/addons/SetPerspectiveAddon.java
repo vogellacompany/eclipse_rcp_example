@@ -1,9 +1,7 @@
 package com.example.e4.rcp.todo.addons;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
-import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.equinox.app.IApplicationContext;
 
 public class SetPerspectiveAddon {
