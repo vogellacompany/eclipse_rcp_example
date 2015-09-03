@@ -12,6 +12,7 @@ public class MessagesRegistry extends BaseMessageRegistry<Messages> {
 	@Inject
 	@Override
 	public void updateMessages(@Translation Messages messages) {
+		// Update the Messages for the BaseMessageRegistry by DI
 		super.updateMessages(messages);
 	}
 }
