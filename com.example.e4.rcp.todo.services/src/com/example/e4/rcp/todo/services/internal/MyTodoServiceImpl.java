@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -41,16 +43,16 @@ public class MyTodoServiceImpl implements ITodoService {
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
 		boolean created = false;
-		Todo updateTodo = findById(newTodo.getId());
-		if (updateTodo == null) {
+		Optional<Todo> updateTodo = findById(newTodo.getId());
+		if (!updateTodo.isPresent()) {
 			created = true;
-			updateTodo = new Todo(current++);
-			todos.add(updateTodo);
+			updateTodo = Optional.of(new Todo(current++));
+			todos.add(updateTodo.get());
 		}
-		updateTodo.setSummary(newTodo.getSummary());
-		updateTodo.setDescription(newTodo.getDescription());
-		updateTodo.setDone(newTodo.isDone());
-		updateTodo.setDueDate(newTodo.getDueDate());
+		updateTodo.get().setSummary(newTodo.getSummary());
+		updateTodo.get().setDescription(newTodo.getDescription());
+		updateTodo.get().setDone(newTodo.isDone());
+		updateTodo.get().setDueDate(newTodo.getDueDate());
 
 		// configure the event
 
@@ -58,37 +60,37 @@ public class MyTodoServiceImpl implements ITodoService {
 		if (created) {
 			broker.post(MyEventConstants.TOPIC_TODO_NEW,
 					createEventData(MyEventConstants.TOPIC_TODO_NEW, 
-							String.valueOf(updateTodo.getId())));
+							String.valueOf(updateTodo.get().getId())));
 		} else {
 			broker.
 			post(MyEventConstants.TOPIC_TODO_UPDATE,
 			 createEventData(MyEventConstants.TOPIC_TODO_UPDATE, 
-					 String.valueOf(updateTodo.getId())));
+					 String.valueOf(updateTodo.get().getId())));
 		}
 		return true;
 	}
 
 	@Override
-	public Todo getTodo(long id) {
-		Todo todo = findById(id);
+	public Optional<Todo> getTodo(long id) {
+		Optional<Todo> todo = findById(id);
 
-		if (todo != null) {
-			return todo.copy();
+		if (todo.isPresent()) {
+			return Optional.of(todo.get().copy());
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	@Override
 	public boolean deleteTodo(long id) {
-		Todo deleteTodo = findById(id);
+		Optional<Todo> deleteTodo = findById(id);
 
-		if (deleteTodo != null) {
-			todos.remove(deleteTodo);
+		if (deleteTodo.isPresent()) {
+			todos.remove(deleteTodo.get());
 			// configure the event
 			broker.
 				post(MyEventConstants.TOPIC_TODO_DELETE,
 				 createEventData(MyEventConstants.TOPIC_TODO_DELETE, 
-						 String.valueOf(deleteTodo.getId())));
+						 String.valueOf(deleteTodo.get().getId())));
 			return true;
 		}
 		return false;
@@ -113,13 +115,13 @@ public class MyTodoServiceImpl implements ITodoService {
 		return new Todo(current++, summary, description, false, new Date());
 	}
 
-	private Todo findById(long id) {
-		for (Todo todo : todos) {
+	private Optional<Todo> findById(long id) {
+		for (Todo todo : getTodos()) {
 			if (id == todo.getId()) {
-				return todo;
+				return Optional.of(todo);
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	private Map<String, String> createEventData(String topic, String todoId) {

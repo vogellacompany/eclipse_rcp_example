@@ -50,7 +50,7 @@ public class TodoDetailsPart {
 	
 	@Inject
 	@DirectTodo(id=1)
-	private Todo todo;
+	private java.util.Optional<Todo> todo;
 
 	@PostConstruct
 	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
@@ -96,8 +96,10 @@ public class TodoDetailsPart {
 	}
 
 	@Persist
-	public void save(MDirtyable dirty, ITodoService model) {
-		model.saveTodo(todo);
+	public void save(ITodoService todoService) {
+		if(todo.isPresent()) {
+			todoService.saveTodo(todo.get());
+		}
 		dirty.setDirty(false);
 	}
 
@@ -106,9 +108,9 @@ public class TodoDetailsPart {
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
 		if (todo != null) {
 			// Remember the todo as field
-			this.todo = todo;
+			this.todo = java.util.Optional.of(todo);
 			// update the user interface
-			updateUserInterface(todo);
+			updateUserInterface(this.todo);
 		}
 	}
 
@@ -123,14 +125,14 @@ public class TodoDetailsPart {
 		}
 	}
 
-	private void updateUserInterface(Todo todo) {
+	private void updateUserInterface(java.util.Optional<Todo> todo) {
 
-		// check if Todo is null
-		if (todo == null) {
+		// check if Todo is present
+		if (todo.isPresent()) {
+			enableUserInterface(true);
+		} else {
 			enableUserInterface(false);
 			return;
-		} else {
-			enableUserInterface(true);
 		}
 
 		// Check if the user interface is available
@@ -151,25 +153,25 @@ public class TodoDetailsPart {
 			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify)
 					.observe(txtSummary);
 			IObservableValue oTodoSummary = BeanProperties.value(
-					Todo.FIELD_SUMMARY).observe(todo);
+					Todo.FIELD_SUMMARY).observe(todo.get());
 			ctx.bindValue(oWidgetSummary, oTodoSummary);
 
 			IObservableValue oWidgetDescription = WidgetProperties.text(
 					SWT.Modify).observe(txtDescription);
 			IObservableValue oTodoDescription = BeanProperties.value(
-					Todo.FIELD_DESCRIPTION).observe(todo);
+					Todo.FIELD_DESCRIPTION).observe(todo.get());
 			ctx.bindValue(oWidgetDescription, oTodoDescription);
 
 			IObservableValue oWidgetButton = WidgetProperties.selection()
 					.observe(btnDone);
 			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE)
-					.observe(todo);
+					.observe(todo.get());
 			ctx.bindValue(oWidgetButton, oTodoDone);
 
 			IObservableValue oWidgetSelectionDateTime = WidgetProperties
 					.selection().observe(dateTime);
 			IObservableValue oTodoDueDate = BeanProperties.value(
-					Todo.FIELD_DUEDATE).observe(todo);
+					Todo.FIELD_DUEDATE).observe(todo.get());
 			ctx.bindValue(oWidgetSelectionDateTime, oTodoDueDate);
 
 			// register listener for any changes

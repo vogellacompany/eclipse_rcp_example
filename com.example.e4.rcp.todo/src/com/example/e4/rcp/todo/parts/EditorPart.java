@@ -38,40 +38,40 @@ public class EditorPart {
 
 	@Inject
 	MDirtyable dirty;
-	
+
 	@Inject
 	ECommandService commandService;
-	
+
 	@Inject
 	EHandlerService handlerService;
-	
-	
-	@Inject MPart part;
+
+	@Inject
+	MPart part;
 
 	private Text txtSummary;
 	private Text txtDescription;
 	private Button btnDone;
 	private DateTime dateTime;
-	
+
 	private DataBindingContext ctx = new DataBindingContext();
 
 	// define listener for the data binding
 	IChangeListener listener = event -> {
-		if (dirty!=null){
+		if (dirty != null) {
 			dirty.setDirty(true);
 		}
 	};
-	private Todo todo;
+	private java.util.Optional<Todo> todo;
 
 	@PostConstruct
 	public void createControls(Composite parent, ITodoService todoService) {
 		// extract the id of the todo item
 		String string = part.getPersistedState().get(Todo.FIELD_ID);
 		Long idOfTodo = Long.valueOf(string);
-		
+
 		// retrieve the todo based on the persistedState
 		todo = todoService.getTodo(idOfTodo);
-		
+
 		GridLayout gl_parent = new GridLayout(2, false);
 		gl_parent.marginRight = 10;
 		gl_parent.marginLeft = 10;
@@ -97,13 +97,12 @@ public class EditorPart {
 		lblNewLabel.setText("Due Date");
 
 		dateTime = new DateTime(parent, SWT.BORDER);
-		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
-				1, 1));
+		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(parent, SWT.NONE);
 
 		btnDone = new Button(parent, SWT.CHECK);
 		btnDone.setText("Done");
-		
+
 		Button button = new Button(parent, SWT.PUSH);
 		button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 		button.setText("Save");
@@ -114,64 +113,58 @@ public class EditorPart {
 				handlerService.executeHandler(command);
 			}
 		});
-		
+
 		updateUserInterface(todo);
 	}
 
 	@Persist
-	public void save(ITodoService model) {
-		model.saveTodo(todo);
+	public void save(ITodoService todoService) {
+		if(todo.isPresent()) {
+			todoService.saveTodo(todo.get());
+		}
 		dirty.setDirty(false);
 	}
 
-	private void updateUserInterface(Todo todo) {
-		
+	private void updateUserInterface(java.util.Optional<Todo> todo) {
+
 		// check if the user interface is available
 		// assume you have a field called "summary"
 		// for a widget
-		if (txtSummary != null && !txtSummary.isDisposed()) {
-			
-			
+		if (txtSummary != null && !txtSummary.isDisposed() && todo.isPresent()) {
+
 			// Deregister change listener to the old binding
 			IObservableList providers = ctx.getValidationStatusProviders();
 			for (Object o : providers) {
 				Binding b = (Binding) o;
 				b.getTarget().removeChangeListener(listener);
 			}
-			
+
 			// Remove bindings
 			ctx.dispose();
-			
-			IObservableValue target = WidgetProperties.text(SWT.Modify)
-					.observe(txtSummary);
-			IObservableValue model = BeanProperties.value(Todo.FIELD_SUMMARY).observe(
-					todo);
+
+			IObservableValue target = WidgetProperties.text(SWT.Modify).observe(txtSummary);
+			IObservableValue model = BeanProperties.value(Todo.FIELD_SUMMARY).observe(todo.get());
+			ctx.bindValue(target, model);
+
+			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
+			model = BeanProperties.value(Todo.FIELD_DESCRIPTION).observe(todo.get());
 			ctx.bindValue(target, model);
 
 			target = WidgetProperties.selection().observe(btnDone);
-			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
-			ctx.bindValue(target, model);
-			
-			target = WidgetProperties.selection().observe(btnDone);
-			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
+			model = BeanProperties.value(Todo.FIELD_DONE).observe(todo.get());
 			ctx.bindValue(target, model);
 
-			IObservableValue observeSelectionDateTimeObserveWidget = 
-					WidgetProperties
-					.selection().observe(dateTime);
-			IObservableValue dueDateTodoObserveValue = 
-					BeanProperties.value(
-					Todo.FIELD_DUEDATE).observe(todo);
-			ctx.bindValue(observeSelectionDateTimeObserveWidget,
-					dueDateTodoObserveValue);
-			
+			IObservableValue observeSelectionDateTimeObserveWidget = WidgetProperties.selection().observe(dateTime);
+			IObservableValue dueDateTodoObserveValue = BeanProperties.value(Todo.FIELD_DUEDATE).observe(todo.get());
+			ctx.bindValue(observeSelectionDateTimeObserveWidget, dueDateTodoObserveValue);
+
 			// register listener for any changes
 			providers = ctx.getValidationStatusProviders();
 			for (Object o : providers) {
 				Binding b = (Binding) o;
 				b.getTarget().addChangeListener(listener);
 			}
-			
+
 			// Register for the changes
 			providers = ctx.getValidationStatusProviders();
 			for (Object o : providers) {
@@ -187,12 +180,11 @@ public class EditorPart {
 		// called summary
 		txtSummary.setFocus();
 	}
-	
+
 	@Inject
 	@Optional
-	private void getNotified(
-			@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
-		if (this.todo.equals(todo)){
+	private void getNotified(@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
+		if (this.todo.equals(todo)) {
 			part.setToBeRendered(false);
 		}
 	}

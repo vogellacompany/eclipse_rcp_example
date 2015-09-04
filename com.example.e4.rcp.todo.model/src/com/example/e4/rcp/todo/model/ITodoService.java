@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.model;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ITodoService {
 	
@@ -8,7 +9,7 @@ public interface ITodoService {
 
 	boolean saveTodo(Todo todo);
 
-	Todo getTodo(long id);
+	Optional<Todo> getTodo(long id);
 
 	boolean deleteTodo(long id);
 

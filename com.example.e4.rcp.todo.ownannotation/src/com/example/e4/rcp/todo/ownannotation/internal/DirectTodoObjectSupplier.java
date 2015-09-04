@@ -1,5 +1,7 @@
 package com.example.e4.rcp.todo.ownannotation.internal;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.e4.core.di.suppliers.ExtendedObjectSupplier;
@@ -24,7 +26,7 @@ public class DirectTodoObjectSupplier extends ExtendedObjectSupplier {
 		long id = uniqueTodo.id();
 		
 		// get the Todo, which has the given id or null, if there is no Todo with the given id
-		Todo todo = todoService.getTodo(id);
+		Optional<Todo> todo = todoService.getTodo(id);
 		
 		return todo;
 	}
