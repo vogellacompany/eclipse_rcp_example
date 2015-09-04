@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.inject.Inject;
@@ -32,11 +33,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	// always return a new copy of the data
 	@Override
 	public List<Todo> getTodos() {
-		List<Todo> list = new ArrayList<>();
-		for (Todo todo : todos) {
-			list.add(todo.copy());
-		}
-		return list;
+		return todos.stream().map(t -> t.copy()).collect(Collectors.toList());
 	}
 
 	// create or update an existing instance of Todo
@@ -59,13 +56,10 @@ public class MyTodoServiceImpl implements ITodoService {
 		// send out events
 		if (created) {
 			broker.post(MyEventConstants.TOPIC_TODO_NEW,
-					createEventData(MyEventConstants.TOPIC_TODO_NEW, 
-							String.valueOf(updateTodo.get().getId())));
+					createEventData(MyEventConstants.TOPIC_TODO_NEW, String.valueOf(updateTodo.get().getId())));
 		} else {
-			broker.
-			post(MyEventConstants.TOPIC_TODO_UPDATE,
-			 createEventData(MyEventConstants.TOPIC_TODO_UPDATE, 
-					 String.valueOf(updateTodo.get().getId())));
+			broker.post(MyEventConstants.TOPIC_TODO_UPDATE,
+					createEventData(MyEventConstants.TOPIC_TODO_UPDATE, String.valueOf(updateTodo.get().getId())));
 		}
 		return true;
 	}
@@ -87,10 +81,8 @@ public class MyTodoServiceImpl implements ITodoService {
 		if (deleteTodo.isPresent()) {
 			todos.remove(deleteTodo.get());
 			// configure the event
-			broker.
-				post(MyEventConstants.TOPIC_TODO_DELETE,
-				 createEventData(MyEventConstants.TOPIC_TODO_DELETE, 
-						 String.valueOf(deleteTodo.get().getId())));
+			broker.post(MyEventConstants.TOPIC_TODO_DELETE,
+					createEventData(MyEventConstants.TOPIC_TODO_DELETE, String.valueOf(deleteTodo.get().getId())));
 			return true;
 		}
 		return false;
