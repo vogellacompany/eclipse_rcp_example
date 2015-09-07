@@ -28,7 +28,7 @@ public class OpenEditorHandler {
 			EPartService partService) {
 
 		// sanity check
-		if (!todo.isPresent()) {
+		if (todo == null || !todo.isPresent()) {
 			return;
 		}
 
@@ -70,7 +70,7 @@ public class OpenEditorHandler {
 	@CanExecute
 	public boolean canExecute(
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) java.util.Optional<Todo> todo) {
-		return todo.isPresent();
+		return todo != null && todo.isPresent();
 	}
 
 }

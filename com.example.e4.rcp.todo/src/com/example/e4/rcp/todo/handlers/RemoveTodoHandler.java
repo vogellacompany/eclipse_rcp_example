@@ -15,13 +15,11 @@ public class RemoveTodoHandler {
 	@Execute
 	public void execute(ITodoService todoService,
 			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) java.util.Optional<Todo> todo,
-			@Named (IServiceConstants.ACTIVE_SHELL) Shell shell
-			) {
-		if (todo.isPresent()) {
+			@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
+		if (todo != null && todo.isPresent()) {
 			todoService.deleteTodo(todo.get().getId());
 		} else {
-			MessageDialog.openInformation(shell, "Deletion not possible",
-					"No todo selected");
+			MessageDialog.openInformation(shell, "Deletion not possible", "No todo selected");
 		}
 	}
 }
