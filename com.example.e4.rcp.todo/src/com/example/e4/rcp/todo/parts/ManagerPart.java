@@ -41,12 +41,13 @@ public class ManagerPart {
 	private TableViewer viewer;
 
 	@Inject
-	UISynchronize sync;
-	@Inject
-	ESelectionService service;
+	private UISynchronize sync;
 
 	@Inject
-	ITodoService model;
+	private ESelectionService selectionService;
+
+	@Inject
+	private ITodoService todoService;
 
 	@PostConstruct
 	public void createControls(Composite parent, final MWindow window) {
@@ -62,7 +63,7 @@ public class ManagerPart {
 						sync.asyncExec(new Runnable() {
 							@Override
 							public void run() {
-								viewer.setInput(model.getTodos());
+								viewer.setInput(todoService.getTodos());
 							}
 						});
 						return Status.OK_STATUS;
@@ -152,9 +153,9 @@ public class ManagerPart {
 		});
 
 		viewer.addSelectionChangedListener(event -> {
-			IStructuredSelection selection = (IStructuredSelection) viewer
-					.getSelection();
-			service.setSelection(selection.getFirstElement());
+			IStructuredSelection selection = viewer
+					.getStructuredSelection();
+			selectionService.setSelection(java.util.Optional.ofNullable(selection.getFirstElement()));
 		});
 
 	}
@@ -164,7 +165,7 @@ public class ManagerPart {
 	private void getNotified(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String topic) {
 		if (viewer != null) {
-			viewer.setInput(model.getTodos());
+			viewer.setInput(todoService.getTodos());
 		}
 	}
 

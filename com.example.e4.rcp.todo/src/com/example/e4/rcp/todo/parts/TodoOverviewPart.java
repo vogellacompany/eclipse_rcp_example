@@ -53,7 +53,7 @@ public class TodoOverviewPart {
 	private UISynchronize sync;
 
 	@Inject
-	private ESelectionService service;
+	private ESelectionService selectionService;
 
 	@Inject
 	private IEventBroker broker;
@@ -157,8 +157,8 @@ public class TodoOverviewPart {
 		});
 
 		viewer.addSelectionChangedListener(event -> {
-			IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-			service.setSelection(selection.getFirstElement());
+			IStructuredSelection selection = viewer.getStructuredSelection();
+			selectionService.setSelection(java.util.Optional.ofNullable(selection.getFirstElement()));
 		});
 		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
 		writableList = new WritableList(todoService.getTodos(), Todo.class);

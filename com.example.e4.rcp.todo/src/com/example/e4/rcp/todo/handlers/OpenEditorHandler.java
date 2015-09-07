@@ -22,17 +22,17 @@ public class OpenEditorHandler {
 	private static final String className = "com.example.e4.rcp.todo.parts.EditorPart";
 	@Execute
 	public void execute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) java.util.Optional<Todo> todo,
 			MApplication application, 
 			EModelService modelService,
 			EPartService partService) {
 
 		// sanity check
-		if (todo == null) {
+		if (!todo.isPresent()) {
 			return;
 		}
 
-		String id = String.valueOf(todo.getId());
+		String id = String.valueOf(todo.get().getId());
 
 		// maybe the editor is already open?
 		List<MPart> parts = (List<MPart>) partService.getParts();
@@ -54,7 +54,7 @@ public class OpenEditorHandler {
 		part.getPersistedState().put(Todo.FIELD_ID, id);
 
 		// create a nice label for the part header
-		String header = "ID:" + id + " " + todo.getSummary();
+		String header = "ID:" + id + " " + todo.get().getSummary();
 		part.setLabel(header);
 		part.setElementId(id);
 		part.setCloseable(true);
@@ -69,11 +69,8 @@ public class OpenEditorHandler {
 
 	@CanExecute
 	public boolean canExecute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
-		if (todo != null) {
-			return true;
-		}
-		return false;
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) java.util.Optional<Todo> todo) {
+		return todo.isPresent();
 	}
 
 }
