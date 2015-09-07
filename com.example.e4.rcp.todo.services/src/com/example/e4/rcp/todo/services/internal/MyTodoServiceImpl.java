@@ -35,6 +35,10 @@ public class MyTodoServiceImpl implements ITodoService {
 	public List<Todo> getTodos() {
 		return todos.stream().map(t -> t.copy()).collect(Collectors.toList());
 	}
+	
+	protected List<Todo> getTodosInternal() {
+		return todos;
+	}
 
 	// create or update an existing instance of Todo
 	@Override
@@ -108,12 +112,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	private Optional<Todo> findById(long id) {
-		for (Todo todo : getTodos()) {
-			if (id == todo.getId()) {
-				return Optional.of(todo);
-			}
-		}
-		return Optional.empty();
+		return getTodosInternal().stream().filter(t -> t.getId() == id).findAny();
 	}
 
 	private Map<String, String> createEventData(String topic, String todoId) {
