@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -19,7 +19,7 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class MyTodoServiceImpl implements ITodoService {
 
-	private static int current = 1;
+	private static AtomicInteger current = new AtomicInteger(1);
 	private List<Todo> todos;
 
 	// use dependency injection in MyTodoServiceImpl
@@ -35,7 +35,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	public List<Todo> getTodos() {
 		return todos.stream().map(t -> t.copy()).collect(Collectors.toList());
 	}
-	
+
 	protected List<Todo> getTodosInternal() {
 		return todos;
 	}
@@ -43,27 +43,25 @@ public class MyTodoServiceImpl implements ITodoService {
 	// create or update an existing instance of Todo
 	@Override
 	public synchronized boolean saveTodo(Todo newTodo) {
-		boolean created = false;
-		Optional<Todo> updateTodo = findById(newTodo.getId());
-		if (!updateTodo.isPresent()) {
-			created = true;
-			updateTodo = Optional.of(new Todo(current++));
-			todos.add(updateTodo.get());
-		}
-		updateTodo.get().setSummary(newTodo.getSummary());
-		updateTodo.get().setDescription(newTodo.getDescription());
-		updateTodo.get().setDone(newTodo.isDone());
-		updateTodo.get().setDueDate(newTodo.getDueDate());
+		// hold the Optional object as reference to determine, if the Todo is
+		// newly created or not
+		Optional<Todo> todoOptional = findById(newTodo.getId());
 
-		// configure the event
+		// get the actual todo or create a new one
+		Todo todo = todoOptional.orElse(new Todo(current.getAndIncrement()));
+		todo.setSummary(newTodo.getSummary());
+		todo.setDescription(newTodo.getDescription());
+		todo.setDone(newTodo.isDone());
+		todo.setDueDate(newTodo.getDueDate());
 
 		// send out events
-		if (created) {
-			broker.post(MyEventConstants.TOPIC_TODO_NEW,
-					createEventData(MyEventConstants.TOPIC_TODO_NEW, String.valueOf(updateTodo.get().getId())));
-		} else {
+		if (todoOptional.isPresent()) {
 			broker.post(MyEventConstants.TOPIC_TODO_UPDATE,
-					createEventData(MyEventConstants.TOPIC_TODO_UPDATE, String.valueOf(updateTodo.get().getId())));
+					createEventData(MyEventConstants.TOPIC_TODO_UPDATE, String.valueOf(todo.getId())));
+		} else {
+			todos.add(todo);
+			broker.post(MyEventConstants.TOPIC_TODO_NEW,
+					createEventData(MyEventConstants.TOPIC_TODO_NEW, String.valueOf(todo.getId())));
 		}
 		return true;
 	}
@@ -93,10 +91,10 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	// Example data, change if you like
-	private List<Todo> createInitialModel()         {
+	private List<Todo> createInitialModel() {
 		List<Todo> list = new ArrayList<>();
 		list.add(createTodo("Application model", "Flexible and extensible"));
-		list.add(createTodo("DI", "@Inject as programming mode"));		
+		list.add(createTodo("DI", "@Inject as programming mode"));
 		list.add(createTodo("OSGi", "Services"));
 		list.add(createTodo("SWT", "Widgets"));
 		list.add(createTodo("JFace", "Especially Viewers!"));
@@ -108,7 +106,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	}
 
 	private Todo createTodo(String summary, String description) {
-		return new Todo(current++, summary, description, false, new Date());
+		return new Todo(current.getAndIncrement(), summary, description, false, new Date());
 	}
 
 	private Optional<Todo> findById(long id) {

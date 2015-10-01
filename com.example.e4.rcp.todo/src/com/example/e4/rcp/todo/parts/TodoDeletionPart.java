@@ -72,7 +72,7 @@ public class TodoDeletionPart {
 				ISelection selection = viewer.getSelection();
 				IStructuredSelection sel = (IStructuredSelection) selection;
 				if (sel.size() > 0) {
-					selectionService.setSelection(java.util.Optional.ofNullable(sel.getFirstElement()));
+					selectionService.setSelection(sel.getFirstElement());
 					// assure that "com.example.e4.rcp.todo.remove" is the ID
 					// of the command which deletes todos in your application
 					// model

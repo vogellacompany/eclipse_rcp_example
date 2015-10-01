@@ -158,7 +158,7 @@ public class TodoOverviewPart {
 
 		viewer.addSelectionChangedListener(event -> {
 			IStructuredSelection selection = viewer.getStructuredSelection();
-			selectionService.setSelection(java.util.Optional.ofNullable(selection.getFirstElement()));
+			selectionService.setSelection(selection.getFirstElement());
 		});
 		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
 		writableList = new WritableList(todoService.getTodos(), Todo.class);

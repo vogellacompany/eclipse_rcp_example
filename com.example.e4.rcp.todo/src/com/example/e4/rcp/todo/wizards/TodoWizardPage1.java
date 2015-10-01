@@ -1,7 +1,5 @@
 package com.example.e4.rcp.todo.wizards;
 
-import java.util.Optional;
-
 import javax.inject.Inject;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -34,7 +32,7 @@ public class TodoWizardPage1 extends WizardPage {
 		// in this example we stay with the next operator
 		TodoDetailsPart part = new TodoDetailsPart();
 		part.createControls(container, messagesRegistry);
-		part.setTodo(Optional.of(todo));
+		part.setTodo(todo);
 		
 		setControl(container);
 	}

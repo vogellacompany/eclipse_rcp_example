@@ -155,7 +155,7 @@ public class ManagerPart {
 		viewer.addSelectionChangedListener(event -> {
 			IStructuredSelection selection = viewer
 					.getStructuredSelection();
-			selectionService.setSelection(java.util.Optional.ofNullable(selection.getFirstElement()));
+			selectionService.setSelection(selection.getFirstElement());
 		});
 
 	}

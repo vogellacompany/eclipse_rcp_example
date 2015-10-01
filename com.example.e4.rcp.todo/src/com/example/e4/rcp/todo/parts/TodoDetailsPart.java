@@ -105,10 +105,10 @@ public class TodoDetailsPart {
 
 	@Inject
 	public void setTodo(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) java.util.Optional<Todo> todo) {
-		if (todo != null && todo.isPresent()) {
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
+		if (todo != null) {
 			// Remember the todo as field
-			this.todo = todo;
+			this.todo = java.util.Optional.of(todo);
 			// update the user interface
 			updateUserInterface(this.todo);
 		}
