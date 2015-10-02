@@ -119,9 +119,7 @@ public class EditorPart {
 
 	@Persist
 	public void save(ITodoService todoService) {
-		if(todo.isPresent()) {
-			todoService.saveTodo(todo.get());
-		}
+		todo.ifPresent(todo -> todoService.saveTodo(todo));
 		dirty.setDirty(false);
 	}
 
