@@ -14,9 +14,9 @@ public @interface DirectTodo {
 
 	/**
 	 * An id parameter can be passed to the DirectTodo, in order to inject a
-	 * Todo with a given id.<br/>
+	 * java.util.Optional<Todo> with a given id.<br/>
 	 * <br/>
-	 * Without parameter the injected Todo is null, because Todo ids begin
+	 * Without parameter the injected Todo is an absent java.util.Optional, because Todo ids begin
 	 * with 1 and the default is 0 (see ITodoService).
 	 * 
 	 * @return the id, which is passed to the DirectTodo annotation or 0, if no parameter is passed
