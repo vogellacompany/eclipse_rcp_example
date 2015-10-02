@@ -68,26 +68,21 @@ public class MyTodoServiceImpl implements ITodoService {
 
 	@Override
 	public Optional<Todo> getTodo(long id) {
-		Optional<Todo> todo = findById(id);
-
-		if (todo.isPresent()) {
-			return Optional.of(todo.get().copy());
-		}
-		return Optional.empty();
+		return findById(id).map(todo -> todo.copy());
 	}
 
 	@Override
 	public boolean deleteTodo(long id) {
 		Optional<Todo> deleteTodo = findById(id);
 
-		if (deleteTodo.isPresent()) {
-			todos.remove(deleteTodo.get());
+		deleteTodo.ifPresent(todo -> {
+			todos.remove(todo);
 			// configure the event
 			broker.post(MyEventConstants.TOPIC_TODO_DELETE,
-					createEventData(MyEventConstants.TOPIC_TODO_DELETE, String.valueOf(deleteTodo.get().getId())));
-			return true;
-		}
-		return false;
+					createEventData(MyEventConstants.TOPIC_TODO_DELETE, String.valueOf(todo.getId())));
+		});
+		
+		return deleteTodo.isPresent();
 	}
 
 	// Example data, change if you like

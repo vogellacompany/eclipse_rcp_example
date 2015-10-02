@@ -47,9 +47,9 @@ public class TodoDetailsPart {
 			dirty.setDirty(true);
 		}
 	};
-	
+
 	@Inject
-	@DirectTodo(id=1)
+	@DirectTodo(id = 1)
 	private java.util.Optional<Todo> todo;
 
 	@PostConstruct
@@ -67,8 +67,7 @@ public class TodoDetailsPart {
 		messagesRegistry.register(lblSummary::setText, m -> m.txtSummary);
 
 		txtSummary = new Text(parent, SWT.BORDER);
-		txtSummary
-				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		// set Label text and register Label text locale changes
@@ -84,8 +83,7 @@ public class TodoDetailsPart {
 		messagesRegistry.register(lblDueDate::setText, m -> m.lblDueDate);
 
 		dateTime = new DateTime(parent, SWT.BORDER);
-		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
-				1, 1));
+		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(parent, SWT.NONE);
 
 		btnDone = new Button(parent, SWT.CHECK);
@@ -97,21 +95,16 @@ public class TodoDetailsPart {
 
 	@Persist
 	public void save(ITodoService todoService) {
-		if(todo.isPresent()) {
-			todoService.saveTodo(todo.get());
-		}
+		todo.ifPresent(todo -> todoService.saveTodo(todo));
 		dirty.setDirty(false);
 	}
 
 	@Inject
-	public void setTodo(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
-		if (todo != null) {
-			// Remember the todo as field
-			this.todo = java.util.Optional.of(todo);
-			// update the user interface
-			updateUserInterface(this.todo);
-		}
+	public void setTodo(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
+		// Remember the todo as field
+		this.todo = java.util.Optional.ofNullable(todo);
+		// update the user interface
+		updateUserInterface(this.todo);
 	}
 
 	// allows to disable/ enable the user interface fields
@@ -150,28 +143,20 @@ public class TodoDetailsPart {
 			// Remove bindings
 			ctx.dispose();
 
-			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify)
-					.observe(txtSummary);
-			IObservableValue oTodoSummary = BeanProperties.value(
-					Todo.FIELD_SUMMARY).observe(todo.get());
+			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify).observe(txtSummary);
+			IObservableValue oTodoSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observe(todo.get());
 			ctx.bindValue(oWidgetSummary, oTodoSummary);
 
-			IObservableValue oWidgetDescription = WidgetProperties.text(
-					SWT.Modify).observe(txtDescription);
-			IObservableValue oTodoDescription = BeanProperties.value(
-					Todo.FIELD_DESCRIPTION).observe(todo.get());
+			IObservableValue oWidgetDescription = WidgetProperties.text(SWT.Modify).observe(txtDescription);
+			IObservableValue oTodoDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observe(todo.get());
 			ctx.bindValue(oWidgetDescription, oTodoDescription);
 
-			IObservableValue oWidgetButton = WidgetProperties.selection()
-					.observe(btnDone);
-			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE)
-					.observe(todo.get());
+			IObservableValue oWidgetButton = WidgetProperties.selection().observe(btnDone);
+			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo.get());
 			ctx.bindValue(oWidgetButton, oTodoDone);
 
-			IObservableValue oWidgetSelectionDateTime = WidgetProperties
-					.selection().observe(dateTime);
-			IObservableValue oTodoDueDate = BeanProperties.value(
-					Todo.FIELD_DUEDATE).observe(todo.get());
+			IObservableValue oWidgetSelectionDateTime = WidgetProperties.selection().observe(dateTime);
+			IObservableValue oTodoDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observe(todo.get());
 			ctx.bindValue(oWidgetSelectionDateTime, oTodoDueDate);
 
 			// register listener for any changes
