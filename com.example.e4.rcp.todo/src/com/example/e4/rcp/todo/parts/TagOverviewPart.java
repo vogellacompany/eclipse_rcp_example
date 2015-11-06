@@ -22,6 +22,10 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
 import com.example.e4.rcp.todo.databinding.DelegatingDescriptionProperty;
@@ -48,6 +52,18 @@ public class TagOverviewPart {
 
 	@PostConstruct
 	public void postConstruct(Composite parent) {
+		parent.setLayout(new GridLayout(1, false));
+
+		Button button = new Button(parent, SWT.PUSH);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// update the table content, whenever the button is pressed
+				filteredTree.getViewer().setInput(todoService.getRootTag());
+			}
+		});
+		button.setText("Load Data");
+		
 		filteredTree = new FilteredTree(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER,
 				new PatternFilter());
 		filteredTree.getViewer().getTree().setHeaderVisible(true);
