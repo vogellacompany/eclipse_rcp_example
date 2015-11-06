@@ -1,6 +1,5 @@
 package com.example.e4.rcp.todo.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Tag<T> {
@@ -15,7 +14,8 @@ public class Tag<T> {
 
 	public Tag(String Label, List<T> taggedElements) {
 		label = Label;
-		this.taggedElements = new ArrayList<>(taggedElements);
+		// TODO usually we should make a copy here 
+		this.taggedElements = taggedElements;
 	}
 	
 	public String getLabel() {

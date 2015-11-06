@@ -1,11 +1,17 @@
 package com.example.e4.rcp.todo.parts;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.dialogs.filteredtree.FilteredTree;
 import org.eclipse.e4.ui.dialogs.filteredtree.PatternFilter;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
@@ -22,6 +28,7 @@ import com.example.e4.rcp.todo.databinding.DelegatingDescriptionProperty;
 import com.example.e4.rcp.todo.databinding.DelegatingLabelProperty;
 import com.example.e4.rcp.todo.databinding.DelegatingObservableCellLabelProvider;
 import com.example.e4.rcp.todo.databinding.TagTreeListProperty;
+import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Tag;
 import com.example.e4.rcp.todo.model.Todo;
@@ -30,10 +37,18 @@ public class TagOverviewPart {
 
 	@Inject
 	private ESelectionService selectionService;
+	
+	@Inject
+	private UISynchronize sync;
+	
+	@Inject
+	private ITodoService todoService;
+
+	private FilteredTree filteredTree;
 
 	@PostConstruct
-	public void postConstruct(Composite parent, ITodoService todoService) {
-		FilteredTree filteredTree = new FilteredTree(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER,
+	public void postConstruct(Composite parent) {
+		filteredTree = new FilteredTree(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER,
 				new PatternFilter());
 		filteredTree.getViewer().getTree().setHeaderVisible(true);
 
@@ -64,16 +79,27 @@ public class TagOverviewPart {
 		descriptionViewerColumn.setLabelProvider(new DelegatingObservableCellLabelProvider(
 				observableContentProvider.getKnownElements(), descriptionProperty));
 
-		filteredTree.getViewer().setInput(createInput(todoService));
+		filteredTree.getViewer().setInput(todoService.getRootTag());
 	}
-
-	private Tag<Tag<Todo>> createInput(ITodoService todoService) {
-		List<Todo> todos = todoService.getTodos();
-		Tag<Todo> eclipseTag = new Tag<>("Eclipse", todos);
-		List<Tag<Todo>> arrayList = new ArrayList<>();
-		arrayList.add(eclipseTag);
-		Tag<Tag<Todo>> rootTag = new Tag<>("root", arrayList);
-		return rootTag;
+	
+	@Inject
+	@Optional
+	private void subscribeTopicTodoAllTopics(
+			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Map<String, String> event) {
+		Job job = new Job("loading") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				Tag<Tag<Todo>> rootTag = todoService.getRootTag();
+				sync.asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						filteredTree.getViewer().setInput(rootTag);
+					}
+				});
+				return Status.OK_STATUS;
+			}
+		};
+		job.schedule();
 	}
 
 	private class TagTreeContentProvider implements ITreeContentProvider {

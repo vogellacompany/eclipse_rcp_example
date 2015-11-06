@@ -188,8 +188,6 @@ public class TodoOverviewPart {
 			}
 		};
 		job.schedule();
-		
-		
 	}
 
 	@Focus

@@ -15,6 +15,7 @@ import org.eclipse.e4.core.services.events.IEventBroker;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
+import com.example.e4.rcp.todo.model.Tag;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class MyTodoServiceImpl implements ITodoService {
@@ -25,9 +26,11 @@ public class MyTodoServiceImpl implements ITodoService {
 	// use dependency injection in MyTodoServiceImpl
 	@Inject
 	private IEventBroker broker;
+	private Tag<Tag<Todo>> rootTag;
 
 	public MyTodoServiceImpl() {
 		todos = createInitialModel();
+		createRootTag(todos);
 	}
 
 	// always return a new copy of the data
@@ -77,12 +80,28 @@ public class MyTodoServiceImpl implements ITodoService {
 
 		deleteTodo.ifPresent(todo -> {
 			todos.remove(todo);
+			
 			// configure the event
 			broker.post(MyEventConstants.TOPIC_TODO_DELETE,
 					createEventData(MyEventConstants.TOPIC_TODO_DELETE, String.valueOf(todo.getId())));
 		});
-		
+
 		return deleteTodo.isPresent();
+	}
+
+	@Override
+	public Tag<Tag<Todo>> getRootTag() {
+		return rootTag;
+	}
+
+	@Override
+	public List<Tag<Todo>> getTags(long id) {
+		List<Tag<Todo>> tags = new ArrayList<>();
+	
+		Optional<Todo> findById = findById(id);
+		findById.ifPresent(todo -> findTags(todo, tags, getRootTag()));
+	
+		return tags;
 	}
 
 	// Example data, change if you like
@@ -100,12 +119,32 @@ public class MyTodoServiceImpl implements ITodoService {
 		return list;
 	}
 
+	private void createRootTag(List<Todo> todos) {
+		Tag<Todo> eclipseTag = new Tag<>("Eclipse", todos);
+		List<Tag<Todo>> tagList = new ArrayList<>();
+		tagList.add(eclipseTag);
+		rootTag = new Tag<>("root", tagList);
+	}
+
 	private Todo createTodo(String summary, String description) {
 		return new Todo(current.getAndIncrement(), summary, description, false, new Date());
 	}
 
 	private Optional<Todo> findById(long id) {
 		return getTodosInternal().stream().filter(t -> t.getId() == id).findAny();
+	}
+
+	private void findTags(Todo todo, List<Tag<Todo>> todosTags, Tag<?> rootTag) {
+		List<?> taggedElements = rootTag.getTaggedElements();
+		for (Object taggedElement : taggedElements) {
+			if (taggedElement instanceof Tag) {
+				findTags(todo, todosTags, (Tag<?>) taggedElement);
+			} else if (todo.equals(taggedElement)) {
+				@SuppressWarnings("unchecked")
+				Tag<Todo> foundTag = (Tag<Todo>) rootTag;
+				todosTags.add(foundTag);
+			}
+		}
 	}
 
 	private Map<String, String> createEventData(String topic, String todoId) {
