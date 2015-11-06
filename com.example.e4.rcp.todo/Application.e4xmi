@@ -10,6 +10,7 @@
             <children xsi:type="basic:PartStack" xmi:id="_3wNUEL-iEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.partstack.topleft" containerData="60">
               <tags>NoAutoCollapse</tags>
               <tags>NoMove</tags>
+              <children xsi:type="basic:Part" xmi:id="_IJheIIP5EeWAXZTrFEY-ug" elementId="com.example.e4.rcp.todo.part.tagoverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TreeViewerOverviewPart" label="Tag Overview"/>
               <children xsi:type="basic:Part" xmi:id="_SLnb4L-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="%part.overview" bindingContexts="_rym-gBI2EeSz0MOyJTR0RQ" closeable="true">
                 <persistedState key="uri" value="http://www.google.com"/>
                 <tags>NoMove</tags>
