@@ -7,7 +7,7 @@ import org.eclipse.e4.ui.workbench.UIEvents;
 import org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer;
 import org.eclipse.swt.custom.CTabItem;
 
-public class MyStackRenderer extends StackRenderer {
+public class CustomDirtyFlagStackRenderer extends StackRenderer {
 	
 	protected void updateTab(CTabItem cti, MPart part, String attName,
 			Object newValue) {

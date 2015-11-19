@@ -8,7 +8,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class MyPartRenderer extends SWTPartRenderer {
+public class BrowserPartRenderer extends SWTPartRenderer {
 
 	@Override
 	public Object createWidget(MUIElement element, Object parent) {

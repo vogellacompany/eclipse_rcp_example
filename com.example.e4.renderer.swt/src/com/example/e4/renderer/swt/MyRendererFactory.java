@@ -8,22 +8,22 @@ import org.eclipse.e4.ui.workbench.renderers.swt.WorkbenchRendererFactory;
 
 public class MyRendererFactory extends WorkbenchRendererFactory {
 
-	private MyStackRenderer stackRenderer;
-	private MyPartRenderer partRenderer;
+	private CustomDirtyFlagStackRenderer stackRenderer;
+	private BrowserPartRenderer partRenderer;
 
 	@Override
 	public AbstractPartRenderer getRenderer(MUIElement uiElement, Object parent) {
 
 		if (uiElement instanceof MPart) {
 			if (partRenderer == null) {
-				partRenderer = new MyPartRenderer();
+				partRenderer = new BrowserPartRenderer();
 				super.initRenderer(partRenderer);
 			}
 			return partRenderer;
 		} else
 		if (uiElement instanceof MPartStack) {
 			if (stackRenderer == null) {
-				stackRenderer = new MyStackRenderer();
+				stackRenderer = new CustomDirtyFlagStackRenderer();
 				super.initRenderer(stackRenderer);
 			}
 			return stackRenderer;
