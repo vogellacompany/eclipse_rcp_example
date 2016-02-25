@@ -62,8 +62,7 @@ public class TodoDeletionPart {
 		});
 		viewer.setContentProvider(ArrayContentProvider.getInstance());
 
-		List<Todo> todos = model.getTodos();
-		updateViewer(todos);
+		model.getTodos(this::updateViewer);
 
 		Button button = new Button(parent, SWT.PUSH);
 		button.addSelectionListener(new SelectionAdapter() {
@@ -96,7 +95,7 @@ public class TodoDeletionPart {
 	@Inject
 	@Optional
 	private void getNotified(@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Todo todo) {
-		updateViewer(model.getTodos());
+		model.getTodos(this::updateViewer);
 	}
 
 	@Focus

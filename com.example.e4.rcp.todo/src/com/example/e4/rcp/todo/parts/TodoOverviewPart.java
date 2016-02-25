@@ -1,7 +1,6 @@
 package com.example.e4.rcp.todo.parts;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -9,15 +8,10 @@ import javax.inject.Inject;
 
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
-import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
@@ -48,9 +42,6 @@ public class TodoOverviewPart {
 
 	private Button loadTableDataButton;
 	private TableViewer viewer;
-
-	@Inject
-	private UISynchronize sync;
 
 	@Inject
 	private ESelectionService selectionService;
@@ -161,33 +152,21 @@ public class TodoOverviewPart {
 			selectionService.setSelection(selection.getFirstElement());
 		});
 		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
-		writableList = new WritableList(todoService.getTodos(), Todo.class);
+		writableList = new WritableList();
+		todoService.getTodos(writableList::addAll);
+		
 		ViewerSupport.bind(viewer, writableList,
 				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
-
 	}
 
 	@Inject
 	@Optional
 	private void subscribeTopicTodoAllTopics(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Map<String, String> event) {
-		Job job = new Job("loading") {
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
-				final List<Todo> list = todoService.getTodos();
-				sync.asyncExec(new Runnable() {
-					@Override
-					public void run() {
-						if (viewer != null) {
-							writableList.clear();
-							writableList.addAll(list);
-						}
-					}
-				});
-				return Status.OK_STATUS;
-			}
-		};
-		job.schedule();
+		todoService.getTodos(todos -> {
+			writableList.clear();
+			writableList.add(todos);
+		});
 	}
 
 	@Focus

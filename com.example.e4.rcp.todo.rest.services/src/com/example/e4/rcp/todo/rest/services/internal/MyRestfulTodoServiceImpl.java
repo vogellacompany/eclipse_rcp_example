@@ -1,4 +1,4 @@
-package com.example.e4.rcp.todo.services.internal;
+package com.example.e4.rcp.todo.rest.services.internal;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,14 +12,16 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.eclipse.e4.ui.di.UISynchronize;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Tag;
 import com.example.e4.rcp.todo.model.Todo;
 
-public class MyTodoServiceImpl implements ITodoService {
+public class MyRestfulTodoServiceImpl implements ITodoService {
 
 	private static AtomicInteger current = new AtomicInteger(1);
 	private List<Todo> todos;
@@ -27,17 +29,28 @@ public class MyTodoServiceImpl implements ITodoService {
 	// use dependency injection in MyTodoServiceImpl
 	@Inject
 	private IEventBroker broker;
+
+	@Inject
+	private UISynchronize uiSync;
+	
+	
 	private Tag<Tag<Todo>> rootTag;
 
-	public MyTodoServiceImpl() {
+	public MyRestfulTodoServiceImpl() {
 		todos = createInitialModel();
 		createRootTag(todos);
 	}
 
 	@Override
 	public void getTodos(Consumer<List<Todo>> todosConsumer) {
-		// always pass a new copy of the data
-		todosConsumer.accept(todos.stream().map(t -> t.copy()).collect(Collectors.toList()));
+		// TODO use Job's create factory method, once we use Eclipse Neon as target
+		Job collectTodosJob = new TodoRestCallJob(receivedTodos -> {
+			// always pass a new copy of the data
+			List<Todo> todosCopy = receivedTodos.stream().map(t -> t.copy()).collect(Collectors.toList());
+			// the given consumer could be in the UI thread, therefore it must be synchronized
+			uiSync.asyncExec(() -> todosConsumer.accept(todosCopy));
+		});
+		collectTodosJob.schedule();
 	}
 
 	protected List<Todo> getTodosInternal() {
@@ -108,6 +121,7 @@ public class MyTodoServiceImpl implements ITodoService {
 	// Example data, change if you like
 	private List<Todo> createInitialModel() {
 		List<Todo> list = new ArrayList<>();
+		list.add(createTodo("Restful APIs", "Use Retrofit in OSGi"));
 		list.add(createTodo("Application model", "Flexible and extensible"));
 		list.add(createTodo("DI", "@Inject as programming mode"));
 		list.add(createTodo("OSGi", "Services"));

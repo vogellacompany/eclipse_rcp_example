@@ -2,6 +2,7 @@ package com.example.e4.rcp.todo.model;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public interface ITodoService {
 	
@@ -9,7 +10,7 @@ public interface ITodoService {
 	
 	List<Tag<Todo>> getTags(long id);
 	
-	List<Todo> getTodos();
+	void getTodos(Consumer<List<Todo>> todosConsumer);
 
 	boolean saveTodo(Todo todo);
 

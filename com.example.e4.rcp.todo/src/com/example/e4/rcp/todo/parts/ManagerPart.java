@@ -3,10 +3,6 @@ package com.example.e4.rcp.todo.parts;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
@@ -57,20 +53,7 @@ public class ManagerPart {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Job job = new Job("loading") {
-					@Override
-					protected IStatus run(IProgressMonitor monitor) {
-						sync.asyncExec(new Runnable() {
-							@Override
-							public void run() {
-								viewer.setInput(todoService.getTodos());
-							}
-						});
-						return Status.OK_STATUS;
-					}
-				};
-				job.schedule();
-
+				todoService.getTodos(viewer::setInput);
 			}
 		});
 
@@ -165,7 +148,7 @@ public class ManagerPart {
 	private void getNotified(
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) String topic) {
 		if (viewer != null) {
-			viewer.setInput(todoService.getTodos());
+			todoService.getTodos(viewer::setInput);
 		}
 	}
 
