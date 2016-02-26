@@ -8,7 +8,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
@@ -32,6 +31,7 @@ public class TodoRestCallJob extends Job {
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
 
+
 		Retrofit retrofit = new Retrofit.Builder().baseUrl(API_URL).addConverterFactory(GsonConverterFactory.create())
 				.build();
 
@@ -41,14 +41,7 @@ public class TodoRestCallJob extends Job {
 
 		try {
 			List<Todo> contributors = todoCall.execute().body();
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					// pass the list of contributors to the consumer
-					contributorConsumer.accept(contributors);
-				}
-			});
+			contributorConsumer.accept(contributors);
 		} catch (IOException e) {
 			Bundle bundle = FrameworkUtil.getBundle(getClass());
 			return new Status(Status.ERROR, bundle.getSymbolicName(), e.getMessage(), e);
