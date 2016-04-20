@@ -131,6 +131,7 @@
     <children xmi:id="_teq3sBI2EeSz0MOyJTR0RQ" elementId="com.example.e4.rcp.todo.bindingcontext.tksdf" name="tksdf"/>
   </rootContext>
   <descriptors xmi:id="_CR1k0AzIEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partdescriptor.dynamic" label="Dynamic Part" allowMultiple="true" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.DynamicPart"/>
+  <descriptors xmi:id="_LyyOcAcMEeao9v_ri69uEw" elementId="com.example.e4.rcp.todo.partdescriptor.editor" label="Editor" tooltip="Todo Editor" allowMultiple="true" closeable="true" dirtyable="true" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.EditorPart"/>
   <snippets xsi:type="basic:PartStack" xmi:id="_4EnscBJnEeSuNNb0T4ePkA" elementId="com.example.e4.rcp.todo.partstack.snippet">
     <children xsi:type="basic:Part" xmi:id="_4lVM0BJnEeSuNNb0T4ePkA" elementId="com.example.e4.rcp.todo.part.testPart" label="Test Part"/>
     <children xsi:type="basic:Part" xmi:id="_5kKzoBJnEeSuNNb0T4ePkA" elementId="com.example.e4.rcp.todo.part.testPart2" label="Test Part 2"/>
