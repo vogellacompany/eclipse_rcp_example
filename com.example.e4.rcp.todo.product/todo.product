@@ -94,7 +94,7 @@
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="retrofit" version="1.0.0.bnd-3iauSA"/>
+      <feature id="retrofit" version="2.0.0"/>
    </features>
 
    <configurations>
