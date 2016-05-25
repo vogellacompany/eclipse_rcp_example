@@ -95,27 +95,26 @@ public class TodoDetailsPart {
 		updateUserInterface(todo);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void bindData() {
-		// check if the user interface is available
-		// assume you have a field called "summary"
-		// for a widget
+		// this assumes that widget field is called "summary"
 		if (txtSummary != null && !txtSummary.isDisposed()) {
 
 			ISideEffectFactory sideEffectFactory = WidgetSideEffects.createFactory(txtSummary);
 
-			IObservableValue<String> target = WidgetProperties.text(SWT.Modify).observe(txtSummary);
+			IObservableValue<String> txtSummaryTarget = WidgetProperties.text(SWT.Modify).observe(txtSummary);
 			IObservableValue<String> observeSummary = PojoProperties.value(Todo.FIELD_SUMMARY).observeDetail(observableTodo);
 			
-			sideEffectFactory.create(observeSummary::getValue, target::setValue);
-			sideEffectFactory.create(target::getValue, summary -> {
+			sideEffectFactory.create(observeSummary::getValue, txtSummaryTarget::setValue);
+			sideEffectFactory.create(txtSummaryTarget::getValue, summary -> {
 				observeSummary.setValue(summary);
 				dirtyable.setDirty(dirty);
 			});
 
-			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
+			IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
 			IObservableValue<String> observeDescription = PojoProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
-			sideEffectFactory.create(observeDescription::getValue, target::setValue);
-			sideEffectFactory.create(target::getValue, description -> {
+			sideEffectFactory.create(observeDescription::getValue, txtDescriptionTarget::setValue);
+			sideEffectFactory.create(txtDescriptionTarget::getValue, description -> {
 				observeDescription.setValue(description);
 				dirtyable.setDirty(dirty);
 			});
