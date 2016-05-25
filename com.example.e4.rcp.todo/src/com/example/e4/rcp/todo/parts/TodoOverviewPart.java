@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.events.IEventBroker;
@@ -52,7 +52,7 @@ public class TodoOverviewPart {
 	@Inject
 	private ITodoService todoService;
 	
-	private WritableList writableList;
+	private WritableList<Todo> writableList;
 	protected String searchString = ""; //$NON-NLS-1$
 
 	@PostConstruct
@@ -152,11 +152,11 @@ public class TodoOverviewPart {
 			selectionService.setSelection(selection.getFirstElement());
 		});
 		menuService.registerContextMenu(viewer.getControl(), "com.example.e4.rcp.todo.popupmenu.table"); //$NON-NLS-1$
-		writableList = new WritableList();
+		writableList = new WritableList<>();
 		todoService.getTodos(writableList::addAll);
 		
 		ViewerSupport.bind(viewer, writableList,
-				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
+				PojoProperties.values(new String[] { Todo.FIELD_SUMMARY, Todo.FIELD_DESCRIPTION }));
 	}
 
 	@Inject
@@ -165,7 +165,7 @@ public class TodoOverviewPart {
 			@UIEventTopic(MyEventConstants.TOPIC_TODO_ALLTOPICS) Map<String, String> event) {
 		todoService.getTodos(todos -> {
 			writableList.clear();
-			writableList.add(todos);
+			writableList.addAll(todos);
 		});
 	}
 

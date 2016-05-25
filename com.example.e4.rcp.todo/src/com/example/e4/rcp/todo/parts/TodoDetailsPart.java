@@ -1,21 +1,23 @@
 package com.example.e4.rcp.todo.parts;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.eclipse.core.databinding.Binding;
-import org.eclipse.core.databinding.DataBindingContext;
-import org.eclipse.core.databinding.beans.BeanProperties;
-import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.beans.PojoProperties;
+import org.eclipse.core.databinding.observable.sideeffect.CompositeSideEffect;
+import org.eclipse.core.databinding.observable.sideeffect.ISideEffectFactory;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.swt.WidgetSideEffects;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -32,26 +34,24 @@ import com.example.e4.rcp.todo.ownannotation.DirectTodo;
 
 public class TodoDetailsPart {
 
-	@Inject
-	private MDirtyable dirty;
-
 	private Text txtSummary;
 	private Text txtDescription;
 	private Button btnDone;
 	private DateTime dateTime;
-	private DataBindingContext ctx = new DataBindingContext();
-
-	// Define listener for the databinding
-	private IChangeListener listener = event -> {
-		if (dirty != null) {
-			dirty.setDirty(true);
-		}
-	};
+	
+	@Inject
+	private MDirtyable dirtyable;
 
 	@Inject
 	@DirectTodo(id = 1)
 	private java.util.Optional<Todo> todo;
+	
+	private WritableValue<Todo> observableTodo = new WritableValue<>();
 
+	private boolean dirty;
+	
+	
+	
 	@PostConstruct
 	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
 
@@ -89,14 +89,58 @@ public class TodoDetailsPart {
 		btnDone = new Button(parent, SWT.CHECK);
 		// set Label text and register Label text locale changes
 		messagesRegistry.register(btnDone::setText, m -> m.buttonDone);
+		
+		bindData();
 
 		updateUserInterface(todo);
 	}
 
-	@Persist
-	public void save(ITodoService todoService) {
-		todo.ifPresent(todo -> todoService.saveTodo(todo));
-		dirty.setDirty(false);
+	private void bindData() {
+		// check if the user interface is available
+		// assume you have a field called "summary"
+		// for a widget
+		if (txtSummary != null && !txtSummary.isDisposed()) {
+
+			ISideEffectFactory sideEffectFactory = WidgetSideEffects.createFactory(txtSummary);
+
+			IObservableValue<String> target = WidgetProperties.text(SWT.Modify).observe(txtSummary);
+			IObservableValue<String> observeSummary = PojoProperties.value(Todo.FIELD_SUMMARY).observeDetail(observableTodo);
+			
+			sideEffectFactory.create(observeSummary::getValue, target::setValue);
+			sideEffectFactory.create(target::getValue, summary -> {
+				observeSummary.setValue(summary);
+				dirtyable.setDirty(dirty);
+			});
+
+			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
+			IObservableValue<String> observeDescription = PojoProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
+			sideEffectFactory.create(observeDescription::getValue, target::setValue);
+			sideEffectFactory.create(target::getValue, description -> {
+				observeDescription.setValue(description);
+				dirtyable.setDirty(dirty);
+			});
+
+			IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
+			IObservableValue<Boolean> observeDone = PojoProperties.value(Todo.FIELD_DONE).observeDetail(observableTodo);
+			sideEffectFactory.create(observeDone::getValue, booleanTarget::setValue);
+			sideEffectFactory.create(booleanTarget::getValue, done -> {
+				observeDone.setValue(done);
+				dirtyable.setDirty(dirty);
+			});
+
+			IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection()
+					.observe(dateTime);
+			IObservableValue<Date> observeDueDate = PojoProperties.value(Todo.FIELD_DUEDATE).observeDetail(observableTodo);
+			sideEffectFactory.create(observeDueDate::getValue, date -> {
+				if(date != null) {
+					observeSelectionDateTimeObserveWidget.setValue(date);
+				}
+			});
+			sideEffectFactory.create(observeSelectionDateTimeObserveWidget::getValue, dueDate -> {
+				observeDueDate.setValue(dueDate);
+				dirtyable.setDirty(dirty);
+			});
+		}
 	}
 
 	@Inject
@@ -132,40 +176,22 @@ public class TodoDetailsPart {
 		// assume you have a field called "summary"
 		// for a widget
 		if (txtSummary != null && !txtSummary.isDisposed()) {
-
-			// Deregister change listener to the old binding
-			IObservableList providers = ctx.getValidationStatusProviders();
-			for (Object o : providers) {
-				Binding b = (Binding) o;
-				b.getTarget().removeChangeListener(listener);
-			}
-
-			// Remove bindings
-			ctx.dispose();
-
-			IObservableValue oWidgetSummary = WidgetProperties.text(SWT.Modify).observe(txtSummary);
-			IObservableValue oTodoSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observe(todo.get());
-			ctx.bindValue(oWidgetSummary, oTodoSummary);
-
-			IObservableValue oWidgetDescription = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-			IObservableValue oTodoDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observe(todo.get());
-			ctx.bindValue(oWidgetDescription, oTodoDescription);
-
-			IObservableValue oWidgetButton = WidgetProperties.selection().observe(btnDone);
-			IObservableValue oTodoDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo.get());
-			ctx.bindValue(oWidgetButton, oTodoDone);
-
-			IObservableValue oWidgetSelectionDateTime = WidgetProperties.selection().observe(dateTime);
-			IObservableValue oTodoDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observe(todo.get());
-			ctx.bindValue(oWidgetSelectionDateTime, oTodoDueDate);
-
-			// register listener for any changes
-			providers = ctx.getValidationStatusProviders();
-			for (Object o : providers) {
-				Binding b = (Binding) o;
-				b.getTarget().addChangeListener(listener);
-			}
+			CompositeSideEffect compositeSideEffect = (CompositeSideEffect) txtSummary
+					.getData(CompositeSideEffect.class.getName());
+			compositeSideEffect.pause();
+			dirty = false;
+			this.observableTodo.setValue(todo.get());
+			compositeSideEffect.resumeAndRunIfDirty();
+			dirty = true;
 		}
+	}
+	
+	@Persist
+	public void save(ITodoService todoService) {
+		todo.ifPresent(t -> {
+			todoService.saveTodo(t);
+		});
+		dirtyable.setDirty(false);
 	}
 
 	@Focus
