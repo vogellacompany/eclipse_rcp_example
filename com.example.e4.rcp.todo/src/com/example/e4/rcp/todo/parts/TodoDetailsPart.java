@@ -107,24 +107,30 @@ public class TodoDetailsPart {
 			
 			sideEffectFactory.create(observeSummary::getValue, txtSummaryTarget::setValue);
 			sideEffectFactory.create(txtSummaryTarget::getValue, summary -> {
-				observeSummary.setValue(summary);
-				dirtyable.setDirty(dirty);
+				todo.ifPresent(t -> {
+					t.setSummary(summary);
+					dirtyable.setDirty(dirty);
+				});
 			});
 
 			IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
 			IObservableValue<String> observeDescription = PojoProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
 			sideEffectFactory.create(observeDescription::getValue, txtDescriptionTarget::setValue);
 			sideEffectFactory.create(txtDescriptionTarget::getValue, description -> {
-				observeDescription.setValue(description);
-				dirtyable.setDirty(dirty);
+				todo.ifPresent(t -> {
+					t.setDescription(description);
+					dirtyable.setDirty(dirty);
+				});
 			});
 
 			IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
 			IObservableValue<Boolean> observeDone = PojoProperties.value(Todo.FIELD_DONE).observeDetail(observableTodo);
 			sideEffectFactory.create(observeDone::getValue, booleanTarget::setValue);
 			sideEffectFactory.create(booleanTarget::getValue, done -> {
-				observeDone.setValue(done);
-				dirtyable.setDirty(dirty);
+				todo.ifPresent(t -> {
+					t.setDone(done);
+					dirtyable.setDirty(dirty);
+				});
 			});
 
 			IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection()
@@ -136,8 +142,10 @@ public class TodoDetailsPart {
 				}
 			});
 			sideEffectFactory.create(observeSelectionDateTimeObserveWidget::getValue, dueDate -> {
-				observeDueDate.setValue(dueDate);
-				dirtyable.setDirty(dirty);
+				todo.ifPresent(t -> {
+					t.setDueDate(dueDate);
+					dirtyable.setDirty(dirty);
+				});
 			});
 		}
 	}
