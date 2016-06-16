@@ -109,7 +109,9 @@ public class TodoDetailsPart {
 			sideEffectFactory.create(txtSummaryTarget::getValue, summary -> {
 				todo.ifPresent(t -> {
 					t.setSummary(summary);
-					dirtyable.setDirty(dirty);
+					if (dirtyable!=null) {
+						dirtyable.setDirty(dirty);
+					}
 				});
 			});
 
@@ -119,7 +121,9 @@ public class TodoDetailsPart {
 			sideEffectFactory.create(txtDescriptionTarget::getValue, description -> {
 				todo.ifPresent(t -> {
 					t.setDescription(description);
-					dirtyable.setDirty(dirty);
+					if (dirtyable!=null) {
+						dirtyable.setDirty(dirty);
+					}
 				});
 			});
 
@@ -129,7 +133,9 @@ public class TodoDetailsPart {
 			sideEffectFactory.create(booleanTarget::getValue, done -> {
 				todo.ifPresent(t -> {
 					t.setDone(done);
-					dirtyable.setDirty(dirty);
+					if (dirtyable!=null) {
+						dirtyable.setDirty(dirty);
+					}
 				});
 			});
 
@@ -144,7 +150,9 @@ public class TodoDetailsPart {
 			sideEffectFactory.create(observeSelectionDateTimeObserveWidget::getValue, dueDate -> {
 				todo.ifPresent(t -> {
 					t.setDueDate(dueDate);
-					dirtyable.setDirty(dirty);
+					if (dirtyable!=null) {
+						dirtyable.setDirty(dirty);
+					}
 				});
 			});
 		}
@@ -156,6 +164,11 @@ public class TodoDetailsPart {
 		this.todo = java.util.Optional.ofNullable(todo);
 		// update the user interface
 		updateUserInterface(this.todo);
+		 if (todo != null) {
+			 todo.setSummary("Hello");
+			 System.out.println(todo.getSummary());
+			 System.out.println("Hello");
+		}
 	}
 
 	// allows to disable/ enable the user interface fields
