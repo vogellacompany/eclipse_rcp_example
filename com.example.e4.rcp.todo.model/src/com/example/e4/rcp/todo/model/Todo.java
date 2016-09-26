@@ -1,33 +1,35 @@
 package com.example.e4.rcp.todo.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Date;
 
-import org.eclipse.core.databinding.observable.value.WritableValue;
-
 public class Todo {
-	
+
+	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+
 	public static final String FIELD_ID = "id";
 	public static final String FIELD_SUMMARY = "summary";
 	public static final String FIELD_DESCRIPTION = "description";
 	public static final String FIELD_DONE = "done";
 	public static final String FIELD_DUEDATE = "dueDate";
-	
-	public final long id;
-	private WritableValue<String> summary;
-	private WritableValue<String> description;
-	private WritableValue<Boolean> done;
-	private WritableValue<Date> dueDate;
+
+	private final long id;
+	private String summary ="" ;
+	private String description ="";
+	private boolean done = false;
+	private Date dueDate;
 	
 	public Todo(long i) {
-		this(i, "", "", false, null);
+		id = i;
 	}
 
 	public Todo(long i, String summary, String description, boolean b, Date date) {
 		this.id = i;
-		this.summary = new WritableValue<>(summary, String.class);
-		this.description = new WritableValue<>(description, String.class);
-		this.done = new WritableValue<>(b, Boolean.class);
-		this.dueDate = new WritableValue<>(date, Date.class);  
+		this.summary = summary;
+		this.description = description;
+		this.done = b;
+		this.dueDate = date;
 	}
 
 	
@@ -37,35 +39,38 @@ public class Todo {
 	}
 	
 	public String getSummary() {
-		return summary.getValue();
+		return summary;
 	}
 
 	public void setSummary(String summary) {
-		this.summary.setValue(summary);
+		changes.firePropertyChange(FIELD_SUMMARY, this.summary,
+				this.summary = summary);
 	}
 
 	public String getDescription() {
-		return description.getValue();
+		return description;
 	}
 
 	public void setDescription(String description) {
-		this.description.setValue(description);
+		changes.firePropertyChange(FIELD_DESCRIPTION, this.description,
+				this.description = description);
 	}
 
 	public boolean isDone() {
-		return done.getValue();
+		return done;
 	}
 
 	public void setDone(boolean isDone) {
-		this.done.setValue(isDone);
+		changes.firePropertyChange(FIELD_DONE, this.done, this.done = isDone);
 	}
 
 	public Date getDueDate() {
-		return dueDate.getValue();
+		return dueDate;
 	}
 
 	public void setDueDate(Date dueDate) {
-		this.dueDate.setValue(dueDate);
+		changes.firePropertyChange(FIELD_DUEDATE, this.dueDate,
+				this.dueDate = dueDate);
 	}
 
 	@Override
@@ -96,6 +101,14 @@ public class Todo {
 	}
 
 	public Todo copy() {
-		return new Todo(id, summary.getValue(), description.getValue(), done.getValue(), dueDate.getValue());
+		return new Todo(id, summary, description, done, dueDate);
+	}
+
+	public void addPropertyChangeListener(PropertyChangeListener l) {
+		changes.addPropertyChangeListener(l);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener l) {
+		changes.removePropertyChangeListener(l);
 	}
 }

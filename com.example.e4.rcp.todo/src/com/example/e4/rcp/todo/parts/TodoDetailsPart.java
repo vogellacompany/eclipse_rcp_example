@@ -3,12 +3,13 @@ package com.example.e4.rcp.todo.parts;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.eclipse.core.databinding.beans.PojoProperties;
-import org.eclipse.core.databinding.observable.sideeffect.CompositeSideEffect;
-import org.eclipse.core.databinding.observable.sideeffect.ISideEffectFactory;
+import org.eclipse.core.databinding.Binding;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
@@ -17,7 +18,6 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.jface.databinding.swt.WidgetSideEffects;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -48,9 +48,10 @@ public class TodoDetailsPart {
 	
 	private WritableValue<Todo> observableTodo = new WritableValue<>();
 
-	private boolean dirty;
+	private DataBindingContext dbc;
 	
-	
+	// pause dirty listener when new Todo selection is set
+	private boolean pauseDirtyListener;
 	
 	@PostConstruct
 	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
@@ -100,58 +101,30 @@ public class TodoDetailsPart {
 		// this assumes that widget field is called "summary"
 		if (txtSummary != null && !txtSummary.isDisposed()) {
 
-			ISideEffectFactory sideEffectFactory = WidgetSideEffects.createFactory(txtSummary);
+			dbc = new DataBindingContext();
 
 			IObservableValue<String> txtSummaryTarget = WidgetProperties.text(SWT.Modify).observe(txtSummary);
-			IObservableValue<String> observeSummary = PojoProperties.value(Todo.FIELD_SUMMARY).observeDetail(observableTodo);
+			IObservableValue<String> observeSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observeDetail(observableTodo);
+			dbc.bindValue(txtSummaryTarget, observeSummary);
 			
-			sideEffectFactory.create(observeSummary::getValue, txtSummaryTarget::setValue);
-			sideEffectFactory.create(txtSummaryTarget::getValue, summary -> {
-				todo.ifPresent(t -> {
-					t.setSummary(summary);
-					if (dirtyable!=null) {
-						dirtyable.setDirty(dirty);
-					}
-				});
-			});
-
 			IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-			IObservableValue<String> observeDescription = PojoProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
-			sideEffectFactory.create(observeDescription::getValue, txtDescriptionTarget::setValue);
-			sideEffectFactory.create(txtDescriptionTarget::getValue, description -> {
-				todo.ifPresent(t -> {
-					t.setDescription(description);
-					if (dirtyable!=null) {
-						dirtyable.setDirty(dirty);
-					}
-				});
-			});
-
+			IObservableValue<String> observeDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
+			dbc.bindValue(txtDescriptionTarget, observeDescription);
+			
 			IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
-			IObservableValue<Boolean> observeDone = PojoProperties.value(Todo.FIELD_DONE).observeDetail(observableTodo);
-			sideEffectFactory.create(observeDone::getValue, booleanTarget::setValue);
-			sideEffectFactory.create(booleanTarget::getValue, done -> {
-				todo.ifPresent(t -> {
-					t.setDone(done);
-					if (dirtyable!=null) {
-						dirtyable.setDirty(dirty);
-					}
-				});
-			});
+			IObservableValue<Boolean> observeDone = BeanProperties.value(Todo.FIELD_DONE).observeDetail(observableTodo);
+			dbc.bindValue(booleanTarget, observeDone);
 
 			IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection()
 					.observe(dateTime);
-			IObservableValue<Date> observeDueDate = PojoProperties.value(Todo.FIELD_DUEDATE).observeDetail(observableTodo);
-			sideEffectFactory.create(observeDueDate::getValue, date -> {
-				if(date != null) {
-					observeSelectionDateTimeObserveWidget.setValue(date);
-				}
-			});
-			sideEffectFactory.create(observeSelectionDateTimeObserveWidget::getValue, dueDate -> {
-				todo.ifPresent(t -> {
-					t.setDueDate(dueDate);
-					if (dirtyable!=null) {
-						dirtyable.setDirty(dirty);
+			IObservableValue<Date> observeDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observeDetail(observableTodo);
+			dbc.bindValue(observeSelectionDateTimeObserveWidget, observeDueDate);
+			
+			dbc.getBindings().forEach(item -> {
+				Binding binding = (Binding) item;
+				binding.getTarget().addChangeListener(e -> {
+					if(!pauseDirtyListener) {
+						dirtyable.setDirty(true);
 					}
 				});
 			});
@@ -164,11 +137,6 @@ public class TodoDetailsPart {
 		this.todo = java.util.Optional.ofNullable(todo);
 		// update the user interface
 		updateUserInterface(this.todo);
-		 if (todo != null) {
-			 todo.setSummary("Hello");
-			 System.out.println(todo.getSummary());
-			 System.out.println("Hello");
-		}
 	}
 
 	// allows to disable/ enable the user interface fields
@@ -196,13 +164,9 @@ public class TodoDetailsPart {
 		// assume you have a field called "summary"
 		// for a widget
 		if (txtSummary != null && !txtSummary.isDisposed()) {
-			CompositeSideEffect compositeSideEffect = (CompositeSideEffect) txtSummary
-					.getData(CompositeSideEffect.class.getName());
-			compositeSideEffect.pause();
-			dirty = false;
+			pauseDirtyListener = true;
 			this.observableTodo.setValue(todo.get());
-			compositeSideEffect.resumeAndRunIfDirty();
-			dirty = true;
+			pauseDirtyListener = false;
 		}
 	}
 	
@@ -217,5 +181,10 @@ public class TodoDetailsPart {
 	@Focus
 	public void onFocus() {
 		txtSummary.setFocus();
+	}
+	
+	@PreDestroy
+	public void dispose() {
+		dbc.dispose();
 	}
 }

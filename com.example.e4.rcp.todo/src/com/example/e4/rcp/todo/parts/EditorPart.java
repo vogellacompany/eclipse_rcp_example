@@ -3,10 +3,13 @@ package com.example.e4.rcp.todo.parts;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import org.eclipse.core.commands.ParameterizedCommand;
-import org.eclipse.core.databinding.observable.sideeffect.ISideEffectFactory;
+import org.eclipse.core.databinding.Binding;
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.e4.core.commands.ECommandService;
 import org.eclipse.e4.core.commands.EHandlerService;
@@ -16,7 +19,6 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.jface.databinding.swt.WidgetSideEffects;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -49,8 +51,8 @@ public class EditorPart {
 	private DateTime dateTime;
 
 	private java.util.Optional<Todo> todo;
-	
-	private boolean initialized;
+
+	private DataBindingContext dbc;
 
 	@PostConstruct
 	public void createControls(Composite parent, ITodoService todoService) {
@@ -105,7 +107,7 @@ public class EditorPart {
 				}
 			});
 
-			updateUserInterface(todo);
+			bindData(todo.get());
 		} else {
 			Label label = new Label(parent, SWT.NONE);
 			label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
@@ -119,48 +121,33 @@ public class EditorPart {
 		part.setDirty(false);
 	}
 
-	private void updateUserInterface(java.util.Optional<Todo> optioanlTodo) {
+	@SuppressWarnings("unchecked")
+	private void bindData(Todo todo) {
 
-		// check if the user interface is available
-		// assume you have a field called "summary"
-		// for a widget
-		if (txtSummary != null && !txtSummary.isDisposed() && optioanlTodo.isPresent()) {
+		dbc = new DataBindingContext();
 
-			Todo todo = optioanlTodo.get();
+		IObservableValue<String> txtSummaryTarget = WidgetProperties.text(SWT.Modify).observe(txtSummary);
+		IObservableValue<String> observeSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observe(todo);
+		dbc.bindValue(txtSummaryTarget, observeSummary);
 
-			ISideEffectFactory sideEffectFactory = WidgetSideEffects.createFactory(txtSummary);
+		IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
+		IObservableValue<String> observeDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
+		dbc.bindValue(txtDescriptionTarget, observeDescription);
 
-			IObservableValue<String> target = WidgetProperties.text(SWT.Modify).observe(txtSummary);
-			sideEffectFactory.create(todo::getSummary, target::setValue);
-			sideEffectFactory.create(target::getValue, summary -> {
-				todo.setSummary(summary);
-				part.setDirty(initialized);
+		IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
+		IObservableValue<Boolean> observeDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
+		dbc.bindValue(booleanTarget, observeDone);
+
+		IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection().observe(dateTime);
+		IObservableValue<Date> observeDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observe(todo);
+		dbc.bindValue(observeSelectionDateTimeObserveWidget, observeDueDate);
+
+		dbc.getBindings().forEach(item -> {
+			Binding binding = (Binding) item;
+			binding.getTarget().addChangeListener(e -> {
+				part.setDirty(true);
 			});
-
-			target = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-			sideEffectFactory.create(todo::getDescription, target::setValue);
-			sideEffectFactory.create(target::getValue, description -> {
-				todo.setDescription(description);
-				part.setDirty(initialized);
-			});
-
-			IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
-			sideEffectFactory.create(todo::isDone, booleanTarget::setValue);
-			sideEffectFactory.create(booleanTarget::getValue, done -> {
-				todo.setDone(done);
-				part.setDirty(initialized);
-			});
-
-			IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection()
-					.observe(dateTime);
-			sideEffectFactory.create(todo::getDueDate, observeSelectionDateTimeObserveWidget::setValue);
-			sideEffectFactory.create(observeSelectionDateTimeObserveWidget::getValue, dueDate -> {
-				todo.setDueDate(dueDate);
-				part.setDirty(initialized);
-			});
-		
-			initialized = true;
-		}
+		});
 	}
 
 	@Focus
@@ -173,8 +160,13 @@ public class EditorPart {
 	@Inject
 	@Optional
 	private void getNotified(@UIEventTopic(MyEventConstants.TOPIC_TODO_DELETE) Todo todo) {
-		if (this.todo.equals(todo)) {
+		if (this.todo.isPresent() && todo.equals(this.todo.get())) {
 			part.setToBeRendered(false);
 		}
+	}
+
+	@PreDestroy
+	public void dispose() {
+		dbc.dispose();
 	}
 }

@@ -13,14 +13,12 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 import org.eclipse.e4.core.services.events.IEventBroker;
-import org.osgi.service.component.annotations.Component;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
 import com.example.e4.rcp.todo.model.Tag;
 import com.example.e4.rcp.todo.model.Todo;
 
-@Component
 public class MyTodoServiceImpl implements ITodoService {
 
 	private static AtomicInteger current = new AtomicInteger(1);
