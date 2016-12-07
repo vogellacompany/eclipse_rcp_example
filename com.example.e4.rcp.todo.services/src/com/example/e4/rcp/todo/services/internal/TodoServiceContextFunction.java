@@ -8,17 +8,16 @@ import org.eclipse.e4.ui.model.application.MApplication;
 import org.osgi.service.component.annotations.Component;
 
 import com.example.e4.rcp.todo.model.ITodoService;
-@Component(service=IContextFunction.class,
-property="service.context.key=com.example.e4.rcp.todo.model.ITodoService")
+
+@Component(service = IContextFunction.class, property = "service.context.key=com.example.e4.rcp.todo.model.ITodoService")
 public class TodoServiceContextFunction extends ContextFunction {
 
 	@Override
 	public Object compute(IEclipseContext context, String contextKey) {
-		MyTodoServiceImpl todoService = 
-				ContextInjectionFactory.make(MyTodoServiceImpl.class, context);
-		MApplication app = context.get(MApplication.class);
-		app.getContext().set(ITodoService.class, todoService);
-		return todoService;
+		ITodoService impl = ContextInjectionFactory.make(MyTodoServiceImpl.class, context);
+		MApplication application = context.get(MApplication.class);
+		application.getContext().set(ITodoService.class, impl);
+		return impl;
 	}
 }
 

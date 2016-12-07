@@ -12,15 +12,14 @@ public class BrowserPartRenderer extends SWTPartRenderer {
 
 	@Override
 	public Object createWidget(MUIElement element, Object parent) {
-		final Composite mapComposite = new Composite((Composite) parent,
-				SWT.NONE);
-		String string="http://www.vogella.com";
-		if (element.getPersistedState().containsKey("uri")){
+		final Composite mapComposite = new Composite((Composite) parent, SWT.NONE);
+		String string = "http://www.vogella.com";
+		if (element.getPersistedState().containsKey("uri")) {
 			string = element.getPersistedState().get("uri");
 		}
 		mapComposite.setLayout(new GridLayout(1, false));
 		final Browser browser = new Browser(mapComposite, SWT.NONE);
-		 
+
 		browser.setUrl(string);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		browser.setLayoutData(data);
