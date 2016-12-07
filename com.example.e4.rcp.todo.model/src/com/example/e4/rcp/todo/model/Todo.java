@@ -18,7 +18,7 @@ public class Todo {
 	private String summary ="" ;
 	private String description ="";
 	private boolean done = false;
-	private Date dueDate;
+	private Date dueDate = new Date();
 	
 	public Todo(long i) {
 		id = i;
@@ -43,8 +43,7 @@ public class Todo {
 	}
 
 	public void setSummary(String summary) {
-		changes.firePropertyChange(FIELD_SUMMARY, this.summary,
-				this.summary = summary);
+		changes.firePropertyChange(FIELD_SUMMARY, this.summary, this.summary = summary);
 	}
 
 	public String getDescription() {
@@ -52,8 +51,7 @@ public class Todo {
 	}
 
 	public void setDescription(String description) {
-		changes.firePropertyChange(FIELD_DESCRIPTION, this.description,
-				this.description = description);
+		changes.firePropertyChange(FIELD_DESCRIPTION, this.description, this.description = description);
 	}
 
 	public boolean isDone() {
@@ -65,12 +63,11 @@ public class Todo {
 	}
 
 	public Date getDueDate() {
-		return dueDate;
+		return new Date(dueDate.getTime());
 	}
 
 	public void setDueDate(Date dueDate) {
-		changes.firePropertyChange(FIELD_DUEDATE, this.dueDate,
-				this.dueDate = dueDate);
+		changes.firePropertyChange(FIELD_DUEDATE, this.dueDate, this.dueDate = new Date(dueDate.getTime()));
 	}
 
 	@Override
@@ -101,7 +98,7 @@ public class Todo {
 	}
 
 	public Todo copy() {
-		return new Todo(id, summary, description, done, dueDate);
+		return new Todo(id, summary, description, done, getDueDate());
 	}
 
 	public void addPropertyChangeListener(PropertyChangeListener l) {
