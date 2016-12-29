@@ -18,9 +18,8 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
@@ -56,35 +55,23 @@ public class TodoDetailsPart {
 	@PostConstruct
 	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
 
-		GridLayout gl_parent = new GridLayout(2, false);
-		gl_parent.marginRight = 10;
-		gl_parent.marginLeft = 10;
-		gl_parent.horizontalSpacing = 10;
-		gl_parent.marginWidth = 0;
-		parent.setLayout(gl_parent);
-
 		Label lblSummary = new Label(parent, SWT.NONE);
 		// set Label text and register Label text locale changes
 		messagesRegistry.register(lblSummary::setText, m -> m.txtSummary);
 
 		txtSummary = new Text(parent, SWT.BORDER);
-		txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Label lblDescription = new Label(parent, SWT.NONE);
 		// set Label text and register Label text locale changes
 		messagesRegistry.register(lblDescription::setText, m -> m.txtDescription);
 
 		txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
-		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		gd.heightHint = 122;
-		txtDescription.setLayoutData(gd);
 
 		Label lblDueDate = new Label(parent, SWT.NONE);
 		// set Label text and register Label text locale changes
 		messagesRegistry.register(lblDueDate::setText, m -> m.lblDueDate);
 
 		dateTime = new DateTime(parent, SWT.BORDER);
-		dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		new Label(parent, SWT.NONE);
 
 		btnDone = new Button(parent, SWT.CHECK);
@@ -94,6 +81,8 @@ public class TodoDetailsPart {
 		bindData();
 
 		updateUserInterface(todo);
+		
+		GridLayoutFactory.swtDefaults().numColumns(2).generateLayout(parent);
 	}
 
 	@SuppressWarnings("unchecked")
