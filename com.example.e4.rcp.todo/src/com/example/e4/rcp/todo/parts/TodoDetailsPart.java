@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.parts;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -92,22 +93,12 @@ public class TodoDetailsPart {
 
 			dbc = new DataBindingContext();
 
-			IObservableValue<String> txtSummaryTarget = WidgetProperties.text(SWT.Modify).observe(txtSummary);
-			IObservableValue<String> observeSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observeDetail(observableTodo);
-			dbc.bindValue(txtSummaryTarget, observeSummary);
-			
-			IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-			IObservableValue<String> observeDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observeDetail(observableTodo);
-			dbc.bindValue(txtDescriptionTarget, observeDescription);
-			
-			IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
-			IObservableValue<Boolean> observeDone = BeanProperties.value(Todo.FIELD_DONE).observeDetail(observableTodo);
-			dbc.bindValue(booleanTarget, observeDone);
-
-			IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection()
-					.observe(dateTime);
-			IObservableValue<Date> observeDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observeDetail(observableTodo);
-			dbc.bindValue(observeSelectionDateTimeObserveWidget, observeDueDate);
+			Map<String, IObservableValue<?>> fields = new HashMap<>();
+			fields.put(Todo.FIELD_SUMMARY, WidgetProperties.text(SWT.Modify).observe(txtSummary));
+			fields.put(Todo.FIELD_DESCRIPTION, WidgetProperties.text(SWT.Modify).observe(txtDescription));
+			fields.put(Todo.FIELD_DUEDATE, WidgetProperties.selection().observe(dateTime));
+			fields.put(Todo.FIELD_DONE, WidgetProperties.selection().observe(btnDone));
+			fields.forEach((k, v) -> dbc.bindValue(v, BeanProperties.value(k).observeDetail(observableTodo)));
 			
 			dbc.getBindings().forEach(item -> {
 				Binding binding = (Binding) item;
