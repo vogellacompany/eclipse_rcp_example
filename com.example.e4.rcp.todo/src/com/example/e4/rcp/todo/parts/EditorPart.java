@@ -50,7 +50,7 @@ public class EditorPart {
 	private Button btnDone;
 	private DateTime dateTime;
 
-	private java.util.Optional<Todo> todo;
+	private java.util.Optional<Todo> todo = java.util.Optional.empty();;
 
 	private DataBindingContext dbc;
 
