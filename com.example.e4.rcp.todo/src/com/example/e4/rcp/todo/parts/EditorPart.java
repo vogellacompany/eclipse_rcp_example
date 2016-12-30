@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.parts;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -19,11 +20,10 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
@@ -60,13 +60,6 @@ public class EditorPart {
 		String string = part.getPersistedState().get(Todo.FIELD_ID);
 		Long idOfTodo = Long.valueOf(string);
 
-		GridLayout gl_parent = new GridLayout(2, false);
-		gl_parent.marginRight = 10;
-		gl_parent.marginLeft = 10;
-		gl_parent.horizontalSpacing = 10;
-		gl_parent.marginWidth = 0;
-		parent.setLayout(gl_parent);
-
 		// retrieve the todo based on the persistedState
 		todo = todoService.getTodo(idOfTodo);
 
@@ -76,28 +69,22 @@ public class EditorPart {
 			lblSummary.setText("Summary");
 
 			txtSummary = new Text(parent, SWT.BORDER);
-			txtSummary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 			Label lblDescription = new Label(parent, SWT.NONE);
 			lblDescription.setText("Description");
 
 			txtDescription = new Text(parent, SWT.BORDER | SWT.MULTI);
-			GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-			gd.heightHint = 122;
-			txtDescription.setLayoutData(gd);
 
 			Label lblNewLabel = new Label(parent, SWT.NONE);
 			lblNewLabel.setText("Due Date");
 
 			dateTime = new DateTime(parent, SWT.BORDER);
-			dateTime.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 			new Label(parent, SWT.NONE);
 
 			btnDone = new Button(parent, SWT.CHECK);
 			btnDone.setText("Done");
 
 			Button button = new Button(parent, SWT.PUSH);
-			button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 			button.setText("Save");
 			button.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -110,9 +97,11 @@ public class EditorPart {
 			bindData(todo.get());
 		} else {
 			Label label = new Label(parent, SWT.NONE);
-			label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
 			label.setText("No suitable todo found!");
 		}
+
+		GridLayoutFactory.swtDefaults().numColumns(2).generateLayout(parent);
+
 	}
 
 	@Persist
@@ -126,22 +115,14 @@ public class EditorPart {
 
 		dbc = new DataBindingContext();
 
-		IObservableValue<String> txtSummaryTarget = WidgetProperties.text(SWT.Modify).observe(txtSummary);
-		IObservableValue<String> observeSummary = BeanProperties.value(Todo.FIELD_SUMMARY).observe(todo);
-		dbc.bindValue(txtSummaryTarget, observeSummary);
+		Map<String, IObservableValue<?>> fields = new HashMap<>();
+		fields.put(Todo.FIELD_SUMMARY, WidgetProperties.text(SWT.Modify).observe(txtSummary));
+		fields.put(Todo.FIELD_DESCRIPTION, WidgetProperties.text(SWT.Modify).observe(txtDescription));
+		fields.put(Todo.FIELD_DUEDATE, WidgetProperties.selection().observe(dateTime));
+		fields.put(Todo.FIELD_DONE, WidgetProperties.selection().observe(btnDone));
+		fields.forEach((k, v) -> dbc.bindValue(v, BeanProperties.value(k).observe(todo)));
 
-		IObservableValue<String> txtDescriptionTarget = WidgetProperties.text(SWT.Modify).observe(txtDescription);
-		IObservableValue<String> observeDescription = BeanProperties.value(Todo.FIELD_DESCRIPTION).observe(todo);
-		dbc.bindValue(txtDescriptionTarget, observeDescription);
-
-		IObservableValue<Boolean> booleanTarget = WidgetProperties.selection().observe(btnDone);
-		IObservableValue<Boolean> observeDone = BeanProperties.value(Todo.FIELD_DONE).observe(todo);
-		dbc.bindValue(booleanTarget, observeDone);
-
-		IObservableValue<Date> observeSelectionDateTimeObserveWidget = WidgetProperties.selection().observe(dateTime);
-		IObservableValue<Date> observeDueDate = BeanProperties.value(Todo.FIELD_DUEDATE).observe(todo);
-		dbc.bindValue(observeSelectionDateTimeObserveWidget, observeDueDate);
-
+		// set a dirty state if one of the bindings is changed
 		dbc.getBindings().forEach(item -> {
 			Binding binding = (Binding) item;
 			binding.getTarget().addChangeListener(e -> {
