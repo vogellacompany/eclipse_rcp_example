@@ -14,6 +14,7 @@
               <children xsi:type="basic:Part" xmi:id="_SLnb4L-jEeGIRPhGyuFE7Q" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="%part.overview" bindingContexts="_rym-gBI2EeSz0MOyJTR0RQ" closeable="true">
                 <persistedState key="uri" value="http://www.google.com"/>
                 <tags>NoMove</tags>
+                <handlers xmi:id="_jqx1MOJAEea2G7XA5SL9OA" elementId="com.example.e4.rcp.todo.handler.1" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.TodoItemCopyHandler" command="_ct2fUOJAEea2G7XA5SL9OA"/>
                 <menus xsi:type="menu:PopupMenu" xmi:id="_vqfykBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table Menu">
                   <children xsi:type="menu:HandledMenuItem" xmi:id="_0reZIBLjEeKZ8LG-7pNfpw" elementId="com.example.e4.rcp.todo.handledmenuitem.delete" label="Remove Todo" command="_MlAjgMZYEeGbkqRLZ7osPQ"/>
                   <children xsi:type="menu:HandledMenuItem" xmi:id="_dxcH8BBrEeOc8MniUgVQ2w" elementId="com.example.e4.rcp.todo.handledmenuitem.openeditor" label="Open in editor" command="_vGK5kA1pEeKkaoNsQKzVcw"/>
@@ -123,6 +124,9 @@
   <bindingTables xmi:id="_kbPZsAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.bindingtable.0" bindingContext="_2jk_wMZvEeGbkqRLZ7osPQ">
     <bindings xmi:id="_l08XkAzjEeSTbO6ywNUwEA" elementId="com.example.e4.rcp.todo.keybinding.0" keySequence="M1+S" command="_vTZDkMZXEeGbkqRLZ7osPQ"/>
   </bindingTables>
+  <bindingTables xmi:id="_dUgKcOJSEea2G7XA5SL9OA" elementId="com.example.e4.rcp.todo.bindingtable.1" bindingContext="_rym-gBI2EeSz0MOyJTR0RQ">
+    <bindings xmi:id="_QTw4AOJSEea2G7XA5SL9OA" elementId="com.example.e4.rcp.todo.keybinding.1" keySequence="M1+C" command="_ct2fUOJAEea2G7XA5SL9OA"/>
+  </bindingTables>
   <rootContext xmi:id="_2jk_wMZvEeGbkqRLZ7osPQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="Windows and Dialogs" description="Windows and Dialogs">
     <children xmi:id="_SMGo8BI3EeSz0MOyJTR0RQ" elementId="com.example.e4.rcp.todo.bindingcontext.windows" name="Windows"/>
     <children xmi:id="_S1yfIBI3EeSz0MOyJTR0RQ" elementId="com.example.e4.rcp.todo.bindingcontext.dialogs" name="Dialogs"/>
@@ -153,6 +157,7 @@
   <commands xmi:id="_a-KjcD_1EeSnXpvH_y2VIg" elementId="org.eclipse.ui.file.close" commandName="%command.close.name" description="%command.close.description"/>
   <commands xmi:id="_cTRK4GtHEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.command.saveperspective" commandName="Save Perspective"/>
   <commands xmi:id="_HltgQGtTEeSlAc3VvFo52g" elementId="com.example.e4.rcp.todo.command.restoreperspective" commandName="Restore Perspective"/>
+  <commands xmi:id="_ct2fUOJAEea2G7XA5SL9OA" elementId="com.example.e4.rcp.todo.command.copy" commandName="Copy"/>
   <addons xmi:id="_kRdLcb-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_kRdLcr-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_kRdLc7-ZEeGFAvs8os6Opw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
