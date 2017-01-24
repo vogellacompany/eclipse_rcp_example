@@ -1,5 +1,7 @@
 package com.example.e4.rcp.todo.handlers;
 
+import java.util.List;
+
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Execute;
@@ -14,10 +16,10 @@ import com.example.e4.rcp.todo.model.Todo;
 public class RemoveTodoHandler {
 	@Execute
 	public void execute(ITodoService todoService,
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos,
 			@Named(IServiceConstants.ACTIVE_SHELL) Shell shell) {
-		if (todo != null) {
-			todoService.deleteTodo(todo.getId());
+		if (todos != null) {
+			todos.forEach(t -> todoService.deleteTodo(t.getId()));
 		} else {
 			MessageDialog.openInformation(shell, "Deletion not possible", "No todo selected");
 		}

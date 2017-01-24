@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.handlers;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -23,15 +24,17 @@ public class OpenEditorHandler {
 
 	@Execute
 	public void execute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos,
 			MApplication application, 
 			EModelService modelService,
 			EPartService partService) {
 
 		// sanity check
-		if (todo == null) {
+		if (todos == null || !todos.isEmpty()) {
 			return;
 		}
+		
+		Todo todo = todos.get(0);
 
 		String id = String.valueOf(todo.getId());
 
@@ -65,7 +68,7 @@ public class OpenEditorHandler {
 
 	@CanExecute
 	public boolean canExecute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
-		return todo != null;
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todo) {
+		return todo != null && !todo.isEmpty();
 	}
 }

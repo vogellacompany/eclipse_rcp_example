@@ -1,6 +1,7 @@
 package com.example.e4.rcp.todo.parts;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -112,9 +113,13 @@ public class TodoDetailsPart {
 	}
 
 	@Inject
-	public void setTodo(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo) {
+	public void setTodos(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos) {
+		if(todos == null || todos.isEmpty()) {
+			this.todo = java.util.Optional.empty();
+		} else {
+			this.todo = java.util.Optional.of(todos.get(0));
+		}
 		// Remember the todo as field
-		this.todo = java.util.Optional.ofNullable(todo);
 		// update the user interface
 		updateUserInterface(this.todo);
 	}

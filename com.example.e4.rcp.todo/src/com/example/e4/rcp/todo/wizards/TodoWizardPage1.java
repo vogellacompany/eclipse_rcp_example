@@ -1,5 +1,7 @@
 package com.example.e4.rcp.todo.wizards;
 
+import java.util.Collections;
+
 import javax.inject.Inject;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -12,10 +14,9 @@ import com.example.e4.rcp.todo.parts.TodoDetailsPart;
 
 public class TodoWizardPage1 extends WizardPage {
 
-	
 	private Todo todo;
 	private MessagesRegistry messagesRegistry;
-	
+
 	@Inject
 	public TodoWizardPage1(Todo todo, MessagesRegistry messagesRegistry) {
 		super("page1");
@@ -28,14 +29,13 @@ public class TodoWizardPage1 extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 		Composite container = new Composite(parent, SWT.NONE);
-		// we could also create this class via DI but 
+		// we could also create this class via DI but
 		// in this example we stay with the next operator
 		TodoDetailsPart part = new TodoDetailsPart();
 		part.createControls(container, messagesRegistry);
-		part.setTodo(todo);
-		
+		part.setTodos(Collections.singletonList(todo));
+
 		setControl(container);
 	}
 
-	
 }
