@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="eclipse46" sequenceNumber="19">
+<?pde version="3.8"?><target name="eclipse46" sequenceNumber="23">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.junit" version="4.12.0.v201504281640"/>
-<unit id="org.hamcrest.core" version="1.3.0.v201303031735"/>
-<unit id="org.hamcrest.library" version="1.3.0.v201505072020"/>
-<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/S20160308060251/repository/"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.12.0.v20161122-1740"/>
+<unit id="org.eclipse.sdk.ide" version="4.6.2.M20161124-1400"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.6"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.platform.sdk" version="4.6.0.I20160317-0200"/>
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.12.0.v20160316-1445"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.6milestones"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="retrofit.feature.group" version="2.0.0"/>
+<unit id="retrofit.feature.group" version="2.1.0"/>
 <repository location="https://dl.bintray.com/simon-scholz/retrofit-osgi/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.nebula.widgets.pshelf.css.feature.feature.group" version="1.0.0.201604151927"/>
-<unit id="org.eclipse.nebula.widgets.pshelf.feature.feature.group" version="1.0.0.201604151927"/>
+<unit id="org.eclipse.nebula.widgets.pshelf.css.feature.feature.group" version="1.0.0.201701041652"/>
+<unit id="org.eclipse.nebula.widgets.pshelf.feature.feature.group" version="1.0.0.201701041652"/>
 <repository location="http://download.eclipse.org/technology/nebula/snapshot"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.hamcrest.core" version="1.3.0.v201303031735"/>
+<unit id="org.hamcrest.core.source" version="1.3.0.v201303031735"/>
+<unit id="org.hamcrest.generator" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.generator.source" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.library" version="1.3.0.v201505072020"/>
+<unit id="org.hamcrest.library.source" version="1.3.0.v201505072020"/>
+<unit id="org.junit" version="4.12.0.v201504281640"/>
+<unit id="org.junit.source" version="4.12.0.v201504281640"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20160520211859/repository/"/>
 </location>
 </locations>
 </target>
