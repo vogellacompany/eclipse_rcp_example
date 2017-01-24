@@ -57,7 +57,7 @@ public class TodoOverviewPart {
 
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService, MessagesRegistry messageRegistry) {
-		parent.setLayout(new GridLayout(1, false));
+		parent.setLayout(new GridLayout(2, false));
 
 		loadTableDataButton = new Button(parent, SWT.PUSH);
 		// set column text and register column text locale changes
@@ -68,11 +68,23 @@ public class TodoOverviewPart {
 				broker.post(MyEventConstants.TOPIC_TODOS_CHANGED, new HashMap<String, String>());
 			}
 		});
+		
+		Button selectAllButton = new Button(parent, SWT.PUSH);
+		selectAllButton.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		selectAllButton.setText("Select All");
+		messageRegistry.register(selectAllButton::setText, m -> m.buttonSelectAll);
+		selectAllButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				viewer.getTable().selectAll();
+			}
+		});
+		
 
 		Text search = new Text(parent, SWT.SEARCH | SWT.CANCEL | SWT.ICON_SEARCH);
 
 		// Assuming that GridLayout is used
-		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
 		messageRegistry.register(search::setText, m -> m.txtSearchMessage);
 
 		// Filter at every keystroke
@@ -98,7 +110,7 @@ public class TodoOverviewPart {
 
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 		Table table = viewer.getTable();
-		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
