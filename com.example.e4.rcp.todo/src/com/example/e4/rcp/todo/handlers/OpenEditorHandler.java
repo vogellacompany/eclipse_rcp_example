@@ -19,21 +19,18 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class OpenEditorHandler {
-	
+
 	private static final String EDITOR_ID = "com.example.e4.rcp.todo.partdescriptor.editor";
 
 	@Execute
-	public void execute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos,
-			MApplication application, 
-			EModelService modelService,
-			EPartService partService) {
+	public void execute(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos, MApplication application,
+			EModelService modelService, EPartService partService) {
 
 		// sanity check
 		if (todos == null || !todos.isEmpty()) {
 			return;
 		}
-		
+
 		Todo todo = todos.get(0);
 
 		String id = String.valueOf(todo.getId());
@@ -60,15 +57,13 @@ public class OpenEditorHandler {
 		part.setLabel(header);
 
 		// add it an existing stack and show it
-		MPartStack stack = (MPartStack) modelService.find(
-				"com.example.e4.rcp.todo.partstack.bottom", application);
+		MPartStack stack = (MPartStack) modelService.find("com.example.e4.rcp.todo.partstack.bottom", application);
 		stack.getChildren().add(part);
 		partService.showPart(part, PartState.ACTIVATE);
 	}
 
 	@CanExecute
-	public boolean canExecute(
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todo) {
+	public boolean canExecute(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todo) {
 		return todo != null && !todo.isEmpty();
 	}
 }

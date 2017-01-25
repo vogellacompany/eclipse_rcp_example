@@ -71,7 +71,6 @@ public class TodoOverviewPart {
 		
 		Button selectAllButton = new Button(parent, SWT.PUSH);
 		selectAllButton.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		selectAllButton.setText("Select All");
 		messageRegistry.register(selectAllButton::setText, m -> m.buttonSelectAll);
 		selectAllButton.addSelectionListener(new SelectionAdapter() {
 			@Override
