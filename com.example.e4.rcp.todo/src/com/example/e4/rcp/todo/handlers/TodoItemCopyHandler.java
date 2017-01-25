@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.services.log.Logger;
@@ -44,5 +45,10 @@ public class TodoItemCopyHandler {
 		clipboard.setContents(transferData, transfers);
 
 		clipboard.dispose();
+	}
+
+	@CanExecute
+	public boolean canExecute(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> selectedTodos) {
+		return selectedTodos != null && selectedTodos.isEmpty();
 	}
 }
