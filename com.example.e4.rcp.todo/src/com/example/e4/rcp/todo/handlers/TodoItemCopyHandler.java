@@ -49,6 +49,6 @@ public class TodoItemCopyHandler {
 
 	@CanExecute
 	public boolean canExecute(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> selectedTodos) {
-		return selectedTodos != null && selectedTodos.isEmpty();
+		return selectedTodos != null && !selectedTodos.isEmpty();
 	}
 }
