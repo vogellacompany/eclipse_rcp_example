@@ -17,7 +17,7 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
-import org.eclipse.e4.ui.model.application.ui.MDirtyable;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -39,21 +39,21 @@ public class TodoDetailsPart {
 	private Text txtDescription;
 	private Button btnDone;
 	private DateTime dateTime;
-	
+
 	@Inject
-	private MDirtyable dirtyable;
+	private MPart part;
 
 	@Inject
 	@DirectTodo(id = 1)
 	private java.util.Optional<Todo> todo;
-	
+
 	private WritableValue<Todo> observableTodo = new WritableValue<>();
 
 	private DataBindingContext dbc;
-	
+
 	// pause dirty listener when new Todo selection is set
 	private boolean pauseDirtyListener;
-	
+
 	@PostConstruct
 	public void createControls(Composite parent, MessagesRegistry messagesRegistry) {
 
@@ -79,11 +79,11 @@ public class TodoDetailsPart {
 		btnDone = new Button(parent, SWT.CHECK);
 		// set Label text and register Label text locale changes
 		messagesRegistry.register(btnDone::setText, m -> m.buttonDone);
-		
+
 		bindData();
 
 		updateUserInterface(todo);
-		
+
 		GridLayoutFactory.swtDefaults().numColumns(2).generateLayout(parent);
 	}
 
@@ -100,12 +100,12 @@ public class TodoDetailsPart {
 			fields.put(Todo.FIELD_DUEDATE, WidgetProperties.selection().observe(dateTime));
 			fields.put(Todo.FIELD_DONE, WidgetProperties.selection().observe(btnDone));
 			fields.forEach((k, v) -> dbc.bindValue(v, BeanProperties.value(k).observeDetail(observableTodo)));
-			
+
 			dbc.getBindings().forEach(item -> {
 				Binding binding = (Binding) item;
 				binding.getTarget().addChangeListener(e -> {
-					if(!pauseDirtyListener) {
-						dirtyable.setDirty(true);
+					if (!pauseDirtyListener && part != null) {
+						part.setDirty(true);
 					}
 				});
 			});
@@ -114,7 +114,7 @@ public class TodoDetailsPart {
 
 	@Inject
 	public void setTodos(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Todo> todos) {
-		if(todos == null || todos.isEmpty()) {
+		if (todos == null || todos.isEmpty()) {
 			this.todo = java.util.Optional.empty();
 		} else {
 			this.todo = java.util.Optional.of(todos.get(0));
@@ -154,20 +154,20 @@ public class TodoDetailsPart {
 			pauseDirtyListener = false;
 		}
 	}
-	
+
 	@Persist
 	public void save(ITodoService todoService) {
 		todo.ifPresent(t -> {
 			todoService.saveTodo(t);
 		});
-		dirtyable.setDirty(false);
+		part.setDirty(false);
 	}
 
 	@Focus
 	public void onFocus() {
 		txtSummary.setFocus();
 	}
-	
+
 	@PreDestroy
 	public void dispose() {
 		dbc.dispose();
