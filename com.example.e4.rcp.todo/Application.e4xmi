@@ -22,7 +22,6 @@
                   <children xsi:type="menu:DirectToolItem" xmi:id="_yBk8wNXeEeODCZCgwFhKTQ" elementId="com.example.e4.rcp.todo.directtoolitem.0" label="Find" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.FindAllToolbarsHandler"/>
                 </toolbar>
               </children>
-              <children xsi:type="basic:Part" xmi:id="_IJheIIP5EeWAXZTrFEY-ug" elementId="com.example.e4.rcp.todo.part.tagoverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TagOverviewPart" label="Tag Overview"/>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_9SkyUAzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.partstack.1" containerData="40">
               <children xsi:type="basic:Part" xmi:id="_9uFpoAzDEeKhVv5pZDR7bA" elementId="com.example.e4.rcp.todo.part.tododelete" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoDeletionPart" label="Delete "/>

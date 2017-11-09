@@ -27,7 +27,7 @@ public class OpenEditorHandler {
 			EModelService modelService, EPartService partService) {
 
 		// sanity check
-		if (todos == null || !todos.isEmpty()) {
+		if (todos == null || todos.isEmpty()) {
 			return;
 		}
 
