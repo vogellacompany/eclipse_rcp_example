@@ -8,7 +8,7 @@ import org.osgi.service.component.annotations.Component;
 
 import com.example.e4.rcp.todo.model.ITodoService;
 
-@Component(name = "TodoService", service = IContextFunction.class, property = "service.context.key=com.example.e4.rcp.todo.model.ITodoService")
+@Component(service = IContextFunction.class, property = "service.context.key=com.example.e4.rcp.todo.model.ITodoService")
 public class TodoServiceContextFunction implements IContextFunction {
 	@Override
 	public Object compute(IEclipseContext context, String contextKey) {
