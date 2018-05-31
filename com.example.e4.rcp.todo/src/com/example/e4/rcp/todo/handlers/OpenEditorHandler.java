@@ -1,6 +1,5 @@
 package com.example.e4.rcp.todo.handlers;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Named;
@@ -30,36 +29,24 @@ public class OpenEditorHandler {
 		if (todos == null || todos.isEmpty()) {
 			return;
 		}
+		for (Todo todo : todos) {
 
-		Todo todo = todos.get(0);
+			String id = String.valueOf(todo.getId());
 
-		String id = String.valueOf(todo.getId());
+			// editor was not open, create it
+			MPart part = partService.createPart(EDITOR_ID);
 
-		// maybe the editor is already open?
-		Collection<MPart> parts = partService.getParts();
+			part.getPersistedState().put(Todo.FIELD_ID, id);
 
-		// if the editor is open show it
-		for (MPart part : parts) {
-			String currentId = part.getPersistedState().get(Todo.FIELD_ID);
-			if (currentId != null && currentId.equals(id)) {
-				partService.showPart(part, PartState.ACTIVATE);
-				return;
-			}
+			// create a nice label for the part header
+			String header = "ID:" + id + " " + todo.getSummary();
+			part.setLabel(header);
+
+			// add it an existing stack and show it
+			MPartStack stack = (MPartStack) modelService.find("com.example.e4.rcp.todo.partstack.bottom", application);
+			stack.getChildren().add(part);
+			partService.showPart(part, PartState.ACTIVATE);
 		}
-
-		// editor was not open, create it
-		MPart part = partService.createPart(EDITOR_ID);
-
-		part.getPersistedState().put(Todo.FIELD_ID, id);
-
-		// create a nice label for the part header
-		String header = "ID:" + id + " " + todo.getSummary();
-		part.setLabel(header);
-
-		// add it an existing stack and show it
-		MPartStack stack = (MPartStack) modelService.find("com.example.e4.rcp.todo.partstack.bottom", application);
-		stack.getChildren().add(part);
-		partService.showPart(part, PartState.ACTIVATE);
 	}
 
 	@CanExecute
