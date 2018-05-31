@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="eclipse46" sequenceNumber="23">
+<?pde version="3.8"?><target name="eclipse47" sequenceNumber="23">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.equinox.sdk.feature.group" version="3.12.0.v20161122-1740"/>
-<unit id="org.eclipse.sdk.ide" version="4.6.2.M20161124-1400"/>
-<repository location="http://download.eclipse.org/eclipse/updates/4.6"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.sdk.ide" version="0.0.0"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.7"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="retrofit.feature.group" version="2.1.0"/>
-<repository location="https://dl.bintray.com/simon-scholz/retrofit-osgi/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.nebula.widgets.pshelf.css.feature.feature.group" version="1.0.0.201701041652"/>
-<unit id="org.eclipse.nebula.widgets.pshelf.feature.feature.group" version="1.0.0.201701041652"/>
-<repository location="http://download.eclipse.org/technology/nebula/snapshot"/>
+<unit id="org.eclipse.nebula.widgets.pshelf.css.feature.feature.group" version=""/>
+<unit id="org.eclipse.nebula.widgets.pshelf.feature.feature.group" version=""/>
+<repository location="http://download.eclipse.org/nebula/releases/latest"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.hamcrest.core" version="1.3.0.v201303031735"/>
