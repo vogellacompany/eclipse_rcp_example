@@ -18,7 +18,6 @@ import org.eclipse.e4.ui.di.UISynchronize;
 
 import com.example.e4.rcp.todo.events.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoService;
-import com.example.e4.rcp.todo.model.Tag;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class MyRestfulTodoServiceImpl implements ITodoService {
@@ -33,12 +32,8 @@ public class MyRestfulTodoServiceImpl implements ITodoService {
 	@Inject
 	private UISynchronize uiSync;
 	
-	
-	private Tag<Tag<Todo>> rootTag;
-
 	public MyRestfulTodoServiceImpl() {
 		todos = createInitialModel();
-		createRootTag(todos);
 	}
 
 	@Override
@@ -103,21 +98,6 @@ public class MyRestfulTodoServiceImpl implements ITodoService {
 		return deleteTodo.isPresent();
 	}
 
-	@Override
-	public Tag<Tag<Todo>> getRootTag() {
-		return rootTag;
-	}
-
-	@Override
-	public List<Tag<Todo>> getTags(long id) {
-		List<Tag<Todo>> tags = new ArrayList<>();
-	
-		Optional<Todo> findById = findById(id);
-		findById.ifPresent(todo -> findTags(todo, tags, getRootTag()));
-	
-		return tags;
-	}
-
 	// Example data, change if you like
 	private List<Todo> createInitialModel() {
 		List<Todo> list = new ArrayList<>();
@@ -134,32 +114,12 @@ public class MyRestfulTodoServiceImpl implements ITodoService {
 		return list;
 	}
 
-	private void createRootTag(List<Todo> todos) {
-		Tag<Todo> eclipseTag = new Tag<>("Eclipse", todos);
-		List<Tag<Todo>> tagList = new ArrayList<>();
-		tagList.add(eclipseTag);
-		rootTag = new Tag<>("root", tagList);
-	}
-
 	private Todo createTodo(String summary, String description) {
 		return new Todo(current.getAndIncrement(), summary, description, false, new Date());
 	}
 
 	private Optional<Todo> findById(long id) {
 		return getTodosInternal().stream().filter(t -> t.getId() == id).findAny();
-	}
-
-	private void findTags(Todo todo, List<Tag<Todo>> todosTags, Tag<?> rootTag) {
-		List<?> taggedElements = rootTag.getTaggedElements();
-		for (Object taggedElement : taggedElements) {
-			if (taggedElement instanceof Tag) {
-				findTags(todo, todosTags, (Tag<?>) taggedElement);
-			} else if (todo.equals(taggedElement)) {
-				@SuppressWarnings("unchecked")
-				Tag<Todo> foundTag = (Tag<Todo>) rootTag;
-				todosTags.add(foundTag);
-			}
-		}
 	}
 
 	private Map<String, String> createEventData(String topic, String todoId) {

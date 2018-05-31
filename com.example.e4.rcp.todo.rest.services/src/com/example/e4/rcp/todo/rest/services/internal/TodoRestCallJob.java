@@ -21,11 +21,11 @@ public class TodoRestCallJob extends Job {
 
 	public static final String API_URL = "http://www.mocky.io";
 
-	private Consumer<List<Todo>> contributorConsumer;
+	private Consumer<List<Todo>> todosConsumer;
 
-	public TodoRestCallJob(Consumer<List<Todo>> contributorConsumer) {
+	public TodoRestCallJob(Consumer<List<Todo>> todosConsumer) {
 		super("Fetch Todos from http://www.mocky.io webserver");
-		this.contributorConsumer = contributorConsumer;
+		this.todosConsumer = todosConsumer;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class TodoRestCallJob extends Job {
 
 		try {
 			List<Todo> contributors = todoCall.execute().body();
-			contributorConsumer.accept(contributors);
+			todosConsumer.accept(contributors);
 		} catch (IOException e) {
 			Bundle bundle = FrameworkUtil.getBundle(getClass());
 			return new Status(Status.ERROR, bundle.getSymbolicName(), e.getMessage(), e);
