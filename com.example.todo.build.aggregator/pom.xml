@@ -17,9 +17,9 @@
 	
 
 	<modules>
-		<!-- target 
-		<module>com.example.e4.rcp.todo.target</module>
--->
+		<!-- target -->
+		<module>../target-platform</module>
+
 		<!-- bundles -->
 		<module>../com.example.e4.rcp.todo.target</module>
 		<module>../com.example.e4.bundleresourceloader</module>
