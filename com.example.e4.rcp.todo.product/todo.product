@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="to-do" uid="com.example.e4.rcp.todo.product" id="com.example.e4.rcp.todo.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" useFeatures="true" includeLaunchers="true">
+<product name="to-do" uid="com.example.e4.rcp.todo.product" id="com.example.e4.rcp.todo.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -16,7 +16,6 @@
    <splash
       location="com.example.e4.rcp.todo" />
    <launcher name="todo">
-      <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
@@ -94,7 +93,10 @@
       <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
       <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="retrofit" version="2.0.0"/>
+      <feature id="h2" version="1.4.197"/>
+      <feature id="retrofit" version="2.1.0"/>
+      <feature id="org.eclipse.nebula.widgets.pshelf.feature" version="1.0.0.201804281520"/>
+      <feature id="org.eclipse.nebula.widgets.pshelf.css.feature" version="1.0.0.201804281520"/>
    </features>
 
    <configurations>
