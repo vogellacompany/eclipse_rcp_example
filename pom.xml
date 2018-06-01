@@ -19,7 +19,6 @@
 		<module>target-platform</module>
 
 		<!-- bundles -->
-		<module>com.example.e4.rcp.todo.target</module>
 		<module>com.example.e4.bundleresourceloader</module>
 		<module>com.example.e4.rcp.todo</module>
 		<module>com.example.e4.rcp.todo.model</module>
