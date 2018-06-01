@@ -122,11 +122,11 @@
 						</environment>
 
 						<!-- Mac -->
-						<environment>
+						<!--environment>
 							<os>macosx</os>
 							<ws>cocoa</ws>
 							<arch>x86</arch>
-						</environment>
+						</environment-->
 						<environment>
 							<os>macosx</os>
 							<ws>cocoa</ws>
