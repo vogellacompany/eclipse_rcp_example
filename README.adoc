@@ -1,6 +1,6 @@
 == Eclipse 4 Book image:https://travis-ci.org/vogellacompany/openreq.svg?branch=master["Build Status", link="https://travis-ci.org/vogellacompany/openreq"] image:https://img.shields.io/badge/License-EPL%202.0-blue.svg["EPL 2.0", link="https://www.eclipse.org/legal/epl-2.0/"]
 
-Sample application, which show a lot of capabilities, which are provided by the Eclipse 4 Platform.
+This is the example code for the Eclipse RCP training sessions from vogella GmbH and from the http://www.vogella.com/books/eclipsercp.html[Eclipse Rich Client Platform book].
 
 === Running the application
 
