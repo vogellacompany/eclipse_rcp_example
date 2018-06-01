@@ -21,12 +21,14 @@
 		<!-- bundles -->
 		<module>com.example.e4.bundleresourceloader</module>
 		<module>com.example.e4.rcp.todo</module>
-		<module>com.example.e4.rcp.todo.model</module>
 		<module>com.example.e4.rcp.todo.addons</module>
 		<module>com.example.e4.rcp.todo.contribute</module>
+		<module>com.example.e4.rcp.todo.contribute.processor</module>
 		<module>com.example.e4.rcp.todo.events</module>
 		<module>com.example.e4.rcp.todo.i18n</module>
+		<module>com.example.e4.rcp.todo.model</module>
 		<module>com.example.e4.rcp.todo.ownannotation</module>
+		<module>com.example.e4.rcp.todo.rest.services</module>
 		<module>com.example.e4.rcp.todo.services</module>
 		<module>com.example.e4.renderer.swt</module>
 
@@ -37,6 +39,7 @@
 		<module>com.example.e4.rcp.todo.feature</module>
 
 		<!-- p2 repository for updates -->
+		<module>com.example.e4.rcp.todo.updatesite</module>
 
 		<!-- product related -->
 		<module>com.example.e4.rcp.todo.product</module>
