@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="com.vogella.tasks.feature">
+      <category name="com.vogella.tasks.update"/>
+   </feature>
+   <category-def name="com.vogella.tasks.update" label="Task management update site"/>
+</site>
