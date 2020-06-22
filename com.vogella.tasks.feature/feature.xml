@@ -24,4 +24,25 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="com.vogella.tasks.update"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.vogella.tasks.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.vogella.tasks.services"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
