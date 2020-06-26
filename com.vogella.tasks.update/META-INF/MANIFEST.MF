@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Update
+Bundle-SymbolicName: com.vogella.tasks.update;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: VOGELLA
+Require-Bundle: org.eclipse.equinox.p2.engine;bundle-version="2.6.500",
+ org.eclipse.equinox.p2.operations;bundle-version="2.5.600",
+ org.eclipse.equinox.p2.metadata.repository;bundle-version="1.3.300",
+ org.eclipse.e4.ui.workbench;bundle-version="1.11.0",
+ org.eclipse.core.runtime;bundle-version="3.17.0",
+ org.eclipse.equinox.p2.core;bundle-version="2.6.200",
+ org.eclipse.e4.core.di.annotations;bundle-version="1.6.500",
+ com.ibm.icu;bundle-version="64.2.0",
+ org.eclipse.e4.ui.model.workbench;bundle-version="2.1.600.v20191106-1503"
+Automatic-Module-Name: com.vogella.tasks.update
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
