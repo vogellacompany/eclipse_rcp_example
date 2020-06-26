@@ -12,11 +12,12 @@
  </parent>
 
  <modules>
-	<module>com.vogella.tasks.ui</module>
+  <module>com.vogella.tasks.ui</module>
   <module>com.vogella.tasks.feature</module>
   <module>com.vogella.tasks.product</module>
   <module>com.vogella.tasks.model</module>
   <module>com.vogella.tasks.services</module>
+  <module>com.vogella.tasks.update</module>
   <module>releng-updatesite</module>
  </modules>
 </project>
