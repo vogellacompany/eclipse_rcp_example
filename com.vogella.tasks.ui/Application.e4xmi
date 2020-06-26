@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0"/>
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
+    <mainMenu xmi:id="_FPu-YLSZEeq-dNF-Hsy_bw" elementId="org.eclipse.ui.main.menu"/>
+  </children>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_78U5UbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_78U5UrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
