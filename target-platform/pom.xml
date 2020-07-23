@@ -1,0 +1,13 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.vogella.tycho</groupId>
+        <artifactId>root</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.vogella.tycho</groupId>
+    <artifactId>target-platform</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>eclipse-target-definition</packaging>
+
+</project>

@@ -19,5 +19,6 @@
   <module>com.vogella.tasks.services</module>
   <module>com.vogella.tasks.update</module>
   <module>releng-updatesite</module>
+   <module>target-platform</module>
  </modules>
 </project>
