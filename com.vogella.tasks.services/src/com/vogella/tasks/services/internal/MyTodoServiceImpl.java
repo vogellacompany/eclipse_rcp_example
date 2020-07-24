@@ -90,6 +90,7 @@ public class MyTodoServiceImpl implements ITodoService {
 			list.add(createTodo("Eclipse services", "Selection, model, Part"));
 			list.add(createTodo("Renderer", "Different UI toolkit"));
 			list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
+			list.add(createTodo("Maven", "Learning Tycho"));
 		}
 
 		return list;
