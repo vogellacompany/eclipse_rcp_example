@@ -1,5 +1,7 @@
 package com.vogella.tasks.model;
 
+import static java.util.Objects.isNull;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.Objects;
 
 public class Todo {
 
-	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	public static final String FIELD_ID = "id";
 	public static final String FIELD_SUMMARY = "summary";
@@ -35,6 +37,15 @@ public class Todo {
 
 	public String getSummary() {
 		return summary;
+	}
+
+	/**
+	 * Only need for JSON serialization and de-serialization
+	 */
+	public void restorePropertyChangeListener() {
+		if (isNull(changes)) {
+			changes = new PropertyChangeSupport(this);
+		}
 	}
 
 	public void setSummary(String summary) {
@@ -73,7 +84,7 @@ public class Todo {
 
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", summary=" + summary + "]";
+		return "Todo [id=" + id + ", summary=" + summary + "] + , description=" + description + "] ";
 	}
 
 	@Override

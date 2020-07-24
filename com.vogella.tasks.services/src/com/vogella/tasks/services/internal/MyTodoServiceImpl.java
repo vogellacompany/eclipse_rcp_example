@@ -1,6 +1,5 @@
 package com.vogella.tasks.services.internal;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,80 +15,93 @@ import com.vogella.tasks.model.Todo;
 @Component
 public class MyTodoServiceImpl implements ITodoService {
 
-    private static AtomicInteger current = new AtomicInteger(1);
-    private List<Todo> todos;
 
-    public MyTodoServiceImpl() {
-        todos = createInitialModel();
-    }
 
-    @Override
-    public void getTodos(Consumer<List<Todo>> todosConsumer) {
-        // always pass a new copy of the data
-        todosConsumer.accept(todos.stream().map(t -> t.copy()).collect(Collectors.toList()));
-    }
+	private static AtomicInteger current = new AtomicInteger(1);
+	private List<Todo> todos;
 
-    protected List<Todo> getTodosInternal() {
-        return todos;
-    }
+	public MyTodoServiceImpl() {
+		todos = createInitialModel();
+	}
 
-    // create or update an existing instance of Todo
-    @Override
-    public synchronized boolean saveTodo(Todo newTodo) {
-        // hold the Optional object as reference to determine, if the Todo is
-        // newly created or not
-        Optional<Todo> todoOptional = findById(newTodo.getId());
+	@Override
+	public void getTodos(Consumer<List<Todo>> todosConsumer) {
+		// always pass a new copy of the data
+		todosConsumer.accept(todos.stream().map(Todo::copy).collect(Collectors.toList()));
+	}
 
-        // get the actual todo or create a new one
-        Todo todo = todoOptional.orElse(new Todo(current.getAndIncrement()));
-        todo.setSummary(newTodo.getSummary());
-        todo.setDescription(newTodo.getDescription());
-        todo.setDone(newTodo.isDone());
-        todo.setDueDate(newTodo.getDueDate());
+	protected List<Todo> getTodosInternal() {
+		return todos;
+	}
 
-        if (!todoOptional.isPresent()) {
-            todos.add(todo);
-        }
-        return true;
-    }
+	// create or update an existing instance of object
+	@Override
+	public synchronized boolean saveTodo(Todo newTodo) {
+		// hold the Optional object as reference to determine, if the object is
+		// newly created or not
+		Optional<Todo> todoOptional = findById(newTodo.getId());
 
-    @Override
-    public Optional<Todo> getTodo(long id) {
-        return findById(id).map(todo -> todo.copy());
-    }
+		Todo todo = null;
+		// get the actual object or create a new one
+		if (!todoOptional.isEmpty()) {
+			todo = todoOptional.get();
+		} else {
+			todo = new Todo(current.getAndIncrement());
+		}
 
-    @Override
-    public boolean deleteTodo(long id) {
-        Optional<Todo> deleteTodo = findById(id);
+		todo.setSummary(newTodo.getSummary());
+		todo.setDescription(newTodo.getDescription());
+		todo.setDone(newTodo.isDone());
+		todo.setDueDate(newTodo.getDueDate());
 
-        deleteTodo.ifPresent(todo -> {
-            todos.remove(todo);
-        });
+		if (!todoOptional.isPresent()) {
+			todos.add(todo);
+		}
+		JSONUtil.saveAsGson(todos);
+		return true;
+	}
 
-        return deleteTodo.isPresent();
-    }
 
-    // Example data, change if you like
-    private List<Todo> createInitialModel() {
-        List<Todo> list = new ArrayList<>();
-        list.add(createTodo("Application model", "Flexible and extensible"));
-        list.add(createTodo("DI", "@Inject as programming mode"));
-        list.add(createTodo("OSGi", "Services"));
-        list.add(createTodo("SWT", "Widgets"));
-        list.add(createTodo("JFace", "Especially Viewers!"));
-        list.add(createTodo("CSS Styling", "Style your application"));
-        list.add(createTodo("Eclipse services", "Selection, model, Part"));
-        list.add(createTodo("Renderer", "Different UI toolkit"));
-        list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
-        return list;
-    }
 
-    private Todo createTodo(String summary, String description) {
-        return new Todo(current.getAndIncrement(), summary, description, false, new Date());
-    }
+	@Override
+	public Optional<Todo> getTodo(long id) {
+		return findById(id).map(Todo::copy);
+	}
 
-    private Optional<Todo> findById(long id) {
-        return getTodosInternal().stream().filter(t -> t.getId() == id).findAny();
-    }
+	@Override
+	public boolean deleteTodo(long id) {
+		Optional<Todo> deleteTodo = findById(id);
+		deleteTodo.ifPresent(todo -> todos.remove(todo));
+		return deleteTodo.isPresent();
+	}
+
+	// Example data, change if you like
+	private List<Todo> createInitialModel() {
+		List<Todo> list = JSONUtil.retrieveSavedTodos();
+		// just for testing, if we retrieve no objects, we simply generate a few
+		if (list.isEmpty()) {
+			// Create some initial content
+			list.add(createTodo("Application model", "Flexible and extensible"));
+			list.add(createTodo("DI", "@Inject as programming mode"));
+			list.add(createTodo("OSGi", "Services"));
+			list.add(createTodo("SWT", "Widgets"));
+			list.add(createTodo("JFace", "Especially Viewers!"));
+			list.add(createTodo("CSS Styling", "Style your application"));
+			list.add(createTodo("Eclipse services", "Selection, model, Part"));
+			list.add(createTodo("Renderer", "Different UI toolkit"));
+			list.add(createTodo("Compatibility Layer", "Run Eclipse 3.x"));
+		}
+
+		return list;
+	}
+
+
+	private Todo createTodo(String summary, String description) {
+		return new Todo(current.getAndIncrement(), summary, description, false, new Date());
+	}
+
+	private Optional<Todo> findById(long id) {
+		return getTodosInternal().stream().filter(t -> t.getId() == id).findAny();
+	}
 
 }
