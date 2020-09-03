@@ -13,3 +13,11 @@ When the compile errors are gone the target platform has been properly set and t
  in the com.example.e4.rcp.todo.product project can be run.
 
 
+=== Building the application
+
+Use the following command one the command line to build the application:
+
+mvn clean verify
+
+This requires Maven to be installed on your machine.
+
