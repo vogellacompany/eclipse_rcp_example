@@ -4,13 +4,13 @@ import javax.annotation.PostConstruct;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.data.ListDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
-import org.eclipse.nebula.widgets.nattable.selection.config.DefaultRowSelectionLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.viewport.ViewportLayer;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -35,7 +35,7 @@ public class NatTableLayerStackExamplePart {
 		DataLayer bodyDataLayer = new DataLayer(bodyDataProvider);
 		SelectionLayer selectionLayer = new SelectionLayer(bodyDataLayer);
 		// Enable full selection for rows
-		selectionLayer.addConfiguration(new DefaultRowSelectionLayerConfiguration());
+//		selectionLayer.addConfiguration(new DefaultRowSelectionLayerConfiguration());
 
 		ViewportLayer viewportLayer = new ViewportLayer(selectionLayer);
 
@@ -45,9 +45,19 @@ public class NatTableLayerStackExamplePart {
 		// is working correctly
 		viewportLayer.setRegionName(GridRegion.BODY);
 
-		NatTable natTable = new NatTable(parent, viewportLayer,false);
+		NatTable natTable = new NatTable(parent, viewportLayer, false);
 
+		natTable.addConfiguration(new DefaultNatTableStyleConfiguration());
+//		natTable.addConfiguration(new AbstractRegistryConfiguration() {
+//
+//			@Override
+//			public void configureRegistry(IConfigRegistry configRegistry) {
+//				configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE,
+//						IEditableRule.ALWAYS_EDITABLE);
+//			}
+//		});
 
+		natTable.configure();
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(natTable);
 	}
 }
