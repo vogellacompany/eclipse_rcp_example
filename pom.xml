@@ -47,6 +47,15 @@
     <artifactId>target-platform-configuration</artifactId>
     <version>${tycho.version}</version>
     <configuration>
+    	<target>
+						<artifact>
+							<groupId>com.vogella.tycho</groupId>
+							<artifactId>target-platform</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</artifact>
+			</target>
+    <resolveWithExecutionEnvironmentConstraints>false</resolveWithExecutionEnvironmentConstraints>
+
      <environments>
       <environment>
        <os>linux</os>
@@ -77,5 +86,6 @@
   <module>com.vogella.service.imageloader</module>
   <module>com.vogella.tasks.events</module>
   <module>com.vogella.tasks.update</module>
+  <module>target-platform</module>
  </modules>
 </project>
