@@ -12,3 +12,6 @@ screenshots/
 # To ignore them use:
 
 *~
+.polyglot..META-INF_MANIFEST.MF
+.polyglot.com.vogella.tasks.product
+.polyglot.feature.xml
