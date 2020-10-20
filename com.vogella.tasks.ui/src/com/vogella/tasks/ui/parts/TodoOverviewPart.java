@@ -11,8 +11,8 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
-import com.vogella.tasks.model.ITodoService;
-import com.vogella.tasks.model.Todo;
+import com.vogella.tasks.model.Task;
+import com.vogella.tasks.model.TaskService;
 
 
 
@@ -23,15 +23,15 @@ public class TodoOverviewPart {
 	ESelectionService selectionService;
 
 	@PostConstruct
-    public void createControls(Composite parent, ITodoService todoService) {
-        todoService.getTodos(todos -> {
+	public void createControls(Composite parent, TaskService taskService) {
+		taskService.consume(todos -> {
             System.out.println("Number of Todo objects " + todos.size());
         });
-		var todos = new ArrayList<Todo>();
-		todoService.getTodos(todos::addAll);
-		var todo = todos.get(0);
+		var tasks = new ArrayList<Task>();
+		taskService.consume(tasks::addAll);
+		var todo = tasks.get(0);
 		todo.setDescription("Hello");
-		todoService.saveTodo(todo);
+		taskService.update(todo);
 		TableViewer viewer = new TableViewer(parent, SWT.FULL_SELECTION);
 		// viewer is a JFace Viewer
 		viewer.addSelectionChangedListener(event -> {

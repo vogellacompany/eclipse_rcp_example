@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.vogella.tasks.model.Todo;
+import com.vogella.tasks.model.Task;
 
 public class JSONUtil {
 
@@ -22,11 +22,11 @@ public class JSONUtil {
 
 	private static String fileName = "dataFile";
 
-	public static void saveAsGson(List<Todo> todos) {
+	public static void saveAsGson(List<Task> todos) {
 		final String dir = System.getProperty("user.dir");
 		// Save data as new JSON
 		Gson gson = new Gson();
-		java.lang.reflect.Type type = new TypeToken<List<Todo>>() {
+		java.lang.reflect.Type type = new TypeToken<List<Task>>() {
 		}.getType();
 		String json = gson.toJson(todos, type);
 		try {
@@ -45,16 +45,16 @@ public class JSONUtil {
 		}
 	}
 
-	public static List<Todo> retrieveSavedTodos() {
+	public static List<Task> retrieveSavedTodos() {
 		List<String> readTextFileByLines = readTextFileByLines(fileName);
 		if (readTextFileByLines != null && !readTextFileByLines.isEmpty()) {
 			var gson = new Gson();
-			var type = new TypeToken<List<Todo>>() {
+			var type = new TypeToken<List<Task>>() {
 			}.getType();
 			String string = readTextFileByLines.stream().map(String::valueOf).collect(Collectors.joining());
 			// Convert back to Java
-			List<Todo> fromJson = gson.fromJson(string, type);
-			fromJson.forEach(Todo::restorePropertyChangeListener);
+			List<Task> fromJson = gson.fromJson(string, type);
+//			fromJson.forEach(Task::restorePropertyChangeListener);
 			return fromJson;
 		}
 		return new ArrayList<>();
