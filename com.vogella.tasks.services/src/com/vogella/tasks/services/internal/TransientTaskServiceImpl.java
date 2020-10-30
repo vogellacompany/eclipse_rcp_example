@@ -8,9 +8,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import org.osgi.service.component.annotations.Component;
+
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
 
+@Component
 public class TransientTaskServiceImpl implements TaskService {
 
     private static AtomicInteger current = new AtomicInteger(1);
@@ -24,7 +27,7 @@ public class TransientTaskServiceImpl implements TaskService {
     public List<Task> getAll() {
         return tasks.stream().map(Task::copy).collect(Collectors.toList());
     }
-
+ 
     @Override
     public void consume(Consumer<List<Task>> taskConsumer) {
         // always pass a new copy of the data
