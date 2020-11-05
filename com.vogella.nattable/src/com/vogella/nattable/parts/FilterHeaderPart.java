@@ -9,6 +9,8 @@ import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.data.ListDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.config.DefaultEditConfiguration;
+import org.eclipse.nebula.widgets.nattable.extension.glazedlists.filterrow.DefaultGlazedListsFilterStrategy;
+import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultColumnHeaderDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.ColumnHeaderLayer;
@@ -55,9 +57,9 @@ public class FilterHeaderPart {
 
 		ILayer columnHeaderLayer = new ColumnHeaderLayer(columnHeaderDataLayer, viewportLayer, selectionLayer);
 
-//		FilterRowHeaderComposite<Person> filterRowHeaderLayer = new FilterRowHeaderComposite<>(
-//				new DefaultGlazedListsFilterStrategy<>(filterList, accessor, configRegistry), columnHeaderLayer,
-//				columnHeaderDataLayer.getDataProvider(), configRegistry);
+		FilterRowHeaderComposite<Person> filterRowHeaderLayer = new FilterRowHeaderComposite<>(
+				new DefaultGlazedListsFilterStrategy<>(filterList, accessor, configRegistry), columnHeaderLayer,
+				columnHeaderDataLayer.getDataProvider(), configRegistry);
 
 		// create the CompositeLayer, which combines header and body
 		CompositeLayer compositeLayer = new CompositeLayer(1, 2);

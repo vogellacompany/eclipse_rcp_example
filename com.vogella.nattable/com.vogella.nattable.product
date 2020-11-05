@@ -17,11 +17,15 @@
 
    <plugins>
       <plugin id="ca.odell.glazedlists"/>
+      <plugin id="com.google.gson"/>
       <plugin id="com.sun.jna"/>
       <plugin id="com.sun.jna.platform"/>
       <plugin id="com.vogella.model"/>
       <plugin id="com.vogella.model.service"/>
       <plugin id="com.vogella.nattable"/>
+      <plugin id="com.vogella.tasks.events"/>
+      <plugin id="com.vogella.tasks.model"/>
+      <plugin id="com.vogella.tasks.services"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.apache.batik.constants"/>
