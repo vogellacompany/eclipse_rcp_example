@@ -10,3 +10,4 @@ Import-Package: com.vogella.tasks.model,
  org.osgi.service.component.annotations
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.google.gson;bundle-version="2.8.2"
+Service-Component: OSGI-INF/com.vogella.tasks.services.internal.TransientTaskServiceImpl.xml
