@@ -3,9 +3,7 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.window.main" label="Eclipse 4 RCP Application" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.part.sample" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.SortHeaderPart" label="Nattable demo part" iconURI="platform:/plugin/com.vogella.nattable/icons/home.png"/>
-        <children xsi:type="basic:Part" xmi:id="_DxoTQObOEeqvT-GqLPxU4A" elementId="com.vogella.nattable.part.sample" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.FilterHeaderPart" label="Sample Part" iconURI="platform:/plugin/com.vogella.nattable/icons/home.png"/>
-        <children xsi:type="basic:Part" xmi:id="_AcjAQObuEeqvT-GqLPxU4A" elementId="com.vogella.nattable.part.0" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.FilterHeaderPart"/>
+        <children xsi:type="basic:Part" xmi:id="_zpjvUClvEeuo7N9rEOmeJg" elementId="com.vogella.nattable.part.taskoverview-advanced" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.NattableExample" label="Task overview - Advanced"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">

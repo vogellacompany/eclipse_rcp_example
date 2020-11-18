@@ -84,6 +84,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
+import com.vogella.model.person.Person.Gender;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
 
@@ -289,7 +290,7 @@ public class SortHeaderPart {
 //
 //		natTable.setConfigRegistry(configRegistry);
 //		natTable.addConfiguration(new DefaultNatTableStyleConfiguration());
-//		natTable.addConfiguration(new SingleClickSortConfiguration());
+		natTable.addConfiguration(new SingleClickSortConfiguration());
 
 		natTable.configure();
 	}

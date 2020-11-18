@@ -4,6 +4,12 @@ import java.time.LocalDate;
 
 public class Task {
 
+	public static final String FIELD_ID = "id";
+	public static final String FIELD_SUMMARY = "summary";
+	public static final String FIELD_DESCRIPTION = "description";
+	public static final String FIELD_DONE = "done";
+	public static final String FIELD_DUEDATE = "dueDate";
+
     private final long id;
     private String summary = "";
     private String description = "";

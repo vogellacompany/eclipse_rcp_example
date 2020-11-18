@@ -8,24 +8,29 @@ import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 
 import com.vogella.tasks.model.Task;
 
-public class TaskColumnPropertyAccessor  implements IColumnPropertyAccessor<Task> {
+public class TaskColumnPropertyAccessor implements IColumnPropertyAccessor<Task> {
 
-    private static final List<String> propertyNames = 
-        Arrays.asList("summary", "description", "dueDate", "done");
+    // property names of the Task class
+    // will also be used for the column header once you define them
+	public static final List<String> propertyNames =
+            Arrays.asList(Task.FIELD_ID, Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION, Task.FIELD_DUEDATE,
+                    Task.FIELD_DONE);
 
     @Override
     public Object getDataValue(Task task, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return  task.getSummary();
+                return task.getId();
             case 1:
-                return task.getDescription();
+                return task.getSummary();
             case 2:
-                return task.getDueDate();
+                return task.getDescription();
             case 3:
                 return task.isDone();
-			default:
-				return "UNDEFINED";
+            case 4:
+                return task.getDueDate();
+            default:
+                return "UNDEFINED";
             }
     }
 
@@ -33,29 +38,29 @@ public class TaskColumnPropertyAccessor  implements IColumnPropertyAccessor<Task
     public void setDataValue(Task task, int columnIndex, Object newValue) {
         switch (columnIndex) {
             case 0:
-                String summary = String.valueOf(newValue);
-                task.setSummary(summary);
-                break;
+                throw new IllegalArgumentException("change not allowed");
             case 1:
-                String description = String.valueOf(newValue);
-                task.setDescription(description);
+                task.setSummary(String.valueOf(newValue));
                 break;
             case 2:
-            	task.setDueDate((LocalDate) newValue);
+                task.setDescription(String.valueOf(newValue));
+            case 3:
+                task.setDone((boolean) newValue);
                 break;
             case 4:
-            	String value =  String.valueOf(newValue);
-            	task.setDone(Boolean.parseBoolean(value));
+                String stringDate = (String) newValue;
+                LocalDate date = LocalDate.parse(stringDate);
+                task.setDueDate(date);
                 break;
-			default:
-				throw new IllegalArgumentException("column number out of range");
+            default:
+                throw new IllegalArgumentException("column number out of range");
 
         }
     }
 
     @Override
     public int getColumnCount() {
-		return propertyNames.size();
+        return propertyNames.size();
     }
 
     @Override

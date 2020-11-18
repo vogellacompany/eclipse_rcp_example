@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="NatTable Target Definition" sequenceNumber="1599822540">
+  <locations>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.500.v20190907-0428"/>
+      <unit id="org.eclipse.sdk.ide" version="4.13.0.I20190916-1045"/>
+      <unit id="org.eclipse.equinox.sdk.feature.group" version="3.19.0.v20190907-0428"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.19.0.v20190824-1315"/>
+      <repository location="https://download.eclipse.org/releases/2019-09/"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="com.ibm.icu.base" version="58.2.0.v20181010-1334"/>
+      <repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20191126223242/repository"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="ca.odell.glazedlists" version="1.11.0.v20190926-1838"/>
+      <unit id="org.apache.commons.codec" version="1.14.0.v20200818-1422"/>
+      <unit id="org.apache.poi" version="3.9.0.v201405241750"/>
+      <unit id="org.slf4j.api" version="1.7.30.v20200204-2150"/>
+      <unit id="org.slf4j.binding.simple" version="1.7.30.v20200204-2150"/>
+      <repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20200831200620/repository"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.nebula.cwt.feature.feature.group" version="1.1.0.201912241810"/>
+      <unit id="org.eclipse.nebula.widgets.cdatetime.feature.feature.group" version="1.4.0.201912241810"/>
+      <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.3.0.201912241810"/>
+      <repository location="https://download.eclipse.org/nebula/releases/2.3.0"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.collections.feature.feature.group" version="10.4.0.v20200820-2049"/>
+      <repository location="https://download.eclipse.org/collections/10.4.0/repository"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="true" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.license.feature.group" version="2.0.2.v20181016-2210"/>
+      <repository location="http://download.eclipse.org/cbi/updates/license"/>
+    </location>
+  </locations>
+</target>
