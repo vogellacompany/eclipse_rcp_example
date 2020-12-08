@@ -10,29 +10,27 @@ import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
+import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.ListDataProvider;
-import org.eclipse.nebula.widgets.nattable.data.ReflectiveColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.grid.layer.DefaultGridLayer;
 import org.eclipse.swt.widgets.Composite;
 
-import com.vogella.model.person.Person;
-import com.vogella.model.person.PersonService;
+import com.vogella.tasks.model.Task;
+import com.vogella.tasks.model.TaskService;
 
-public class SimpleEditor {
+public class NatTableEditorExample {
 
 	@PostConstruct
-	public void postConstruct(Composite parent, PersonService personService) {
-		List<Person> persons = personService.getPersons(10);
-		ReflectiveColumnPropertyAccessor<Person> columnPropertyAccessor = new ReflectiveColumnPropertyAccessor<>(
-				"firstName", "lastName", "gender", "married", "birthday");
-		ListDataProvider<Person> dataProvider = new ListDataProvider<>(persons, columnPropertyAccessor);
+	public void postConstruct(Composite parent, TaskService taskService) {
+		List<Task> tasks = taskService.getAll();
+		IColumnPropertyAccessor<Task> columnPropertyAccessor = new TaskColumnPropertyAccessor();
+		ListDataProvider<Task> dataProvider = new ListDataProvider<>(tasks, columnPropertyAccessor);
 
-		PersonHeaderDataProvider headerDataProvider = new PersonHeaderDataProvider();
+		TaskHeaderDataProvider headerDataProvider = new TaskHeaderDataProvider();
 
 		DefaultGridLayer gridLayer = new DefaultGridLayer(dataProvider, headerDataProvider);
 
-		
 		NatTable natTable = new NatTable(parent, gridLayer, false);
 		natTable.addConfiguration(new DefaultNatTableStyleConfiguration());
 		natTable.addConfiguration(new AbstractRegistryConfiguration() {

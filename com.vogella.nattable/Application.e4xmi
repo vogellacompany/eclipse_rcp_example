@@ -3,7 +3,9 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.window.main" label="Eclipse 4 RCP Application" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.vogella.nattable.partstack.sample">
+        <children xsi:type="basic:Part" xmi:id="_Y04MwDmSEeu8avuTu41G8w" elementId="com.vogella.nattable.part.simpleeditor" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.NatTableAdvancedExample" label="Advanced Editor"/>
         <children xsi:type="basic:Part" xmi:id="_zpjvUClvEeuo7N9rEOmeJg" elementId="com.vogella.nattable.part.taskoverview-advanced" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.NattableExample" label="Task overview - Advanced"/>
+        <children xsi:type="basic:Part" xmi:id="_F1UdYDmQEeu8avuTu41G8w" elementId="com.vogella.nattable.part.simpleeditor" contributionURI="bundleclass://com.vogella.nattable/com.vogella.nattable.parts.NatTableEditorExample" label="Simple Editor"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">

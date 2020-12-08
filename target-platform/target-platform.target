@@ -25,10 +25,5 @@
 			<unit id="org.eclipse.nebula.widgets.nattable.extension.poi.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.nebula.widgets.nattable.extension.poi.source.feature.feature.group" version="0.0.0"/>
 		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://dl.bintray.com/vogellacompany/codeexamples-javadatamodel/updatesite/1.4.0/"/>
-			<unit id="com.vogella.model.feature.feature.group" version="0.0.0"/>
-			<unit id="com.vogella.model.feature.source.feature.group" version="0.0.0"/>
-		</location>
 	</locations>
 </target>

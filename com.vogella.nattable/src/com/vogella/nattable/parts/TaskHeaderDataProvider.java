@@ -2,22 +2,22 @@ package com.vogella.nattable.parts;
 
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 
-public class PersonHeaderDataProvider implements IDataProvider {
+public class TaskHeaderDataProvider implements IDataProvider {
 
 	@Override
 	public Object getDataValue(int columnIndex, int rowIndex) {
 		switch (columnIndex) {
 
 		case 0:
-			return "First Name";
+			return "ID";
 		case 1:
-			return "Last Name";
+			return "Summary";
 		case 2:
-			return "Gender";
+			return "Description";
 		case 3:
-			return "Married";
+			return "Done";
 		case 4:
-			return "Birthday";
+			return "Due Date";
 		}
 		return "";
 	}
