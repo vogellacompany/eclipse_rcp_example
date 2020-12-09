@@ -13,8 +13,8 @@ public class TaskColumnPropertyAccessor implements IColumnPropertyAccessor<Task>
     // property names of the Task class
     // will also be used for the column header once you define them
 	public static final List<String> propertyNames =
-            Arrays.asList(Task.FIELD_ID, Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION, Task.FIELD_DUEDATE,
-                    Task.FIELD_DONE);
+			Arrays.asList(Task.FIELD_ID, Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION, Task.FIELD_DONE,
+					Task.FIELD_DUEDATE);
 
     @Override
     public Object getDataValue(Task task, int columnIndex) {
