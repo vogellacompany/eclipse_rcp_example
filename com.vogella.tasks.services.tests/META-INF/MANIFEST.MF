@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: com.vogella.tasks.services.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: VOGELLA
+Fragment-Host: com.vogella.tasks.services;bundle-version="1.0.0"
+Automatic-Module-Name: com.vogella.tasks.services.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.junit,
+ org.junit.jupiter.api
