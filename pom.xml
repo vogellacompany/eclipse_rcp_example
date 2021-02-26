@@ -5,8 +5,15 @@
  <version>1.0.0-SNAPSHOT</version>
  <packaging>pom</packaging>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>tycho-staged</id>
+      <url>https://oss.sonatype.org/content/repositories/orgeclipsetycho-1065</url>
+    </pluginRepository>
+  </pluginRepositories>
+
  <properties>
-  <tycho.version>2.0.0</tycho.version>
+  <tycho.version>2.2.0</tycho.version>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
   <eclipse-repo.url>http://download.eclipse.org/releases/latest</eclipse-repo.url>
  </properties>
@@ -83,6 +90,7 @@
   <module>com.vogella.tasks.product</module>
   <module>com.vogella.tasks.model</module>
   <module>com.vogella.tasks.services</module>
+  <module>com.vogella.tasks.services.tests</module>
   <module>com.vogella.service.imageloader</module>
   <module>com.vogella.tasks.events</module>
   <module>com.vogella.tasks.update</module>
