@@ -30,4 +30,4 @@ jobs:
         title: "Development Build"
         files: |
           *.zip
-          com.vogella.tasks.product/target/products/com.vogella.tasks-*.gtk.x86_64.zip
+          com.vogella.tasks.product/target/products/com.vogella.tasks-*.x86_64.zip
