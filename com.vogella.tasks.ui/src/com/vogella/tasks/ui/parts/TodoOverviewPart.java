@@ -1,42 +1,81 @@
 package com.vogella.tasks.ui.parts;
 
-import java.util.ArrayList;
+import static org.eclipse.jface.layout.GridLayoutFactory.fillDefaults;
+import static org.eclipse.jface.widgets.ButtonFactory.newButton;
+
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.core.databinding.beans.typed.BeanProperties;
+import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Table;
 
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
 
-
-
 public class TodoOverviewPart {
 
-	// use field injection for the service
 	@Inject
-	ESelectionService selectionService;
+	TaskService taskService;
+
+	private WritableList<Task> writableList;
+
+	private TableViewer viewer;
 
 	@PostConstruct
-	public void createControls(Composite parent, TaskService taskService) {
-		taskService.consume(todos -> {
-            System.out.println("Number of Todo objects " + todos.size());
-        });
-		var tasks = new ArrayList<Task>();
-		taskService.consume(tasks::addAll);
-		var todo = tasks.get(0);
-		todo.setDescription("Hello");
-		taskService.update(todo);
-		TableViewer viewer = new TableViewer(parent, SWT.FULL_SELECTION);
-		// viewer is a JFace Viewer
-		viewer.addSelectionChangedListener(event -> {
-			IStructuredSelection selection = viewer.getStructuredSelection();
-			selectionService.setSelection(selection.getFirstElement());
-		});
+	public void createControls(Composite parent) {
+		fillDefaults().numColumns(1).applyTo(parent);
+
+		newButton(SWT.PUSH).text("Load Data").onSelect(e -> update()).create(parent);
+
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.FULL_SELECTION);
+		Table table = viewer.getTable();
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+		// create column for the summary property
+		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
+		colSummary.getColumn().setWidth(100);
+		colSummary.getColumn().setText("Summary");
+
+		// create column for description property
+		TableViewerColumn colDescription = new TableViewerColumn(viewer, SWT.NONE);
+
+		colDescription.getColumn().setWidth(200);
+		colDescription.getColumn().setText("Description");
+
+		// use data binding to bind the viewer
+		writableList = new WritableList<>();
+		// fill the writable list, when Consumer callback is called. Databinding
+		// will do the rest once the list is filled
+		taskService.consume(writableList::addAll);
+		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
+
+	}
+
+	public void updateViewer(List<Task> list) {
+		if (viewer != null) {
+			writableList.clear();
+			writableList.addAll(list);
+		}
+	}
+
+	@Focus
+	public void setFocus() {
+		viewer.getControl().setFocus();
+	}
+
+	private void update() {
+		updateViewer(taskService.getAll());
     }
 }
