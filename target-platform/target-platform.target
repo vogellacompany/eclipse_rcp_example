@@ -3,12 +3,9 @@
 <target name="target-platform">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="http://download.eclipse.org/releases/2021-03"/>
+			<repository location="http://download.eclipse.org/releases/latest"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.platform.sdk" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="http://download.eclipse.org/releases/2021-03"/>
 			<unit id="org.junit.jupiter.api" version="0.0.0"/>
 			<unit id="org.junit.jupiter.engine" version="0.0.0"/>
 			<unit id="org.junit" version="0.0.0"/>
@@ -45,6 +42,13 @@
 			<unit id="org.eclipse.e4.tools.model.spy.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.e4.tools.preference.spy.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.e4.tools.spies.feature.feature.group" version="0.0.0"/>
+		</location>
+		
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="http://download.eclipse.org/technology/swtbot/releases/latest/"/>
+			<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.swtbot.e4.finder" version="0.0.0"/>
+			<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="0.0.0"/>
 		</location>
 	</locations>
 </target>
