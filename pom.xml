@@ -39,11 +39,7 @@
         <version>${tycho.version}</version>
         <configuration>
           <target>
-            <artifact>
-              <groupId>com.vogella.tycho</groupId>
-              <artifactId>target-platform</artifactId>
-              <version>1.0.0-SNAPSHOT</version>
-            </artifact>
+            <file>${project.basedir}/../target-platform/target-platform.target</file>
           </target>
           <resolveWithExecutionEnvironmentConstraints>false</resolveWithExecutionEnvironmentConstraints>
 
@@ -69,6 +65,9 @@
     </plugins>
   </build>
   <modules>
+    <module>com.example.e4.rcp</module>
+    <module>com.example.e4.feature</module>
+    <module>com.example.e4.product</module>
     <module>com.vogella.tasks.ui</module>
     <module>com.vogella.tasks.feature</module>
     <module>com.vogella.tasks.product</module>
@@ -78,6 +77,5 @@
     <module>com.vogella.service.imageloader</module>
     <module>com.vogella.tasks.events</module>
     <module>com.vogella.tasks.update</module>
-    <module>target-platform</module>
   </modules>
 </project>
