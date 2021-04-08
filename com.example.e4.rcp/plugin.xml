@@ -7,14 +7,14 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.eclipse.e4.ui.workbench.swt.E4Application"
-            name="com.example.e4.rcp">
+            name="Example RCP product from the Wizard">
          <property
                name="applicationCSS"
                value="platform:/plugin/com.example.e4.rcp/css/default.css">
          </property>
          <property
                name="appName"
-               value="com.example.e4.rcp">
+               value="Example RCP product from the Wizard">
          </property>
       </product>
    </extension>

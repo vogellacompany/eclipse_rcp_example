@@ -10,7 +10,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+
   <build>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-p2-director-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
@@ -68,6 +80,7 @@
     <module>com.example.e4.rcp</module>
     <module>com.example.e4.feature</module>
     <module>com.example.e4.product</module>
+    <module>com.example.e4.swtbottests</module>
     <module>com.vogella.tasks.ui</module>
     <module>com.vogella.tasks.feature</module>
     <module>com.vogella.tasks.product</module>

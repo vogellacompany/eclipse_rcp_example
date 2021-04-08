@@ -48,7 +48,7 @@
 			<repository location="http://download.eclipse.org/technology/swtbot/releases/latest/"/>
 			<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.swtbot.e4.finder" version="0.0.0"/>
-			<unit id="org.eclipse.swtbot.eclipse.test.junit.feature.group" version="0.0.0"/>
+			<unit id="org.eclipse.swtbot.junit5.feature.group" version="0.0.0"/>
 		</location>
 	</locations>
 </target>

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Rcp
+Bundle-Name: Rcp from the Wizard
 Bundle-SymbolicName: com.example.e4.rcp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE

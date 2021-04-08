@@ -2,6 +2,7 @@ package com.example.e4.rcp.parts;
 
 import java.util.Arrays;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
