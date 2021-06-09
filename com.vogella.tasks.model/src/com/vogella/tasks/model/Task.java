@@ -3,6 +3,7 @@ package com.vogella.tasks.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Task {
 
@@ -67,7 +68,25 @@ public class Task {
         return id;
     }
 
+
     @Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		return id == other.id;
+	}
+
+	@Override
     public String toString() {
         return "Task [id=" + id + ", summary=" + summary + "]";
     }
