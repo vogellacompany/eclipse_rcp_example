@@ -83,6 +83,7 @@
     <!--
     <module>com.example.e4.swtbottests</module>
 -->
+    <module>com.vogella.swt.widgets</module>
     <module>com.vogella.tasks.ui</module>
     <module>com.vogella.tasks.feature</module>
     <module>com.vogella.tasks.product</module>
