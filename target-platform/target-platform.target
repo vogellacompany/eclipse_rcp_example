@@ -16,7 +16,6 @@
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20200529191137/repository"/>
-			<unit id="com.google.gson" version="0.0.0"/>
 			<unit id="ca.odell.glazedlists" version="0.0.0"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
@@ -43,16 +42,10 @@
 			<unit id="org.eclipse.e4.tools.preference.spy.feature.feature.group" version="0.0.0"/>
 			<unit id="org.eclipse.e4.tools.spies.feature.feature.group" version="0.0.0"/>
 		</location>
-		
+	
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="http://download.eclipse.org/technology/swtbot/releases/latest/"/>
-			<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
-			<unit id="org.eclipse.swtbot.e4.finder" version="0.0.0"/>
-			<unit id="org.eclipse.swtbot.junit5.feature.group" version="0.0.0"/>
-		</location>
-		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/justj/jres/15/updates/release"/>
-			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.stripped.feature.group" version="15.0.2.v20210201-0955"/>
+			<repository location="https://download.eclipse.org/justj/jres/16/updates/release"/>
+			<unit id="a.jre.org.eclipse.justj.openjdk.hotspot.jre.full" version="0.0.0"/>
 		</location>
 	</locations>
 </target>
