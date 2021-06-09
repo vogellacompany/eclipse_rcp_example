@@ -16,14 +16,15 @@ import com.vogella.tasks.model.TaskService;
 @Component
 public class TransientTaskServiceImpl implements TaskService {
 
-    private static AtomicInteger current = new AtomicInteger(1);
-    private List<Task> tasks;
+
+	private static AtomicInteger current = new AtomicInteger(91);
+	private List<Task> tasks;
 
     public TransientTaskServiceImpl() {
         tasks = createTestData();
     }
 
-    @Override
+	@Override
     public List<Task> getAll() {
         return tasks.stream().map(Task::copy).collect(Collectors.toList());
     }
@@ -31,7 +32,8 @@ public class TransientTaskServiceImpl implements TaskService {
     @Override
     public void consume(Consumer<List<Task>> taskConsumer) {
         // always pass a new copy of the data
-        taskConsumer.accept(tasks.stream().map(Task::copy).collect(Collectors.toList()));
+		List<Task> collect = tasks.stream().map(Task::copy).collect(Collectors.toList());
+		taskConsumer.accept(collect);
     }
 
 
@@ -73,6 +75,7 @@ public class TransientTaskServiceImpl implements TaskService {
                 create("DI", "@Inject as programming mode"), create("OSGi", "Services"),
                 create("SWT", "Widgets"), create("JFace", "Especially Viewers!"),
                 create("CSS Styling", "Style your application"),
+				create("CSS Styling", "Styling for custom widget"),
                 create("Eclipse services", "Selection, model, Part"),
                 create("Renderer", "Different UI toolkit"), create("Compatibility Layer", "Run Eclipse 3.x"));
         return new ArrayList<>(list);
