@@ -6,20 +6,20 @@ package com.vogella.tasks.events;
  * Only used for constant definition
  */
 
-public interface MyEventConstants {
+public interface TaskEventConstants {
 
     // topic identifier for all topics
-    String TOPIC_TODO = "TOPIC_TODOS";
+	String TOPIC_TASKS = "TOPIC_TASKS";
 
     // this key can only be used for event registration, you cannot
     // send out generic events
-    String TOPIC_TODO_ALLTOPICS = "TOPIC_TODOS/*";
+	String TOPIC_TASKS_ALLTOPICS = "TOPIC_TASKS/*";
 
-    String TOPIC_TODOS_CHANGED = "TOPIC_TODOS/CHANGED";
+	String TOPIC_TASKS_CHANGED = "TOPIC_TASKS/CHANGED";
 
-    String TOPIC_TODO_NEW = "TOPIC_TODOS/TODO/NEW";
+	String TOPIC_TASKS_NEW = "TOPIC_TASKS/TASKS/NEW";
 
-    String TOPIC_TODO_DELETE = "TOPIC_TODOS/TODO/DELETED";
+	String TOPIC_TASKS_DELETE = "TOPIC_TASKS/TASKS/DELETED";
 
-    String TOPIC_TODO_UPDATE = "TOPIC_TODOS/TODO/UPDATED";
+	String TOPIC_TASKS_UPDATE = "TOPIC_TASKS/TASKS/UPDATED";
 }
