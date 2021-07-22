@@ -3,37 +3,36 @@ package com.vogella.tasks.services.internal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.osgi.service.component.annotations.Component;
+import javax.inject.Inject;
 
+import org.eclipse.e4.core.services.events.IEventBroker;
+
+import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
 
-@Component
 public class TransientTaskServiceImpl implements TaskService {
 
+	@Inject
+	private IEventBroker broker;
 
-	private static AtomicInteger current = new AtomicInteger(91);
+	private static AtomicInteger current = new AtomicInteger(1);
 	private List<Task> tasks;
 
     public TransientTaskServiceImpl() {
         tasks = createTestData();
     }
 
-	@Override
-    public List<Task> getAll() {
-        return tasks.stream().map(Task::copy).collect(Collectors.toList());
-    }
- 
     @Override
     public void consume(Consumer<List<Task>> taskConsumer) {
         // always pass a new copy of the data
-		List<Task> collect = tasks.stream().map(Task::copy).collect(Collectors.toList());
-		taskConsumer.accept(collect);
+		taskConsumer.accept(tasks.stream().map(Task::copy).collect(Collectors.toList()));
     }
 
 
@@ -53,6 +52,11 @@ public class TransientTaskServiceImpl implements TaskService {
 
         if (!taskOptional.isPresent()) {
             tasks.add(task);
+			broker.post(TaskEventConstants.TOPIC_TASKS_NEW, Map.of(TaskEventConstants.TOPIC_TASKS_NEW,
+					TaskEventConstants.TOPIC_TASKS_NEW, Task.FIELD_ID, task.getId()));
+		} else {
+			broker.post(TaskEventConstants.TOPIC_TASKS_UPDATE, Map.of(TaskEventConstants.TOPIC_TASKS,
+					TaskEventConstants.TOPIC_TASKS_UPDATE, Task.FIELD_ID, task.getId()));
         }
         return true;
     }
@@ -65,7 +69,12 @@ public class TransientTaskServiceImpl implements TaskService {
     @Override
     public boolean delete(long id) {
         Optional<Task> deletedTask = findById(id);
-        deletedTask.ifPresent(t -> tasks.remove(t));
+		deletedTask.ifPresent(t -> {
+			tasks.remove(t);
+			broker.post(TaskEventConstants.TOPIC_TASKS_DELETE, Map.of(TaskEventConstants.TOPIC_TASKS,
+					TaskEventConstants.TOPIC_TASKS_DELETE, Task.FIELD_ID, t.getId()));
+		});
+
         return deletedTask.isPresent();
     }
 
@@ -75,7 +84,6 @@ public class TransientTaskServiceImpl implements TaskService {
                 create("DI", "@Inject as programming mode"), create("OSGi", "Services"),
                 create("SWT", "Widgets"), create("JFace", "Especially Viewers!"),
                 create("CSS Styling", "Style your application"),
-				create("CSS Styling", "Styling for custom widget"),
                 create("Eclipse services", "Selection, model, Part"),
                 create("Renderer", "Different UI toolkit"), create("Compatibility Layer", "Run Eclipse 3.x"));
         return new ArrayList<>(list);
@@ -88,5 +96,10 @@ public class TransientTaskServiceImpl implements TaskService {
     private Optional<Task> findById(long id) {
         return tasks.stream().filter(t -> t.getId() == id).findAny();
     }
+
+	@Override
+	public List<Task> getAll() {
+		return tasks.stream().map(Task::copy).collect(Collectors.toList());
+	}
 
 }
