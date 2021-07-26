@@ -1,29 +1,9 @@
-Label {
-    font: Verdana 8px;
-    color: black;
-}
-Composite Label {
-    color: black;
-}
-Text {
-    font: Verdana 8px;
-}
-/* Identifies only those SWT Text elements
-appearing within a Composite */
-Composite Text {
-    background-color: white;
-    color: black;
-}
-SashForm {
-    background-color: #c1d5ef;
-}
-/* background uses a gradient */
-.MTrimBar {
-    background-color: #e3efff #c1d5ef;
-    color: white;
-    font: Verdana 8px;
+Shell {
+    swt-background-mode: default;
+    background-color: red orange yellow green orange 30% 60% 75% 95%
 }
 
-Shell {
-    background-color: #e3efff #c1d5ef 60%;
+.MPartStack {
+    font-size: 22px;
+    color: orange;
 }
