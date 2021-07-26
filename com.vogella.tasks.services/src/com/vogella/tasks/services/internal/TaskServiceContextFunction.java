@@ -17,15 +17,7 @@ public class TaskServiceContextFunction extends ContextFunction {
 	
 	@Override
 	public Object compute(IEclipseContext context, String contextKey) {
-		
-//		IEventBroker iEventBroker = context.get(IEventBroker.class);
-		// create a TaskService  and return it
-//		TransientTaskServiceImpl make = new TransientTaskServiceImpl();
-//		make.eventBroker = iEventBroker;
-		
-//		
 		var make = ContextInjectionFactory.make(TransientTaskServiceImpl.class, context);
-//		
 		MApplication mApplication = context.get(MApplication.class);
 		mApplication.getContext().set(TaskService.class, make);
 		return make;
