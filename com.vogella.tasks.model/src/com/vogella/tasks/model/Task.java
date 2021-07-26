@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Task {
 
-	private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+	private transient PropertyChangeSupport changes = new PropertyChangeSupport(this);
 
 	public static final String FIELD_ID = "id";
 	public static final String FIELD_SUMMARY = "summary";
@@ -103,4 +103,12 @@ public class Task {
 		changes.removePropertyChangeListener(l);
 	}
 
+	/**
+	 * Only need for JSON serialization and de-serialization
+	 */
+	public void restorePropertyChangeListener() {
+		if (Objects.isNull(changes)) {
+			changes = new PropertyChangeSupport(this);
+		}
+	}
 }

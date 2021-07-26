@@ -47,5 +47,15 @@
 			<repository location="https://download.eclipse.org/justj/jres/16/updates/release"/>
 			<unit id="a.jre.org.eclipse.justj.openjdk.hotspot.jre.full" version="0.0.0"/>
 		</location>
+		<location includeDependencyScope="compile" includeSource="true" missingManifest="generate" type="Maven">
+			<dependencies>
+				<dependency>
+					<groupId>com.google.code.gson</groupId>
+					<artifactId>gson</artifactId>
+					<version>2.8.6</version>
+					<type>jar</type>
+				</dependency>
+			</dependencies>
+		</location>
 	</locations>
 </target>

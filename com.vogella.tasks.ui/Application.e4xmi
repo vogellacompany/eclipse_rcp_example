@@ -1,27 +1,76 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
-    <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.0" horizontal="true">
-      <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0">
-        <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" closeable="true"/>
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
+      <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.0">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.0" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1">
+            <tags>NoAutoCollapse</tags>
+            <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" closeable="true">
+              <menus xsi:type="menu:PopupMenu" xmi:id="_S-5lIMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.popupmenu.table" label="Table menu">
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_mexeMMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.3" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
+              </menus>
+            </children>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4">
+            <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
+              <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" closeable="true"/>
+            </children>
+            <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.bottom">
+              <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" closeable="true"/>
+              <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
+            </children>
+          </children>
+        </children>
       </children>
-      <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1">
-        <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
-          <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" closeable="true"/>
-        </children>
-        <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.2">
-          <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" closeable="true"/>
-          <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
-        </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_Szej0MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.playground">
+        <children xsi:type="basic:Part" xmi:id="_TOaMUMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.part.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart"/>
       </children>
     </children>
     <mainMenu xmi:id="_FPu-YLSZEeq-dNF-Hsy_bw" elementId="org.eclipse.ui.main.menu">
-      <children xsi:type="menu:Menu" xmi:id="_kD4sQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.file" label="File"/>
+      <children xsi:type="menu:Menu" xmi:id="_kD4sQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_wfjnoMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.1" command="_cGIQYMnEEeuD8-bVRByS6Q"/>
+      </children>
       <children xsi:type="menu:Menu" xmi:id="_lMhIQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
-        <children xsi:type="menu:DirectMenuItem" xmi:id="_rfVKIMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.directmenuitem.new" label="New"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_HNmNMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.0" command="_Cp2VMMnCEeuD8-bVRByS6Q"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_GjwwwMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.4" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_vX5mkMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.menu.processes" label="Processes">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_xsUgQMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.2" command="_glwA4MnFEeuD8-bVRByS6Q">
+          <parameters xmi:id="_1H52UMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.parameter.0" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
+        </children>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_KpgZcOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.menu.window" label="Window">
+        <children xsi:type="menu:Menu" xmi:id="_OV7n4OrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.menu.perspectives" label="Perspectives">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_MaPXQOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.handledmenuitem.switchperspective" label="Switch Perspective" command="_glwA4MnFEeuD8-bVRByS6Q">
+            <parameters xmi:id="_TxcOUOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.parameter.1" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
+          </children>
+        </children>
       </children>
     </mainMenu>
+    <trimBars xmi:id="_WwDtIMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.trimbar.0">
+      <children xsi:type="menu:ToolBar" xmi:id="_XSRCUMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolbar.0">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_X_D24MnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledtoolitem.0" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+      </children>
+      <children xsi:type="menu:ToolControl" xmi:id="_aFvPgMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolcontrol.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.toolcontrols.SearchToolControl"/>
+    </trimBars>
   </children>
+  <handlers xmi:id="_MHZqMMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveTaskHandler" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_DaqHEMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.1" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.Testing" command="_Cp2VMMnCEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_dC2XUMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.2" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.SaveAllHandler" command="_cGIQYMnEEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_j1ghcMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.3" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.SwitchPerspectiveHandler" command="_glwA4MnFEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_Txj4gMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.openeditor" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.OpenEditorHandler" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_LuODcMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.4" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
+  <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
+  <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove"/>
+  <commands xmi:id="_Cp2VMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.testing" commandName="Testing"/>
+  <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.saveall" commandName="SaveAll"/>
+  <commands xmi:id="_glwA4MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.switchperspective" commandName="Switch Perspective">
+    <parameters xmi:id="_rEQAEMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.commandparameter.perspectiveid" name="Perspective ID"/>
+  </commands>
+  <commands xmi:id="_WQsNYMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.openeditor" commandName="Open editor"/>
+  <commands xmi:id="_pxm0AMnnEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.createtask" commandName="Create task"/>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_78U5UbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_78U5UrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

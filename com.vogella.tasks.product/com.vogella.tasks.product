@@ -36,7 +36,6 @@
       <feature id="org.eclipse.ecf.core.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.feature" installMode="root"/>
-      <feature id="org.eclipse.nebula.widgets.nattable.core.feature" installMode="root"/>
    </features>
 
    <configurations>

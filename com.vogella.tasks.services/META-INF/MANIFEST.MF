@@ -8,11 +8,12 @@ Automatic-Module-Name: com.vogella.tasks.services
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.vogella.tasks.model,
  javax.inject;version="1.0.0",
- org.osgi.service.component.annotations
+ org.osgi.service.component.annotations;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.e4.core.services,
  org.eclipse.e4.core.contexts;bundle-version="1.8.400",
  org.eclipse.e4.core.di;bundle-version="1.7.700",
  org.eclipse.e4.ui.model.workbench,
- com.vogella.tasks.events;bundle-version="1.0.0"
+ com.vogella.tasks.events;bundle-version="1.0.0",
+ com.google.gson;bundle-version="2.8.6"
 Service-Component: OSGI-INF/com.vogella.tasks.services.internal.TaskServiceContextFunction.xml

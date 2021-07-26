@@ -12,6 +12,10 @@
                name="appName"
                value="to-do">
          </property>
+         <property
+               name="rendererFactoryUri"
+               value="undleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
       </product>
    </extension>
 

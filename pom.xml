@@ -76,6 +76,8 @@
       </plugin>
     </plugins>
   </build>
+
+
   <modules>
     <module>com.example.e4.rcp</module>
     <module>com.example.e4.feature</module>

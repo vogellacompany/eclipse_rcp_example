@@ -9,12 +9,15 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.Persist;
+import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.jface.databinding.swt.typed.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -28,6 +31,7 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Text;
 
 import com.vogella.tasks.model.Task;
+import com.vogella.tasks.model.TaskService;
 
 public class TodoDetailsPart {
 	private Text txtSummary;
@@ -41,6 +45,11 @@ public class TodoDetailsPart {
 	// observable placeholder for a task
 	private WritableValue<Task> observableTodo = new WritableValue<>();
 	private DataBindingContext dbc;
+	@Inject
+	private MPart part;
+
+	// pause dirty listener when new selection is set
+	private boolean pauseDirtyListener;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
@@ -86,6 +95,15 @@ public class TodoDetailsPart {
 			fields.put(Task.FIELD_DUEDATE, WidgetProperties.localDateSelection().observe(dateTime));
 			fields.put(Task.FIELD_DONE, WidgetProperties.buttonSelection().observe(btnDone));
 			fields.forEach((k, v) -> dbc.bindValue(v, BeanProperties.value(k).observeDetail(observableTodo)));
+
+			dbc.getBindings().forEach(item -> {
+				Binding binding = item;
+				binding.getTarget().addChangeListener(e -> {
+					if (!pauseDirtyListener && part != null) {
+						part.setDirty(true);
+					}
+				});
+			});
 		}
 	}
 
@@ -93,7 +111,7 @@ public class TodoDetailsPart {
 
 	@Inject
 	public void setTasks(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) List<Task> tasks) {
-		if (tasks == null || tasks.isEmpty()) {
+		if (tasks == null || tasks.isEmpty() || tasks.get(0) == null) {
 			this.task = java.util.Optional.empty();
 		} else {
 			this.task = java.util.Optional.of(tasks.get(0));
@@ -123,7 +141,17 @@ public class TodoDetailsPart {
 		// the following check ensures that the user interface is available,
 		// it assumes that you have a text widget called "txtSummary"
 		if (txtSummary != null && !txtSummary.isDisposed()) {
+			pauseDirtyListener = true;
 			this.observableTodo.setValue(task.get());
+			pauseDirtyListener = false; //
+		}
+	}
+
+	@Persist
+	public void save(TaskService todoService) {
+		task.ifPresent(todoService::update);
+		if (part != null) {
+			part.setDirty(false);
 		}
 	}
 
@@ -136,4 +164,5 @@ public class TodoDetailsPart {
 	public void dispose() {
 		dbc.dispose();
     }
+
 }
