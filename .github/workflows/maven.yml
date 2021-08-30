@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: linux-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -38,3 +38,14 @@ jobs:
         files: |
           *.zip
           com.vogella.tasks.product/target/products/com.vogella.tasks-*.x86_64.zip
+    - name: Pushes to another repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.ACTIONS_TOKEN }}
+      with:
+        source-directory: 'output'
+        destination-github-username: 'vogellacompany'
+        destination-repository-name: 'eclipse4book-updatesite'
+        user-email: lars.vogel@vogella.com
+        target-branch: main
+  
