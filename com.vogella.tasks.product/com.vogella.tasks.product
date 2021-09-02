@@ -36,6 +36,7 @@
       <feature id="org.eclipse.ecf.core.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.httpclient45.feature" installMode="root"/>
       <feature id="org.eclipse.ecf.filetransfer.feature" installMode="root"/>
+      <feature id="org.eclipse.justj.openjdk.hotspot.jre.minimal" installMode="root"/>
    </features>
 
    <configurations>
