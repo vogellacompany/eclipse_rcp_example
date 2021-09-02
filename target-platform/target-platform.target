@@ -45,7 +45,7 @@
 	
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/justj/jres/16/updates/release"/>
-			<unit id="a.jre.org.eclipse.justj.openjdk.hotspot.jre.full" version="0.0.0"/>
+			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group" version="0.0.0"/>
 		</location>
 		<location includeDependencyScope="compile" includeSource="true" missingManifest="generate" type="Maven">
 			<dependencies>
