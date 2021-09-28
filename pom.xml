@@ -94,6 +94,7 @@
 -->
     <module>com.vogella.swt.widgets</module>
     <module>com.vogella.tasks.ui</module>
+    <module>com.example.e4.renderer.swt</module>
     <module>com.vogella.tasks.feature</module>
     <module>com.vogella.tasks.product</module>
     <module>com.vogella.tasks.model</module>
