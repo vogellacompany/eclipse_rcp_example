@@ -42,17 +42,3 @@ jobs:
           *.zip
           com.vogella.tasks.product/target/products/com.vogella.tasks-*.x86_64.zip
     
-    - name: Publish p2 update site to repo located at vogellacompany/eclipse4book-updatesite 
-      env:
-        ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
-      run: |
-          git clone https://user:$ACTION_TOKEN@github.com/vogellacompany/eclipse4book-updatesite # This works
-          cd eclipse4book-updatesite
-          git config user.name "Lars Vogel"
-          git config user.email "Lars.Vogel@vogella.com"
-          rm -fr *
-          cp -r ../releng-updatesite/target/repository/* .
-          git add .
-          git commit -m "New version of the update site"
-          git push -f https://vogella:$ACTIONS_TOKEN@github.com/vogellacompany/eclipse4book-updatesite HEAD:main
-
