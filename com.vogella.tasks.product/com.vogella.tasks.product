@@ -13,7 +13,7 @@
       </vmArgsMac>
    </launcherArgs>
 
-   <launcher>
+   <launcher name="TaskManager">
       <win useIco="false">
          <bmp/>
       </win>

@@ -15,6 +15,15 @@
 
    <windowImages/>
 
+   <launcher name="e4-wizard">
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
    <plugins>
       <plugin id="com.example.e4.rcp"/>
       <plugin id="com.sun.jna"/>
