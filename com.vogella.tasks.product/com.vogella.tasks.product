@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="to-do" uid="com.vogella.tasks" id="com.vogella.tasks.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.0.1" useFeatures="true" includeLaunchers="true">
+<product name="to-do" uid="com.vogella.tasks" id="com.vogella.tasks.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.0.1" useFeatures="true" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>

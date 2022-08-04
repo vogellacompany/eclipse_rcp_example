@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_lFUBUBI8Ee24GN48q83KnA">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_GOtcYBJDEe24GN48q83KnA" featurename="commands" parentElementId="xpath:/">
+    <elements xsi:type="commands:Command" xmi:id="_ItsAQBJDEe24GN48q83KnA" elementId="com.vogella.tasks.ui.contribute.command.openmap" commandName="Open Map"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_eal8IBJEEe24GN48q83KnA" featurename="handlers" parentElementId="xpath:/">
+    <elements xsi:type="commands:Handler" xmi:id="_gsGrwBJEEe24GN48q83KnA" elementId="com.vogella.tasks.ui.contribute.handler.openmap" contributionURI="bundleclass://com.vogella.tasks.ui.contribute/com.vogella.tasks.ui.contribute.handlers.OpenMapHandler" command="_ItsAQBJDEe24GN48q83KnA"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_kBrgcBJEEe24GN48q83KnA" featurename="menuContributions" parentElementId="xpath:/">
+    <elements xsi:type="menu:MenuContribution" xmi:id="_ncidwBJEEe24GN48q83KnA" elementId="com.vogella.tasks.ui.contribute.menucontribution.0" parentId="org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_sEzCUBJEEe24GN48q83KnA" elementId="com.vogella.tasks.ui.contribute.menu.map" label="Map">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_uJ8J4BJEEe24GN48q83KnA" elementId="com.vogella.tasks.ui.contribute.handledmenuitem.openmap" label="Open Map" command="_ItsAQBJDEe24GN48q83KnA"/>
+      </children>
+    </elements>
+  </fragments>
+</fragment:ModelFragments>
