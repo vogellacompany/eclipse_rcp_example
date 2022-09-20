@@ -95,10 +95,11 @@
     <module>com.vogella.tasks.services.tests</module>
     <module>com.vogella.service.imageloader</module>
     <module>com.vogella.tasks.events</module>
+    <module>com.vogella.contribute.parts</module>
+    <module>com.vogella.tasks.ui.contribute</module>   
     <module>com.vogella.tasks.update</module>
     <module>com.vogella.eclipse.css</module>
-
-
+  
     <module>releng-updatesite</module>
   </modules>
 </project>
