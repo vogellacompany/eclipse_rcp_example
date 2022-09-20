@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Parts
+Bundle-SymbolicName: com.vogella.contribute.parts
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: VOGELLA
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.jface,
+ org.eclipse.e4.core.di,
+ org.eclipse.e4.ui.workbench,
+ org.eclipse.e4.ui.di,
+ org.eclipse.e4.ui.model.workbench
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: com.vogella.contribute.parts
+Model-Fragment: parts.e4xmi
+Import-Package: javax.annotation
+Bundle-ActivationPolicy: lazy

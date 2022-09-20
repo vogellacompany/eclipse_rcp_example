@@ -1,6 +1,5 @@
 package com.vogella.tasks.ui.parts;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -9,14 +8,14 @@ import javax.inject.Inject;
 
 import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
-import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.services.EMenuService;
-import org.eclipse.e4.ui.services.IServiceConstants;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
@@ -33,6 +32,10 @@ public class TodoOverviewPart {
 	@Inject
 	MWindow window;
 
+	@Inject
+	ESelectionService selectionService;
+
+	
 	@Inject
 	TaskService taskService;
 
@@ -69,13 +72,10 @@ public class TodoOverviewPart {
 		// will do the rest once the list is filled
 		taskService.consume(writableList::addAll);
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
-		viewer.addSelectionChangedListener(event -> {
-			// TODO Auto-generated method stub
-			IEclipseContext ctx = window.getContext();
-			Task firstElement = (Task) event.getStructuredSelection().getFirstElement();
-			ctx.set(IServiceConstants.ACTIVE_SELECTION, Collections.singletonList(firstElement));
-
-		});
+		viewer.addSelectionChangedListener(event -> {                        
+			IStructuredSelection selection = viewer.getStructuredSelection();
+			selectionService.setSelection(selection.toList());                        
+		});   
 		// register context menu on the table
 		menuService.registerContextMenu(viewer.getControl(), "com.vogella.tasks.ui.popupmenu.table");
 
@@ -93,9 +93,6 @@ public class TodoOverviewPart {
 		viewer.getControl().setFocus();
 	}
 
-	private void update() {
-		updateViewer(taskService.getAll());
-    }
 
 	@Inject
 	@Optional
