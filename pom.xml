@@ -92,7 +92,9 @@
     <module>com.vogella.tasks.product</module>
     <module>com.vogella.tasks.model</module>
     <module>com.vogella.tasks.services</module>
+    <!--
     <module>com.vogella.tasks.services.tests</module>
+    -->
     <module>com.vogella.service.imageloader</module>
     <module>com.vogella.tasks.events</module>
     <module>com.vogella.contribute.parts</module>
