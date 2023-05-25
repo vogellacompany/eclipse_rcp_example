@@ -27,3 +27,9 @@ SashForm {
 Shell {
     background-color: #e3efff #c1d5ef 60%;
 }
+
+.MPartStack, CTabFolder {
+    /* Point to the CustomTabFolderRenderer implementation */
+    swt-tab-renderer: url('bundleclass://com.vogella.eclipse.css/com.vogella.eclipse.css.renderer.CustomTabFolderRenderer');
+    background-color: white;
+}
