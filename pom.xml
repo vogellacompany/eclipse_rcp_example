@@ -1,107 +1,108 @@
 <project>
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.vogella.tycho</groupId>
-  <artifactId>releng</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.vogella.tycho</groupId>
+    <artifactId>releng</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <properties>
-    <tycho.version>3.0.4</tycho.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-
-
-  <build>
-
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.eclipse.tycho</groupId>
-          <artifactId>tycho-p2-director-plugin</artifactId>
-          <version>${tycho.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-maven-plugin</artifactId>
-        <version>${tycho.version}</version>
-        <extensions>true</extensions>
-      </plugin>
-      <!--Enable the replacement of the SNAPSHOT version in the final product configuration-->
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-packaging-plugin</artifactId>
-        <version>${tycho.version}</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <id>package-feature</id>
-            <configuration>
-              <finalName>${project.artifactId}_${unqualifiedVersion}.${buildQualifier}</finalName>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>target-platform-configuration</artifactId>
-        <version>${tycho.version}</version>
-        <configuration>
-          <target>
-            <file>../target-platform/target-platform.target</file>
-          </target>
-          <resolveWithExecutionEnvironmentConstraints>false</resolveWithExecutionEnvironmentConstraints>
-
-          <environments>
-            <environment>
-              <os>linux</os>
-              <ws>gtk</ws>
-              <arch>x86_64</arch>
-            </environment>
-            <environment>
-              <os>win32</os>
-              <ws>win32</ws>
-              <arch>x86_64</arch>
-            </environment>
-            <environment>
-              <os>macosx</os>
-              <ws>cocoa</ws>
-              <arch>x86_64</arch>
-            </environment>
-          </environments>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <properties>
+        <tycho.version>3.0.5</tycho.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 
-  <modules>
-    <module>com.example.e4.rcp</module>
-    <module>com.example.e4.feature</module>
-    <module>com.example.e4.product</module>
-    <!--
+    <build>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-p2-director-plugin</artifactId>
+                    <version>${tycho.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <extensions>true</extensions>
+            </plugin>
+            <!--Enable
+            the replacement of the SNAPSHOT version in the final product configuration-->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-packaging-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <id>package-feature</id>
+                        <configuration>
+                            <finalName>${project.artifactId}_${unqualifiedVersion}.${buildQualifier}</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <target>
+                        <file>../target-platform/target-platform.target</file>
+                    </target>
+                    <resolveWithExecutionEnvironmentConstraints>false</resolveWithExecutionEnvironmentConstraints>
+
+                    <environments>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>macosx</os>
+                            <ws>cocoa</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <modules>
+        <module>com.example.e4.rcp</module>
+        <module>com.example.e4.feature</module>
+        <module>com.example.e4.product</module>
+        <!--
     <module>com.example.e4.swtbottests</module>
 -->
-    <module>com.vogella.swt.widgets</module>
-    <module>com.vogella.tasks.ui</module>
-    <module>com.example.e4.renderer.swt</module>
-    <module>com.vogella.tasks.feature</module>
-    <module>com.vogella.tasks.product</module>
-    <module>com.vogella.tasks.model</module>
-    <module>com.vogella.tasks.services</module>
-    <!--
+        <module>com.vogella.swt.widgets</module>
+        <module>com.vogella.tasks.ui</module>
+        <module>com.example.e4.renderer.swt</module>
+        <module>com.vogella.tasks.feature</module>
+        <module>com.vogella.tasks.product</module>
+        <module>com.vogella.tasks.model</module>
+        <module>com.vogella.tasks.services</module>
+        <!--
     <module>com.vogella.tasks.services.tests</module>
     -->
-    <module>com.vogella.service.imageloader</module>
-    <module>com.vogella.tasks.events</module>
-    <module>com.vogella.contribute.parts</module>
-    <module>com.vogella.tasks.ui.contribute</module>   
-    <module>com.vogella.tasks.update</module>
-    <module>com.vogella.eclipse.css</module>
-  
-    <module>releng-updatesite</module>
-  </modules>
+        <module>com.vogella.service.imageloader</module>
+        <module>com.vogella.tasks.events</module>
+        <module>com.vogella.contribute.parts</module>
+        <module>com.vogella.tasks.ui.contribute</module>
+        <module>com.vogella.tasks.update</module>
+        <module>com.vogella.eclipse.css</module>
+
+        <module>releng-updatesite</module>
+    </modules>
 </project>
