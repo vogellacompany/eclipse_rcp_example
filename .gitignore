@@ -17,3 +17,4 @@ screenshots/
 .polyglot.feature.xml
 .META-INF_MANIFEST.MF
 .polyglot*
+.tycho-consumer-pom.xml
