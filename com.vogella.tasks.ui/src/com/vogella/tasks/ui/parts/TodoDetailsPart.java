@@ -40,7 +40,7 @@ public class TodoDetailsPart {
 	private Button btnDone;
 
 	// define a new field
-	private java.util.Optional<Task> task = java.util.Optional.ofNullable(null);
+	private java.util.Optional<Task> task = java.util.Optional.empty();
 
 	// observable placeholder for a task
 	private WritableValue<Task> observableTodo = new WritableValue<>();
