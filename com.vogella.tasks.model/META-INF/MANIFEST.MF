@@ -5,5 +5,5 @@ Bundle-SymbolicName: com.vogella.tasks.model
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: VOGELLA
 Automatic-Module-Name: com.vogella.tasks.model
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: com.vogella.tasks.model
