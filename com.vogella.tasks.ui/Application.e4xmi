@@ -13,6 +13,9 @@
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_4z3OcBPPEe25KY4XO6CgOw" elementId="com.vogella.tasks.ui.handledmenuitem.copy" label="Copy" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
               </menus>
+              <toolbar xmi:id="_DphaYG3DEe6upLYrmTKRfQ" elementId="com.vogella.tasks.ui.toolbar.1">
+                <children xsi:type="menu:HandledToolItem" xmi:id="_EuXikG3DEe6upLYrmTKRfQ" elementId="com.vogella.tasks.ui.handledtoolitem.copy" label="Copy" iconURI="platform:/plugin/com.vogella.tasks.ui/images/vogella.png" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+              </toolbar>
             </children>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4">
