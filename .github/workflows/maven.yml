@@ -28,7 +28,7 @@ jobs:
       with:
         maven-version: 3.9.2   
     - name: Build with Maven
-      run: mvn clean verify
+      run: mvn clean verify -ntp
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
