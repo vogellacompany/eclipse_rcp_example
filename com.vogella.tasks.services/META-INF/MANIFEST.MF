@@ -10,6 +10,7 @@ Import-Package: com.vogella.tasks.model,
  javax.inject;version="1.0.0",
  org.osgi.service.component.annotations;resolution:=optional
 Bundle-ActivationPolicy: lazy
+Provide-Capability: osgi.service; objectClass=com.vogella.tasks.model.TaskService
 Require-Bundle: org.eclipse.e4.core.services,
  org.eclipse.e4.core.contexts;bundle-version="1.8.400",
  org.eclipse.e4.core.di;bundle-version="1.7.700",
