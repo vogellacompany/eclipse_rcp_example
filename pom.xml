@@ -102,6 +102,7 @@
         <module>com.vogella.tasks.ui.contribute</module>
         <module>com.vogella.tasks.update</module>
         <module>com.vogella.eclipse.css</module>
+        <module>com.vogella.osgi.taskconsumer</module>
 
         <module>releng-updatesite</module>
     </modules>

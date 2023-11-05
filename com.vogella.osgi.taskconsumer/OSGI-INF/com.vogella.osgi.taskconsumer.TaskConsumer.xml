@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" name="com.vogella.osgi.taskconsumer.TaskConsumer">
+   <reference cardinality="1..1" field="taskService" interface="com.vogella.tasks.model.TaskService" name="taskService"/>
+   <implementation class="com.vogella.osgi.taskconsumer.TaskConsumer"/>
+</scr:component>

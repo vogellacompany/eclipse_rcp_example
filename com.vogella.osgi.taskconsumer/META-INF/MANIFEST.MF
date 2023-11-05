@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Taskconsumer
+Bundle-SymbolicName: com.vogella.osgi.taskconsumer
+Bundle-Version: 1.0.0.qualifier
+Import-Package: com.vogella.tasks.model,
+ org.osgi.service.component.annotations;version="1.3.0";resolution:=optional
+Bundle-Vendor: VOGELLA
+Automatic-Module-Name: com.vogella.osgi.taskconsumer
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Capability: osgi.service;filter:="(objectClass=com.vogella.tasks.model.TaskService)" 
+Service-Component: OSGI-INF/com.vogella.osgi.taskconsumer.TaskConsumer.xml
