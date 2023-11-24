@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.3.0" activate="activate" name="com.vogella.osgi.eventadminuser.EventAdminUser">
+   <reference cardinality="1..1" field="admin" interface="org.osgi.service.event.EventAdmin" name="admin"/>
+   <implementation class="com.vogella.osgi.eventadminuser.EventAdminUser"/>
+</scr:component>
