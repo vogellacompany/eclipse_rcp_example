@@ -2,9 +2,11 @@ package com.vogella.tasks.ui.parts;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.swing.event.ListSelectionEvent;
 
 import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
@@ -74,7 +76,12 @@ public class TodoOverviewPart {
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
 		viewer.addSelectionChangedListener(event -> {                        
 			IStructuredSelection selection = viewer.getStructuredSelection();
-			selectionService.setSelection(selection.toList());                        
+			
+			@SuppressWarnings("unchecked")
+			List<Task> selectedElements= selection.toList();
+			// Make a copy and send out only the copy
+			List<Task> copiedElements = selectedElements.stream().map(t -> t.copy()).collect(Collectors.toList()); // <1>
+			selectionService.setSelection(copiedElements);
 		});   
 		// register context menu on the table
 		menuService.registerContextMenu(viewer.getControl(), "com.vogella.tasks.ui.popupmenu.table");
