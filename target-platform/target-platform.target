@@ -10,7 +10,7 @@
 	
 		
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/justj/jres/17/updates/release"/>
+			<repository location="https://download.eclipse.org/justj/jres/17/updates/release/latest"/>
 			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group" version="0.0.0"/>
 		</location>
 		<location includeDependencyDepth="infinite" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
