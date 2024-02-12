@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>4.0.4</tycho.version>
+        <tycho.version>4.0.5</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -104,6 +104,6 @@
         <module>com.vogella.eclipse.css</module>
         <module>com.vogella.osgi.taskconsumer</module>
 
-        <module>releng-updatesite</module>
+        <module>updatesite</module>
     </modules>
 </project>

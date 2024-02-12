@@ -19,7 +19,7 @@ public class Task {
     private String summary = "";
     private String description = "";
     private boolean done = false;
-    private LocalDate dueDate = LocalDate.now();
+    private transient LocalDate dueDate = LocalDate.now();
 
     public Task(long id, String summary, String description, boolean done, LocalDate dueDate) {
         this.id = id;
