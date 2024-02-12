@@ -3,7 +3,7 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
       <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.0">
-        <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.0" horizontal="true">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1">
             <tags>NoAutoCollapse</tags>
             <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
@@ -14,7 +14,7 @@
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_4z3OcBPPEe25KY4XO6CgOw" elementId="com.vogella.tasks.ui.handledmenuitem.copy" label="Copy" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
               </menus>
               <toolbar xmi:id="_DphaYG3DEe6upLYrmTKRfQ" elementId="com.vogella.tasks.ui.toolbar.1">
-                <children xsi:type="menu:HandledToolItem" xmi:id="_EuXikG3DEe6upLYrmTKRfQ" elementId="com.vogella.tasks.ui.handledtoolitem.copy" label="Copy" iconURI="platform:/plugin/com.vogella.tasks.ui/images/vogella.png" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+                <children xsi:type="menu:HandledToolItem" xmi:id="_EuXikG3DEe6upLYrmTKRfQ" elementId="com.vogella.tasks.ui.handledtoolitem.copy" label="Copy" iconURI="" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
               </toolbar>
             </children>
           </children>
@@ -52,6 +52,7 @@
             <parameters xmi:id="_TxcOUOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.parameter.1" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
           </children>
         </children>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_rMx0MMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handledmenuitem.resize" label="Resize" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_WwDtIMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.trimbar.0">
@@ -67,6 +68,7 @@
   <handlers xmi:id="_j1ghcMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.3" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.SwitchPerspectiveHandler" command="_glwA4MnFEeuD8-bVRByS6Q"/>
   <handlers xmi:id="_Txj4gMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.openeditor" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.OpenEditorHandler" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
   <handlers xmi:id="_LuODcMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.4" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
+  <handlers xmi:id="_oBoG0MnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handler.6" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ResizeSashChildren" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>
   <bindingTables xmi:id="_Fr45gBO_Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.mytable" bindingContext="_-f-scBO-Ee2nkPMV9zMJ2A"/>
   <bindingTables xmi:id="_S_X24BPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.0" bindingContext="_AGMKYBPBEe2nkPMV9zMJ2A">
     <bindings xmi:id="_T4X7cBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.keybinding.0" keySequence="M1+C" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
@@ -86,6 +88,7 @@
   <commands xmi:id="_WQsNYMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.openeditor" commandName="Open editor"/>
   <commands xmi:id="_pxm0AMnnEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.createtask" commandName="Create task"/>
   <commands xmi:id="_qzqvUBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.command.copy" commandName="Copy "/>
+  <commands xmi:id="_mSOlwMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.command.resizesashelements" commandName="Resize sash elements"/>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_78U5UbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_78U5UrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
