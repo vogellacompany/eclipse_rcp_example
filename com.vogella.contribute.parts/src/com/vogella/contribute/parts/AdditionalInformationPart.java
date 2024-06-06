@@ -1,6 +1,6 @@
 package com.vogella.contribute.parts;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.eclipse.jface.widgets.TextFactory;
 import org.eclipse.swt.SWT;

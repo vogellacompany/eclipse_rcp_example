@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>4.0.5</tycho.version>
+        <tycho.version>4.0.8</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -83,9 +83,6 @@
         <module>com.example.e4.rcp</module>
         <module>com.example.e4.feature</module>
         <module>com.example.e4.product</module>
-        <!--
-    <module>com.example.e4.swtbottests</module>
--->
         <module>com.vogella.swt.widgets</module>
         <module>com.vogella.tasks.ui</module>
         <module>com.example.e4.renderer.swt</module>
@@ -93,9 +90,6 @@
         <module>com.vogella.tasks.product</module>
         <module>com.vogella.tasks.model</module>
         <module>com.vogella.tasks.services</module>
-        <!--
-    <module>com.vogella.tasks.services.tests</module>
-    -->
         <module>com.vogella.service.imageloader</module>
         <module>com.vogella.tasks.events</module>
         <module>com.vogella.contribute.parts</module>
@@ -104,6 +98,5 @@
         <module>com.vogella.eclipse.css</module>
         <module>com.vogella.osgi.taskconsumer</module>
 
-        <module>updatesite</module>
     </modules>
 </project>

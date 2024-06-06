@@ -19,7 +19,7 @@
       <plugin id="com.example.e4.rcp"/>
       <plugin id="com.sun.jna"/>
       <plugin id="com.sun.jna.platform"/>
-      <plugin id="javax.annotation"/>
+      <plugin id="jakarta.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
