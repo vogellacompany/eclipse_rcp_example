@@ -7,7 +7,7 @@ Bundle-Vendor: VOGELLA
 Automatic-Module-Name: com.vogella.tasks.services
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: com.vogella.tasks.model,
- javax.inject;version="1.0.0",
+ jakarta.inject;version="[2.0.0,3.0.0)",
  org.osgi.service.component.annotations;resolution:=optional
 Bundle-ActivationPolicy: lazy
 Provide-Capability: osgi.service; objectClass=com.vogella.tasks.model.TaskService

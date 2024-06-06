@@ -1,6 +1,6 @@
 package com.vogella.tasks.ui.toolcontrols;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
