@@ -15,18 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
       with:
        distribution: 'temurin'
-       java-version: '17'
+       java-version: '21'
        cache: 'maven'
     - name: Set up Maven
       uses: stCarolas/setup-maven@v4.5
       with:
-        maven-version: 3.9.2   
+        maven-version: '3.9.7'   
     - name: Build with Maven
       run: mvn clean verify -ntp
     - uses: "marvinpinto/action-automatic-releases@latest"
@@ -38,4 +38,4 @@ jobs:
         files: |
           *.zip
           com.vogella.tasks.product/target/products/com.vogella.tasks-*.x86_64.zip
-    
+
