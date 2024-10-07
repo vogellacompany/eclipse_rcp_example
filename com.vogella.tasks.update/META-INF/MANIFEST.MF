@@ -13,4 +13,4 @@ Require-Bundle: org.eclipse.equinox.p2.engine;bundle-version="2.6.500",
  org.eclipse.e4.core.di.annotations;bundle-version="1.6.500",
  org.eclipse.e4.ui.model.workbench;bundle-version="2.1.600.v20191106-1503"
 Automatic-Module-Name: com.vogella.tasks.update
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-21
