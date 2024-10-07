@@ -14,6 +14,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+import com.vogella.swt.widgets.HighlightComposite;
+
 public class PlaygroundPart {
 	private Text text;
 	private Browser browser;
@@ -25,10 +27,9 @@ public class PlaygroundPart {
 
 	@PostConstruct
 	public void createControls(Composite parent) {
-		parent.setLayout(new GridLayout(2, false));
+		HighlightComposite highlightComposite = new HighlightComposite(parent, SWT.NONE);
 
-
-		Text modelWidget = new Text(parent, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		Text modelWidget = new Text(highlightComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		modelWidget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		modelWidget.setText("Moin");
 		modelWidget.addModifyListener(e -> {

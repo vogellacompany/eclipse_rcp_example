@@ -17,7 +17,7 @@
                value="undleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
          </property>
          <property
-               name="cssTheme"
+               name="cssTheme3"
                value="com.vogella.eclipse.css.default">
          </property>
       </product>
