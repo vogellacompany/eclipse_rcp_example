@@ -5,7 +5,6 @@ Bundle-SymbolicName: com.vogella.tasks.services.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: VOGELLA
 Fragment-Host: com.vogella.tasks.services;bundle-version="1.0.0"
+Import-Package: org.junit.jupiter.api;version="5.11.0"
 Automatic-Module-Name: com.vogella.tasks.services.tests
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.junit,
- org.junit.jupiter.api
+Bundle-RequiredExecutionEnvironment: JavaSE-21
