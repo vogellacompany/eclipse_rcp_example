@@ -25,6 +25,7 @@
    </vm>
 
    <plugins>
+      <plugin id="org.eclipse.equinox.p2.core"/>
    </plugins>
 
    <features>
@@ -47,5 +48,9 @@
       <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
    </configurations>
+
+   <repositories>
+      <repository location="https://download.eclipse.org/releases/2024-09" name="Eclipse 2024-09" enabled="true" />
+   </repositories>
 
 </product>
