@@ -12,7 +12,7 @@
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/justj/jres/21/updates/release/latest"/>
-			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group" version="21.0.4.v20240802-1551"/>
+			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group" version="0.0.0"/>
 		</location>
 		<location includeDependencyDepth="infinite" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
 			<dependencies>
