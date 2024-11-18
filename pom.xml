@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>4.0.9</tycho.version>
+        <tycho.version>4.0.10</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -24,6 +24,15 @@
         </pluginManagement>
 
         <plugins>
+            <!-- For update sites, this setting creates a self-contained p2 repository INCLUDING all dependencies of the update site content-->
+              <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                 <artifactId>tycho-p2-repository-plugin</artifactId>
+                 <version>${tycho.version}</version>
+                <configuration>
+                    <includeAllDependencies>true</includeAllDependencies>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-maven-plugin</artifactId>
@@ -97,6 +106,6 @@
         <module>com.vogella.tasks.update</module>
         <module>com.vogella.eclipse.css</module>
         <module>com.vogella.osgi.taskconsumer</module>
-
+        <module>updatesite</module>
     </modules>
 </project>
