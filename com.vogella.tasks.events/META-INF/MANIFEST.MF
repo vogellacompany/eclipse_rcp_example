@@ -5,5 +5,5 @@ Bundle-SymbolicName: com.vogella.tasks.events
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: VOGELLA
 Automatic-Module-Name: com.vogella.tasks.events
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Export-Package: com.vogella.tasks.events

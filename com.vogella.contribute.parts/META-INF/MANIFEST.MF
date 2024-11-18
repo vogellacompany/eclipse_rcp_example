@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.ui.di,
  org.eclipse.e4.ui.model.workbench
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.vogella.contribute.parts
 Model-Fragment: parts.e4xmi
 Import-Package: jakarta.annotation
