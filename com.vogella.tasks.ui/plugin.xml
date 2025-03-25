@@ -10,14 +10,10 @@
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
                name="appName"
-               value="to-do">
+               value="Task Management">
          </property>
          <property
-               name="rendererFactoryUri2"
-               value="undleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
-         </property>
-         <property
-               name="cssTheme3"
+               name="cssTheme"
                value="com.vogella.eclipse.css.default">
          </property>
       </product>
