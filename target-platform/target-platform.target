@@ -3,12 +3,13 @@
 <target name="target-platform">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/2024-09"/>
+			<repository location="https://download.eclipse.org/releases/2025-03"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group" />
 			<unit id="org.eclipse.platform.feature.group"/>
 			<unit id="org.eclipse.equinox.p2.core.feature.feature.group"/>
 			<unit id="junit-jupiter-api"/>
 			<unit id="junit-jupiter-engine"/>
+			<unit id="org.eclipse.draw2d"/>
 		</location>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/justj/jres/21/updates/release/latest"/>
