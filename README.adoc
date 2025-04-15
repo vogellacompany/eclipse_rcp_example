@@ -2,6 +2,10 @@
 
 This is the example code for the https://learn.vogella.com/courses/details/rich-client-platform[Eclipse RCP commercial training] from vogella GmbH.
 It is also used in the http://www.vogella.com/books/eclipsercp.html[Eclipse Rich Client Platform book].
+=== Default branch
+
+_main_ is the default branch of this repository. 
+It contains the latest stable version of the code.
 
 === Running the application
 
