@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import javax.swing.event.ListSelectionEvent;
 
@@ -12,6 +13,7 @@ import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.PersistState;
 import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.services.EMenuService;
@@ -28,6 +30,7 @@ import org.eclipse.swt.widgets.Table;
 import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
+import com.vogella.tasks.ui.util.TableColumnPersistenceUtil;
 
 public class TodoOverviewPart {
 
@@ -64,9 +67,11 @@ public class TodoOverviewPart {
 
 		// create column for description property
 		TableViewerColumn colDescription = new TableViewerColumn(viewer, SWT.NONE);
-
 		colDescription.getColumn().setWidth(200);
 		colDescription.getColumn().setText("Description");
+
+        // Restore column widths if available
+        TableColumnPersistenceUtil.restoreColumnWidths(viewer, "TodoOverviewPartTable");
 
 		// use data binding to bind the viewer
 		writableList = new WritableList<>();
@@ -110,4 +115,11 @@ public class TodoOverviewPart {
 			updateViewer(taskService.getAll());
 		}
 	}
+	
+	@PersistState
+    public void saveColumnWidths() {
+        if (viewer != null && !viewer.getTable().isDisposed()) {
+            TableColumnPersistenceUtil.saveColumnWidths(viewer, "TodoOverviewPartTable");
+        }
+    }
 }
