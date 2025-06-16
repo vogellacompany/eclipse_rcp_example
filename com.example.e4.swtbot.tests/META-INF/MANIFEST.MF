@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Swtbottests
+Bundle-SymbolicName: com.example.e4.swtbot.tests
+Bundle-Version: 1.0.0.qualifier
+Import-Package: org.junit.jupiter.api;version="5.12.2"
+Bundle-Vendor: EXAMPLE
+Require-Bundle: org.eclipse.swt,
+ org.eclipse.jface,
+ org.eclipse.swtbot.e4.finder;bundle-version="4.3.0",
+ org.eclipse.swtbot.swt.finder;bundle-version="4.3.0",
+ org.slf4j.api;bundle-version="1.7.30",
+ com.example.e4.rcp;bundle-version="1.0.0"
+Automatic-Module-Name: com.example.e4.swtbottests
+Bundle-RequiredExecutionEnvironment: JavaSE-21
