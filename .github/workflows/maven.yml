@@ -7,7 +7,6 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -27,6 +26,13 @@ jobs:
       uses: stCarolas/setup-maven@v4.5
       with:
         maven-version: '3.9.7'   
+    - name: Start Xvfb
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
+        Xvfb :99 -screen 0 1920x1080x24 &
+        export DISPLAY=:99
+        echo "DISPLAY=:99" >> $GITHUB_ENV
     - name: Build with Maven
       run: mvn clean verify -ntp
     - uses: "marvinpinto/action-automatic-releases@latest"
