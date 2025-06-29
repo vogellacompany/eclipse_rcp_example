@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>4.0.12</tycho.version>
+        <tycho.version>4.0.13</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -85,17 +85,28 @@
                     </environments>
                 </configuration>
             </plugin>
+            
+    <plugin>
+      <groupId>org.eclipse.tycho</groupId>
+      <artifactId>tycho-surefire-plugin</artifactId>
+      <version>${tycho.version}</version>
+      <configuration>
+          <application>org.eclipse.e4.ui.workbench.swt.E4Application</application>
+          <product>com.example.e4.rcp.product</product>
+      </configuration>
+    </plugin>
+            
         </plugins>
     </build>
 
 
     <modules>
-        <!--example
+        <!--example-->
         <module>com.example.e4.rcp</module>
         <module>com.example.e4.feature</module>
-        <module>com.example.e4.product</module>
         
-        -->
+        <!--task management example-->
+        <module>com.example.e4.product</module>
         <module>com.vogella.swt.widgets</module>
         <module>com.vogella.tasks.ui</module>
         <module>com.example.e4.renderer.swt</module>
@@ -110,9 +121,8 @@
         <module>com.vogella.eclipse.css</module>
         <module>com.vogella.osgi.taskconsumer</module>
         <module>updatesite</module>
-        <!--product
         <module>com.vogella.tasks.product</module>
+        <module>com.example.e4.swtbot.tests</module>
         
-        -->
     </modules>
 </project>
