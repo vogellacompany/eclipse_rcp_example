@@ -10,13 +10,29 @@
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
                name="appName"
-               value="Task Management">
+               value="to-do">
          </property>
          <property
                name="cssTheme"
-               value="com.vogella.eclipse.css.default">
+               value="com.vogella.eclipse.css.dark">
          </property>
       </product>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="com.vogella.tasks.ui.task.selection">
+         <with
+               variable="org.eclipse.ui.selection">
+            <iterate
+                  ifEmpty="false"
+                  operator="or">
+               <instanceof
+                     value="com.vogella.tasks.model.Task">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
    </extension>
 
 </plugin>
