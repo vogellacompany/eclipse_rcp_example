@@ -17,16 +17,17 @@ public class ImageWithText extends Canvas {
 	public ImageWithText(Composite parent, int style) {
 		super(parent, style);
 		Display display = parent.getDisplay();
-        image = new Image(parent.getDisplay(), ImageWithText.class.getResourceAsStream("/image/vogella.svg"));
+		image = new Image(parent.getDisplay(), ImageWithText.class.getResourceAsStream("/image/vogella.svg"));
 
         // Add PaintListener to draw image and text
         this.addPaintListener(new PaintListener() {
-            public void paintControl(PaintEvent e) {
+            @Override
+			public void paintControl(PaintEvent e) {
                 Rectangle bounds = image.getBounds();
                 e.gc.drawImage(image, 0, 0);
 
                 // Set text properties
-                e.gc.setForeground(display.getSystemColor(SWT.COLOR_WHITE));
+                e.gc.setForeground(display.getSystemColor(SWT.COLOR_RED));
                 e.gc.setFont(display.getSystemFont());
 
                 String text = "Advanced Trainings";
