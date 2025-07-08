@@ -1,0 +1,68 @@
+#org-eclipse-ui-editorss {
+	swt-tab-height: 8px;
+}
+
+.MPartStack {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+CTabFolder {
+    color: #bbbbbb; /* Inactive tab text */
+    swt-tab-outline: #2a2a2a; /* Border color for selected tab */
+    swt-outer-keyline-color: #3a3a3a; /* Border color for the tabs container */
+    swt-unselected-tabs-color: #2e2e2e #252525 100% 100%; /* Background for unselected tabs */
+    swt-selected-tab-fill: #3d3d3d; /* Background for selected tab */
+    swt-unselected-hot-tab-color-background: #161616; /* Hovered tab background */
+    swt-selected-tab-highlight: none;
+}
+
+CTabFolder[style~='SWT.DOWN'][style~='SWT.BOTTOM'] {
+    swt-unselected-hot-tab-color-background: #161616;
+    swt-selected-tab-highlight: #316c9b;
+    swt-selected-highlight-top: false;
+}
+
+CTabFolder.active {
+    swt-selected-tab-highlight: #316c9b;
+    swt-selected-highlight-top: false;
+}
+
+CTabItem,
+CTabItem CLabel {
+    background-color: #3d3d3d;
+    color: #999999; /* Inactive, unselected tab text */
+}
+
+CTabItem:selected,
+CTabItem:selected CLabel {
+    color: #ffffff; /* Selected tab text */
+}
+
+.MPartStack.active > CTabItem,
+.MPartStack.active > CTabItem CLabel {
+    background-color: #3d3d3d;
+    color: #cccccc; /* Active, unselected tab text */
+}
+
+.MPartStack.active > CTabItem:selected,
+.MPartStack.active > CTabItem:selected CLabel {
+    color: #ffffff; /* Active, selected tab text */
+}
+
+.MPartStack.active.noFocus > CTabItem:selected {
+    color: #aaaaaa; /* Selected but no focus */
+}
+
+CTabFolder > Composite#ToolbarComposite {
+    background-color: #3d3d3d;
+}
+
+CTabFolder.MArea CTabItem, 
+CTabFolder.MArea CTabItem CLabel {
+    background-color: #1e1e1e; /* Dark background fallback */
+}
+
+CTabItem.busy {
+    color: #888888;
+}
+

@@ -13,6 +13,11 @@
             id="com.vogella.eclipse.css.rainbow"
             label="Rainbow">
       </theme>
+      <theme
+            basestylesheeturi="css/dark.css"
+            id="com.vogella.eclipse.css.dark"
+            label="Dark">
+      </theme>
    </extension>
 
 </plugin>
