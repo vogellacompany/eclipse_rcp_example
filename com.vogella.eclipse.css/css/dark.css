@@ -66,3 +66,14 @@ CTabItem.busy {
     color: #888888;
 }
 
+Text {
+	background-color: #1e1e1e; /* Dark background fallback */
+}
+
+/* Base table & tree background and text */
+Table, Tree {
+    background-color: #2b2b2b;   /* dark background */
+    color:           #e0e0e0;   /* light text */
+    font-size:       12px;
+}
+
