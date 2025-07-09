@@ -50,6 +50,14 @@
           </children>
         </children>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_rMx0MMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handledmenuitem.resize" label="Resize" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>
+        <children xsi:type="menu:Menu" xmi:id="_mEvScFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.menu.theme" label="Theme">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_nLsTcFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.handledmenuitem.dark" label="Dark" command="_o5kxkFyPEfC-z4xraj1QdA">
+            <parameters xmi:id="_a-wnEFyQEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.parameter.2" name="theme" value="com.vogella.eclipse.css.dark"/>
+          </children>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_ihQIIFyQEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.handledmenuitem.dark" label="Rainbow" command="_o5kxkFyPEfC-z4xraj1QdA">
+            <parameters xmi:id="_ihQIIVyQEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.parameter.2" name="theme" value="com.vogella.eclipse.css.rainbow"/>
+          </children>
+        </children>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_lgosQDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.menu.onlyvisibleiftaskselected" toBeRendered="false" label="Only visible if task selected">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_-u6SkDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.handledmenuitem.5" toBeRendered="false" command="_qzqvUBO9Ee2nkPMV9zMJ2A">
@@ -75,6 +83,7 @@
   <handlers xmi:id="_Txj4gMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.openeditor" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.OpenEditorHandler" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
   <handlers xmi:id="_LuODcMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.4" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
   <handlers xmi:id="_oBoG0MnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handler.6" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ResizeSashChildren" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>
+  <handlers xmi:id="_qU6uMFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.handler.7" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ThemeSwitchHandler" command="_o5kxkFyPEfC-z4xraj1QdA"/>
   <bindingTables xmi:id="_Fr45gBO_Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.mytable" bindingContext="_-f-scBO-Ee2nkPMV9zMJ2A"/>
   <bindingTables xmi:id="_S_X24BPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.0" bindingContext="_AGMKYBPBEe2nkPMV9zMJ2A">
     <bindings xmi:id="_T4X7cBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.keybinding.0" keySequence="M1+C" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
@@ -95,6 +104,9 @@
   <commands xmi:id="_pxm0AMnnEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.createtask" commandName="Create task"/>
   <commands xmi:id="_qzqvUBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.command.copy" commandName="Copy "/>
   <commands xmi:id="_mSOlwMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.command.resizesashelements" commandName="Resize sash elements"/>
+  <commands xmi:id="_o5kxkFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.command.themeswitch" commandName="Theme Switch">
+    <parameters xmi:id="_Ui7MEFyQEfC-z4xraj1QdA" elementId="theme" name="Theme"/>
+  </commands>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_78U5UbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_78U5UrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
