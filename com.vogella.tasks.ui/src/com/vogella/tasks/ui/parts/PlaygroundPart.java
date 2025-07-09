@@ -1,20 +1,24 @@
 package com.vogella.tasks.ui.parts;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.inject.Inject;
-
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.di.extensions.EventTopic;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.LocalResourceManager;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.vogella.swt.widgets.HighlightComposite;
+import com.vogella.imageloader.services.IBundleResourceLoader;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Inject;
 
 public class PlaygroundPart {
 	private Text text;
@@ -24,19 +28,21 @@ public class PlaygroundPart {
 
 	@Inject
 	MPart part;
+	@Inject
+	IBundleResourceLoader loader;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
-		HighlightComposite highlightComposite = new HighlightComposite(parent, SWT.NONE);
 
-		Text modelWidget = new Text(highlightComposite, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
-		modelWidget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		modelWidget.setText("Moin");
-		modelWidget.addModifyListener(e -> {
-			part.setDirty(true);
-			System.out.println("This must be saved by the user!!!");
-		});
-
+		Label label = new Label(parent, SWT.NONE);
+        
+        // the following code assumes that you have a vogella.png file
+        // in a folder called "images" in this plug-in
+        ResourceManager resourceManager = 
+                new LocalResourceManager(JFaceResources.getResources(), label);
+        Image image = resourceManager.
+                create(loader.getImageDescriptor(this.getClass(), "images/vogella.png"));
+        label.setImage(image);
 		
 	}
 
