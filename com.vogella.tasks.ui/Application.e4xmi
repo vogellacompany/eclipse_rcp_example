@@ -2,7 +2,7 @@
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
-      <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.0">
+      <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.tasks" label="Tasks">
         <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1">
             <tags>NoAutoCollapse</tags>
@@ -22,11 +22,12 @@
             <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.bottom">
               <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" iconURI="platform:/plugin/com.vogella.tasks.ui/images/playground.svg" closeable="true"/>
               <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
+              <children xsi:type="basic:Part" xmi:id="_mC2sYFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.part.imagedownload" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ImageDownloadPart" label="Image Download"/>
             </children>
           </children>
         </children>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_Szej0MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.playground">
+      <children xsi:type="advanced:Perspective" xmi:id="_Szej0MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.playground" label="Manager">
         <children xsi:type="basic:Part" xmi:id="_TOaMUMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.part.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart"/>
       </children>
     </children>
@@ -47,6 +48,9 @@
         <children xsi:type="menu:Menu" xmi:id="_OV7n4OrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.menu.perspectives" label="Perspectives">
           <children xsi:type="menu:HandledMenuItem" xmi:id="_MaPXQOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.handledmenuitem.switchperspective" label="Switch Perspective" command="_glwA4MnFEeuD8-bVRByS6Q">
             <parameters xmi:id="_TxcOUOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.parameter.1" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
+          </children>
+          <children xsi:type="menu:Menu" xmi:id="_yAXAMFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.menu.switchto" label="Switch to...">
+            <children xsi:type="menu:DynamicMenuContribution" xmi:id="_wNjl0FztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.dynamicmenucontribution.0" label="" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.menu.DynamicSwitchPerspectiveMenu"/>
           </children>
         </children>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_rMx0MMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handledmenuitem.resize" label="Resize" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>

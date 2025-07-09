@@ -2,8 +2,6 @@ package com.vogella.tasks.ui.handlers;
 
 import java.util.List;
 
-import jakarta.inject.Named;
-
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.e4.core.di.annotations.Optional;
@@ -16,6 +14,8 @@ import org.eclipse.e4.ui.workbench.modeling.EPartService;
 import org.eclipse.e4.ui.workbench.modeling.EPartService.PartState;
 
 import com.vogella.tasks.model.Task;
+
+import jakarta.inject.Named;
 
 public class OpenEditorHandler {
 
@@ -40,6 +40,10 @@ public class OpenEditorHandler {
 		// if the editor is open show it
 	 	for (MPart part : parts) {
 			// check if th part is already open
+	 		if (part.getPersistedState().containsValue(id)) {
+	 			partService.showPart(part, PartState.ACTIVATE);
+	 			return;
+	 		}
 			
 		}
 

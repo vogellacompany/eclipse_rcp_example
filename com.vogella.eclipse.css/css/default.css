@@ -1,35 +1,38 @@
-Label {
-    font: Verdana 8px;
+Label, Button {
+    font: Verdana 14px;
+    background-color: #e0e0e0;
     color: black;
 }
-Composite Label {
-    color: black;
-}
+
 Text {
-    font: Verdana 8px;
+    font: Verdana 12px;
 }
-/* Identifies only those SWT Text elements
-appearing within a Composite */
+
+Table {
+    background-color: #f2f2f2;
+    swt-header-background-color: #d0d0d0;
+    swt-header-color: black;
+}
+
 Composite Text {
     background-color: white;
     color: black;
 }
+
 SashForm {
     background-color: #c1d5ef;
 }
-/* background uses a gradient */
+
 .MTrimBar {
-    background-color: #e3efff #c1d5ef;
     color: white;
     font: Verdana 8px;
 }
 
-Shell {
-    background-color: #e3efff #c1d5ef 60%;
+Shell, Composite, .MTrimBar {
+    background-color: #e0e0e0;
 }
 
-.MPartStack, CTabFolder {
-    /* Point to the CustomTabFolderRenderer implementation */
-    swt-tab-renderer: url('bundleclass://com.vogella.eclipse.css/com.vogella.eclipse.css.renderer.CustomTabFolderRenderer');
-    background-color: white;
+CTabItem:selected {
+    background-color: #d0d0d0;
+    color: black;             
 }
