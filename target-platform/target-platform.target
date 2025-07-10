@@ -10,6 +10,7 @@
 			<unit id="junit-jupiter-api"/>
 			<unit id="junit-jupiter-engine"/>
 			<unit id="org.eclipse.draw2d"/>
+			<unit id="org.eclipse.pde.spies.feature.group"/>
 		</location>
 		<!--
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
