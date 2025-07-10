@@ -1,11 +1,3 @@
-#org-eclipse-ui-editorss {
-	swt-tab-height: 8px;
-}
-
-.MPartStack {
-    font-family: 'Segoe UI', sans-serif;
-}
-
 CTabFolder {
     color: #bbbbbb; /* Inactive tab text */
     swt-tab-outline: #2a2a2a; /* Border color for selected tab */
@@ -16,11 +8,6 @@ CTabFolder {
     swt-selected-tab-highlight: none;
 }
 
-CTabFolder[style~='SWT.DOWN'][style~='SWT.BOTTOM'] {
-    swt-unselected-hot-tab-color-background: #161616;
-    swt-selected-tab-highlight: #316c9b;
-    swt-selected-highlight-top: false;
-}
 
 CTabFolder.active {
     swt-selected-tab-highlight: #316c9b;

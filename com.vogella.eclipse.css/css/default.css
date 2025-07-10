@@ -1,11 +1,11 @@
 Label, Button {
-    font: Verdana 14px;
+    font: Verdana 10px;
     background-color: #e0e0e0;
     color: black;
 }
 
 Text {
-    font: Verdana 12px;
+    font: Verdana 10px;
 }
 
 Table {
