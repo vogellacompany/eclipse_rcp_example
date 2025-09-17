@@ -122,7 +122,8 @@
         <module>com.vogella.osgi.taskconsumer</module>
         <module>updatesite</module>
         <module>com.vogella.tasks.product</module>
+        <!--
         <module>com.example.e4.swtbot.tests</module>
-        
+        -->
     </modules>
 </project>
