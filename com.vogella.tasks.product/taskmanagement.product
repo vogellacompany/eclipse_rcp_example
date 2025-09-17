@@ -31,11 +31,7 @@
    <features>
       <feature id="com.vogella.tasks.feature" installMode="root"/>
       <feature id="org.eclipse.e4.rcp" installMode="root"/>
-      <feature id="org.eclipse.emf.ecore" installMode="root"/>
-      <feature id="org.eclipse.emf.common" installMode="root"/>
       <feature id="org.eclipse.equinox.p2.core.feature" installMode="root"/>
-      <feature id="org.eclipse.ecf.core.feature" installMode="root"/>
-      <feature id="org.eclipse.ecf.filetransfer.feature" installMode="root"/>
       <feature id="org.eclipse.justj.openjdk.hotspot.jre.minimal" installMode="root"/>
    </features>
 
