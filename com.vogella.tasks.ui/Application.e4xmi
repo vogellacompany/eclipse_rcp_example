@@ -23,6 +23,7 @@
               <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" iconURI="platform:/plugin/com.vogella.tasks.ui/images/playground.svg" closeable="true"/>
               <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
               <children xsi:type="basic:Part" xmi:id="_mC2sYFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.part.imagedownload" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ImageDownloadPart" label="Image Download"/>
+              <children xsi:type="basic:Part" xmi:id="_WYHtQKIXEfC4_N2PIIsnDg" elementId="com.vogella.tasks.ui.part.canvas" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ParticleCanvas" label="Canvas"/>
             </children>
           </children>
         </children>
