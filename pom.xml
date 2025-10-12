@@ -96,6 +96,7 @@
       <configuration>
           <application>org.eclipse.e4.ui.workbench.swt.E4Application</application>
           <product>com.example.e4.rcp.product</product>
+          <argLine>-DskipLogin=true</argLine>
       </configuration>
     </plugin>
             
