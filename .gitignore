@@ -3,6 +3,7 @@ bin
 target
 .searchable
 screenshots/
+dataFile
 
 # You can use wildcards as well
 
