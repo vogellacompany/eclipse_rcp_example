@@ -2,6 +2,15 @@
 
 This test plug-in contains automated tests for the `com.vogella.tasks.ui` RCP application.
 
+## Important: Build Configuration
+
+**Note:** This test plug-in is commented out in the main `pom.xml` by default, similar to other UI test plugins in this repository. UI tests require a graphical display and can be unreliable in CI environments even with Xvfb.
+
+To enable the tests, uncomment the module in `pom.xml`:
+```xml
+<module>com.vogella.tasks.ui.tests</module>
+```
+
 ## Features
 
 - **Menu Structure Tests**: Verifies that all expected menus are present and accessible
@@ -10,19 +19,16 @@ This test plug-in contains automated tests for the `com.vogella.tasks.ui` RCP ap
 
 ## Running the Tests
 
-Tests require a graphical display (X11) to run since they test the UI. 
+### Option 1: Run tests in Eclipse IDE
+1. Import the test plugin into Eclipse
+2. Right-click on a test class
+3. Select "Run As" > "JUnit Plug-in Test"
 
-### Building without running tests
+### Option 2: Build with Maven (requires display)
 
-To build the project without running UI tests:
+First, uncomment the test module in `pom.xml`, then:
 
-```bash
-mvn clean verify -DskipTests
-```
-
-### Running tests with a display
-
-On Linux with Xvfb (X virtual framebuffer):
+**On Linux with Xvfb (X virtual framebuffer):**
 
 ```bash
 Xvfb :99 -screen 0 1024x768x24 &
@@ -30,10 +36,14 @@ export DISPLAY=:99
 mvn clean verify
 ```
 
-On systems with a display, simply run:
-
+**On systems with a display:**
 ```bash
 mvn clean verify
+```
+
+**To compile without running tests:**
+```bash
+mvn clean verify -DskipTests
 ```
 
 ## Bypassing Login Screen
@@ -70,7 +80,17 @@ The test plug-in requires:
 
 ## CI/CD Integration
 
-For CI/CD pipelines without a display:
-1. Use `-DskipTests` to skip test execution
-2. Or configure Xvfb in your CI environment
-3. Tests still compile and validate, ensuring code quality
+For CI/CD pipelines:
+1. Keep the test module commented out in `pom.xml` (default)
+2. Tests can still be run manually in Eclipse for development
+3. This prevents build failures due to display/UI issues in CI
+
+## Why Tests Are Disabled by Default
+
+UI tests in Eclipse RCP applications:
+- Require a graphical display (X11 on Linux, native display on Windows/Mac)
+- Can be flaky even with Xvfb due to timing issues
+- May fail with different window managers or display configurations
+- Are better run interactively during development
+
+For these reasons, UI tests are disabled in the CI build but remain available for local testing and development.
