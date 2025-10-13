@@ -16,6 +16,10 @@
                name="cssTheme"
                value="com.vogella.eclipse.css.dark">
          </property>
+         <property
+               name="rendererFactoryUri2"
+               value="bundleclass://com.example.e4.renderer.swt/com.example.e4.renderer.swt.MyRendererFactory">
+         </property>
       </product>
    </extension>
    <extension
