@@ -3,14 +3,6 @@ package com.vogella.tasks.ui.tests;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
-
-import org.eclipse.e4.core.contexts.IEclipseContext;
-import org.eclipse.e4.ui.model.application.MApplication;
-import org.eclipse.e4.ui.model.application.ui.advanced.MPerspective;
-import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
-import org.eclipse.e4.ui.workbench.modeling.EModelService;
 import org.eclipse.swtbot.swt.finder.SWTBot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +13,7 @@ import org.junit.jupiter.api.Test;
  */
 public class UIStructureTest {
 
-	private static SWTBot bot;
+	private SWTBot bot;
 
 	@BeforeEach
 	public void setUp() throws Exception {

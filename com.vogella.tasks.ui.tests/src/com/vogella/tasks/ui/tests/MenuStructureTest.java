@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  */
 public class MenuStructureTest {
 
-	private static SWTBot bot;
+	private SWTBot bot;
 
 	@BeforeEach
 	public void setUp() throws Exception {
