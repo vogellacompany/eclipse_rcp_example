@@ -14,7 +14,7 @@ public class MyStackRenderer extends StackRenderer {
             newName = ""; //$NON-NLS-1$
         }
         if (itemPart instanceof MDirtyable && ((MDirtyable) itemPart).isDirty()) {
-            newName = '*' + newName; //$NON-NLS-1$
+            newName = "● 🔒 ●" + newName; //$NON-NLS-1$
         }
         return newName;
     }
@@ -36,7 +36,7 @@ public class MyStackRenderer extends StackRenderer {
             boolean hasExclamationMark = text.length() > 0 && text.charAt(0) == '!';
             if (dirtyState.booleanValue()) {
                 if (!hasExclamationMark) {
-                    cti.setText("* Demo *" + text);
+                    cti.setText("● 🔒 ●" + text);
                 }
             } else if (hasExclamationMark) {
                 cti.setText(text.substring(1));
