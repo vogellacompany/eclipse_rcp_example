@@ -82,9 +82,8 @@
     </mainMenu>
     <trimBars xmi:id="_WwDtIMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.trimbar.0">
       <children xsi:type="menu:ToolBar" xmi:id="_XSRCUMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolbar.0">
-        <children xsi:type="menu:HandledToolItem" xmi:id="_X_D24MnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledtoolitem.0" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_X_D24MnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledtoolitem.0" iconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
       </children>
-      <children xsi:type="menu:ToolControl" xmi:id="_aFvPgMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolcontrol.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.toolcontrols.SearchToolControl"/>
     </trimBars>
   </children>
   <handlers xmi:id="_MHZqMMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveTaskHandler" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
@@ -105,14 +104,14 @@
   </rootContext>
   <rootContext xmi:id="_AGMKYBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingcontext.overviewkeybindings" name="overviewkeybindings"/>
   <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
-  <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove"/>
+  <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove" commandIconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg"/>
   <commands xmi:id="_Cp2VMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.testing" commandName="Testing"/>
   <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.saveall" commandName="SaveAll"/>
   <commands xmi:id="_glwA4MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.switchperspective" commandName="Switch Perspective">
     <parameters xmi:id="_rEQAEMnFEeuD8-bVRByS6Q" elementId="perspective_parameter" name="Perspective ID"/>
   </commands>
   <commands xmi:id="_WQsNYMnMEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.openeditor" commandName="Open editor"/>
-  <commands xmi:id="_pxm0AMnnEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.createtask" commandName="Create task"/>
+  <commands xmi:id="_pxm0AMnnEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.createtask" commandName="Create task" commandIconURI=""/>
   <commands xmi:id="_qzqvUBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.command.copy" commandName="Copy "/>
   <commands xmi:id="_mSOlwMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.command.resizesashelements" commandName="Resize sash elements"/>
   <commands xmi:id="_o5kxkFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.command.theme.switch" commandName="Theme Switch">
