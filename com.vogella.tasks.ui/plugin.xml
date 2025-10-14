@@ -13,7 +13,7 @@
                value="to-do">
          </property>
          <property
-               name="cssTheme"
+               name="cssTheme2"
                value="com.vogella.eclipse.css.dark">
          </property>
          <property
