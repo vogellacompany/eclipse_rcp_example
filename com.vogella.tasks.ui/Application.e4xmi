@@ -4,7 +4,7 @@
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
       <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.tasks" label="Tasks">
         <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1000">
+          <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="3000">
             <tags>NoAutoCollapse</tags>
             <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-overview.svg" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
               <handlers xmi:id="_zL5lkBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.handler.5" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.TasksCopyHandler" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
@@ -23,7 +23,7 @@
               </toolbar>
             </children>
           </children>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4000">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="7000">
             <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
               <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-detail.svg" closeable="true"/>
             </children>
