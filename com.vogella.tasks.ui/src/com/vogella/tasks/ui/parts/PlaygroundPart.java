@@ -4,7 +4,6 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.core.di.extensions.EventTopic;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.resource.ResourceManager;
@@ -41,7 +40,7 @@ public class PlaygroundPart {
         ResourceManager resourceManager = 
                 new LocalResourceManager(JFaceResources.getResources(), label);
         Image image = resourceManager.
-                create(loader.getImageDescriptor(this.getClass(), "images/vogella.png"));
+                create(loader.getImageDescriptor(this.getClass(), "images/sbahn.svg"));
         label.setImage(image);
 		
 	}
