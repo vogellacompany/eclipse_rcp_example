@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
-    <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
-      <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.tasks" label="Tasks">
-        <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1000">
-            <tags>NoAutoCollapse</tags>
-            <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-overview.svg" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
-              <handlers xmi:id="_zL5lkBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.handler.5" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.TasksCopyHandler" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
-              <menus xsi:type="menu:PopupMenu" xmi:id="_S-5lIMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.popupmenu.table" label="Table menu">
-                <children xsi:type="menu:HandledMenuItem" xmi:id="_mexeMMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.3" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
-                <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
-                <children xsi:type="menu:HandledMenuItem" xmi:id="_4z3OcBPPEe25KY4XO6CgOw" elementId="com.vogella.tasks.ui.handledmenuitem.copy" label="Copy" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
-              </menus>
-            </children>
-          </children>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4000">
-            <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
-              <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-detail.svg" closeable="true"/>
-            </children>
-            <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.bottom">
-              <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" iconURI="platform:/plugin/com.vogella.tasks.ui/images/playground.svg" closeable="true"/>
-              <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
-              <children xsi:type="basic:Part" xmi:id="_mC2sYFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.part.imagedownload" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ImageDownloadPart" label="Image Download"/>
-              <children xsi:type="basic:Part" xmi:id="_WYHtQKIXEfC4_N2PIIsnDg" elementId="com.vogella.tasks.ui.part.canvas" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ParticleCanvas" label="Canvas"/>
-            </children>
-          </children>
+    <children xsi:type="basic:PartSashContainer" xmi:id="_eU9RAMzwEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
+      <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="1000">
+        <tags>NoAutoCollapse</tags>
+        <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-overview.svg" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
+          <handlers xmi:id="_zL5lkBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.handler.copytasks" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.TasksCopyHandler" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+          <menus xsi:type="menu:PopupMenu" xmi:id="_S-5lIMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.popupmenu.table" label="Table menu">
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_mexeMMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.3" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_4z3OcBPPEe25KY4XO6CgOw" elementId="com.vogella.tasks.ui.handledmenuitem.copy" label="Copy" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+          </menus>
+          <menus xmi:id="_sOSCgKkNEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.menu.0">
+            <tags>ViewMenu</tags>
+            <children xsi:type="menu:HandledMenuItem" xmi:id="_tpvT4KkNEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledmenuitem.6" iconURI="platform:/plugin/com.vogella.tasks.ui/images/copyAll.svg" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+          </menus>
+          <toolbar xmi:id="_EX3cMKkPEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.toolbar.1">
+            <children xsi:type="menu:HandledToolItem" xmi:id="_Kjyy8KkPEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledtoolitem.1" iconURI="platform:/plugin/com.vogella.tasks.ui/images/copyAll.svg" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+          </toolbar>
         </children>
+        <children xsi:type="basic:Part" xmi:id="_whDPEKmYEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.part.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.RailwaySVGPart"/>
+        <children xsi:type="basic:Part" xmi:id="_ojNZUKmZEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.part.stellwert" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.StellwerkViewerPart" label="Stellwert"/>
       </children>
-      <children xsi:type="advanced:Perspective" xmi:id="_Szej0MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.manager" label="Manager">
-        <children xsi:type="basic:PartStack" xmi:id="_u-NDQF2cEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.partstack.2">
-          <children xsi:type="basic:Part" xmi:id="_TOaMUMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.part.part" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Part"/>
+      <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4000">
+        <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
+          <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-detail.svg" closeable="true"/>
+        </children>
+        <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.bottom">
+          <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" iconURI="platform:/plugin/com.vogella.tasks.ui/images/playground.svg" closeable="true"/>
+          <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
+          <children xsi:type="basic:Part" xmi:id="_mC2sYFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.part.imagedownload" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ImageDownloadPart" label="Image Download"/>
+          <children xsi:type="basic:Part" xmi:id="_WYHtQKIXEfC4_N2PIIsnDg" elementId="com.vogella.tasks.ui.part.canvas" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ParticleCanvas" label="Canvas"/>
         </children>
       </children>
     </children>
@@ -40,8 +40,9 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_gvkHMF2EEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_lMhIQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_HNmNMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.0" command="_Cp2VMMnCEeuD8-bVRByS6Q"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_GjwwwMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.4" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_VQwW0KkNEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledmenuitem.1" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_HNmNMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.0" command="_Cp2VMMnCEeuD8-bVRByS6Q"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_vX5mkMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.menu.processes" label="Processes">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_xsUgQMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.2" command="_glwA4MnFEeuD8-bVRByS6Q">
@@ -68,15 +69,6 @@
         </children>
         <children xsi:type="menu:Menu" xmi:id="_Qs_9gF27EfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.menu.dynamicthememenu" label="Dynamic Theme Menu">
           <children xsi:type="menu:DynamicMenuContribution" xmi:id="_SpKvQF27EfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.dynamicmenucontribution.1" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.menu.DynamicSwitchThemeMenu"/>
-        </children>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_lgosQDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.menu.onlyvisibleiftaskselected" toBeRendered="false" label="Only visible if task selected">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_-u6SkDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.handledmenuitem.5" toBeRendered="false" command="_qzqvUBO9Ee2nkPMV9zMJ2A">
-          <visibleWhen xsi:type="ui:CoreExpression" xmi:id="_MnZFUDbzEfCi08omLLzthw" coreExpressionId="com.vogella.tasks.ui.task.selection"/>
-        </children>
-        <children xsi:type="menu:Menu" xmi:id="_S1zvYDbzEfCi08omLLzthw" elementId="com.vogella.tasks.ui.menu.sub-menu" label="Sub-menu">
-          <visibleWhen xsi:type="ui:ImperativeExpression" xmi:id="_33zekDb3EfCi08omLLzthw" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.expressions.CheckSelection"/>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_TWgBoDbzEfCi08omLLzthw" elementId="com.vogella.tasks.ui.handledmenuitem.test" label="Test"/>
         </children>
       </children>
     </mainMenu>

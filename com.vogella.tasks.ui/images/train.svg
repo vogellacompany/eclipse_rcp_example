@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2400" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .track { stroke: #FFFFFF; stroke-width: 3; fill: none; }
+      .track-occupied { stroke: #FF0000; stroke-width: 3; fill: none; }
+      .signal-red { fill: #FF0000; }
+      .signal-green { fill: #00FF00; }
+      .signal-yellow { fill: #FFFF00; }
+      .switch-white { stroke: #FFFFFF; stroke-width: 4; fill: none; }
+      .switch-yellow { stroke: #FFFF00; stroke-width: 4; fill: none; }
+      .station-label { fill: #000000; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .track-label { fill: #FFFFFF; font-family: Arial, sans-serif; font-size: 10px; }
+      .station-platform { fill: #STATION_COLOR#; stroke: #000000; stroke-width: 2; }
+      .platform-occupied { fill: #FF8C00; stroke: #000000; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <rect width="2400" height="800" fill="#808080"/>
+  
+  <!-- Track 1 - Main line top -->
+  <line class="track" x1="50" y1="100" x2="2350" y2="100"/>
+  <text x="60" y="90" class="track-label">Gleis 1</text>
+  
+  <!-- Track 2 -->
+  <line class="track" x1="50" y1="130" x2="2350" y2="130"/>
+  <text x="60" y="120" class="track-label">Gleis 2</text>
+  
+  <!-- Track 3 -->
+  <line class="track-occupied" x1="50" y1="200" x2="800" y2="200"/>
+  <line class="track" x1="800" y1="200" x2="2350" y2="200"/>
+  <text x="60" y="190" class="track-label">Gleis 3</text>
+  
+  <!-- Track 4 -->
+  <line class="track" x1="50" y1="230" x2="2350" y2="230"/>
+  <text x="60" y="220" class="track-label">Gleis 4</text>
+  
+  <!-- Track 5 -->
+  <line class="track" x1="50" y1="300" x2="2350" y2="300"/>
+  <text x="60" y="290" class="track-label">Gleis 5</text>
+  
+  <!-- Track 6 -->
+  <line class="track" x1="50" y1="330" x2="2350" y2="330"/>
+  <text x="60" y="320" class="track-label">Gleis 6</text>
+  
+  <!-- Track 7 - Platform tracks -->
+  <line class="track" x1="400" y1="400" x2="1800" y2="400"/>
+  <text x="410" y="390" class="track-label">Gleis 7</text>
+  
+  <!-- Track 8 -->
+  <line class="track" x1="400" y1="430" x2="1800" y2="430"/>
+  <text x="410" y="420" class="track-label">Gleis 8</text>
+  
+  <!-- Track 9 -->
+  <line class="track" x1="400" y1="500" x2="1800" y2="500"/>
+  <text x="410" y="490" class="track-label">Gleis 9</text>
+  
+  <!-- Track 10 -->
+  <line class="track" x1="400" y1="530" x2="1800" y2="530"/>
+  <text x="410" y="520" class="track-label">Gleis 10</text>
+  
+  <!-- Track 11 -->
+  <line class="track" x1="50" y1="650" x2="2350" y2="650"/>
+  <text x="60" y="640" class="track-label">Gleis 11</text>
+  
+  <!-- Track 12 -->
+  <line class="track" x1="50" y1="680" x2="2350" y2="680"/>
+  <text x="60" y="670" class="track-label">Gleis 12</text>
+  
+  <!-- Complex junction area 1 -->
+  <path class="switch-white" d="M 350 100 L 400 200"/>
+  <path class="switch-white" d="M 350 130 L 400 200"/>
+  <path class="switch-yellow" d="M 400 200 L 450 300"/>
+  <path class="switch-white" d="M 400 230 L 450 300"/>
+  
+  <!-- Complex junction area 2 -->
+  <path class="switch-white" d="M 800 200 L 850 300"/>
+  <path class="switch-yellow" d="M 800 230 L 850 300"/>
+  <path class="switch-white" d="M 850 300 L 900 330"/>
+  
+  <!-- Crossover connections -->
+  <path class="switch-white" d="M 1200 100 Q 1250 115 1300 130"/>
+  <path class="switch-white" d="M 1200 130 Q 1250 115 1300 100"/>
+  
+  <path class="switch-white" d="M 1600 200 Q 1650 215 1700 230"/>
+  <path class="switch-white" d="M 1600 230 Q 1650 215 1700 200"/>
+  
+  <!-- Platform area connections -->
+  <path class="switch-white" d="M 350 300 L 400 400"/>
+  <path class="switch-white" d="M 350 330 L 400 430"/>
+  <path class="switch-yellow" d="M 400 500 L 350 650"/>
+  <path class="switch-white" d="M 400 530 L 350 680"/>
+  
+  <path class="switch-white" d="M 1800 400 L 1850 300"/>
+  <path class="switch-yellow" d="M 1800 430 L 1850 330"/>
+  <path class="switch-white" d="M 1800 500 L 1850 650"/>
+  <path class="switch-white" d="M 1800 530 L 1850 680"/>
+  
+  <!-- Siding connections -->
+  <path class="switch-white" d="M 1000 300 L 1050 370"/>
+  <line class="track" x1="1050" y1="370" x2="1300" y2="370"/>
+  <text x="1060" y="360" class="track-label">Abstellgleis 1</text>
+  
+  <path class="switch-white" d="M 1400 330 L 1450 370"/>
+  <line class="track" x1="1450" y1="370" x2="1700" y2="370"/>
+  <text x="1460" y="360" class="track-label">Abstellgleis 2</text>
+  
+  <!-- Depot area -->
+  <path class="switch-white" d="M 2000 650 L 2050 600"/>
+  <line class="track" x1="2050" y1="600" x2="2300" y2="600"/>
+  <text x="2060" y="590" class="track-label">Werkstatt</text>
+  
+  <path class="switch-yellow" d="M 2000 680 L 2050 730"/>
+  <line class="track" x1="2050" y1="730" x2="2300" y2="730"/>
+  <text x="2060" y="720" class="track-label">Abstellung</text>
+  
+  <!-- Signals -->
+  <!-- Main signals -->
+  <circle class="signal-green" cx="100" cy="95" r="6"/>
+  <circle class="signal-red" cx="100" cy="125" r="6"/>
+  <circle class="signal-green" cx="100" cy="195" r="6"/>
+  <circle class="signal-green" cx="100" cy="225" r="6"/>
+  <circle class="signal-yellow" cx="100" cy="295" r="6"/>
+  <circle class="signal-green" cx="100" cy="325" r="6"/>
+  <circle class="signal-green" cx="100" cy="645" r="6"/>
+  <circle class="signal-green" cx="100" cy="675" r="6"/>
+  
+  <circle class="signal-green" cx="500" cy="95" r="6"/>
+  <circle class="signal-red" cx="500" cy="125" r="6"/>
+  <circle class="signal-yellow" cx="500" cy="195" r="6"/>
+  <circle class="signal-green" cx="500" cy="225" r="6"/>
+  
+  <circle class="signal-green" cx="1000" cy="95" r="6"/>
+  <circle class="signal-green" cx="1000" cy="125" r="6"/>
+  <circle class="signal-red" cx="1000" cy="195" r="6"/>
+  <circle class="signal-green" cx="1000" cy="225" r="6"/>
+  <circle class="signal-green" cx="1000" cy="295" r="6"/>
+  <circle class="signal-green" cx="1000" cy="325" r="6"/>
+  
+  <circle class="signal-green" cx="1500" cy="95" r="6"/>
+  <circle class="signal-green" cx="1500" cy="125" r="6"/>
+  <circle class="signal-green" cx="1500" cy="195" r="6"/>
+  <circle class="signal-yellow" cx="1500" cy="225" r="6"/>
+  
+  <circle class="signal-green" cx="2000" cy="95" r="6"/>
+  <circle class="signal-green" cx="2000" cy="125" r="6"/>
+  <circle class="signal-green" cx="2000" cy="195" r="6"/>
+  <circle class="signal-green" cx="2000" cy="225" r="6"/>
+  <circle class="signal-green" cx="2000" cy="295" r="6"/>
+  <circle class="signal-red" cx="2000" cy="325" r="6"/>
+  <circle class="signal-green" cx="2000" cy="645" r="6"/>
+  <circle class="signal-green" cx="2000" cy="675" r="6"/>
+  
+  <!-- Platform signals -->
+  <circle class="signal-green" cx="450" cy="395" r="6"/>
+  <circle class="signal-yellow" cx="450" cy="425" r="6"/>
+  <circle class="signal-green" cx="450" cy="495" r="6"/>
+  <circle class="signal-red" cx="450" cy="525" r="6"/>
+  
+  <circle class="signal-green" cx="1750" cy="395" r="6"/>
+  <circle class="signal-green" cx="1750" cy="425" r="6"/>
+  <circle class="signal-green" cx="1750" cy="495" r="6"/>
+  <circle class="signal-green" cx="1750" cy="525" r="6"/>
+  
+  <!-- Station 1: Westbahnhof -->
+  <rect class="station-platform" x="150" y="60" width="120" height="280"/>
+  <text x="210" y="210" class="station-label" text-anchor="middle">Westbahnhof</text>
+  
+  <!-- Station 2: Hauptbahnhof (Main Station) -->
+  <rect class="station-platform" x="550" y="360" width="150" height="210"/>
+  <text x="625" y="470" class="station-label" text-anchor="middle">Hauptbahnhof</text>
+  
+  <!-- Station 3: Stadtmitte -->
+  <rect class="station-platform" x="1050" y="60" width="120" height="280"/>
+  <text x="1110" y="210" class="station-label" text-anchor="middle">Stadtmitte</text>
+  
+  <!-- Station 4: Nordbahnhof -->
+  <rect class="station-platform" x="1550" y="60" width="120" height="280"/>
+  <text x="1610" y="210" class="station-label" text-anchor="middle">Nordbahnhof</text>
+  
+  <!-- Station 5: Ostbahnhof -->
+  <rect class="platform-occupied" x="2050" y="60" width="120" height="280"/>
+  <text x="2110" y="210" class="station-label" text-anchor="middle">Ostbahnhof</text>
+  
+  <!-- Station 6: Südbahnhof -->
+  <rect class="station-platform" x="1500" y="360" width="150" height="210"/>
+  <text x="1575" y="470" class="station-label" text-anchor="middle">Südbahnhof</text>
+  
+  <!-- Track number indicators -->
+  <text x="250" y="115" class="track-label">1</text>
+  <text x="250" y="145" class="track-label">2</text>
+  <text x="250" y="215" class="track-label">3</text>
+  <text x="250" y="245" class="track-label">4</text>
+  <text x="250" y="315" class="track-label">5</text>
+  <text x="250" y="345" class="track-label">6</text>
+  
+  <text x="650" y="415" class="track-label">7</text>
+  <text x="650" y="445" class="track-label">8</text>
+  <text x="650" y="515" class="track-label">9</text>
+  <text x="650" y="545" class="track-label">10</text>
+  
+  <text x="1150" y="115" class="track-label">1</text>
+  <text x="1150" y="145" class="track-label">2</text>
+  <text x="1150" y="215" class="track-label">3</text>
+  <text x="1150" y="245" class="track-label">4</text>
+  <text x="1150" y="315" class="track-label">5</text>
+  <text x="1150" y="345" class="track-label">6</text>
+  
+  <text x="1650" y="415" class="track-label">7</text>
+  <text x="1650" y="445" class="track-label">8</text>
+  <text x="1650" y="515" class="track-label">9</text>
+  <text x="1650" y="545" class="track-label">10</text>
+  
+  <text x="2150" y="115" class="track-label">1</text>
+  <text x="2150" y="145" class="track-label">2</text>
+  <text x="2150" y="215" class="track-label">3</text>
+  <text x="2150" y="245" class="track-label">4</text>
+  <text x="2150" y="315" class="track-label">5</text>
+  <text x="2150" y="345" class="track-label">6</text>
+  
+  <text x="250" y="665" class="track-label">11</text>
+  <text x="250" y="695" class="track-label">12</text>
+</svg>

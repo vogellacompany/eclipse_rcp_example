@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .city-circle { stroke: #000000; stroke-width: 3; }
+      .city-name { font-family: 'Georgia', serif; font-size: 16px; font-weight: bold; fill: #2C1810; text-anchor: middle; }
+      .route-segment { stroke-width: 12; stroke-linecap: round; }
+      .route-red { stroke: #DC143C; }
+      .route-blue { stroke: #1E90FF; }
+      .route-green { stroke: #228B22; }
+      .route-yellow { stroke: #FFD700; }
+      .route-black { stroke: #2F4F4F; }
+      .route-white { stroke: #E8E8E8; stroke: #666; }
+      .route-orange { stroke: #FF8C00; }
+      .route-purple { stroke: #9370DB; }
+      .route-gray { stroke: #808080; }
+      .route-separator { stroke: #FFFFFF; stroke-width: 3; stroke-dasharray: 8,6; }
+      .water { fill: #B0D4E8; }
+      .land { fill: #F5E6D3; }
+      .mountain { fill: #D2B48C; }
+    </style>
+    
+    <!-- Train car marker -->
+    <rect id="train-segment" width="14" height="20" rx="2" ry="2"/>
+  </defs>
+  
+  <!-- Background - Land and water -->
+  <rect width="1400" height="1000" class="land"/>
+  
+  <!-- Water areas -->
+  <ellipse class="water" cx="300" cy="200" rx="120" ry="80"/>
+  <ellipse class="water" cx="1100" cy="700" rx="150" ry="100"/>
+  <path class="water" d="M 50 400 Q 200 450 350 400 L 350 600 Q 200 550 50 600 Z"/>
+  
+  <!-- Mountain ranges -->
+  <path class="mountain" d="M 600 200 L 650 150 L 700 200 L 750 170 L 800 220 L 750 240 L 700 220 L 650 230 L 600 220 Z"/>
+  <path class="mountain" d="M 900 500 L 950 450 L 1000 500 L 1050 470 L 1100 520 L 1050 540 L 1000 520 L 950 530 L 900 520 Z"/>
+  
+  <!-- Routes with parallel tracks and segments -->
+  
+  <!-- Hamburg - Berlin (Red, 3 segments) -->
+  <line class="route-segment route-red" x1="200" y1="150" x2="350" y2="150"/>
+  <use href="#train-segment" x="215" y="140" fill="#DC143C"/>
+  <use href="#train-segment" x="260" y="140" fill="#DC143C"/>
+  <use href="#train-segment" x="305" y="140" fill="#DC143C"/>
+  
+  <!-- Berlin - Dresden (Blue, 2 segments) -->
+  <line class="route-segment route-blue" x1="350" y1="150" x2="450" y2="250"/>
+  <use href="#train-segment" x="370" y="170" fill="#1E90FF"/>
+  <use href="#train-segment" x="410" y="210" fill="#1E90FF"/>
+  
+  <!-- Hamburg - Bremen (Green, 2 segments) -->
+  <line class="route-segment route-green" x1="200" y1="150" x2="150" y2="280"/>
+  <use href="#train-segment" x="180" y="190" fill="#228B22"/>
+  <use href="#train-segment" x="160" y="235" fill="#228B22"/>
+  
+  <!-- Bremen - Frankfurt (Yellow, 4 segments) -->
+  <line class="route-segment route-yellow" x1="150" y1="280" x2="300" y2="450"/>
+  <use href="#train-segment" x="180" y="320" fill="#FFD700"/>
+  <use href="#train-segment" x="210" y="360" fill="#FFD700"/>
+  <use href="#train-segment" x="240" y="400" fill="#FFD700"/>
+  <use href="#train-segment" x="270" y="440" fill="#FFD700"/>
+  
+  <!-- Frankfurt - München (Orange, 4 segments) -->
+  <line class="route-segment route-orange" x1="300" y1="450" x2="450" y2="600"/>
+  <use href="#train-segment" x="325" y="480" fill="#FF8C00"/>
+  <use href="#train-segment" x="360" y="515" fill="#FF8C00"/>
+  <use href="#train-segment" x="395" y="550" fill="#FF8C00"/>
+  <use href="#train-segment" x="430" y="585" fill="#FF8C00"/>
+  
+  <!-- Berlin - Leipzig (Black, 2 segments) -->
+  <line class="route-segment route-black" x1="350" y1="150" x2="380" y2="300"/>
+  <use href="#train-segment" x="355" y="190" fill="#2F4F4F"/>
+  <use href="#train-segment" x="365" y="250" fill="#2F4F4F"/>
+  
+  <!-- Leipzig - Frankfurt (Purple, 3 segments) -->
+  <line class="route-segment route-purple" x1="380" y1="300" x2="300" y2="450"/>
+  <use href="#train-segment" x="360" y="335" fill="#9370DB"/>
+  <use href="#train-segment" x="340" y="380" fill="#9370DB"/>
+  <use href="#train-segment" x="310" y="425" fill="#9370DB"/>
+  
+  <!-- Dresden - München (Gray, 5 segments) -->
+  <line class="route-segment route-gray" x1="450" y1="250" x2="450" y2="600"/>
+  <use href="#train-segment" x="440" y="290" fill="#808080"/>
+  <use href="#train-segment" x="440" y="350" fill="#808080"/>
+  <use href="#train-segment" x="440" y="410" fill="#808080"/>
+  <use href="#train-segment" x="440" y="470" fill="#808080"/>
+  <use href="#train-segment" x="440" y="530" fill="#808080"/>
+  
+  <!-- München - Zürich (Blue, 3 segments) -->
+  <line class="route-segment route-blue" x1="450" y1="600" x2="350" y2="750"/>
+  <use href="#train-segment" x="420" y="640" fill="#1E90FF"/>
+  <use href="#train-segment" x="390" y="680" fill="#1E90FF"/>
+  <use href="#train-segment" x="360" y="720" fill="#1E90FF"/>
+  
+  <!-- Frankfurt - Stuttgart (Green, 3 segments) -->
+  <line class="route-segment route-green" x1="300" y1="450" x2="380" y2="550"/>
+  <use href="#train-segment" x="320" y="475" fill="#228B22"/>
+  <use href="#train-segment" x="340" y="500" fill="#228B22"/>
+  <use href="#train-segment" x="360" y="525" fill="#228B22"/>
+  
+  <!-- Stuttgart - Zürich (Red, 4 segments) -->
+  <line class="route-segment route-red" x1="380" y1="550" x2="350" y2="750"/>
+  <use href="#train-segment" x="370" y="600" fill="#DC143C"/>
+  <use href="#train-segment" x="365" y="650" fill="#DC143C"/>
+  <use href="#train-segment" x="360" y="700" fill="#DC143C"/>
+  <use href="#train-segment" x="355" y="740" fill="#DC143C"/>
+  
+  <!-- Köln - Frankfurt (Yellow, 3 segments) -->
+  <line class="route-segment route-yellow" x1="180" y1="350" x2="300" y2="450"/>
+  <use href="#train-segment" x="210" y="375" fill="#FFD700"/>
+  <use href="#train-segment" x="240" y="405" fill="#FFD700"/>
+  <use href="#train-segment" x="270" y="435" fill="#FFD700"/>
+  
+  <!-- Köln - Amsterdam (Orange, 3 segments) -->
+  <line class="route-segment route-orange" x1="180" y1="350" x2="100" y2="250"/>
+  <use href="#train-segment" x="160" y="320" fill="#FF8C00"/>
+  <use href="#train-segment" x="140" y="290" fill="#FF8C00"/>
+  <use href="#train-segment" x="115" y="265" fill="#FF8C00"/>
+  
+  <!-- Amsterdam - Bremen (Purple, 3 segments) -->
+  <line class="route-segment route-purple" x1="100" y1="250" x2="150" y2="280"/>
+  <use href="#train-segment" x="115" y="255" fill="#9370DB"/>
+  <use href="#train-segment" x="125" y="265" fill="#9370DB"/>
+  <use href="#train-segment" x="135" y="272" fill="#9370DB"/>
+  
+  <!-- Eastern routes -->
+  <!-- Dresden - Prag (Red, 3 segments) -->
+  <line class="route-segment route-red" x1="450" y1="250" x2="600" y2="350"/>
+  <use href="#train-segment" x="485" y="275" fill="#DC143C"/>
+  <use href="#train-segment" x="525" y="305" fill="#DC143C"/>
+  <use href="#train-segment" x="565" y="335" fill="#DC143C"/>
+  
+  <!-- Prag - Wien (Blue, 4 segments) -->
+  <line class="route-segment route-blue" x1="600" y1="350" x2="700" y2="500"/>
+  <use href="#train-segment" x="625" y="385" fill="#1E90FF"/>
+  <use href="#train-segment" x="650" y="420" fill="#1E90FF"/>
+  <use href="#train-segment" x="675" y="455" fill="#1E90FF"/>
+  <use href="#train-segment" x="690" y="485" fill="#1E90FF"/>
+  
+  <!-- München - Wien (Orange, 4 segments) -->
+  <line class="route-segment route-orange" x1="450" y1="600" x2="700" y2="500"/>
+  <use href="#train-segment" x="510" y="575" fill="#FF8C00"/>
+  <use href="#train-segment" x="570" y="550" fill="#FF8C00"/>
+  <use href="#train-segment" x="630" y="525" fill="#FF8C00"/>
+  <use href="#train-segment" x="680" y="507" fill="#FF8C00"/>
+  
+  <!-- Wien - Budapest (Green, 2 segments) -->
+  <line class="route-segment route-green" x1="700" y1="500" x2="900" y2="550"/>
+  <use href="#train-segment" x="750" y="515" fill="#228B22"/>
+  <use href="#train-segment" x="830" y="535" fill="#228B22"/>
+  
+  <!-- Western routes -->
+  <!-- Paris - Frankfurt (Black, 6 segments) -->
+  <line class="route-segment route-black" x1="50" y1="500" x2="300" y2="450"/>
+  <use href="#train-segment" x="85" y="492" fill="#2F4F4F"/>
+  <use href="#train-segment" x="130" y="482" fill="#2F4F4F"/>
+  <use href="#train-segment" x="175" y="472" fill="#2F4F4F"/>
+  <use href="#train-segment" x="220" y="462" fill="#2F4F4F"/>
+  <use href="#train-segment" x="265" y="455" fill="#2F4F4F"/>
+  <use href="#train-segment" x="285" y="452" fill="#2F4F4F"/>
+  
+  <!-- Paris - Zürich (Purple, 5 segments) -->
+  <line class="route-segment route-purple" x1="50" y1="500" x2="350" y2="750"/>
+  <use href="#train-segment" x="105" y="545" fill="#9370DB"/>
+  <use href="#train-segment" x="165" y="595" fill="#9370DB"/>
+  <use href="#train-segment" x="225" y="645" fill="#9370DB"/>
+  <use href="#train-segment" x="285" y="695" fill="#9370DB"/>
+  <use href="#train-segment" x="325" y="735" fill="#9370DB"/>
+  
+  <!-- Zürich - Milano (Red, 3 segments) -->
+  <line class="route-segment route-red" x1="350" y1="750" x2="450" y2="850"/>
+  <use href="#train-segment" x="375" y="775" fill="#DC143C"/>
+  <use href="#train-segment" x="400" y="800" fill="#DC143C"/>
+  <use href="#train-segment" x="425" y="825" fill="#DC143C"/>
+  
+  <!-- Northern routes -->
+  <!-- Hamburg - København (Gray, 2 segments) -->
+  <line class="route-segment route-gray" x1="200" y1="150" x2="300" y2="50"/>
+  <use href="#train-segment" x="230" y="115" fill="#808080"/>
+  <use href="#train-segment" x="265" y="80" fill="#808080"/>
+  
+  <!-- Berlin - København (Yellow, 3 segments) -->
+  <line class="route-segment route-yellow" x1="350" y1="150" x2="400" y2="50"/>
+  <use href="#train-segment" x="365" y="120" fill="#FFD700"/>
+  <use href="#train-segment" x="380" y="90" fill="#FFD700"/>
+  <use href="#train-segment" x="390" y="65" fill="#FFD700"/>
+  
+  <!-- Eastern expansion -->
+  <!-- Budapest - Bucuresti (Yellow, 4 segments) -->
+  <line class="route-segment route-yellow" x1="900" y1="550" x2="1100" y2="650"/>
+  <use href="#train-segment" x="940" y="570" fill="#FFD700"/>
+  <use href="#train-segment" x="990" y="595" fill="#FFD700"/>
+  <use href="#train-segment" x="1040" y="620" fill="#FFD700"/>
+  <use href="#train-segment" x="1080" y="640" fill="#FFD700"/>
+  
+  <!-- Wien - Warszawa (Blue, 5 segments) -->
+  <line class="route-segment route-blue" x1="700" y1="500" x2="850" y2="250"/>
+  <use href="#train-segment" x="730" y="455" fill="#1E90FF"/>
+  <use href="#train-segment" x="760" y="405" fill="#1E90FF"/>
+  <use href="#train-segment" x="790" y="355" fill="#1E90FF"/>
+  <use href="#train-segment" x="820" y="305" fill="#1E90FF"/>
+  <use href="#train-segment" x="840" y="265" fill="#1E90FF"/>
+  
+  <!-- Berlin - Warszawa (Green, 4 segments) -->
+  <line class="route-segment route-green" x1="350" y1="150" x2="850" y2="250"/>
+  <use href="#train-segment" x="450" y="165" fill="#228B22"/>
+  <use href="#train-segment" x="575" y="190" fill="#228B22"/>
+  <use href="#train-segment" x="700" y="215" fill="#228B22"/>
+  <use href="#train-segment" x="800" y="237" fill="#228B22"/>
+  
+  <!-- Southern routes -->
+  <!-- Milano - Roma (Black, 5 segments) -->
+  <line class="route-segment route-black" x1="450" y1="850" x2="550" y2="950"/>
+  <use href="#train-segment" x="465" y="870" fill="#2F4F4F"/>
+  <use href="#train-segment" x="485" y="895" fill="#2F4F4F"/>
+  <use href="#train-segment" x="505" y="915" fill="#2F4F4F"/>
+  <use href="#train-segment" x="525" y="935" fill="#2F4F4F"/>
+  <use href="#train-segment" x="540" y="945" fill="#2F4F4F"/>
+  
+  <!-- München - Venezia (Orange, 3 segments) -->
+  <line class="route-segment route-orange" x1="450" y1="600" x2="550" y2="750"/>
+  <use href="#train-segment" x="475" y="640" fill="#FF8C00"/>
+  <use href="#train-segment" x="500" y="680" fill="#FF8C00"/>
+  <use href="#train-segment" x="525" y="720" fill="#FF8C00"/>
+  
+  <!-- Venezia - Roma (Purple, 4 segments) -->
+  <line class="route-segment route-purple" x1="550" y1="750" x2="550" y2="950"/>
+  <use href="#train-segment" x="542" y="790" fill="#9370DB"/>
+  <use href="#train-segment" x="542" y="840" fill="#9370DB"/>
+  <use href="#train-segment" x="542" y="890" fill="#9370DB"/>
+  <use href="#train-segment" x="542" y="930" fill="#9370DB"/>
+  
+  <!-- Cities -->
+  <!-- Northern cities -->
+  <circle class="city-circle" cx="300" cy="50" r="20" fill="#FFE4B5"/>
+  <text x="300" y="30" class="city-name">København</text>
+  
+  <circle class="city-circle" cx="200" cy="150" r="20" fill="#FFE4B5"/>
+  <text x="200" y="130" class="city-name">Hamburg</text>
+  
+  <circle class="city-circle" cx="350" cy="150" r="22" fill="#FFE4B5"/>
+  <text x="350" y="125" class="city-name">Berlin</text>
+  
+  <circle class="city-circle" cx="100" cy="250" r="18" fill="#FFE4B5"/>
+  <text x="100" y="230" class="city-name">Amsterdam</text>
+  
+  <circle class="city-circle" cx="150" cy="280" r="18" fill="#FFE4B5"/>
+  <text x="150" y="260" class="city-name">Bremen</text>
+  
+  <circle class="city-circle" cx="450" cy="250" r="20" fill="#FFE4B5"/>
+  <text x="450" y="230" class="city-name">Dresden</text>
+  
+  <circle class="city-circle" cx="850" cy="250" r="20" fill="#FFE4B5"/>
+  <text x="850" y="230" class="city-name">Warszawa</text>
+  
+  <!-- Central cities -->
+  <circle class="city-circle" cx="380" cy="300" r="18" fill="#FFE4B5"/>
+  <text x="380" y="280" class="city-name">Leipzig</text>
+  
+  <circle class="city-circle" cx="180" cy="350" r="20" fill="#FFE4B5"/>
+  <text x="180" y="330" class="city-name">Köln</text>
+  
+  <circle class="city-circle" cx="600" cy="350" r="20" fill="#FFE4B5"/>
+  <text x="600" y="330" class="city-name">Prag</text>
+  
+  <circle class="city-circle" cx="300" cy="450" r="22" fill="#FFDAB9"/>
+  <text x="300" y="425" class="city-name">Frankfurt</text>
+  
+  <circle class="city-circle" cx="700" cy="500" r="22" fill="#FFE4B5"/>
+  <text x="700" y="475" class="city-name">Wien</text>
+  
+  <circle class="city-circle" cx="50" cy="500" r="22" fill="#FFDAB9"/>
+  <text x="50" y="475" class="city-name">Paris</text>
+  
+  <circle class="city-circle" cx="380" cy="550" r="18" fill="#FFE4B5"/>
+  <text x="380" y="530" class="city-name">Stuttgart</text>
+  
+  <circle class="city-circle" cx="900" cy="550" r="20" fill="#FFE4B5"/>
+  <text x="900" y="530" class="city-name">Budapest</text>
+  
+  <!-- Southern cities -->
+  <circle class="city-circle" cx="450" cy="600" r="22" fill="#FFDAB9"/>
+  <text x="450" y="575" class="city-name">München</text>
+  
+  <circle class="city-circle" cx="1100" cy="650" r="20" fill="#FFE4B5"/>
+  <text x="1100" y="630" class="city-name">Bucuresti</text>
+  
+  <circle class="city-circle" cx="350" cy="750" r="22" fill="#FFE4B5"/>
+  <text x="350" y="725" class="city-name">Zürich</text>
+  
+  <circle class="city-circle" cx="550" cy="750" r="18" fill="#FFE4B5"/>
+  <text x="550" y="730" class="city-name">Venezia</text>
+  
+  <circle class="city-circle" cx="450" cy="850" r="20" fill="#FFE4B5"/>
+  <text x="450" y="830" class="city-name">Milano</text>
+  
+  <circle class="city-circle" cx="550" cy="950" r="20" fill="#FFE4B5"/>
+  <text x="550" y="930" class="city-name">Roma</text>
+  
+  <!-- Border decoration -->
+  <rect x="10" y="10" width="1380" height="980" fill="none" stroke="#8B4513" stroke-width="8" rx="20"/>
+  <rect x="20" y="20" width="1360" height="960" fill="none" stroke="#D2691E" stroke-width="3" rx="15"/>
+</svg>
