@@ -13,6 +13,14 @@
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_4z3OcBPPEe25KY4XO6CgOw" elementId="com.vogella.tasks.ui.handledmenuitem.copy" label="Copy" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
               </menus>
+              <menus xmi:id="_3dL2kKmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.menu.0">
+                <tags>ViewMenu</tags>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_36rq4KmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledmenuitem.1" iconURI="platform:/plugin/com.vogella.tasks.ui/images/copyAll.svg" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+              </menus>
+              <toolbar xmi:id="_6qXkQKmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.toolbar.1">
+                <children xsi:type="menu:HandledToolItem" xmi:id="_7Den0KmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledtoolitem.1" iconURI="platform:/plugin/com.vogella.tasks.ui/images/addTask.svg" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
+                <children xsi:type="menu:HandledToolItem" xmi:id="_80TFMKmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledtoolitem.2" iconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
+              </toolbar>
             </children>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_SBF2MMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partsashcontainer.1" containerData="4000">
