@@ -9,6 +9,7 @@ import java.net.http.HttpResponse;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,11 +28,13 @@ public class ImageDownloadPart {
     private Label statusLabel;
     private ProgressBar progressBar;
     private Button downloadButton;
+    private Shell shell;
 
     private final HttpClient httpClient = HttpClient.newHttpClient();
 
     @PostConstruct
     public void createControls(Composite parent) {
+        this.shell = parent.getShell();
         parent.setLayout(new GridLayout(1, false));
 
         downloadButton = new Button(parent, SWT.PUSH);
@@ -46,7 +49,7 @@ public class ImageDownloadPart {
         statusLabel.setText("Status: Idle");
 
         downloadButton.addListener(SWT.Selection, e -> {
-            String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png";
+            String imageUrl = "https://www.vogella.com/img/logo/index_logo.png";
             String savePath = promptForSavePath(parent.getShell());
             if (savePath != null) {
                 startDownload(imageUrl, savePath);
@@ -64,7 +67,7 @@ public class ImageDownloadPart {
 
     private void startDownload(String imageUrl, String savePath) {
         Display.getDefault().asyncExec(() -> {
-        	if (downloadButton == null || downloadButton.isDisposed()) {
+            if (downloadButton == null || downloadButton.isDisposed()) {
                 return;
             }
             progressBar.setVisible(true);
@@ -80,15 +83,38 @@ public class ImageDownloadPart {
         httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
                 .whenComplete((response, throwable) -> {
                     boolean success = false;
-                    if (throwable == null && response.statusCode() == 200) {
+                    String errorMessage = null;
+                    
+                    // Handle exceptions during HTTP request
+                    if (throwable != null) {
+                        errorMessage = buildErrorMessage("Network Error", 
+                            "Failed to connect to server: " + throwable.getMessage(), 
+                            imageUrl);
+                        logError("HTTP request failed", throwable);
+                    } 
+                    // Handle HTTP error status codes
+                    else if (response.statusCode() != 200) {
+                        errorMessage = buildErrorMessage("HTTP Error", 
+                            "Server returned status code: " + response.statusCode(), 
+                            imageUrl);
+                        logError("HTTP status error: " + response.statusCode(), null);
+                    } 
+                    // Handle file I/O errors
+                    else {
                         try (FileOutputStream fos = new FileOutputStream(savePath)) {
                             fos.write(response.body());
                             success = true;
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            errorMessage = buildErrorMessage("File Save Error", 
+                                "Failed to save file: " + e.getMessage(), 
+                                savePath);
+                            logError("File write failed", e);
                         }
                     }
+                    
                     final boolean finalSuccess = success;
+                    final String finalErrorMessage = errorMessage;
+                    
                     Display.getDefault().asyncExec(() -> {
                         if (downloadButton == null || downloadButton.isDisposed()) {
                             return;
@@ -96,11 +122,37 @@ public class ImageDownloadPart {
 
                         progressBar.setVisible(false);
                         downloadButton.setEnabled(true);
-                        statusLabel.setText(finalSuccess
-                                ? "Status: Downloaded and saved successfully"
-                                : "Status: Download failed");
+                        
+                        if (finalSuccess) {
+                            statusLabel.setText("Status: Downloaded and saved successfully");
+                        } else {
+                            statusLabel.setText("Status: Download failed");
+                            // Show error dialog with details
+                            showErrorDialog("Download Failed", finalErrorMessage);
+                        }
                     });
                 });
+    }
+
+    private String buildErrorMessage(String errorType, String details, String context) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(errorType).append("\n\n");
+        sb.append("Details: ").append(details).append("\n");
+        sb.append("Context: ").append(context);
+        return sb.toString();
+    }
+
+    private void showErrorDialog(String title, String message) {
+        if (shell != null && !shell.isDisposed()) {
+            MessageDialog.openError(shell, title, message);
+        }
+    }
+
+    private void logError(String message, Throwable throwable) {
+        System.err.println("ImageDownloadPart Error: " + message);
+        if (throwable != null) {
+            throwable.printStackTrace();
+        }
     }
 
     @Focus

@@ -19,7 +19,7 @@ public class Task {
     private String summary = "";
     private String description = "";
     private boolean done = false;
-    private transient LocalDate dueDate = LocalDate.now();
+    private LocalDate dueDate = LocalDate.now();
 
     public Task(long id, String summary, String description, boolean done, LocalDate dueDate) {
         this.id = id;
@@ -76,12 +76,15 @@ public class Task {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Task other = (Task) obj;
 		return id == other.id;
 	}

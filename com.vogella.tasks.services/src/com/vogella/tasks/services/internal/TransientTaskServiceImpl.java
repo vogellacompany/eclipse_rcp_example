@@ -81,16 +81,27 @@ public class TransientTaskServiceImpl implements TaskService {
 
 	// Example data, change if you like
 	private List<Task> createTestData() {
-		List<Task> list = JSONUtil.retrieveSavedData();
-		if (list.isEmpty()) {
-			// Create some initial content
-			list = List.of(create("Application model", "Flexible and extensible"),
-					create("DI", "@Inject as programming mode"), create("OSGi", "Services"), create("SWT", "Widgets"),
-					create("JFace", "Especially Viewers!"), create("CSS Styling", "Style your application"),
-					create("Eclipse services", "Selection, model, Part"), create("Renderer", "Different UI toolkit"),
-					create("Compatibility Layer", "Run Eclipse 3.x"));
-		}
-		return new ArrayList<>(list);
+	    List<Task> list = JSONUtil.retrieveSavedData();
+	    if (list.isEmpty()) {
+	        // Create some initial content
+	        list = List.of(create("Application model", "Flexible and extensible"),
+	                create("DI", "@Inject as programming mode"), 
+	                create("OSGi", "Services"), 
+	                create("SWT", "Widgets"),
+	                create("JFace", "Especially Viewers!"), 
+	                create("CSS Styling", "Style your application"),
+	                create("Eclipse services", "Selection, model, Part"), 
+	                create("Renderer", "Different UI toolkit"),
+	                create("Compatibility Layer", "Run Eclipse 3.x"));
+	    } else {
+	        // Find the maximum ID from loaded tasks and set counter to start after it
+	        long maxId = list.stream()
+	                .mapToLong(Task::getId)
+	                .max()
+	                .orElse(0);
+	        current.set((int) maxId + 1);
+	    }
+	    return new ArrayList<>(list);
 	}
 
 	private Task create(String summary, String description) {
