@@ -9,13 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import jakarta.inject.Inject;
-
 import org.eclipse.e4.core.services.events.IEventBroker;
 
 import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
+
+import jakarta.inject.Inject;
 
 public class TransientTaskServiceImpl implements TaskService {
 
@@ -94,9 +94,15 @@ public class TransientTaskServiceImpl implements TaskService {
 	}
 
 	private Task create(String summary, String description) {
-		return new Task(current.getAndIncrement(), summary, description, false, LocalDate.now());
+	    int id = current.getAndIncrement();
+	    // Use the id to deterministically vary the due date
+	    LocalDate baseDate = LocalDate.now();
+	    // Create a consistent offset between -3 and +3 days based on the id
+	    int offset = (id % 7) - 3; 
+	    LocalDate dueDate = baseDate.plusDays(offset);
+	    return new Task(id, summary, description, false, dueDate);
 	}
-
+	
 	private Optional<Task> findById(long id) {
 		return tasks.stream().filter(t -> t.getId() == id).findAny();
 	}
