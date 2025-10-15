@@ -104,30 +104,39 @@
 
 
     <modules>
-        <!--example-->
+        <!--Starter example-->
         <module>com.example.e4.rcp</module>
         <module>com.example.e4.feature</module>
-        
-        <!--task management example-->
         <module>com.example.e4.product</module>
-        <module>com.vogella.swt.widgets</module>
+        <!--Task management example-->
+        
+        
         <module>com.vogella.tasks.ui</module>
-        <module>com.example.e4.renderer.swt</module>
+        
         <module>com.vogella.tasks.feature</module>
         <module>com.vogella.tasks.model</module>
         <module>com.vogella.tasks.services</module>
-        <module>com.vogella.service.imageloader</module>
         <module>com.vogella.tasks.events</module>
         <module>com.vogella.contribute.parts</module>
         <module>com.vogella.tasks.ui.contribute</module>
-        <module>com.vogella.tasks.update</module>
         <module>com.vogella.eclipse.css</module>
-        <module>com.vogella.osgi.taskconsumer</module>
-        <module>updatesite</module>
         <module>com.vogella.tasks.product</module>
+<<<<<<< Upstream, based on origin/main
         <module>com.vogella.tasks.services.tests</module>
+=======
+        <module>com.vogella.swt.widgets</module>
+
+        <!-- These artifacts are from optional exercises
+        -->
+        <module>com.vogella.osgi.taskconsumer</module>
+        <module>com.vogella.service.imageloader</module>
+        <module>com.vogella.tasks.update</module>
+        <module>com.example.e4.renderer.swt</module>
+ 
+>>>>>>> c8f4211 Refactor pom.xml to clarify module examples and reorganize optional exercises
         <!--
         <module>com.example.e4.swtbot.tests</module>
         -->
+        <module>updatesite</module>
     </modules>
 </project>
