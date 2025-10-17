@@ -96,6 +96,7 @@
       <configuration>
           <application>org.eclipse.e4.ui.workbench.swt.E4Application</application>
           <product>com.example.e4.rcp.product</product>
+          <argLine>-DskipLogin=true</argLine>
       </configuration>
     </plugin>
             
@@ -134,6 +135,9 @@
         <module>com.example.e4.renderer.swt</module>
  
 >>>>>>> c8f4211 Refactor pom.xml to clarify module examples and reorganize optional exercises
+        <!--
+        <module>com.vogella.tasks.ui.tests</module>
+        -->
         <!--
         <module>com.example.e4.swtbot.tests</module>
         -->

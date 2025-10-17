@@ -9,6 +9,9 @@
 			<unit id="org.eclipse.equinox.p2.core.feature.feature.group"/>
 			<unit id="junit-jupiter-api"/>
 			<unit id="junit-jupiter-engine"/>
+			<unit id="junit-platform-suite-api"/>
+			<unit id="junit-platform-suite-engine"/>
+			<unit id="junit-vintage-engine"/>
 			<unit id="org.eclipse.pde.spies.feature.group"/>
 		</location>
 		<!--
