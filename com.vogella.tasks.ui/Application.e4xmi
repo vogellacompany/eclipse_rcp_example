@@ -89,6 +89,7 @@
       </children>
     </mainMenu>
     <trimBars xmi:id="_WwDtIMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.trimbar.0">
+      <children xsi:type="menu:ToolControl" xmi:id="_CRGkkLDREfCGx_QsNwKmjA" elementId="com.vogella.tasks.ui.toolcontrol.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.toolcontrols.SearchToolControl"/>
       <children xsi:type="menu:ToolBar" xmi:id="_XSRCUMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolbar.0">
         <children xsi:type="menu:HandledToolItem" xmi:id="_X_D24MnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledtoolitem.0" iconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
       </children>
