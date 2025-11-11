@@ -1,58 +1,68 @@
 package com.vogella.tasks.ui.parts;
 
-import org.eclipse.e4.core.di.annotations.Optional;
-import org.eclipse.e4.core.di.extensions.EventTopic;
-import org.eclipse.e4.ui.di.Persist;
-import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.resource.LocalResourceManager;
-import org.eclipse.jface.resource.ResourceManager;
+import static org.eclipse.jface.layout.GridDataFactory.fillDefaults;
+import static org.eclipse.jface.widgets.WidgetFactory.button;
+import static org.eclipse.jface.widgets.WidgetFactory.text;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.jface.fieldassist.ContentProposalAdapter;
+import org.eclipse.jface.fieldassist.SimpleContentProposalProvider;
+import org.eclipse.jface.fieldassist.TextContentAdapter;
+import org.eclipse.nebula.widgets.chips.Chips;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
-import com.vogella.imageloader.services.IBundleResourceLoader;
-
 import jakarta.annotation.PostConstruct;
-import jakarta.inject.Inject;
 
 public class PlaygroundPart {
 	private Text text;
 	private Browser browser;
-	private Text target;
-
-
-	@Inject
-	MPart part;
-	@Inject
-	IBundleResourceLoader loader;
 
 	@PostConstruct
 	public void createControls(Composite parent) {
+		parent.setLayout(new GridLayout(2, false));
+		Chips chip1 = new Chips(parent, SWT.CLOSE);
+		chip1.setText("Example");
+		chip1.setChipsBackground(Display.getDefault().getSystemColor(SWT.COLOR_RED));
+		text = text(SWT.BORDER | SWT.SEARCH | SWT.ICON_SEARCH | SWT.ICON_CANCEL).message("Enter City")
+				.layoutData(fillDefaults().grab(true, false).create()).create(parent);
+		text.addSelectionListener(SelectionListener.widgetDefaultSelectedAdapter(e -> updateBrowser()));
 
-		Label label = new Label(parent, SWT.NONE);
-        
-        // the following code assumes that you have a vogella.png file
-        // in a folder called "images" in this plug-in
-        ResourceManager resourceManager = 
-                new LocalResourceManager(JFaceResources.getResources(), label);
-        Image image = resourceManager.
-                create(loader.getImageDescriptor(this.getClass(), "images/sbahn.svg"));
-        label.setImage(image);
-		
+		ContentProposalAdapter contentProposal = new ContentProposalAdapter(text, new TextContentAdapter(),
+				new SimpleContentProposalProvider("Hamburg", "New York", "New Delhi"), null, null);
+
+		contentProposal.setPopupSize(new Point(200, 100));
+		contentProposal.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);
+		button(SWT.PUSH).text("Search").onSelect(e -> updateBrowser()).create(parent);
+
+		browser = new Browser(parent, SWT.NONE);
+		browser.setLayoutData(fillDefaults().grab(true, true).span(2, 1).create());
 	}
 
-	@Persist
-	public void saveItReallyReally() {
-		// TODO really do the saving
-		part.setDirty(false);
+	private void updateBrowser() {
+		String city = text.getText();
+		if (city.isEmpty()) {
+			return;
+		}
+		try {
+			browser.setUrl("https://www.google.com/maps/place/" + URLEncoder.encode(city, "UTF-8") + "/&output=embed");
+
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 	}
 
-	@Inject
-	public void getFromOSGi(@Optional @EventTopic("YOURKEY") String value) {
-		System.out.println(value);
+	@Focus
+	public void onFocus() {
+		text.setFocus();
 	}
 }

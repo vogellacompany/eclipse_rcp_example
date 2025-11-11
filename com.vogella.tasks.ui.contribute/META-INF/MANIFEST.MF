@@ -1,15 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Contribute
-Bundle-SymbolicName: com.vogella.tasks.ui.contribute
+Bundle-SymbolicName: com.vogella.tasks.ui.contribute;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Import-Package: jakarta.inject;version="2.0.1",
+ org.eclipse.e4.ui.services
 Bundle-Vendor: VOGELLA
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  org.eclipse.e4.core.di,
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.ui.di,
- org.eclipse.e4.ui.model.workbench
+ org.eclipse.e4.ui.model.workbench,
+ org.eclipse.e4.core.contexts;bundle-version="1.13.200"
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Model-Fragment: fragment.e4xmi
 Automatic-Module-Name: com.vogella.tasks.ui.contribute

@@ -45,16 +45,11 @@
     <mainMenu xmi:id="_FPu-YLSZEeq-dNF-Hsy_bw" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_kD4sQMz8EeqxQICfeITfhA" elementId="org.eclipse.ui.file.menu" label="&amp;File">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_wfjnoMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.save" label="&amp;Save" command="_cGIQYMnEEeuD8-bVRByS6Q"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_gvkHMF2EEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_gvkHMF2EEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" command="_bIFDcL7uEfCRiML5YJx9jw"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_lMhIQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_HNmNMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.0" command="_Cp2VMMnCEeuD8-bVRByS6Q"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_GjwwwMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.4" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_vX5mkMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.menu.processes" label="Processes">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_xsUgQMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.2" command="_glwA4MnFEeuD8-bVRByS6Q">
-          <parameters xmi:id="_1H52UMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.parameter.0" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
-        </children>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_KpgZcOrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.menu.window" label="Window">
         <children xsi:type="menu:Menu" xmi:id="_OV7n4OrqEeuJV86xbIgfVw" elementId="com.vogella.tasks.ui.menu.perspectives" label="Perspectives">
@@ -77,6 +72,9 @@
         <children xsi:type="menu:Menu" xmi:id="_Qs_9gF27EfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.menu.dynamicthememenu" label="Dynamic Theme Menu">
           <children xsi:type="menu:DynamicMenuContribution" xmi:id="_SpKvQF27EfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.dynamicmenucontribution.1" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.menu.DynamicSwitchThemeMenu"/>
         </children>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_xsUgQMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.2" command="_glwA4MnFEeuD8-bVRByS6Q">
+          <parameters xmi:id="_1H52UMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.parameter.0" name="com.vogella.tasks.ui.commandparameter.perspectiveid" value="com.vogella.tasks.ui.perspective.playground"/>
+        </children>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_lgosQDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.menu.onlyvisibleiftaskselected" toBeRendered="false" label="Only visible if task selected">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_-u6SkDbyEfCi08omLLzthw" elementId="com.vogella.tasks.ui.handledmenuitem.5" toBeRendered="false" command="_qzqvUBO9Ee2nkPMV9zMJ2A">
@@ -89,6 +87,7 @@
       </children>
     </mainMenu>
     <trimBars xmi:id="_WwDtIMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.trimbar.0">
+      <children xsi:type="menu:ToolControl" xmi:id="_CRGkkLDREfCGx_QsNwKmjA" elementId="com.vogella.tasks.ui.toolcontrol.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.toolcontrols.SearchToolControl"/>
       <children xsi:type="menu:ToolBar" xmi:id="_XSRCUMnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.toolbar.0">
         <children xsi:type="menu:HandledToolItem" xmi:id="_X_D24MnQEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledtoolitem.0" iconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
       </children>
@@ -125,6 +124,7 @@
   <commands xmi:id="_o5kxkFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.command.theme.switch" commandName="Theme Switch">
     <parameters xmi:id="_Ui7MEFyQEfC-z4xraj1QdA" elementId="themeId" name="Theme"/>
   </commands>
+  <commands xmi:id="_bIFDcL7uEfCRiML5YJx9jw" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_78U5UbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_78U5UrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
