@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>4.0.10</tycho.version>
+        <tycho.version>5.0.0</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -121,9 +121,9 @@
         <module>com.vogella.tasks.ui.contribute</module>
         <module>com.vogella.eclipse.css</module>
         <module>com.vogella.tasks.product</module>
-<<<<<<< Upstream, based on origin/main
+        <!--
         <module>com.vogella.tasks.services.tests</module>
-=======
+        -->
         <module>com.vogella.swt.widgets</module>
 
         <!-- These artifacts are from optional exercises
@@ -133,7 +133,6 @@
         <module>com.vogella.tasks.update</module>
         <module>com.example.e4.renderer.swt</module>
  
->>>>>>> c8f4211 Refactor pom.xml to clarify module examples and reorganize optional exercises
         <!--
         <module>com.example.e4.swtbot.tests</module>
         -->

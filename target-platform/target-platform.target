@@ -11,12 +11,10 @@
 			<unit id="junit-jupiter-engine"/>
 			<unit id="org.eclipse.pde.spies.feature.group"/>
 		</location>
-		<!--
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/latest"/>
-				<unit id="org.eclipse.pde.spies.feature.group"/>
+			<repository location="https://download.eclipse.org/nebula/updates/release"/>
+				<unit id="org.eclipse.nebula.widgets.chips.feature.feature.group"/>
 		</location>
-		-->
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/justj/jres/21/updates/release/latest"/>
 			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group"/>
