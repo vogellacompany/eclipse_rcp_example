@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="id1"
+         point="org.eclipse.e4.workbench.model">
+      <processor
+            apply="always"
+            beforefragment="true"
+            class="com.vogella.tasks.ui.contribute.processors.MenuProcessor">
+         <element
+               id="org.eclipse.ui.file.menu">
+         </element>
+      </processor>
+   </extension>
+
+</plugin>
