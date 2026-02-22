@@ -1,6 +1,7 @@
 package com.vogella.tasks.ui.handlers;
 
 import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.jface.notifications.NotificationPopup;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -19,6 +20,13 @@ public class NewTaskHandler {
         if (dialog.open() == Window.OK) {
             // call service to save task object
             taskService.update(task);
+            // show notification
+            NotificationPopup.forShell(shell)
+            	.title("Created a new task", true)
+                .delay(2000)
+                .text("Task created: " + task.getSummary())
+                .build()
+                .open();
         }
 
     }

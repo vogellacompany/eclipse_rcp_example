@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Task UI Tests
+Bundle-SymbolicName: com.vogella.tasks.ui.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: VOGELLA
+Fragment-Host: com.vogella.tasks.ui;bundle-version="1.0.0"
+Import-Package: org.junit.jupiter.api;version="5.14.1"
+Automatic-Module-Name: com.vogella.tasks.ui.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-21
