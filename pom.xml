@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>5.0.0</tycho.version>
+        <tycho.version>5.0.1</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -124,6 +124,8 @@
         <!--
         <module>com.vogella.tasks.services.tests</module>
         -->
+
+        <module>com.vogella.tasks.ui.tests</module>
         <module>com.vogella.swt.widgets</module>
 
         <!-- These artifacts are from optional exercises

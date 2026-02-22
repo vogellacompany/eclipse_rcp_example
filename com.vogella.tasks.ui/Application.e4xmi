@@ -110,7 +110,7 @@
     <children xmi:id="_DLc9EBO_Ee2nkPMV9zMJ2A" elementId="org.eclipse.ui.contexts.window" name="Windows"/>
   </rootContext>
   <rootContext xmi:id="_AGMKYBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingcontext.overviewkeybindings" name="overviewkeybindings"/>
-  <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
+  <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" allowMultiple="true" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
   <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove" commandIconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg"/>
   <commands xmi:id="_Cp2VMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.testing" commandName="Testing"/>
   <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.saveall" commandName="SaveAll"/>
