@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>5.0.1</tycho.version>
+        <tycho.version>5.0.2</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -115,6 +115,7 @@
         
         <module>com.vogella.tasks.feature</module>
         <module>com.vogella.tasks.model</module>
+        <module>com.vogella.tasks.model.tests</module>
         <module>com.vogella.tasks.services</module>
         <module>com.vogella.tasks.events</module>
         <module>com.vogella.contribute.parts</module>
