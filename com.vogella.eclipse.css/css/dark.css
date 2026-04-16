@@ -44,23 +44,40 @@ CTabFolder > Composite#ToolbarComposite {
     background-color: #3d3d3d;
 }
 
-CTabFolder.MArea CTabItem, 
-CTabFolder.MArea CTabItem CLabel {
-    background-color: #1e1e1e; /* Dark background fallback */
-}
-
 CTabItem.busy {
     color: #888888;
 }
 
-Text {
-	background-color: #1e1e1e; /* Dark background fallback */
+Text, Composite, Button, Shell {
+    background-color: #3d3d3d;
+    color: #bbbbbb; /* Light grey text color */
+}
+
+Label {
+    color: #bbbbbb; /* Light grey text color */
+}
+
+/* ===== DIALOG AND SHELL STYLING ===== */
+Shell {
+    background-color: #3d3d3d;
+    color: #e0e0e0;
+}
+
+Shell Label {
+    background-color: #3d3d3d;
+    color: #e0e0e0;
+}
+
+.MTrimBar {
+    background-color: #3d3d3d; /* Dark background fallback */
+    color:           #e0e0e0;
 }
 
 /* Base table & tree background and text */
 Table, Tree {
-    background-color: #2b2b2b;   /* dark background */
-    color:           #e0e0e0;   /* light text */
+    swt-header-background-color: #333333;
+    swt-header-color: #d0d0d0;
+    background-color: #2b2b2b;
+    color:           #e0e0e0;
     font-size:       12px;
 }
-
