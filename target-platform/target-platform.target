@@ -41,37 +41,37 @@
 				<dependency>
 					<groupId>org.junit.jupiter</groupId>
 					<artifactId>junit-jupiter-engine</artifactId>
-					<version>5.14.1</version>
+					<version>5.14.4</version>
 					<type>jar</type>
 				</dependency>
 				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
 				<dependency>
 				    <groupId>org.junit.platform</groupId>
 				    <artifactId>junit-platform-suite-api</artifactId>
-				    <version>1.14.1</version>
+				    <version>1.14.4</version>
 				</dependency>
 				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-engine -->
 				<dependency>
 				    <groupId>org.junit.platform</groupId>
 				    <artifactId>junit-platform-suite-engine</artifactId>
-				    <version>1.14.1</version>
+				    <version>1.14.4</version>
 				</dependency>
 				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
 				<dependency>
 				    <groupId>org.junit.platform</groupId>
 				    <artifactId>junit-platform-launcher</artifactId>
-				    <version>1.14.1</version>
+				    <version>1.14.4</version>
 				</dependency>
 				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-commons -->
 				<dependency>
 				    <groupId>org.junit.platform</groupId>
 				    <artifactId>junit-platform-suite-commons</artifactId>
-				    <version>1.14.1</version>
+				    <version>1.14.4</version>
 				</dependency>
 				<dependency>
 					<groupId>org.mockito</groupId>
 					<artifactId>mockito-core</artifactId>
-					<version>5.20.0</version>
+					<version>5.23.0</version>
 					<type>jar</type>
 				</dependency>
 			</dependencies>
