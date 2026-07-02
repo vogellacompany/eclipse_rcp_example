@@ -3,7 +3,6 @@ package com.vogella.tasks.model.tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
@@ -46,6 +45,9 @@ class TaskTest {
         Task copy = original.copy();
         assertEquals(original.getId(), copy.getId());
         assertEquals(original.getSummary(), copy.getSummary());
-        assertTrue(original.equals(copy));
+        assertEquals(original.getDescription(), copy.getDescription());
+        assertEquals(original.isDone(), copy.isDone());
+        assertEquals(original.getDueDate(), copy.getDueDate());
+        assertEquals(original, copy);
     }
 }
