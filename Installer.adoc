@@ -1,0 +1,568 @@
+= Native Installer Creation with jpackage and Tycho/Maven
+:author: Setup Guide
+:revdate: 2026-04-14
+:revnumber: 1.0
+:toc: left
+:toc-title: Table of Contents
+:toclevels: 3
+:sectnums:
+:icons: font
+:source-highlighter: rouge
+:rouge-style: github
+:tip-caption: 💡
+:note-caption: ℹ️
+:warning-caption: ⚠️
+:important-caption: ❗
+
+== Overview
+
+This guide explains how to integrate `jpackage` into a Tycho/Maven build to produce native installers for an Eclipse RCP application.
+
+`jpackage` is bundled with the JDK since Java 14 and is completely free. It produces truly native installers:
+
+* `.msi` / `.exe` on Windows
+* `.dmg` / `.pkg` on macOS
+* `.deb` / `.rpm` on Linux
+
+It also automatically bundles a JRE with the installer, so end users do not need Java pre-installed.
+
+=== Project Structure
+
+The overall Maven/Tycho project structure looks as follows:
+
+----
+parent/
+├── bundles/
+│   └── com.example.myapp/          ← OSGi plugins
+├── features/
+│   └── com.example.myapp.feature/  ← Eclipse features
+├── repository/                     ← p2 update site (eclipse-repository)
+│   └── pom.xml
+└── installer/                      ← jpackage module (runs last)
+    ├── pom.xml
+    └── src/main/resources/
+        ├── myapp.ico               ← Windows icon
+        ├── myapp.png               ← Linux icon
+        └── myapp.icns              ← macOS icon
+----
+
+=== Key Limitations
+
+[cols="1,2", options="header"]
+|===
+| Limitation | Detail
+
+| Platform-native only
+| Must run on Windows to produce `.msi`, on macOS for `.dmg`, on Linux for `.deb`
+
+| No cross-platform build
+| Unlike commercial tools, you cannot build a Windows installer on Linux
+
+| Installer UI
+| Minimal — standard OS wizard only, no custom screens or branding
+
+| App version format
+| Must be numeric like `1.0.0` — SNAPSHOT suffixes must be stripped before passing to jpackage
+
+| No built-in auto-updater
+| Updates must be handled separately (e.g. via p2 update site)
+|===
+
+NOTE: Cross-platform installer generation requires one CI agent per target platform. This is standard practice with GitHub Actions matrix builds or Jenkins multi-node pipelines.
+
+== Step 1: Materialize the Product with Tycho
+
+Before `jpackage` can create an installer, Tycho must produce a **runnable product directory** from your `.product` file and p2 repository.
+
+In your `repository/pom.xml`, configure the `tycho-p2-director-plugin`:
+
+[source,xml]
+----
+<plugin>
+  <groupId>org.eclipse.tycho</groupId>
+  <artifactId>tycho-p2-director-plugin</artifactId>
+  <version>${tycho.version}</version>
+  <executions>
+    <execution>
+      <id>materialize-product</id>
+      <goals>
+        <goal>materialize-products</goal>
+      </goals>
+    </execution>
+    <execution>
+      <id>archive-products</id>
+      <goals>
+        <goal>archive-products</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <products>
+      <product>
+        <id>com.example.myapp.product</id>
+        <attachId>myapp</attachId>
+      </product>
+    </products>
+  </configuration>
+</plugin>
+----
+
+After a successful build, Tycho produces a runnable application under:
+
+----
+repository/target/products/com.example.myapp.product/
+├── win32/win32/x86_64/     ← Windows build
+├── linux/gtk/x86_64/       ← Linux build
+└── macosx/cocoa/x86_64/    ← macOS build
+----
+
+These directories are the input to `jpackage` in the next step.
+
+== Step 2: Create the Installer Module
+
+Create a new `installer/` directory at the root of your project with the following `pom.xml`.
+
+=== Stripping SNAPSHOT from the Version
+
+`jpackage` requires a clean numeric version string (e.g. `1.0.0`). Maven SNAPSHOT versions like `1.0.0-SNAPSHOT` must be sanitized first using the `build-helper-maven-plugin`.
+
+=== Full installer/pom.xml
+
+[source,xml]
+----
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>myapp-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>myapp-installer</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <app.name>MyApp</app.name>
+    <!-- Path to the materialized product from the repository module -->
+    <product.dir>
+      ${project.basedir}/../repository/target/products/com.example.myapp.product
+    </product.dir>
+  </properties>
+
+  <build>
+    <plugins>
+
+      <!-- Strip -SNAPSHOT suffix for jpackage compatibility -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- jpackage executions via exec-maven-plugin (activated by OS profiles) -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+
+    <!-- ==================== Windows ==================== -->
+    <profile>
+      <id>installer-windows</id>
+      <activation>
+        <os><family>windows</family></os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-windows</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>jpackage</executable>
+                  <arguments>
+                    <argument>--type</argument>
+                    <argument>msi</argument>
+                    <argument>--name</argument>
+                    <argument>${app.name}</argument>
+                    <argument>--app-version</argument>
+                    <argument>
+                      ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}
+                    </argument>
+                    <argument>--input</argument>
+                    <argument>${product.dir}/win32/win32/x86_64</argument>
+                    <argument>--main-launcher</argument>
+                    <argument>myapp.exe</argument>
+                    <argument>--dest</argument>
+                    <argument>${project.build.directory}/installer/windows</argument>
+                    <argument>--win-dir-chooser</argument>
+                    <argument>--win-menu</argument>
+                    <argument>--win-shortcut</argument>
+                    <argument>--icon</argument>
+                    <argument>${project.basedir}/src/main/resources/myapp.ico</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ==================== Linux ==================== -->
+    <profile>
+      <id>installer-linux</id>
+      <activation>
+        <os><family>unix</family></os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-linux</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>jpackage</executable>
+                  <arguments>
+                    <argument>--type</argument>
+                    <argument>deb</argument>
+                    <argument>--name</argument>
+                    <argument>${app.name}</argument>
+                    <argument>--app-version</argument>
+                    <argument>
+                      ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}
+                    </argument>
+                    <argument>--input</argument>
+                    <argument>${product.dir}/linux/gtk/x86_64</argument>
+                    <argument>--main-launcher</argument>
+                    <argument>myapp</argument>
+                    <argument>--dest</argument>
+                    <argument>${project.build.directory}/installer/linux</argument>
+                    <argument>--icon</argument>
+                    <argument>${project.basedir}/src/main/resources/myapp.png</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ==================== macOS ==================== -->
+    <profile>
+      <id>installer-macos</id>
+      <activation>
+        <os><family>mac</family></os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-macos</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>jpackage</executable>
+                  <arguments>
+                    <argument>--type</argument>
+                    <argument>dmg</argument>
+                    <argument>--name</argument>
+                    <argument>${app.name}</argument>
+                    <argument>--app-version</argument>
+                    <argument>
+                      ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}
+                    </argument>
+                    <argument>--input</argument>
+                    <argument>${product.dir}/macosx/cocoa/x86_64</argument>
+                    <argument>--main-launcher</argument>
+                    <argument>myapp</argument>
+                    <argument>--dest</argument>
+                    <argument>${project.build.directory}/installer/macos</argument>
+                    <argument>--icon</argument>
+                    <argument>${project.basedir}/src/main/resources/myapp.icns</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+</project>
+----
+
+== Step 3: Register the Module in the Parent POM
+
+Add the `installer` module to your parent `pom.xml`. It must come **after** the `repository` module so Tycho materializes the product first:
+
+[source,xml]
+----
+<modules>
+  <module>bundles/com.example.myapp</module>
+  <module>features/com.example.myapp.feature</module>
+  <module>repository</module>
+  <module>installer</module>   <!-- must be last -->
+</modules>
+----
+
+== Step 4: Provide Application Icons
+
+`jpackage` requires platform-specific icon files. Place them under `installer/src/main/resources/`:
+
+[cols="1,1,2", options="header"]
+|===
+| Platform | File | Requirements
+
+| Windows
+| `myapp.ico`
+| Multi-resolution `.ico` file (16x16, 32x32, 48x48, 256x256)
+
+| Linux
+| `myapp.png`
+| PNG, recommended 512x512 pixels
+
+| macOS
+| `myapp.icns`
+| macOS `.icns` format, created with `iconutil` or similar
+|===
+
+TIP: On macOS, you can create an `.icns` file from a PNG using `sips` and `iconutil`. On Windows, use tools like GIMP or IcoFX to create multi-resolution `.ico` files.
+
+== Step 5: Build the Installer
+
+Run the full build from the parent directory:
+
+[source,bash]
+----
+mvn clean package
+----
+
+Maven auto-detects the current OS and activates the appropriate profile. The installers are produced under:
+
+----
+installer/target/
+├── installer/windows/MyApp-1.0.0.msi   ← produced on Windows agents
+├── installer/linux/myapp_1.0.0_amd64.deb ← produced on Linux agents
+└── installer/macos/MyApp-1.0.0.dmg     ← produced on macOS agents
+----
+
+== Step 6: CI Pipeline for All Platforms
+
+Since `jpackage` can only produce an installer for the platform it runs on, a CI matrix build is required to produce all three installers. Below is an example GitHub Actions workflow.
+
+=== GitHub Actions: .github/workflows/release.yml
+
+[source,yaml]
+----
+name: Build Native Installers
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-installer:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Maven
+        run: mvn clean package -B
+
+      - name: Upload Installer (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-windows
+          path: installer/target/installer/windows/*.msi
+
+      - name: Upload Installer (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-linux
+          path: installer/target/installer/linux/*.deb
+
+      - name: Upload Installer (macOS)
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: installer-macos
+          path: installer/target/installer/macos/*.dmg
+----
+
+This workflow triggers on version tags (e.g. `v1.0.0`), builds on all three platforms in parallel, and uploads each installer as a build artifact.
+
+== Common jpackage Options Reference
+
+The following table lists commonly used `jpackage` arguments for reference:
+
+[cols="1,1,2", options="header"]
+|===
+| Argument | Platforms | Description
+
+| `--type`
+| All
+| Installer type: `msi`, `exe`, `dmg`, `pkg`, `deb`, `rpm`
+
+| `--name`
+| All
+| Application name shown in installer and Start Menu / Applications
+
+| `--app-version`
+| All
+| Numeric version string, e.g. `1.0.0`
+
+| `--input`
+| All
+| Directory containing the materialized RCP application
+
+| `--main-launcher`
+| All
+| Name of the main executable inside the input directory
+
+| `--dest`
+| All
+| Output directory for the generated installer
+
+| `--icon`
+| All
+| Path to the platform-specific icon file
+
+| `--win-dir-chooser`
+| Windows
+| Adds an installation directory selection screen
+
+| `--win-menu`
+| Windows
+| Creates a Start Menu entry
+
+| `--win-shortcut`
+| Windows
+| Creates a Desktop shortcut
+
+| `--win-menu-group`
+| Windows
+| Start Menu group/folder name
+
+| `--linux-menu-group`
+| Linux
+| Desktop application menu category
+
+| `--linux-shortcut`
+| Linux
+| Creates a desktop shortcut entry
+
+| `--mac-package-name`
+| macOS
+| Application name shown in macOS menu bar
+
+| `--verbose`
+| All
+| Enables verbose output for debugging
+|===
+
+== Troubleshooting
+
+=== jpackage not found
+
+Ensure `JAVA_HOME` points to a JDK 14 or later and that `$JAVA_HOME/bin` is on your `PATH`.
+
+[source,bash]
+----
+java -version       # must be 14+
+jpackage --version  # must be found
+----
+
+=== Version format error
+
+`jpackage` rejects versions containing `-SNAPSHOT`. Use the `build-helper-maven-plugin` as described in <<Step 2: Create the Installer Module>> to extract a clean numeric version.
+
+=== Main launcher not found
+
+The `--main-launcher` value must exactly match the name of the executable inside the `--input` directory. Check the materialized product directory for the correct launcher name:
+
+[source,bash]
+----
+ls repository/target/products/com.example.myapp.product/win32/win32/x86_64/
+----
+
+=== Windows: WiX Toolset required for MSI
+
+To produce `.msi` installers, the **WiX Toolset v3** must be installed on the Windows build agent and available on `PATH`. Download it from https://wixtoolset.org.
+
+Alternatively, use `--type exe` to produce a self-contained executable installer without WiX.
+
+== Summary
+
+[cols="1,3", options="header"]
+|===
+| Step | Action
+
+| 1
+| Configure `tycho-p2-director-plugin` in `repository/pom.xml` to materialize the product
+
+| 2
+| Create `installer/pom.xml` with OS-activated profiles calling `jpackage` via `exec-maven-plugin`
+
+| 3
+| Register the `installer` module last in the parent `pom.xml`
+
+| 4
+| Provide platform-specific icon files under `installer/src/main/resources/`
+
+| 5
+| Run `mvn clean package` — the correct installer is built automatically for the current OS
+
+| 6
+| Use a CI matrix build (GitHub Actions / Jenkins) to produce all three platform installers
+|===
+
+== Further Reading
+
+* https://docs.oracle.com/en/java/javase/17/jpackage/[jpackage documentation (Oracle)]
+* https://tycho.eclipseprojects.io/doc/latest/[Tycho documentation]
+* https://www.eclipse.org/tycho/sitedocs/tycho-p2/tycho-p2-director-plugin/[tycho-p2-director-plugin reference]
+* https://www.mojohaus.org/exec-maven-plugin/[exec-maven-plugin documentation]
+* https://wixtoolset.org/[WiX Toolset (required for MSI on Windows)]

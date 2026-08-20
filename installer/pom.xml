@@ -1,0 +1,246 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.vogella.tycho</groupId>
+    <artifactId>releng</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>taskman-installer</artifactId>
+  <packaging>pom</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.vogella.tycho</groupId>
+      <artifactId>taskmanagement</artifactId>
+      <version>0.0.1</version>
+      <type>eclipse-repository</type>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <app.name>Taskman</app.name>
+    <!-- Path to the materialized product from the product module -->
+    <product.dir>${project.basedir}/../com.vogella.tasks.product/target/products/taskmanagement</product.dir>
+  </properties>
+
+  <build>
+    <plugins>
+
+      <!-- Strip -SNAPSHOT suffix for jpackage compatibility -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- jpackage executions via exec-maven-plugin (activated by OS profiles) -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <profiles>
+
+    <!-- ==================== Windows ==================== -->
+    <profile>
+      <id>installer-windows</id>
+      <activation>
+        <os><family>windows</family></os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-windows</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>bash</executable>
+                  <arguments>
+                    <argument>-c</argument>
+                    <argument>
+LAUNCHER_JAR=$(basename $(ls ${product.dir}/win32/win32/x86_64/plugins/org.eclipse.equinox.launcher_*.jar))
+INSTALL_DIR="C:/Program Files/${app.name}"
+jpackage \
+  --type exe \
+  --name ${app.name} \
+  --app-version ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} \
+  --input ${product.dir}/win32/win32/x86_64 \
+  --main-jar plugins/$LAUNCHER_JAR \
+  --main-class org.eclipse.equinox.launcher.Main \
+  --dest ${project.build.directory}/installer/windows \
+  --win-dir-chooser \
+  --win-menu \
+  --win-shortcut \
+  --arguments -clearPersistedState \
+  --arguments -nl \
+  --arguments de \
+  --java-options -Dosgi.instance.area=@user.home/.taskman \
+  --java-options -Declipse.product=com.vogella.tasks.ui.product \
+  --java-options "-Dosgi.configuration.area=@user.home/.taskman/configuration" \
+  --java-options "-Dosgi.sharedConfiguration.area=$INSTALL_DIR/app/configuration"
+                    </argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ==================== Linux ==================== -->
+    <profile>
+      <id>installer-linux</id>
+      <activation>
+        <os>
+          <family>unix</family>
+          <name>Linux</name>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-linux-deb</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>bash</executable>
+                  <arguments>
+                    <argument>-c</argument>
+                    <argument>
+LAUNCHER_JAR=$(basename $(ls ${product.dir}/linux/gtk/x86_64/plugins/org.eclipse.equinox.launcher_*.jar))
+jpackage \
+  --type deb \
+  --name ${app.name} \
+  --app-version ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} \
+  --input ${product.dir}/linux/gtk/x86_64 \
+  --main-jar plugins/$LAUNCHER_JAR \
+  --main-class org.eclipse.equinox.launcher.Main \
+  --dest ${project.build.directory}/installer/linux \
+  --linux-shortcut \
+  --arguments -clearPersistedState \
+  --arguments -nl \
+  --arguments de \
+  --java-options -Dosgi.instance.area=@user.home/.taskman \
+  --java-options -Declipse.product=com.vogella.tasks.ui.product \
+  --java-options -Dosgi.configuration.area=@user.home/.taskman/configuration \
+  --java-options -Dosgi.sharedConfiguration.area=/opt/taskman/lib/app/configuration \
+  --icon ${project.basedir}/src/main/resources/taskman.png
+                    </argument>
+                  </arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>jpackage-linux-rpm</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>bash</executable>
+                  <arguments>
+                    <argument>-c</argument>
+                    <argument>
+if ! command -v rpmbuild &amp;&gt; /dev/null; then
+  echo "rpmbuild not found, skipping rpm package generation"
+  exit 0
+fi
+LAUNCHER_JAR=$(basename $(ls ${product.dir}/linux/gtk/x86_64/plugins/org.eclipse.equinox.launcher_*.jar))
+jpackage \
+  --type rpm \
+  --name ${app.name} \
+  --app-version ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} \
+  --input ${product.dir}/linux/gtk/x86_64 \
+  --main-jar plugins/$LAUNCHER_JAR \
+  --main-class org.eclipse.equinox.launcher.Main \
+  --dest ${project.build.directory}/installer/linux \
+  --linux-shortcut \
+  --arguments -clearPersistedState \
+  --arguments -nl \
+  --arguments de \
+  --java-options -Dosgi.instance.area=@user.home/.taskman \
+  --java-options -Declipse.product=com.vogella.tasks.ui.product \
+  --java-options -Dosgi.configuration.area=@user.home/.taskman/configuration \
+  --java-options -Dosgi.sharedConfiguration.area=/opt/taskman/lib/app/configuration \
+  --icon ${project.basedir}/src/main/resources/taskman.png
+                    </argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- ==================== macOS ==================== -->
+    <profile>
+      <id>installer-macos</id>
+      <activation>
+        <os><family>mac</family></os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jpackage-macos</id>
+                <phase>package</phase>
+                <goals><goal>exec</goal></goals>
+                <configuration>
+                  <executable>bash</executable>
+                  <arguments>
+                    <argument>-c</argument>
+                    <argument>
+LAUNCHER_JAR=$(basename $(ls ${product.dir}/macosx/cocoa/x86_64/plugins/org.eclipse.equinox.launcher_*.jar))
+jpackage \
+  --type dmg \
+  --name ${app.name} \
+  --app-version ${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion} \
+  --input ${product.dir}/macosx/cocoa/x86_64 \
+  --main-jar plugins/$LAUNCHER_JAR \
+  --main-class org.eclipse.equinox.launcher.Main \
+  --dest ${project.build.directory}/installer/macos \
+  --arguments -clearPersistedState \
+  --arguments -nl \
+  --arguments de \
+  --java-options -XstartOnFirstThread \
+  --java-options -Dosgi.instance.area=@user.home/.taskman \
+  --java-options -Declipse.product=com.vogella.tasks.ui.product \
+  --java-options -Dosgi.configuration.area=@user.home/.taskman/configuration \
+  --java-options "-Dosgi.sharedConfiguration.area=/Applications/${app.name}.app/Contents/app/configuration" \
+  --icon ${project.basedir}/src/main/resources/taskman.png
+                    </argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+</project>

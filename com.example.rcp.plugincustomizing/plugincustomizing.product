@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Example RCP product from the Wizard" uid="com.example.e4.product" id="com.example.e4.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" type="mixed" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="Plugin Customization Example" uid="com.example.rcp.plugincustomizing.product" id="com.example.rcp.plugincustomizing.product" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" type="mixed" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
@@ -27,11 +27,11 @@
    </vm>
 
    <plugins>
+      <plugin id="com.example.rcp.plugincustomizing"/>
    </plugins>
 
    <features>
-      <feature id="com.example.e4.feature" installMode="root"/>
-      <feature id="org.eclipse.e4.rcp" installMode="root"/>
+      <feature id="org.eclipse.platform" installMode="root"/>
    </features>
 
    <configurations>
