@@ -3,22 +3,20 @@
 <target name="target-platform">
 	<locations>
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/releases/2025-09"/>
+			<repository location="https://download.eclipse.org/releases/2026-06"/>
 			<unit id="org.eclipse.equinox.sdk.feature.group"/>
 			<unit id="org.eclipse.platform.feature.group"/>
 			<unit id="org.eclipse.equinox.p2.core.feature.feature.group"/>
 			<unit id="org.eclipse.pde.spies.feature.group"/>
 		</location>
+		
+		
+
 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 			<repository location="https://download.eclipse.org/nebula/updates/release"/>
 				<unit id="org.eclipse.nebula.widgets.chips.feature.feature.group"/>
 
 		</location>
-<!-- 		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-			<repository location="https://download.eclipse.org/justj/jres/21/updates/release/latest"/>
-			<unit id="org.eclipse.justj.openjdk.hotspot.jre.minimal.feature.group"/>
-		</location>
-		-->
 		
 		  <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
             <repository location="https://download.eclipse.org/technology/swtbot/releases/latest/"/>
@@ -44,29 +42,29 @@
 					<version>5.14.4</version>
 					<type>jar</type>
 				</dependency>
-				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-api -->
 				<dependency>
-				    <groupId>org.junit.platform</groupId>
-				    <artifactId>junit-platform-suite-api</artifactId>
-				    <version>1.14.4</version>
+					<groupId>org.junit.platform</groupId>
+					<artifactId>junit-platform-launcher</artifactId>
+					<version>1.14.4</version>
+					<type>jar</type>
 				</dependency>
-				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-engine -->
 				<dependency>
-				    <groupId>org.junit.platform</groupId>
-				    <artifactId>junit-platform-suite-engine</artifactId>
-				    <version>1.14.4</version>
+					<groupId>org.junit.platform</groupId>
+					<artifactId>junit-platform-suite-api</artifactId>
+					<version>1.14.4</version>
+					<type>jar</type>
 				</dependency>
-				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
 				<dependency>
-				    <groupId>org.junit.platform</groupId>
-				    <artifactId>junit-platform-launcher</artifactId>
-				    <version>1.14.4</version>
+					<groupId>org.junit.platform</groupId>
+					<artifactId>junit-platform-suite-commons</artifactId>
+					<version>1.14.4</version>
+					<type>jar</type>
 				</dependency>
-				<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite-commons -->
 				<dependency>
-				    <groupId>org.junit.platform</groupId>
-				    <artifactId>junit-platform-suite-commons</artifactId>
-				    <version>1.14.4</version>
+					<groupId>org.junit.platform</groupId>
+					<artifactId>junit-platform-suite-engine</artifactId>
+					<version>1.14.4</version>
+					<type>jar</type>
 				</dependency>
 				<dependency>
 					<groupId>org.mockito</groupId>

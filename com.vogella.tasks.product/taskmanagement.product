@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="to-do" uid="taskmanagement" id="com.vogella.tasks.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.0.1" type="mixed" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="to-do" uid="taskmanagement" id="com.vogella.tasks.ui.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="0.0.1" type="mixed" includeLaunchers="true" includeJRE="false" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
       <programArgs>-clearPersistedState -nl de
+--launcher.appendVmargs
       </programArgs>
+      <vmArgs>-Xms256m -Xmx2048m
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-Dosgi.requiredJavaVersion=21
+-Dfile.encoding=UTF-8
+-Dsun.java.command=Taskman
+--add-modules=ALL-SYSTEM
+--enable-native-access=ALL-UNNAMED
+      </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
+
+   <windowImages/>
 
    <splash
       location="com.vogella.tasks.ui" />
@@ -43,7 +55,7 @@
    </configurations>
 
    <repositories>
-      <repository location="https://download.eclipse.org/releases/2024-09" name="Eclipse 2024-09" enabled="true" />
+      <repository location="https://download.eclipse.org/releases/2026-06" name="Eclipse 2026-06" enabled="true" />
    </repositories>
 
 </product>

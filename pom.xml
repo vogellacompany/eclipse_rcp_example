@@ -6,11 +6,10 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tycho.version>5.0.2</tycho.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
     </properties>
 
 
@@ -108,6 +107,8 @@
         <module>com.example.e4.rcp</module>
         <module>com.example.e4.feature</module>
         <module>com.example.e4.product</module>
+        <!--plugin_customization.ini example (IDE-app based)-->
+        <module>com.example.rcp.plugincustomizing</module>
         <!--Task management example-->
         
         
@@ -141,4 +142,13 @@
         -->
         <module>updatesite</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>installer</id>
+            <modules>
+                <module>installer</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

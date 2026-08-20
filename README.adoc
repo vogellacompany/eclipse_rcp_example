@@ -25,4 +25,15 @@ Use the following command one the command line to build the application using Ty
 
 ./mvnw clean verify
 
+=== Releasing the application
+
+To update the version across all modules (parent pom, MANIFEST.MF, feature.xml, .product files), run:
+
+ ./mvnw tycho-versions:set-version -DnewVersion=1.1.0-SNAPSHOT
+
+To build the application including native installers, run:
+
+ ./mvnw clean verify
+
+The installer is produced under `installer/target/installer/`.
 
