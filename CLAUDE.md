@@ -35,7 +35,7 @@ It is activated by the `installer` profile and produces native packages with `jp
 ## Target Platform
 
 Dependencies are resolved from `target-platform/target-platform.target`. This file pins:
-- Eclipse 2026-06 release train (Equinox, Platform, P2)
+- Eclipse 2026-09 release train (Equinox, Platform, P2)
 - JUnit 5.14.4 (Jupiter engine + Platform)
 - Mockito 5.23.0
 - GSON 2.13.2
