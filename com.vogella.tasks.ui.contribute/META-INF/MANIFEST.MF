@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.e4.ui.di,
  org.eclipse.e4.ui.model.workbench,
  org.eclipse.e4.core.contexts;bundle-version="1.13.200"
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-25
 Model-Fragment: fragment.e4xmi
 Automatic-Module-Name: com.vogella.tasks.ui.contribute
 Bundle-ActivationPolicy: lazy

@@ -6,7 +6,7 @@ This is an Eclipse RCP (Rich Client Platform) example repository used for commer
 
 **Repository Size:** ~2.4 GB (after build), ~300 KB source code (58 Java files across 19 OSGi bundles)
 **Project Type:** Multi-module Eclipse Tycho/Maven build for Eclipse RCP applications
-**Primary Language:** Java (JavaSE-21)
+**Primary Language:** Java (JavaSE-25)
 **Build System:** Apache Maven with Eclipse Tycho 5.0.0
 **Framework:** Eclipse E4 Application Platform (Eclipse RCP)
 **License:** EPL 2.0
@@ -15,15 +15,15 @@ This is an Eclipse RCP (Rich Client Platform) example repository used for commer
 
 ### Java Version Requirement (CRITICAL)
 
-**ALWAYS use Java 21.** The project requires Java 21 due to Tycho 5.0.0 dependencies compiled with class file version 65.0.
+**ALWAYS use Java 25.** The project requires Java 25 due to Tycho 5.0.0 dependencies compiled with class file version 69.0.
 
-To set Java 21:
+To set Java 25:
 ```bash
-export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+export JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 ```
 
-**Common Error:** If you see `class file version 65.0` or `compiled by a more recent version of the Java Runtime` errors, you are using the wrong Java version. Switch to Java 21 immediately.
+**Common Error:** If you see `class file version 69.0` or `compiled by a more recent version of the Java Runtime` errors, you are using the wrong Java version. Switch to Java 25 immediately.
 
 ### Maven Requirements
 
@@ -37,8 +37,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 **Time Required:** ~90 seconds on first run (downloads dependencies), ~40-60 seconds on subsequent builds
 
 ```bash
-# Set Java 21 first (REQUIRED)
-export JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+# Set Java 25 first (REQUIRED)
+export JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Build command
@@ -54,7 +54,7 @@ mvn clean verify -ntp
 ### Incremental Build (after code changes)
 
 ```bash
-# Same Java 21 setup required
+# Same Java 25 setup required
 mvn verify -ntp
 ```
 
@@ -129,7 +129,7 @@ export DISPLAY=:99
 
 ### Configuration Files Location
 
-- **Target Platform:** `target-platform/target-platform.target` (references Eclipse 2025-09, JustJ JRE 21, SWTBot)
+- **Target Platform:** `target-platform/target-platform.target` (references Eclipse 2025-09, JustJ JRE 25, SWTBot)
 - **Product Definitions:**
   - `com.vogella.tasks.product/taskmanagement.product` (main to-do application)
   - `com.example.e4.product/com.example.e4.product` (example RCP)
@@ -141,9 +141,9 @@ export DISPLAY=:99
 ### Key Dependencies
 
 - **Eclipse Platform:** Eclipse 2025-09 release (via target platform)
-- **Java Runtime:** JustJ OpenJDK 21 minimal JRE (bundled in products)
+- **Java Runtime:** JustJ OpenJDK 25 minimal JRE (bundled in products)
 - **External Libraries:** Gson 2.8.6 (via Maven dependency in target platform)
-- **Execution Environment:** JavaSE-21 (all bundles require this)
+- **Execution Environment:** JavaSE-25 (all bundles require this)
 
 ## GitHub Actions CI/CD
 
@@ -156,7 +156,7 @@ export DISPLAY=:99
 
 **Trigger:** Push to `master` branch or any pull request
 **Platform:** ubuntu-latest
-**Java:** Temurin JDK 21
+**Java:** Temurin JDK 25
 **Maven:** 3.9.9 (via stCarolas/setup-maven action)
 
 **Important CI Steps:**
@@ -177,8 +177,8 @@ export DISPLAY=:99
 
 ### Issue 1: Wrong Java Version
 
-**Symptom:** `class file version 65.0, this version only recognizes up to 61.0`
-**Solution:** Set `JAVA_HOME` to Java 21 as shown in Build Requirements section above
+**Symptom:** `class file version 69.0, this version only recognizes up to 61.0`
+**Solution:** Set `JAVA_HOME` to Java 25 as shown in Build Requirements section above
 
 ### Issue 2: Maven Wrapper Fails
 
@@ -214,7 +214,7 @@ After making code changes:
 3. **Check for compilation errors** in bundles - look for `BUILD FAILURE` in output
 
 4. **Validate MANIFEST.MF changes:**
-   - Bundle-RequiredExecutionEnvironment must be `JavaSE-21`
+   - Bundle-RequiredExecutionEnvironment must be `JavaSE-25`
    - Bundle-Version should end with `.qualifier` for SNAPSHOT versions
    - Export-Package and Import-Package must be syntactically correct
 
@@ -274,7 +274,7 @@ To add a dependency to a bundle:
 ## Trust These Instructions
 
 These instructions have been validated by:
-- Successful clean build from scratch (Java 21, Maven 3.9.11)
+- Successful clean build from scratch (Java 25, Maven 3.9.11)
 - Testing both system Maven and wrapper (wrapper fails, system works)
 - Reviewing GitHub Actions workflow configuration
 - Examining all configuration files and project structure
