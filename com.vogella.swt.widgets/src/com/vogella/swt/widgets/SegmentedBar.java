@@ -152,9 +152,13 @@ public class SegmentedBar extends Canvas {
 	@Override
 	public Point computeSize(int wHint, int hHint, boolean changed) {
 		checkWidget();
+		int textHeight;
 		GC gc = new GC(this);
-		int textHeight = gc.getFontMetrics().getHeight();
-		gc.dispose();
+		try {
+			textHeight = gc.getFontMetrics().getHeight();
+		} finally {
+			gc.dispose();
+		}
 		int width = wHint != SWT.DEFAULT ? wHint : 200;
 		int height = hHint != SWT.DEFAULT ? hHint : textHeight + 2 * PADDING;
 		return new Point(width, height);
