@@ -1,6 +1,5 @@
 package com.vogella.eclipse.css.internal;
 
-import org.eclipse.e4.ui.css.core.dom.properties.ICSSPropertyHandler;
 import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.e4.ui.css.swt.properties.AbstractCSSPropertySWTHandler;
@@ -11,7 +10,7 @@ import org.w3c.dom.css.CSSValue;
 import com.vogella.swt.widgets.Checkbox;
 
 @SuppressWarnings("restriction")
-public class CheckboxPropertyHandler extends AbstractCSSPropertySWTHandler implements ICSSPropertyHandler {
+public class CheckboxPropertyHandler extends AbstractCSSPropertySWTHandler {
 
     private static final String CHECK_COLOR = "check-color";
     private static final String CENTER_COLOR = "center-color";
