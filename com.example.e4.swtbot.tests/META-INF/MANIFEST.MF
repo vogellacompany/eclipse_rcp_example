@@ -12,4 +12,4 @@ Require-Bundle: org.eclipse.swt,
  org.slf4j.api;bundle-version="1.7.30",
  com.example.e4.rcp;bundle-version="1.0.0"
 Automatic-Module-Name: com.example.e4.swtbottests
-Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-RequiredExecutionEnvironment: JavaSE-25
