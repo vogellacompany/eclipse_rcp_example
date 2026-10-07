@@ -19,5 +19,28 @@
             label="Dark">
       </theme>
    </extension>
+   <extension
+         point="org.eclipse.e4.ui.css.core.propertyHandler">
+      <handler
+            adapter="org.eclipse.e4.ui.css.swt.dom.ControlElement"
+            handler="com.vogella.eclipse.css.internal.CheckboxPropertyHandler">
+         <property-name
+               name="check-color">
+         </property-name>
+         <property-name
+               name="center-color">
+         </property-name>
+      </handler>
+      <handler
+            adapter="org.eclipse.e4.ui.css.swt.dom.ControlElement"
+            handler="com.vogella.eclipse.css.internal.SegmentedBarPropertyHandler">
+         <property-name
+               name="selection-color">
+         </property-name>
+         <property-name
+               name="hover-color">
+         </property-name>
+      </handler>
+   </extension>
 
 </plugin>

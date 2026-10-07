@@ -115,7 +115,7 @@ public class TodoOverviewPart {
 						|| TaskCategory.of((Task) element, LocalDate.now()) == categoryFilter;
 			}
 		});
-		updateSummary();
+		updateSummary(taskService.getAll());
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
 		viewer.addSelectionChangedListener(event -> {
 			IStructuredSelection selection = viewer.getStructuredSelection();
@@ -147,14 +147,14 @@ public class TodoOverviewPart {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(list);
-			updateSummary();
+			updateSummary(list);
 		}
 	}
 
-	private void updateSummary() {
+	private void updateSummary(List<Task> tasks) {
 		LocalDate today = LocalDate.now();
 		List<Segment> segments = Arrays.stream(TaskCategory.values()).map(category -> {
-			long count = writableList.stream().filter(task -> TaskCategory.of(task, today) == category).count();
+			long count = tasks.stream().filter(task -> TaskCategory.of(task, today) == category).count();
 			return new Segment(category.name(), category.label(), (int) count, category.color());
 		}).toList();
 		summaryBar.setSegments(segments);
