@@ -133,4 +133,5 @@
   <addons xmi:id="_78U5VbSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
   <addons xmi:id="_78U5VrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_vGbkcF2XEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.addon.perspectiveaddon" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.addon.PerspectiveSwitchAddon"/>
+  <addons xmi:id="_tHmIcN5aEfCvBq3k9xYz1Q" elementId="com.vogella.tasks.ui.addon.themeicon" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.addon.ThemeIconAddon"/>
 </application:Application>
