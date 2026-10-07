@@ -27,7 +27,7 @@
             <children xsi:type="basic:PartStack" xmi:id="_SVGXUMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.1">
               <children xsi:type="basic:Part" xmi:id="_U9UWwMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.details" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoDetailsPart" label="Details" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-detail.svg" closeable="true"/>
             </children>
-            <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.bottom">
+            <children xsi:type="basic:PartStack" xmi:id="_SqA3YMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.playground">
               <children xsi:type="basic:Part" xmi:id="_WPBPMMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.playground" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.PlaygroundPart" label="Playground" iconURI="platform:/plugin/com.vogella.tasks.ui/images/playground.svg" closeable="true"/>
               <children xsi:type="basic:Part" xmi:id="_CovBcBLUEeuLk-08oElwdw" elementId="com.vogella.tasks.ui.part.autocompletiondemo" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.AutoCompleteFieldPart" label="Autocompletion Demo" closeable="true"/>
               <children xsi:type="basic:Part" xmi:id="_mC2sYFztEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.part.imagedownload" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.ImageDownloadPart" label="Image Download"/>
@@ -134,4 +134,5 @@
   <addons xmi:id="_78U5VrSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_vGbkcF2XEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.addon.perspectiveaddon" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.addon.PerspectiveSwitchAddon"/>
   <addons xmi:id="_tHmIcN5aEfCvBq3k9xYz1Q" elementId="com.vogella.tasks.ui.addon.themeicon" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.addon.ThemeIconAddon"/>
+  <addons xmi:id="_mZ2rYt5bEfCvBq3k9xYz1Q" elementId="com.vogella.tasks.ui.addon.minimizeplaygroundstack" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.addon.MinimizePlaygroundStackAddon"/>
 </application:Application>
