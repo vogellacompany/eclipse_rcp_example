@@ -1,5 +1,7 @@
 package com.vogella.tasks.ui.parts;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,13 +24,19 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.widgets.ButtonFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Table;
 
+import com.vogella.swt.widgets.SegmentedBar;
+import com.vogella.swt.widgets.SegmentedBar.Segment;
 import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
@@ -52,11 +60,27 @@ public class TodoOverviewPart {
 
 	private TableViewer viewer;
 
+	private SegmentedBar summaryBar;
+
+	private TaskCategory categoryFilter;
+
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService) {
 		//GridLayoutFactory.fillDefaults().numColumns(1).applyTo(parent);
 
 		//ButtonFactory.newButton(SWT.PUSH).text("Load Data").onSelect(e -> update()).create(parent);
+
+		GridLayout layout = new GridLayout(1, false);
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		parent.setLayout(layout);
+
+		summaryBar = new SegmentedBar(parent, SWT.NONE);
+		summaryBar.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+		summaryBar.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
+			updateCategoryFilter();
+			viewer.refresh();
+		}));
 
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.FULL_SELECTION);
 		Table table = viewer.getTable();
@@ -84,6 +108,14 @@ public class TodoOverviewPart {
 		// fill the writable list, when Consumer callback is called. Databinding
 		// will do the rest once the list is filled
 		taskService.consume(writableList::addAll);
+		viewer.addFilter(new ViewerFilter() {
+			@Override
+			public boolean select(Viewer v, Object parentElement, Object element) {
+				return categoryFilter == null
+						|| TaskCategory.of((Task) element, LocalDate.now()) == categoryFilter;
+			}
+		});
+		updateSummary();
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
 		viewer.addSelectionChangedListener(event -> {
 			IStructuredSelection selection = viewer.getStructuredSelection();
@@ -115,7 +147,25 @@ public class TodoOverviewPart {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(list);
+			updateSummary();
 		}
+	}
+
+	private void updateSummary() {
+		LocalDate today = LocalDate.now();
+		List<Segment> segments = Arrays.stream(TaskCategory.values()).map(category -> {
+			long count = writableList.stream().filter(task -> TaskCategory.of(task, today) == category).count();
+			return new Segment(category.name(), category.label(), (int) count, category.color());
+		}).toList();
+		summaryBar.setSegments(segments);
+		// the bar clears its selection if the selected category became empty
+		updateCategoryFilter();
+		viewer.refresh();
+	}
+
+	private void updateCategoryFilter() {
+		String id = summaryBar.getSelectedId();
+		categoryFilter = id == null ? null : TaskCategory.valueOf(id);
 	}
 
 	@Focus
