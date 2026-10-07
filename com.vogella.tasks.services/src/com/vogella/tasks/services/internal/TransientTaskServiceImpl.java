@@ -83,16 +83,17 @@ public class TransientTaskServiceImpl implements TaskService {
 	private List<Task> createTestData() {
 	    List<Task> list = JSONUtil.retrieveSavedData();
 	    if (list.isEmpty()) {
-	        // Create some initial content
-	        list = List.of(create("Application model", "Flexible and extensible"),
-	                create("DI", "@Inject as programming mode"), 
-	                create("OSGi", "Services"), 
-	                create("SWT", "Widgets"),
-	                create("JFace", "Especially Viewers!"), 
-	                create("CSS Styling", "Style your application"),
-	                create("Eclipse services", "Selection, model, Part"), 
-	                create("Renderer", "Different UI toolkit"),
-	                create("Compatibility Layer", "Run Eclipse 3.x"));
+	        // due dates relative to today so that every task category has entries
+	        list = List.of(create("Application model", "Flexible and extensible", -2, false),
+	                create("DI", "@Inject as programming mode", -1, false),
+	                create("OSGi", "Services", 0, false),
+	                create("SWT", "Widgets", 0, false),
+	                create("JFace", "Especially Viewers!", 0, false),
+	                create("CSS Styling", "Style your application", 1, false),
+	                create("Eclipse services", "Selection, model, Part", 3, false),
+	                create("Renderer", "Different UI toolkit", 7, false),
+	                create("Compatibility Layer", "Run Eclipse 3.x", -5, true),
+	                create("Data binding", "Connect model and UI", -3, true));
 	    } else {
 	        // Find the maximum ID from loaded tasks and set counter to start after it
 	        long maxId = list.stream()
@@ -104,16 +105,10 @@ public class TransientTaskServiceImpl implements TaskService {
 	    return new ArrayList<>(list);
 	}
 
-	private Task create(String summary, String description) {
-	    int id = current.getAndIncrement();
-	    // Use the id to deterministically vary the due date
-	    LocalDate baseDate = LocalDate.now();
-	    // Create a consistent offset between -3 and +3 days based on the id
-	    int offset = (id % 7) - 3; 
-	    LocalDate dueDate = baseDate.plusDays(offset);
-	    return new Task(id, summary, description, false, dueDate);
+	private Task create(String summary, String description, int daysFromToday, boolean done) {
+	    return new Task(current.getAndIncrement(), summary, description, done, LocalDate.now().plusDays(daysFromToday));
 	}
-	
+
 	private Optional<Task> findById(long id) {
 		return tasks.stream().filter(t -> t.getId() == id).findAny();
 	}
