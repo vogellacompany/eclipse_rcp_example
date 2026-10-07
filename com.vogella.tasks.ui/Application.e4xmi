@@ -113,7 +113,7 @@
   <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" allowMultiple="true" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
   <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove" commandIconURI="platform:/plugin/com.vogella.tasks.ui/images/deleteTask.svg"/>
   <commands xmi:id="_Cp2VMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.testing" commandName="Testing"/>
-  <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.saveall" commandName="SaveAll"/>
+  <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
   <commands xmi:id="_glwA4MnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.switchperspective" commandName="Switch Perspective">
     <parameters xmi:id="_rEQAEMnFEeuD8-bVRByS6Q" elementId="perspective_parameter" name="Perspective ID"/>
   </commands>
