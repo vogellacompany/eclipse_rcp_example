@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -39,6 +40,16 @@ public class SegmentedBarTest {
 	@AfterEach
 	public void tearDown() {
 		shell.dispose();
+	}
+
+	@Test
+	public void separatorColorDefaultsToTheBackground() {
+		assertEquals(bar.getBackground(), bar.getSeparatorColor());
+		Color red = shell.getDisplay().getSystemColor(SWT.COLOR_RED);
+		bar.setSeparatorColor(red);
+		assertEquals(red, bar.getSeparatorColor());
+		bar.setSeparatorColor(null);
+		assertEquals(bar.getBackground(), bar.getSeparatorColor());
 	}
 
 	@Test

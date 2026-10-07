@@ -68,4 +68,5 @@ SegmentedBar {
     background-color: #2b2b2b;
     selection-color: #90caf9;
     hover-color: black;
+    separator-color: #2b2b2b;
 }

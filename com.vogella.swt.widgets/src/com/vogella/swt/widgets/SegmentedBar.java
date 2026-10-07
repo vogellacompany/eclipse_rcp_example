@@ -37,6 +37,7 @@ public class SegmentedBar extends Canvas {
 	private int focusIndex = -1;
 	private Color selectionColor;
 	private Color hoverColor;
+	private Color separatorColor;
 
 	public SegmentedBar(Composite parent, int style) {
 		super(parent, style | SWT.DOUBLE_BUFFERED);
@@ -95,6 +96,10 @@ public class SegmentedBar extends Canvas {
 				gc.setBackground(getHoverColor());
 				gc.fillRectangle(r);
 				gc.setAlpha(255);
+			}
+			if (r.x > getClientArea().x) {
+				gc.setForeground(getSeparatorColor());
+				gc.drawLine(r.x, r.y, r.x, r.y + r.height - 1);
 			}
 
 			gc.setForeground(isDark(segment.color()) ? getDisplay().getSystemColor(SWT.COLOR_WHITE)
@@ -328,6 +333,17 @@ public class SegmentedBar extends Canvas {
 	public void setHoverColor(Color color) {
 		checkWidget();
 		hoverColor = color;
+		redraw();
+	}
+
+	public Color getSeparatorColor() {
+		checkWidget();
+		return separatorColor != null ? separatorColor : getBackground();
+	}
+
+	public void setSeparatorColor(Color color) {
+		checkWidget();
+		separatorColor = color;
 		redraw();
 	}
 }

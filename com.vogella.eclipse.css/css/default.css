@@ -40,4 +40,5 @@ CTabItem:selected {
 SegmentedBar {
     selection-color: #1565c0;
     hover-color: white;
+    separator-color: white;
 }

@@ -9,12 +9,13 @@ import org.w3c.dom.css.CSSValue;
 
 import com.vogella.swt.widgets.SegmentedBar;
 
-/** Supports the {@code selection-color} and {@code hover-color} CSS properties for {@link SegmentedBar}. */
+/** Supports the {@code selection-color}, {@code hover-color} and {@code separator-color} CSS properties for {@link SegmentedBar}. */
 @SuppressWarnings("restriction")
 public class SegmentedBarPropertyHandler extends AbstractCSSPropertySWTHandler {
 
     private static final String SELECTION_COLOR = "selection-color";
     private static final String HOVER_COLOR = "hover-color";
+    private static final String SEPARATOR_COLOR = "separator-color";
 
     @Override
     protected void applyCSSProperty(Control control, String property, CSSValue value, String pseudo, CSSEngine engine)
@@ -25,6 +26,8 @@ public class SegmentedBarPropertyHandler extends AbstractCSSPropertySWTHandler {
                 bar.setSelectionColor(color);
             } else if (HOVER_COLOR.equalsIgnoreCase(property)) {
                 bar.setHoverColor(color);
+            } else if (SEPARATOR_COLOR.equalsIgnoreCase(property)) {
+                bar.setSeparatorColor(color);
             }
         }
     }
@@ -38,6 +41,8 @@ public class SegmentedBarPropertyHandler extends AbstractCSSPropertySWTHandler {
                 return converter.convert(bar.getSelectionColor(), engine, null);
             } else if (HOVER_COLOR.equalsIgnoreCase(property)) {
                 return converter.convert(bar.getHoverColor(), engine, null);
+            } else if (SEPARATOR_COLOR.equalsIgnoreCase(property)) {
+                return converter.convert(bar.getSeparatorColor(), engine, null);
             }
         }
         return null;

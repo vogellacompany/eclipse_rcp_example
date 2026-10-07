@@ -40,6 +40,9 @@
          <property-name
                name="hover-color">
          </property-name>
+         <property-name
+               name="separator-color">
+         </property-name>
       </handler>
    </extension>
 
