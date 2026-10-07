@@ -90,7 +90,7 @@ public class TodoOverviewPart {
 
 		// create column for the summary property
 		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
-		colSummary.getColumn().setWidth(100);
+		colSummary.getColumn().setWidth(160);
 		colSummary.getColumn().setText("Summary");
  
 		
