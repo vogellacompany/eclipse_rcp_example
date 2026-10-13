@@ -85,7 +85,7 @@ public class TodoOverviewPart {
 		// will do the rest once the list is filled
 		taskService.consume(writableList::addAll);
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
-		viewer.addSelectionChangedListener(event -> {
+		viewer.addSelectionChangedListener(_ -> {
 			IStructuredSelection selection = viewer.getStructuredSelection();
 
 			@SuppressWarnings("unchecked")

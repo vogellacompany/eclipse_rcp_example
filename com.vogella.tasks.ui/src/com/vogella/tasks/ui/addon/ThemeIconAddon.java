@@ -38,7 +38,7 @@ public class ThemeIconAddon {
         boolean dark = theme != null && theme.getId().contains("dark");
 
         int searchFlags = EModelService.ANYWHERE | EModelService.IN_PART | EModelService.IN_MAIN_MENU;
-        for (MUILabel label : modelService.findElements(application, MUILabel.class, searchFlags, e -> true)) {
+        for (MUILabel label : modelService.findElements(application, MUILabel.class, searchFlags, _ -> true)) {
             String uri = themedUri(label.getIconURI(), dark);
             if (uri != null && !uri.equals(label.getIconURI())) {
                 label.setIconURI(uri);
@@ -88,7 +88,7 @@ public class ThemeIconAddon {
     private static boolean exists(String uri) {
         try {
             return FileLocator.find(URI.create(uri).toURL()) != null;
-        } catch (Exception e) {
+        } catch (Exception _) {
             return false;
         }
     }

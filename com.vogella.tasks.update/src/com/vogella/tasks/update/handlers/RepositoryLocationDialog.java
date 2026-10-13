@@ -73,7 +73,7 @@ public class RepositoryLocationDialog extends TitleAreaDialog {
 
 		Button browseButton = new Button(container, SWT.PUSH);
 		browseButton.setText("Browse...");
-		browseButton.addListener(SWT.Selection, event -> {
+		browseButton.addListener(SWT.Selection, _ -> {
 			DirectoryDialog directoryDialog = new DirectoryDialog(getShell(), SWT.OPEN);
 			directoryDialog.setText("Select Repository Directory");
 			directoryDialog.setMessage("Select the local directory that contains the update repository:");

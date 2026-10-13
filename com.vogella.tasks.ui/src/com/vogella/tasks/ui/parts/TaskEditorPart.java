@@ -100,7 +100,7 @@ public class TaskEditorPart {
             // set a dirty state if one of the bindings is changed
             dbc.getBindings().forEach(item -> {
                 Binding binding = item;
-                binding.getTarget().addChangeListener(e -> {
+                binding.getTarget().addChangeListener(_ -> {
                     if (!pauseDirtyListener && part != null) { //
                         part.setDirty(true);
                     }

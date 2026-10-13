@@ -48,7 +48,7 @@ public class ImageDownloadPart {
         statusLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         statusLabel.setText("Status: Idle");
 
-        downloadButton.addListener(SWT.Selection, e -> {
+        downloadButton.addListener(SWT.Selection, _ -> {
             String imageUrl = "https://www.vogella.com/img/logo/index_logo.png";
             String savePath = promptForSavePath(parent.getShell());
             if (savePath != null) {

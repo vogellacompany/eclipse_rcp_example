@@ -51,7 +51,7 @@ public class ParticleCanvas {
         Canvas canvas = new Canvas(parent, SWT.DOUBLE_BUFFERED);
         List<Particle> particles = new ArrayList<>();
         
-        canvas.addListener(SWT.Resize, e -> {
+        canvas.addListener(SWT.Resize, _ -> {
             particles.clear();
             Rectangle r = canvas.getBounds();
             for (int i = 0; i < 80; i++) {

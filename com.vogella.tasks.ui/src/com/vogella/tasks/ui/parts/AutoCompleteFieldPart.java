@@ -88,7 +88,7 @@ public class AutoCompleteFieldPart {
 		});
 		contentProposal.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);
 
-		WidgetFactory.button(SWT.PUSH).onSelect(e -> {
+		WidgetFactory.button(SWT.PUSH).onSelect(_ -> {
 			taskContentProposalProvider.setProposals(taskService.getAll());
 			contentProposal.refresh();
 			contentProposal.openProposalPopup();
@@ -125,7 +125,7 @@ public class AutoCompleteFieldPart {
 	private Path getPath(String text) {
 		try {
 			return Paths.get(text);
-		} catch (InvalidPathException ex) {
+		} catch (InvalidPathException _) {
 			return null;
 		}
 	}
@@ -133,7 +133,7 @@ public class AutoCompleteFieldPart {
 	private boolean isDirectory(Path dir) {
 		try {
 			return Files.isDirectory(dir);
-		} catch (SecurityException ex) {
+		} catch (SecurityException _) {
 			return false;
 		}
 	}

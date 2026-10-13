@@ -76,7 +76,7 @@ public class UpdateHandler {
 		URI uri;
 		try {
 			uri = toURI(repositoryLocation);
-		} catch (URISyntaxException e) {
+		} catch (URISyntaxException _) {
 			throw new OperationCanceledException("Invalid repository location: " + repositoryLocation);
 		}
 

@@ -35,14 +35,14 @@ public class PlaygroundPart {
 		chip1.setChipsBackground(Display.getDefault().getSystemColor(SWT.COLOR_RED));
 		text = text(SWT.BORDER | SWT.SEARCH | SWT.ICON_SEARCH | SWT.ICON_CANCEL).message("Enter City")
 				.layoutData(fillDefaults().grab(true, false).create()).create(parent);
-		text.addSelectionListener(SelectionListener.widgetDefaultSelectedAdapter(e -> updateBrowser()));
+		text.addSelectionListener(SelectionListener.widgetDefaultSelectedAdapter(_ -> updateBrowser()));
 
 		ContentProposalAdapter contentProposal = new ContentProposalAdapter(text, new TextContentAdapter(),
 				new SimpleContentProposalProvider("Hamburg", "New York", "New Delhi"), null, null);
 
 		contentProposal.setPopupSize(new Point(200, 100));
 		contentProposal.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);
-		button(SWT.PUSH).text("Search").onSelect(e -> updateBrowser()).create(parent);
+		button(SWT.PUSH).text("Search").onSelect(_ -> updateBrowser()).create(parent);
 
 		browser = new Browser(parent, SWT.NONE);
 		browser.setLayoutData(fillDefaults().grab(true, true).span(2, 1).create());

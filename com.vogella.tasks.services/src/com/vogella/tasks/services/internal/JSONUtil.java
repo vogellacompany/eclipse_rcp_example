@@ -45,7 +45,7 @@ public class JSONUtil {
 
 		try {
 			Files.write(Paths.get(dir + File.separator + fileName), json.getBytes(), StandardOpenOption.CREATE);
-		} catch (IOException e) {
+		} catch (IOException _) {
 			// ignore
 		}
 	}
@@ -54,7 +54,7 @@ public class JSONUtil {
 		final String dir = System.getProperty("user.dir");
 		try {
 			return Files.readAllLines(Paths.get(dir + File.separator + fileName));
-		} catch (IOException e) {
+		} catch (IOException _) {
 			return Collections.emptyList();
 		}
 	}

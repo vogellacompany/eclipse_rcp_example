@@ -30,7 +30,7 @@ public class SamplePart {
 
 		Text txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Enter text to mark part as dirty");
-		txtInput.addModifyListener(e -> part.setDirty(true));
+		txtInput.addModifyListener(_ -> part.setDirty(true));
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		tableViewer = new TableViewer(parent);
