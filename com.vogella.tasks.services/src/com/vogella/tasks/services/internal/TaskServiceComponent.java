@@ -65,23 +65,25 @@ public class TaskServiceComponent implements TaskService {
     private List<Task> createTestData() {
         List<Task> list = JSONUtil.retrieveSavedData();
         if (list.isEmpty()) {
+            // due dates relative to today so that every task category has entries
             list = List.of(
-                create("Application model", "Flexible and extensible"),
-                create("DI", "@Inject as programming mode"),
-                create("OSGi", "Services"),
-                create("SWT", "Widgets"),
-                create("JFace", "Especially Viewers!"),
-                create("CSS Styling", "Style your application"),
-                create("Eclipse services", "Selection, model, Part"),
-                create("Renderer", "Different UI toolkit"),
-                create("Compatibility Layer", "Run Eclipse 3.x")
+                create("Application model", "Dynamics", -2, false),
+                create("Application model", "Flexible and extensible", -1, false),
+                create("DI", "@Inject as programming mode", 0, false),
+                create("OSGi", "Services", 0, false),
+                create("SWT", "Widgets", 0, false),
+                create("JFace", "Especially Viewers!", 1, false),
+                create("CSS Styling", "Style your application", 3, false),
+                create("Eclipse services", "Selection, model, Part", 7, false),
+                create("Renderer", "Different UI toolkit", -5, true),
+                create("Compatibility Layer", "Run Eclipse 3.x", -3, true)
             );
         }
         return new ArrayList<>(list);
     }
 
-    private Task create(String summary, String description) {
-        return new Task(current.getAndIncrement(), summary, description, false, LocalDate.now());
+    private Task create(String summary, String description, int daysFromToday, boolean done) {
+        return new Task(current.getAndIncrement(), summary, description, done, LocalDate.now().plusDays(daysFromToday));
     }
 
     private Optional<Task> findById(long id) {
