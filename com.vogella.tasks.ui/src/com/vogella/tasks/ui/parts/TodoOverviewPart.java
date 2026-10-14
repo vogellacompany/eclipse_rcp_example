@@ -36,6 +36,7 @@ import com.vogella.tasks.ui.util.TableColumnPersistenceUtil;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 public class TodoOverviewPart {
 
@@ -51,6 +52,8 @@ public class TodoOverviewPart {
 	private WritableList<Task> writableList;
 
 	private TableViewer viewer;
+
+	private final TaskStateFilter taskStateFilter = new TaskStateFilter();
 
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService) {
@@ -85,6 +88,7 @@ public class TodoOverviewPart {
 		// will do the rest once the list is filled
 		taskService.consume(writableList::addAll);
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
+		viewer.addFilter(taskStateFilter);
 		viewer.addSelectionChangedListener(_ -> {
 			IStructuredSelection selection = viewer.getStructuredSelection();
 
@@ -115,6 +119,15 @@ public class TodoOverviewPart {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(list);
+		}
+	}
+
+	@Inject
+	public void setTaskState(@Optional @Named(TaskStateFilter.CONTEXT_KEY) String state) {
+		taskStateFilter.setState(state);
+		// called before @PostConstruct, when the viewer does not exist yet
+		if (viewer != null) {
+			viewer.refresh();
 		}
 	}
 

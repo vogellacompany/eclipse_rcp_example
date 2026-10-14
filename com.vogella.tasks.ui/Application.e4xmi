@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application">
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_78USQLSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.application" bindingContexts="_-f-scBO-Ee2nkPMV9zMJ2A">
   <children xsi:type="basic:TrimmedWindow" xmi:id="_8kE10LSYEeq-dNF-Hsy_bw" elementId="com.vogella.tasks.ui.trimmedwindow.0">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_Q51hoMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspectivestack.0">
       <children xsi:type="advanced:Perspective" xmi:id="_RcEsAMnFEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.perspective.tasks" label="Tasks">
@@ -8,6 +8,7 @@
             <tags>NoAutoCollapse</tags>
             <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" iconURI="platform:/plugin/com.vogella.tasks.ui/images/task-overview.svg" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
               <handlers xmi:id="_zL5lkBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.handler.5" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.TasksCopyHandler" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+              <handlers xmi:id="_Jckgxsd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handler.filter" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.FilterTasksHandler" command="_JckgxMd2EfGAAEwPPiJ7gA"/>
               <menus xsi:type="menu:PopupMenu" xmi:id="_S-5lIMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.popupmenu.table" label="Table menu">
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_mexeMMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.3" command="_K-EDkMnBEeuD8-bVRByS6Q"/>
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_33CxkMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.openeditor" label="Open editor" command="_WQsNYMnMEeuD8-bVRByS6Q"/>
@@ -16,6 +17,18 @@
               <menus xmi:id="_3dL2kKmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.menu.0">
                 <tags>ViewMenu</tags>
                 <children xsi:type="menu:HandledMenuItem" xmi:id="_36rq4KmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledmenuitem.1" iconURI="platform:/plugin/com.vogella.tasks.ui/images/copyAll.svg" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_Jckgx8d2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handledmenuitem.filter.all" label="All" command="_JckgxMd2EfGAAEwPPiJ7gA">
+                  <parameters xmi:id="_JckgyMd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.filter.all" name="com.vogella.tasks.ui.commandparameter.filter" value="all"/>
+                </children>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_Jckgycd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handledmenuitem.filter.open" label="Open" command="_JckgxMd2EfGAAEwPPiJ7gA">
+                  <parameters xmi:id="_Jckgysd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.filter.open" name="com.vogella.tasks.ui.commandparameter.filter" value="open"/>
+                </children>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_Jckgy8d2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handledmenuitem.filter.done" label="Done" command="_JckgxMd2EfGAAEwPPiJ7gA">
+                  <parameters xmi:id="_JckgzMd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.filter.done" name="com.vogella.tasks.ui.commandparameter.filter" value="done"/>
+                </children>
+                <children xsi:type="menu:HandledMenuItem" xmi:id="_Jckgzcd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handledmenuitem.filter.overdue" label="Overdue" command="_JckgxMd2EfGAAEwPPiJ7gA">
+                  <parameters xmi:id="_Jckgzsd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.filter.overdue" name="com.vogella.tasks.ui.commandparameter.filter" value="overdue"/>
+                </children>
               </menus>
               <toolbar xmi:id="_6qXkQKmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.toolbar.1">
                 <children xsi:type="menu:HandledToolItem" xmi:id="_7Den0KmfEfCIecDHXvK7_g" elementId="com.vogella.tasks.ui.handledtoolitem.1" iconURI="platform:/plugin/com.vogella.tasks.ui/images/addTask.svg" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
@@ -101,7 +114,20 @@
   <handlers xmi:id="_LuODcMnoEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handler.4" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_pxm0AMnnEeuD8-bVRByS6Q"/>
   <handlers xmi:id="_oBoG0MnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.handler.6" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ResizeSashChildren" command="_mSOlwMnDEe6kdYtgbZ_F2Q"/>
   <handlers xmi:id="_qU6uMFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.handler.7" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ThemeSwitchHandler" command="_o5kxkFyPEfC-z4xraj1QdA"/>
-  <bindingTables xmi:id="_Fr45gBO_Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.mytable" bindingContext="_-f-scBO-Ee2nkPMV9zMJ2A"/>
+  <bindingTables xmi:id="_Fr45gBO_Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.mytable" bindingContext="_-f-scBO-Ee2nkPMV9zMJ2A">
+    <bindings xmi:id="_Jckgz8d2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.keybinding.filter.all" keySequence="M1+1" command="_JckgxMd2EfGAAEwPPiJ7gA">
+      <parameters xmi:id="_Jckg0Md2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.keybinding.filter.all" name="com.vogella.tasks.ui.commandparameter.filter" value="all"/>
+    </bindings>
+    <bindings xmi:id="_Jckg0cd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.keybinding.filter.open" keySequence="M1+2" command="_JckgxMd2EfGAAEwPPiJ7gA">
+      <parameters xmi:id="_Jckg0sd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.keybinding.filter.open" name="com.vogella.tasks.ui.commandparameter.filter" value="open"/>
+    </bindings>
+    <bindings xmi:id="_Jckg08d2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.keybinding.filter.done" keySequence="M1+3" command="_JckgxMd2EfGAAEwPPiJ7gA">
+      <parameters xmi:id="_Jckg1Md2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.keybinding.filter.done" name="com.vogella.tasks.ui.commandparameter.filter" value="done"/>
+    </bindings>
+    <bindings xmi:id="_Jckg1cd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.keybinding.filter.overdue" keySequence="M1+4" command="_JckgxMd2EfGAAEwPPiJ7gA">
+      <parameters xmi:id="_Jckg1sd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.parameter.keybinding.filter.overdue" name="com.vogella.tasks.ui.commandparameter.filter" value="overdue"/>
+    </bindings>
+  </bindingTables>
   <bindingTables xmi:id="_S_X24BPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingtable.0" bindingContext="_AGMKYBPBEe2nkPMV9zMJ2A">
     <bindings xmi:id="_T4X7cBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.keybinding.0" keySequence="M1+C" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
   </bindingTables>
@@ -123,6 +149,9 @@
   <commands xmi:id="_mSOlwMnDEe6kdYtgbZ_F2Q" elementId="com.vogella.tasks.ui.command.resizesashelements" commandName="Resize sash elements"/>
   <commands xmi:id="_o5kxkFyPEfC-z4xraj1QdA" elementId="com.vogella.tasks.ui.command.theme.switch" commandName="Theme Switch">
     <parameters xmi:id="_Ui7MEFyQEfC-z4xraj1QdA" elementId="themeId" name="Theme"/>
+  </commands>
+  <commands xmi:id="_JckgxMd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.command.filter" commandName="Filter tasks">
+    <parameters xmi:id="_Jckgxcd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.commandparameter.filter" name="Filter" optional="false"/>
   </commands>
   <commands xmi:id="_bIFDcL7uEfCRiML5YJx9jw" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
   <addons xmi:id="_78U5ULSYEeq-dNF-Hsy_bw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
