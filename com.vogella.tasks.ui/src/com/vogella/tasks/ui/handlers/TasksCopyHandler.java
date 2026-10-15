@@ -27,7 +27,7 @@ public class TasksCopyHandler {
 
 		Clipboard clipboard = new Clipboard(shell.getDisplay());
 
-		String transferString = tasks.stream().map(task -> task.toString()).collect(Collectors.joining(", "));
+		String transferString = tasks.stream().map(Task::toString).collect(Collectors.joining(", "));
 
 		TextTransfer textTransfer = TextTransfer.getInstance();
 		RTFTransfer rtfTransfer = RTFTransfer.getInstance();

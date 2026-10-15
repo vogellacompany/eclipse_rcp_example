@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import jakarta.annotation.PostConstruct;
@@ -144,6 +143,6 @@ public class AutoCompleteFieldPart {
 			String fileName = directoriesInPath[directoriesInPath.length - 1];
 			String lastDirectory = directoriesInPath[directoriesInPath.length - 2];
 			return !lastDirectory.equals(".") && !fileName.startsWith(".") && Files.isDirectory(path);
-		}).map(Path::toString).collect(Collectors.toList());
+		}).map(Path::toString).toList();
 	}
 }

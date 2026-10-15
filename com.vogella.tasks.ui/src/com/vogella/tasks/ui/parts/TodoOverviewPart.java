@@ -2,7 +2,6 @@ package com.vogella.tasks.ui.parts;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.databinding.beans.typed.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
@@ -95,7 +94,7 @@ public class TodoOverviewPart {
 			@SuppressWarnings("unchecked")
 			List<Task> selectedElements = selection.toList();
 			// Make a copy and send out only the copy
-			List<Task> copiedElements = selectedElements.stream().map(t -> t.copy()).collect(Collectors.toList()); // <1>
+			List<Task> copiedElements = selectedElements.stream().map(Task::copy).toList(); // <1>
 			selectionService.setSelection(copiedElements);
 		});
 		// register context menu on the table

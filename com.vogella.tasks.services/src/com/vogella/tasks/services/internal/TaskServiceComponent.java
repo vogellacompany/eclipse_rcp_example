@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -30,7 +29,7 @@ public class TaskServiceComponent implements TaskService {
 
     @Override
     public void consume(Consumer<List<Task>> taskConsumer) {
-        taskConsumer.accept(tasks.stream().map(Task::copy).collect(Collectors.toList()));
+        taskConsumer.accept(tasks.stream().map(Task::copy).toList());
     }
 
     @Override
@@ -92,6 +91,6 @@ public class TaskServiceComponent implements TaskService {
 
     @Override
     public List<Task> getAll() {
-        return tasks.stream().map(Task::copy).collect(Collectors.toList());
+        return tasks.stream().map(Task::copy).toList();
     }
 }
