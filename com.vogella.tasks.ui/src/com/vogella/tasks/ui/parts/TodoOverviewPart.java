@@ -125,8 +125,8 @@ public class TodoOverviewPart {
 	@Inject
 	public void setTaskState(@Optional @Named(TaskStateFilter.CONTEXT_KEY) String state) {
 		taskStateFilter.setState(state);
-		// called before @PostConstruct, when the viewer does not exist yet
-		if (viewer != null) {
+		// called before @PostConstruct, when the viewer does not exist yet, and possibly after disposal
+		if (viewer != null && !viewer.getTable().isDisposed()) {
 			viewer.refresh();
 		}
 	}
