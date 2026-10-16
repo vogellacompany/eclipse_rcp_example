@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class ThemeIconAddonTest {
 
-    private static final String LIGHT = "platform:/plugin/com.vogella.tasks.ui/images/addTask.svg";
-    private static final String DARK = "platform:/plugin/com.vogella.tasks.ui/images/dark/addTask.svg";
+    private static final String LIGHT = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
+    private static final String DARK = "platform:/plugin/com.vogella.tasks.ui/img/dark/addTask.svg";
 
     @Test
     void usesDarkVariantInDarkTheme() {
@@ -22,7 +22,7 @@ public class ThemeIconAddonTest {
 
     @Test
     void keepsIconWithoutDarkVariant() {
-        String png = "platform:/plugin/com.vogella.tasks.ui/images/vogella.png";
+        String png = "platform:/plugin/com.vogella.tasks.ui/img/vogella.png";
         assertEquals(png, ThemeIconAddon.themedUri(png, true));
     }
 
