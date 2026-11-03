@@ -59,7 +59,8 @@ public class TodoOverviewPart {
 	private static final String CREATE_TASK_COMMAND = "com.vogella.tasks.ui.command.createtask";
 	private static final String PLUS_ICON = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
 	private static final int BUTTON_SIZE = 40;
-	private static final int BUTTON_MARGIN = 24;
+	private static final int BUTTON_MARGIN_RIGHT = 12;
+	private static final int BUTTON_MARGIN_BOTTOM = 24;
 	private static final int CIRCLE_INSET = 1;
 
 	@Inject
@@ -142,8 +143,8 @@ public class TodoOverviewPart {
 		button.setCursor(button.getDisplay().getSystemCursor(SWT.CURSOR_HAND));
 
 		FormData data = new FormData(BUTTON_SIZE, BUTTON_SIZE);
-		data.right = new FormAttachment(100, -BUTTON_MARGIN);
-		data.bottom = new FormAttachment(100, -BUTTON_MARGIN);
+		data.right = new FormAttachment(100, -BUTTON_MARGIN_RIGHT);
+		data.bottom = new FormAttachment(100, -BUTTON_MARGIN_BOTTOM);
 		button.setLayoutData(data);
 		button.moveAbove(table);
 
