@@ -7,28 +7,21 @@ import org.junit.jupiter.api.Test;
 
 public class ThemeIconAddonTest {
 
-    private static final String LIGHT = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
-    private static final String DARK = "platform:/plugin/com.vogella.tasks.ui/img/dark/addTask.svg";
+    private static final String ICON = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
 
     @Test
-    void usesDarkVariantInDarkTheme() {
-        assertEquals(DARK, ThemeIconAddon.themedUri(LIGHT, true));
+    void addsThemeAsFragment() {
+        assertEquals(ICON + "#dark", ThemeIconAddon.themedUri(ICON, "dark"));
     }
 
     @Test
-    void switchesBackToLightVariant() {
-        assertEquals(LIGHT, ThemeIconAddon.themedUri(DARK, false));
-    }
-
-    @Test
-    void keepsIconWithoutDarkVariant() {
-        String png = "platform:/plugin/com.vogella.tasks.ui/img/vogella.png";
-        assertEquals(png, ThemeIconAddon.themedUri(png, true));
+    void replacesFragmentOfPreviousTheme() {
+        assertEquals(ICON + "#sepia", ThemeIconAddon.themedUri(ICON + "#dark", "sepia"));
     }
 
     @Test
     void ignoresMissingIcon() {
-        assertNull(ThemeIconAddon.themedUri(null, true));
-        assertEquals("", ThemeIconAddon.themedUri("", true));
+        assertNull(ThemeIconAddon.themedUri(null, "dark"));
+        assertEquals("", ThemeIconAddon.themedUri("", "dark"));
     }
 }

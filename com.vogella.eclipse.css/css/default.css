@@ -12,6 +12,7 @@ Table {
     background-color: #f2f2f2;
     swt-header-background-color: #d0d0d0;
     swt-header-color: black;
+    font-size: 10px;
 }
 
 Composite Text {
@@ -35,4 +36,13 @@ Shell, Composite, .MTrimBar {
 CTabItem:selected {
     background-color: #d0d0d0;
     color: black;             
+}
+
+.floatingButton {
+    background-color: #c1d5ef;
+}
+
+DateTime {
+    background-color: white;
+    color: black;
 }

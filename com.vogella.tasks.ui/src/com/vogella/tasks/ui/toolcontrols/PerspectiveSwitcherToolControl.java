@@ -16,6 +16,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.accessibility.AccessibleAdapter;
+import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
@@ -46,6 +48,15 @@ public class PerspectiveSwitcherToolControl {
 	public void createGui(Composite parent) {
 		toolBar = new ToolBar(parent, SWT.FLAT | SWT.VERTICAL);
 		resources = new LocalResourceManager(JFaceResources.getResources(), toolBar);
+		// the items only show an icon, so screen readers need the tool tip as their name
+		toolBar.getAccessible().addAccessibleListener(new AccessibleAdapter() {
+			@Override
+			public void getName(AccessibleEvent e) {
+				if (e.childID >= 0 && e.childID < toolBar.getItemCount()) {
+					e.result = toolBar.getItem(e.childID).getToolTipText();
+				}
+			}
+		});
 		refresh();
 	}
 
