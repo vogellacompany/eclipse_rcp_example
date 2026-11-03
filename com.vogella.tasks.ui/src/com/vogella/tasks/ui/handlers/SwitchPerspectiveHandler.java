@@ -12,8 +12,9 @@ public class SwitchPerspectiveHandler {
 	@Execute
 	public void execute(EPartService partService, @Optional
 			@Named("perspective_parameter") String perspectiveID) {
-		if (partService==null) {
+		if (perspectiveID == null) {
 			ILog.get().error("No perspective ID received");
+			return;
 		}
 		partService.switchPerspective(perspectiveID);
 	}

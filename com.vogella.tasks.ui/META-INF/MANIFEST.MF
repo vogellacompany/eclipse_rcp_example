@@ -21,14 +21,18 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.18.0",
  org.eclipse.e4.core.services;bundle-version="2.2.600",
  com.vogella.tasks.events;bundle-version="1.0.0",
  org.eclipse.swt,
+ org.eclipse.e4.core.commands,
  org.eclipse.jface,
  org.osgi.service.event,
  org.eclipse.nebula.widgets.chips;bundle-version="2.0.0",
  org.eclipse.jface.notifications;bundle-version="0.7.400"
+Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-25
 Automatic-Module-Name: com.vogella.tasks.ui
 Import-Package: com.vogella.swt.widgets,
  jakarta.annotation,
  jakarta.inject;version="[2.0.0,3.0.0)",
- org.eclipse.e4.ui.css.swt.theme
+ org.eclipse.e4.ui.css.swt.theme,
+ org.osgi.service.component.annotations;resolution:=optional
+Service-Component: OSGI-INF/com.vogella.tasks.ui.addon.IconSetModifier.xml
 Require-Capability: osgi.service;filter:="(objectClass=com.vogella.tasks.model.TaskService)"

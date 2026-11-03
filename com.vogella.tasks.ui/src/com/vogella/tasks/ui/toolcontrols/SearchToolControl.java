@@ -14,7 +14,7 @@ public class SearchToolControl {
 	public void createGui(Composite parent) {
 		final Composite comp = new Composite(parent, SWT.NONE);
 		comp.setLayout(new GridLayout());
-		Text text = new Text(comp, SWT.SEARCH | SWT.CANCEL | SWT.ICON_SEARCH | SWT.BORDER);
+		Text text = new Text(comp, SWT.SEARCH | SWT.BORDER);
 		text.setMessage("Search");
 		GridDataFactory.fillDefaults().hint(130, SWT.DEFAULT).applyTo(text);
 	}

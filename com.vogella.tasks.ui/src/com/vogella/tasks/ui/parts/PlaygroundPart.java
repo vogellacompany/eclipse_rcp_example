@@ -33,7 +33,7 @@ public class PlaygroundPart {
 		Chips chip1 = new Chips(parent, SWT.CLOSE);
 		chip1.setText("Example");
 		chip1.setChipsBackground(Display.getDefault().getSystemColor(SWT.COLOR_RED));
-		text = text(SWT.BORDER | SWT.SEARCH | SWT.ICON_SEARCH | SWT.ICON_CANCEL).message("Enter City")
+		text = text(SWT.BORDER | SWT.SEARCH).message("Enter City")
 				.layoutData(fillDefaults().grab(true, false).create()).create(parent);
 		text.addSelectionListener(SelectionListener.widgetDefaultSelectedAdapter(_ -> updateBrowser()));
 

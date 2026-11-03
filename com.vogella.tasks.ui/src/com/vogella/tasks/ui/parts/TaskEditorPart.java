@@ -73,8 +73,8 @@ public class TaskEditorPart {
         // Factory planned for 2020-12 release
         // https://bugs.eclipse.org/bugs/show_bug.cgi?id=567110
 
-        dateTime = new DateTime(parent, SWT.BORDER);
-        dateTime.setLayoutData(gdFactory.align(SWT.FILL, SWT.CENTER).grab(false, false).create());
+        dateTime = new DateTime(parent, SWT.DATE | SWT.DROP_DOWN | SWT.BORDER);
+        dateTime.setLayoutData(gdFactory.align(SWT.BEGINNING, SWT.CENTER).grab(false, false).create());
 
         labelFactory.text("").create(parent);
 

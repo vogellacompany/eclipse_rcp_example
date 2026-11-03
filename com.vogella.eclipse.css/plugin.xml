@@ -9,9 +9,9 @@
             label="Default">
       </theme>
       <theme
-            basestylesheeturi="css/rainbow.css"
-            id="com.vogella.eclipse.css.rainbow"
-            label="Rainbow">
+            basestylesheeturi="css/sepia.css"
+            id="com.vogella.eclipse.css.sepia"
+            label="Sepia">
       </theme>
       <theme
             basestylesheeturi="css/dark.css"

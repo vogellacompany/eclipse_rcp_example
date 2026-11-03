@@ -1,0 +1,65 @@
+Shell, Composite, Sash, .MTrimBar {
+    background-color: #f4ecd8;
+    color: #4a3728;
+}
+
+Label, Button {
+    color: #4a3728;
+}
+
+Text {
+    background-color: #fbf6e9;
+    color: #4a3728;
+}
+
+Table, Tree {
+    background-color: #fbf6e9;
+    color: #4a3728;
+    swt-header-background-color: #e6d9bb;
+    swt-header-color: #4a3728;
+    font-size: 10px;
+}
+
+CTabFolder {
+    color: #6b5444;
+    swt-tab-outline: #c9b78f;
+    swt-outer-keyline-color: #d8c9a6;
+    swt-unselected-tabs-color: #e6d9bb #e6d9bb 100% 100%;
+    swt-selected-tab-fill: #f4ecd8;
+    swt-unselected-hot-tab-color-background: #efe4ca;
+    swt-selected-tab-highlight: none;
+}
+
+CTabFolder.active {
+    swt-selected-tab-highlight: #a0623a;
+    swt-selected-highlight-top: false;
+}
+
+CTabItem,
+CTabItem CLabel {
+    background-color: #f4ecd8;
+    color: #6b5444;
+}
+
+CTabItem:selected,
+CTabItem:selected CLabel {
+    color: #2e2118;
+}
+
+.MPartStack.active > CTabItem:selected,
+.MPartStack.active > CTabItem:selected CLabel {
+    color: #2e2118;
+}
+
+.floatingButton {
+    background-color: #dcc9a3;
+}
+
+Label {
+    background-color: #f4ecd8;
+}
+
+DateTime {
+    background-color: #fbf6e9;
+    color: #4a3728;
+}
