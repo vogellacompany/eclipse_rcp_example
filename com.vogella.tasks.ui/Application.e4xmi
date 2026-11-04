@@ -7,6 +7,7 @@
           <children xsi:type="basic:PartStack" xmi:id="_RNt4gMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.partstack.0" containerData="3500">
             <tags>NoAutoCollapse</tags>
             <children xsi:type="basic:Part" xmi:id="_T09AgMzxEeqxQICfeITfhA" elementId="com.vogella.tasks.ui.part.overview" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TodoOverviewPart" label="Overview" iconURI="platform:/plugin/com.vogella.tasks.ui/img/task-overview.svg" bindingContexts="_AGMKYBPBEe2nkPMV9zMJ2A" closeable="true">
+  <handlers xmi:id="_rstHandler0Restart01" elementId="com.vogella.tasks.ui.handler.restart" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RestartHandler" command="_rstCommand0Restart01"/>
               <handlers xmi:id="_zL5lkBO9Ee2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.handler.5" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.TasksCopyHandler" command="_qzqvUBO9Ee2nkPMV9zMJ2A"/>
               <handlers xmi:id="_Jckgxsd2EfGAAEwPPiJ7gA" elementId="com.vogella.tasks.ui.handler.filter" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.FilterTasksHandler" command="_JckgxMd2EfGAAEwPPiJ7gA"/>
               <menus xsi:type="menu:PopupMenu" xmi:id="_S-5lIMnPEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.popupmenu.table" label="Table menu">
@@ -58,6 +59,7 @@
     <mainMenu xmi:id="_FPu-YLSZEeq-dNF-Hsy_bw" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_kD4sQMz8EeqxQICfeITfhA" elementId="org.eclipse.ui.file.menu" label="&amp;File">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_wfjnoMnEEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.handledmenuitem.save" label="&amp;Save" command="_cGIQYMnEEeuD8-bVRByS6Q"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_rstItem0MenuFile0001" elementId="com.vogella.tasks.ui.handledmenuitem.restart" label="Restart" command="_rstCommand0Restart01"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_gvkHMF2EEfCdebTTo0pPlw" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" command="_bIFDcL7uEfCRiML5YJx9jw"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_lMhIQMz8EeqxQICfeITfhA" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
@@ -137,6 +139,7 @@
   </rootContext>
   <rootContext xmi:id="_AGMKYBPBEe2nkPMV9zMJ2A" elementId="com.vogella.tasks.ui.bindingcontext.overviewkeybindings" name="overviewkeybindings"/>
   <descriptors xmi:id="_upcusMnREeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.partdescriptor.editor" label="Editor" iconURI="platform:/plugin/com.vogella.tasks.ui/img/task-editor.svg" allowMultiple="true" closeable="true" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskEditorPart"/>
+  <commands xmi:id="_rstCommand0Restart01" elementId="com.vogella.tasks.ui.command.restart" commandName="Restart"/>
   <commands xmi:id="_K-EDkMnBEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.remove" commandName="Remove" commandIconURI="platform:/plugin/com.vogella.tasks.ui/img/deleteTask.svg"/>
   <commands xmi:id="_Cp2VMMnCEeuD8-bVRByS6Q" elementId="com.vogella.tasks.ui.command.testing" commandName="Testing"/>
   <commands xmi:id="_cGIQYMnEEeuD8-bVRByS6Q" elementId="org.eclipse.ui.file.saveAll" commandName="Save"/>
