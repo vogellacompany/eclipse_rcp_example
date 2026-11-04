@@ -3,6 +3,8 @@ package com.vogella.tasks.ui.parts;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +32,11 @@ import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.widgets.ButtonFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.graphics.Region;
@@ -46,6 +51,8 @@ import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
+import com.vogella.swt.widgets.SegmentedBar;
+import com.vogella.swt.widgets.SegmentedBar.Segment;
 import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
 import com.vogella.tasks.model.TaskService;
@@ -82,6 +89,10 @@ public class TodoOverviewPart {
 
 	private final TaskStateFilter taskStateFilter = new TaskStateFilter();
 
+	private SegmentedBar summaryBar;
+
+	private TaskCategory categoryFilter;
+
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService, ECommandService commandService,
 			EHandlerService handlerService, IThemeEngine themeEngine) {
@@ -89,13 +100,16 @@ public class TodoOverviewPart {
 
 		//ButtonFactory.newButton(SWT.PUSH).text("Load Data").onSelect(e -> update()).create(parent);
 
+		parent.setLayout(new FormLayout());
+
+		createSummaryBar(parent);
+
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.FULL_SELECTION);
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
-		parent.setLayout(new FormLayout());
 		FormData tableData = new FormData();
-		tableData.top = new FormAttachment(0);
+		tableData.top = new FormAttachment(summaryBar);
 		tableData.left = new FormAttachment(0);
 		tableData.right = new FormAttachment(100);
 		tableData.bottom = new FormAttachment(100);
@@ -123,6 +137,14 @@ public class TodoOverviewPart {
 		// fill the writable list, when Consumer callback is called. Databinding
 		// will do the rest once the list is filled
 		taskService.consume(writableList::addAll);
+		viewer.addFilter(new ViewerFilter() {
+			@Override
+			public boolean select(Viewer v, Object parentElement, Object element) {
+				return categoryFilter == null
+						|| TaskCategory.of((Task) element, LocalDate.now()) == categoryFilter;
+			}
+		});
+		updateSummary(taskService.getAll());
 		ViewerSupport.bind(viewer, writableList, BeanProperties.values(Task.FIELD_SUMMARY, Task.FIELD_DESCRIPTION));
 		viewer.addFilter(taskStateFilter);
 		viewer.addSelectionChangedListener(_ -> {
@@ -137,6 +159,19 @@ public class TodoOverviewPart {
 		// register context menu on the table
 		menuService.registerContextMenu(viewer.getControl(), "com.vogella.tasks.ui.popupmenu.table");
 
+	}
+
+	private void createSummaryBar(Composite parent) {
+		summaryBar = new SegmentedBar(parent, SWT.NONE);
+		FormData barData = new FormData();
+		barData.top = new FormAttachment(0);
+		barData.left = new FormAttachment(0);
+		barData.right = new FormAttachment(100);
+		summaryBar.setLayoutData(barData);
+		summaryBar.addSelectionListener(SelectionListener.widgetSelectedAdapter(_ -> {
+			updateCategoryFilter();
+			viewer.refresh();
+		}));
 	}
 
 	@SuppressWarnings("restriction")
@@ -225,9 +260,10 @@ public class TodoOverviewPart {
 		}
 
 	public void updateViewer(List<Task> list) {
-		if (viewer != null) {
+		if (viewer != null && !viewer.getTable().isDisposed()) {
 			writableList.clear();
 			writableList.addAll(list);
+			updateSummary(list);
 		}
 	}
 
@@ -236,8 +272,26 @@ public class TodoOverviewPart {
 		taskStateFilter.setState(state);
 		// called before @PostConstruct, when the viewer does not exist yet, and possibly after disposal
 		if (viewer != null && !viewer.getTable().isDisposed()) {
-			viewer.refresh();
+			updateSummary(taskService.getAll());
 		}
+	}
+
+	private void updateSummary(List<Task> tasks) {
+		LocalDate today = LocalDate.now();
+		List<Segment> segments = Arrays.stream(TaskCategory.values()).map(category -> {
+			long count = tasks.stream().filter(task -> taskStateFilter.select(viewer, null, task))
+					.filter(task -> TaskCategory.of(task, today) == category).count();
+			return new Segment(category.name(), category.label(), (int) count, category.color());
+		}).toList();
+		summaryBar.setSegments(segments);
+		// the bar clears its selection if the selected category became empty
+		updateCategoryFilter();
+		viewer.refresh();
+	}
+
+	private void updateCategoryFilter() {
+		String id = summaryBar.getSelectedId();
+		categoryFilter = id == null ? null : TaskCategory.valueOf(id);
 	}
 
 	@Focus
