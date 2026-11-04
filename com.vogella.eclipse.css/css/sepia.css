@@ -63,3 +63,8 @@ DateTime {
     background-color: #fbf6e9;
     color: #4a3728;
 }
+
+ImageBasedFrame,
+ToolBar {
+    background-color: inherit;
+}
