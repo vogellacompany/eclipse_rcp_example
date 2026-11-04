@@ -41,7 +41,10 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 
 import com.vogella.tasks.events.TaskEventConstants;
 import com.vogella.tasks.model.Task;
@@ -60,7 +63,8 @@ public class TodoOverviewPart {
 	private static final String PLUS_ICON = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
 	private static final int BUTTON_SIZE = 40;
 	private static final int BUTTON_MARGIN_RIGHT = 12;
-	private static final int BUTTON_MARGIN_BOTTOM = 24;
+	private static final int BUTTON_MARGIN_BOTTOM = 12;
+	private static final int BUTTON_MARGIN_BOTTOM_ABOVE_SCROLLBAR = 24;
 	private static final int CIRCLE_INSET = 1;
 
 	@Inject
@@ -96,7 +100,6 @@ public class TodoOverviewPart {
 		tableData.right = new FormAttachment(100);
 		tableData.bottom = new FormAttachment(100);
 		table.setLayoutData(tableData);
-		createFloatingButton(parent, table, commandService, handlerService, themeEngine);
 
 		// create column for the summary property
 		TableViewerColumn colSummary = new TableViewerColumn(viewer, SWT.NONE);
@@ -112,6 +115,8 @@ public class TodoOverviewPart {
 
 		// Restore column widths if available
 		TableColumnPersistenceUtil.restoreColumnWidths(viewer, "TodoOverviewPartTable");
+
+		createFloatingButton(parent, table, commandService, handlerService, themeEngine);
 
 		// use data binding to bind the viewer
 		writableList = new WritableList<>();
@@ -147,6 +152,7 @@ public class TodoOverviewPart {
 		data.bottom = new FormAttachment(100, -BUTTON_MARGIN_BOTTOM);
 		button.setLayoutData(data);
 		button.moveAbove(table);
+		keepAboveScrollBar(parent, table, data);
 
 		// a region is the only way to get a non rectangular control over a sibling
 		Region circle = new Region();
@@ -168,6 +174,22 @@ public class TodoOverviewPart {
 		});
 		button.addListener(SWT.MouseUp,
 				_ -> handlerService.executeHandler(commandService.createCommand(CREATE_TASK_COMMAND)));
+	}
+
+	private static void keepAboveScrollBar(Composite parent, Table table, FormData data) {
+		Listener update = _ -> {
+			ScrollBar bar = table.getHorizontalBar();
+			int margin = bar != null && bar.getVisible() ? BUTTON_MARGIN_BOTTOM_ABOVE_SCROLLBAR : BUTTON_MARGIN_BOTTOM;
+			if (data.bottom.offset != -margin) {
+				data.bottom = new FormAttachment(100, -margin);
+				parent.layout();
+			}
+		};
+		table.addListener(SWT.Resize, update);
+		for (TableColumn column : table.getColumns()) {
+			column.addListener(SWT.Resize, update);
+		}
+		update.handleEvent(null);
 	}
 
 	private static int[] circle(int diameter) {
