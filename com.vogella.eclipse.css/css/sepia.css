@@ -68,3 +68,10 @@ ImageBasedFrame,
 ToolBar {
     background-color: inherit;
 }
+
+SegmentedBar {
+    background-color: #fbf6e9;
+    selection-color: #8a4b2a;
+    hover-color: #4a3728;
+    separator-color: #fbf6e9;
+}
