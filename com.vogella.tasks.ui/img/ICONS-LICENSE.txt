@@ -1,4 +1,8 @@
-The icons in this folder and addTask, canvas, image-download and task-editor in
+perspective-tasks, perspective-manager, task-overview and task-detail, in this folder and in the sepia folder,
+were created for this example.
+License: Eclipse Public License 2.0, see EPL-2.0.txt
+
+The other icons in this folder and addTask, canvas, image-download and task-editor in
 the sepia folder are Codicons from the Visual Studio Code project, renamed and recolored by
 https://github.com/vogellacompany/eclipse-themes-icons.
 This content is not affiliated with or endorsed by Microsoft.
@@ -8,7 +12,7 @@ Source: https://github.com/microsoft/vscode-codicons
 License: Creative Commons Attribution 4.0 International (CC-BY-4.0),
 https://creativecommons.org/licenses/by/4.0/
 
-The other icons in the sepia folder are from the Eclipse Dual Tone icon pack, renamed and recolored by
+The remaining icons in the sepia folder are from the Eclipse Dual Tone icon pack, renamed and recolored by
 https://github.com/vogellacompany/eclipse-themes-icons.
 
 Source: https://github.com/vogella/ui-best-practices, directory iconpacks/eclipse-dual-tone
