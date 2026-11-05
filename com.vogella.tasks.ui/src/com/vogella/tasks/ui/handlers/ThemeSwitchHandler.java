@@ -24,7 +24,7 @@ public class ThemeSwitchHandler {
     public void switchTheme(@Optional @Named("themeId") String theme, IThemeEngine themeEngine,
             EPartService partService, MApplication application) {
         ITheme active = themeEngine.getActiveTheme();
-        if ((active != null && active.getId().equals(theme)) || !partService.saveAll(true)) {
+        if (theme == null || (active != null && active.getId().equals(theme)) || !partService.saveAll(true)) {
             return;
         }
         // edits the user chose not to save are gone after rendering again
@@ -37,8 +37,10 @@ public class ThemeSwitchHandler {
     private void renderWindowsAgain(MApplication application) {
         MWindow selected = application.getSelectedElement();
         for (MWindow window : application.getChildren()) {
-            window.setToBeRendered(false);
-            window.setToBeRendered(true);
+            if (window.isToBeRendered()) {
+                window.setToBeRendered(false);
+                window.setToBeRendered(true);
+            }
         }
         application.setSelectedElement(selected);
     }

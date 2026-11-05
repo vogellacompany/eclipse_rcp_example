@@ -1,15 +1,26 @@
-Shell, Composite, Sash, .MTrimBar {
+@import url("platform:/plugin/com.vogella.eclipse.css/css/fonts.css");
+
+/* type selectors match only the exact SWT class, so the part content needs .MPart */
+Shell, Composite, .MPart, ScrolledComposite, Sash, Group, .MTrimBar {
     background-color: #f4ecd8;
     color: #4a3728;
+}
+
+Label {
+    background-color: #f4ecd8;
 }
 
 Label, Button {
     color: #4a3728;
 }
 
-Text {
+Text, Combo, Spinner {
     background-color: #fbf6e9;
     color: #4a3728;
+}
+
+Link {
+    swt-link-foreground-color: #a0623a;
 }
 
 Table, Tree {
@@ -21,6 +32,8 @@ Table, Tree {
 }
 
 CTabFolder {
+    /* the swt-* tab properties only work with this renderer */
+    swt-tab-renderer: url('bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.CTabRendering');
     color: #6b5444;
     swt-tab-outline: #c9b78f;
     swt-outer-keyline-color: #d8c9a6;
@@ -55,20 +68,16 @@ CTabItem:selected CLabel {
     background-color: #dcc9a3;
 }
 
-Label {
-    background-color: #f4ecd8;
-}
-
 DateTime {
     background-color: #fbf6e9;
     color: #4a3728;
 }
 
-ImageBasedFrame,
-ToolBar {
+ImageBasedFrame, ToolBar {
     background-color: inherit;
 }
 
+/* the segmented bar fills the area around its segments with its background */
 SegmentedBar {
     background-color: #fbf6e9;
     selection-color: #8a4b2a;

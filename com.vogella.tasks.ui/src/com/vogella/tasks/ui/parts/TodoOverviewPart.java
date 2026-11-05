@@ -207,8 +207,11 @@ public class TodoOverviewPart {
 			Rectangle icon = plus.getBounds();
 			e.gc.drawImage(plus, (BUTTON_SIZE - icon.width) / 2, (BUTTON_SIZE - icon.height) / 2);
 		});
-		button.addListener(SWT.MouseUp,
-				_ -> handlerService.executeHandler(commandService.createCommand(CREATE_TASK_COMMAND)));
+		button.addListener(SWT.MouseUp, e -> {
+			if (e.button == 1 && button.getClientArea().contains(e.x, e.y)) {
+				handlerService.executeHandler(commandService.createCommand(CREATE_TASK_COMMAND));
+			}
+		});
 	}
 
 	private static void keepAboveScrollBar(Composite parent, Table table, FormData data) {

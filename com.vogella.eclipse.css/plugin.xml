@@ -16,6 +16,7 @@
       <theme
             basestylesheeturi="css/dark.css"
             id="com.vogella.eclipse.css.dark"
+            isDarkTheme="true"
             label="Dark">
       </theme>
    </extension>
