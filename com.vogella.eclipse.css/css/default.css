@@ -1,17 +1,15 @@
+@import url("platform:/plugin/com.vogella.eclipse.css/css/fonts.css");
+
 Label, Button {
-    font: Verdana 10px;
     background-color: #e0e0e0;
     color: black;
 }
 
-Text {
-    font: Verdana 10px;
-}
-
-Table {
+Table, Tree {
     background-color: #f2f2f2;
     swt-header-background-color: #d0d0d0;
     swt-header-color: black;
+    color: black;
     font-size: 10px;
 }
 
@@ -26,16 +24,37 @@ SashForm {
 
 .MTrimBar {
     color: white;
-    font: Verdana 8px;
 }
 
 Shell, Composite, .MTrimBar {
     background-color: #e0e0e0;
 }
 
-CTabItem:selected {
-    background-color: #d0d0d0;
-    color: black;             
+CTabItem,
+CTabItem CLabel {
+    background-color: #e0e0e0;
+    color: #555555;
+}
+
+CTabItem:selected,
+CTabItem:selected CLabel {
+    color: black;
+}
+
+CTabFolder {
+    /* the swt-* tab properties only work with this renderer */
+    swt-tab-renderer: url('bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.CTabRendering');
+    swt-selected-tab-highlight: #8a8a8a;
+    swt-selected-highlight-top: false;
+    swt-tab-outline: #bdbdbd;
+    swt-outer-keyline-color: #c8c8c8;
+    swt-unselected-tabs-color: #d2d2d2 #d2d2d2 100% 100%;
+    swt-selected-tab-fill: #e0e0e0;
+    swt-unselected-hot-tab-color-background: #dadada;
+}
+
+CTabFolder.active {
+    swt-selected-tab-highlight: #2160bb;
 }
 
 .floatingButton {
@@ -47,8 +66,7 @@ DateTime {
     color: black;
 }
 
-ImageBasedFrame,
-ToolBar {
+ImageBasedFrame, ToolBar {
     background-color: inherit;
 }
 

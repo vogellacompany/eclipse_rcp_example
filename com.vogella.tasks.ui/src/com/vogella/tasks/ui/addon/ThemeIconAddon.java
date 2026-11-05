@@ -37,10 +37,11 @@ public class ThemeIconAddon {
         ITheme theme = (ITheme) event.getProperty(IThemeEngine.Events.THEME);
         String themeId = theme == null ? "" : theme.getId();
 
-        SVGFileFormat.setCurrentColor(themeId.contains("dark") ? DARK_ICONS : LIGHT_ICONS);
+        SVGFileFormat.setCurrentColor(theme != null && theme.isDark() ? DARK_ICONS : LIGHT_ICONS);
         IconSetModifier.setIconSet(themeId.contains(SEPIA) ? SEPIA : null);
 
-        int searchFlags = EModelService.ANYWHERE | EModelService.IN_PART | EModelService.IN_MAIN_MENU;
+        int searchFlags = EModelService.ANYWHERE | EModelService.IN_PART | EModelService.IN_MAIN_MENU
+                | EModelService.IN_SHARED_ELEMENTS;
         for (MUILabel label : modelService.findElements(application, MUILabel.class, searchFlags, _ -> true)) {
             label.setIconURI(themedUri(label.getIconURI(), themeId));
         }
