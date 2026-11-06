@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This project uses **Apache Maven with Tycho 5.0.4** to build Eclipse OSGi bundles, features, and products.
 The Tycho version is set centrally in `.mvn/maven.config`, which also sets `tycho.localArtifacts=ignore`, and `.mvn/extensions.xml` picks it up via `${tycho.version}`.
 The build targets **Java 25** (`maven.compiler.release` in the root `pom.xml`).
-Use the Maven wrapper (Maven 3.9.11) for consistent builds.
+Use the Maven wrapper (Maven 3.9.16) for consistent builds.
 
 ```bash
 # Build entire project
@@ -37,8 +37,8 @@ It is activated by the `installer` profile and produces native packages with `jp
 Dependencies are resolved from `target-platform/target-platform.target`. This file pins:
 - Eclipse 2026-12 release train and the 4.42 I-builds (Equinox, Platform, P2)
 - JUnit 5.14.4 (Jupiter engine + Platform)
-- Mockito 5.23.0
-- GSON 2.13.2
+- Mockito 5.24.0
+- GSON 2.15.0
 - SWTBot (for UI tests)
 - Nebula Widgets
 
