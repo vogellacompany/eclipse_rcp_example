@@ -14,7 +14,7 @@
          </property>
          <property
                name="cssTheme"
-               value="com.vogella.eclipse.css.dark">
+               value="com.vogella.eclipse.css.empty">
          </property>
          <property
                name="rendererFactoryUri2"

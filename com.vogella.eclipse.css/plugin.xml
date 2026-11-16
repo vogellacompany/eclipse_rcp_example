@@ -4,6 +4,11 @@
    <extension
          point="org.eclipse.e4.ui.css.swt.theme">
       <theme
+            basestylesheeturi="css/empty.css"
+            id="com.vogella.eclipse.css.empty"
+            label="Empty">
+      </theme>
+      <theme
             basestylesheeturi="css/default.css"
             id="com.vogella.eclipse.css.default"
             label="Default">
