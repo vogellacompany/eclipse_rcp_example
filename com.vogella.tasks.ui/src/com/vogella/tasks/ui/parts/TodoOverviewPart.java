@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.commands.ECommandService;
 import org.eclipse.e4.core.commands.EHandlerService;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.ui.css.swt.theme.ITheme;
 import org.eclipse.e4.ui.css.swt.theme.IThemeEngine;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.PersistState;
@@ -37,20 +38,18 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.widgets.ButtonFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.graphics.Region;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.osgi.service.event.Event;
 
+import com.vogella.swt.widgets.FloatingButton;
 import com.vogella.swt.widgets.SegmentedBar;
 import com.vogella.swt.widgets.SegmentedBar.Segment;
 import com.vogella.tasks.events.TaskEventConstants;
@@ -68,11 +67,9 @@ public class TodoOverviewPart {
 	private static final String CSS_CLASS_KEY = "org.eclipse.e4.ui.css.CssClassName";
 	private static final String CREATE_TASK_COMMAND = "com.vogella.tasks.ui.command.createtask";
 	private static final String PLUS_ICON = "platform:/plugin/com.vogella.tasks.ui/img/addTask.svg";
-	private static final int BUTTON_SIZE = 40;
 	private static final int BUTTON_MARGIN_RIGHT = 12;
 	private static final int BUTTON_MARGIN_BOTTOM = 12;
 	private static final int BUTTON_MARGIN_BOTTOM_ABOVE_SCROLLBAR = 24;
-	private static final int CIRCLE_INSET = 1;
 
 	@Inject
 	MWindow window;
@@ -92,6 +89,10 @@ public class TodoOverviewPart {
 	private SegmentedBar summaryBar;
 
 	private TaskCategory categoryFilter;
+
+	private FloatingButton floatingButton;
+
+	private LocalResourceManager buttonResources;
 
 	@PostConstruct
 	public void createControls(Composite parent, EMenuService menuService, ECommandService commandService,
@@ -177,41 +178,27 @@ public class TodoOverviewPart {
 	@SuppressWarnings("restriction")
 	private void createFloatingButton(Composite parent, Table table, ECommandService commandService,
 			EHandlerService handlerService, IThemeEngine themeEngine) {
-		Canvas button = new Canvas(parent, SWT.DOUBLE_BUFFERED);
+		FloatingButton button = new FloatingButton(parent);
 		button.setData(CSS_CLASS_KEY, "floatingButton");
 		button.setToolTipText("Create task");
-		button.setCursor(button.getDisplay().getSystemCursor(SWT.CURSOR_HAND));
+		button.setSurface(table);
+		button.setAction(() -> handlerService.executeHandler(commandService.createCommand(CREATE_TASK_COMMAND)));
 
-		FormData data = new FormData(BUTTON_SIZE, BUTTON_SIZE);
+		FormData data = new FormData();
 		data.right = new FormAttachment(100, -BUTTON_MARGIN_RIGHT);
 		data.bottom = new FormAttachment(100, -BUTTON_MARGIN_BOTTOM);
 		button.setLayoutData(data);
 		button.moveAbove(table);
 		keepAboveScrollBar(parent, table, data);
 
-		// a region is the only way to get a non rectangular control over a sibling
-		Region circle = new Region();
-		circle.add(circle(BUTTON_SIZE));
-		button.setRegion(circle);
-		button.addDisposeListener(_ -> circle.dispose());
+		floatingButton = button;
+		buttonResources = new LocalResourceManager(JFaceResources.getResources(), button);
+		updatePlusImage(themeEngine.getActiveTheme().getId());
+	}
 
-		Image plus = new LocalResourceManager(JFaceResources.getResources(), button)
-				.create(ImageDescriptor.createFromURL(toUrl(ThemeIconAddon.themedUri(PLUS_ICON, themeEngine.getActiveTheme().getId()))));
-		button.addPaintListener(e -> {
-			// a region has hard edges, so blend a smaller circle into the table color inside of it
-			e.gc.setBackground(table.getBackground());
-			e.gc.fillRectangle(0, 0, BUTTON_SIZE, BUTTON_SIZE);
-			e.gc.setAntialias(SWT.ON);
-			e.gc.setBackground(button.getBackground());
-			e.gc.fillOval(CIRCLE_INSET, CIRCLE_INSET, BUTTON_SIZE - 2 * CIRCLE_INSET, BUTTON_SIZE - 2 * CIRCLE_INSET);
-			Rectangle icon = plus.getBounds();
-			e.gc.drawImage(plus, (BUTTON_SIZE - icon.width) / 2, (BUTTON_SIZE - icon.height) / 2);
-		});
-		button.addListener(SWT.MouseUp, e -> {
-			if (e.button == 1 && button.getClientArea().contains(e.x, e.y)) {
-				handlerService.executeHandler(commandService.createCommand(CREATE_TASK_COMMAND));
-			}
-		});
+	private void updatePlusImage(String themeId) {
+		floatingButton.setImage(buttonResources
+				.create(ImageDescriptor.createFromURL(toUrl(ThemeIconAddon.themedUri(PLUS_ICON, themeId)))));
 	}
 
 	private static void keepAboveScrollBar(Composite parent, Table table, FormData data) {
@@ -228,18 +215,6 @@ public class TodoOverviewPart {
 			column.addListener(SWT.Resize, update);
 		}
 		update.handleEvent(null);
-	}
-
-	private static int[] circle(int diameter) {
-		int steps = 64;
-		double radius = diameter / 2.0;
-		int[] points = new int[steps * 2];
-		for (int i = 0; i < steps; i++) {
-			double angle = 2 * Math.PI * i / steps;
-			points[i * 2] = (int) Math.round(radius + radius * Math.cos(angle));
-			points[i * 2 + 1] = (int) Math.round(radius + radius * Math.sin(angle));
-		}
-		return points;
 	}
 
 	private static URL toUrl(String uri) {
@@ -309,6 +284,21 @@ public class TodoOverviewPart {
 		if (viewer != null) {
 			writableList.clear();
 			updateViewer(taskService.getAll());
+		}
+	}
+
+	@Inject
+	@Optional
+	private void themeChanged(@UIEventTopic(IThemeEngine.Events.THEME_CHANGED) Event event) {
+		ITheme theme = (ITheme) event.getProperty(IThemeEngine.Events.THEME);
+		String themeId = theme == null ? "" : theme.getId();
+		if (floatingButton != null && !floatingButton.isDisposed()) {
+			// deferred until ThemeIconAddon has set the SVG color of the new theme
+			floatingButton.getDisplay().asyncExec(() -> {
+				if (!floatingButton.isDisposed()) {
+					updatePlusImage(themeId);
+				}
+			});
 		}
 	}
 
