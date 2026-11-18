@@ -7,7 +7,7 @@ This is an Eclipse RCP (Rich Client Platform) example repository used for commer
 **Repository Size:** ~2.4 GB (after build), ~300 KB source code (58 Java files across 19 OSGi bundles)
 **Project Type:** Multi-module Eclipse Tycho/Maven build for Eclipse RCP applications
 **Primary Language:** Java (JavaSE-25)
-**Build System:** Apache Maven with Eclipse Tycho 5.0.0
+**Build System:** Apache Maven 3.10.1 (via `./mvnw`) with Eclipse Tycho 5.0.4
 **Framework:** Eclipse E4 Application Platform (Eclipse RCP)
 **License:** EPL 2.0
 
@@ -15,7 +15,7 @@ This is an Eclipse RCP (Rich Client Platform) example repository used for commer
 
 ### Java Version Requirement (CRITICAL)
 
-**ALWAYS use Java 25.** The project requires Java 25 due to Tycho 5.0.0 dependencies compiled with class file version 69.0.
+**ALWAYS use Java 25.** The project requires Java 25 due to Tycho 5 dependencies compiled with class file version 69.0.
 
 To set Java 25:
 ```bash
@@ -27,8 +27,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 ### Maven Requirements
 
-- **Maven Version:** 3.9.5+ (system Maven 3.9.11 works well)
-- **Maven Wrapper:** The `./mvnw` wrapper is present but has Guice dependency injection issues with Tycho extensions. **ALWAYS use system `mvn` command instead of `./mvnw`**.
+- **Maven Wrapper:** **ALWAYS use `./mvnw`**, which downloads Maven 3.10.1. The Tycho version is set in `.mvn/maven.config`.
 
 ## Build Instructions
 
@@ -43,7 +42,7 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 # Build command
 cd /home/runner/work/eclipse_rcp_example/eclipse_rcp_example
-mvn clean verify -ntp
+./mvnw clean verify -ntp
 ```
 
 **Success Indicators:**
@@ -55,7 +54,7 @@ mvn clean verify -ntp
 
 ```bash
 # Same Java 25 setup required
-mvn verify -ntp
+./mvnw verify -ntp
 ```
 
 ### Build Artifacts
@@ -63,7 +62,7 @@ mvn verify -ntp
 After successful build, product distributions are created:
 - **Linux:** `com.vogella.tasks.product/target/products/taskmanagement-linux.gtk.x86_64.tar.gz` (~117 MB)
 - **Windows:** `com.vogella.tasks.product/target/products/taskmanagement-win32.win32.x86_64.zip` (~115 MB)
-- **macOS:** `com.vogella.tasks.product/target/products/taskmanagement-macosx.cocoa.x86_64.tar.gz` (~115 MB)
+- **macOS:** `com.vogella.tasks.product/target/products/taskmanagement-macosx.cocoa.aarch64.tar.gz` (~115 MB)
 
 ## Testing
 
@@ -92,9 +91,9 @@ export DISPLAY=:99
 
 - `README.adoc` - Project documentation with basic build instructions
 - `pom.xml` - Parent Maven POM with Tycho configuration
-- `.mvn/extensions.xml` - Tycho build extension configuration (version 5.0.0)
-- `.travis.yml` - Legacy Travis CI configuration (outdated, not used)
-- `target-platform/target-platform.target` - Eclipse target platform definition (Eclipse 2025-09 release)
+- `.mvn/extensions.xml` - Tycho build extension configuration
+- `.mvn/maven.config` - Tycho version and Maven options
+- `target-platform/target-platform.target` - Eclipse target platform definition (Eclipse 2026-12 release and 4.42 I-builds)
 
 ### Key Modules (19 total)
 
@@ -129,7 +128,7 @@ export DISPLAY=:99
 
 ### Configuration Files Location
 
-- **Target Platform:** `target-platform/target-platform.target` (references Eclipse 2025-09, JustJ JRE 25, SWTBot)
+- **Target Platform:** `target-platform/target-platform.target` (references Eclipse 2026-12, the 4.42 I-builds, SWTBot)
 - **Product Definitions:**
   - `com.vogella.tasks.product/taskmanagement.product` (main to-do application)
   - `com.example.e4.product/com.example.e4.product` (example RCP)
@@ -140,7 +139,7 @@ export DISPLAY=:99
 
 ### Key Dependencies
 
-- **Eclipse Platform:** Eclipse 2025-09 release (via target platform)
+- **Eclipse Platform:** Eclipse 2026-12 release and 4.42 I-builds (via target platform)
 - **Java Runtime:** JustJ OpenJDK 25 minimal JRE (bundled in products)
 - **External Libraries:** Gson 2.8.6 (via Maven dependency in target platform)
 - **Execution Environment:** JavaSE-25 (all bundles require this)
@@ -157,7 +156,7 @@ export DISPLAY=:99
 **Trigger:** Push to `master` branch or any pull request
 **Platform:** ubuntu-latest
 **Java:** Temurin JDK 25
-**Maven:** 3.9.9 (via stCarolas/setup-maven action)
+**Maven:** 3.10.1 (via the Maven wrapper)
 
 **Important CI Steps:**
 1. Xvfb setup for UI tests (even though tests are disabled)
@@ -165,7 +164,7 @@ export DISPLAY=:99
    Xvfb :99 -screen 0 1920x1080x24 &
    export DISPLAY=:99
    ```
-2. Build command: `mvn clean verify -ntp`
+2. Build command: `./mvnw clean verify -ntp`
 3. Automatic release of products to GitHub with tag "latest" (prerelease)
 
 ### Known CI Issues
@@ -180,18 +179,13 @@ export DISPLAY=:99
 **Symptom:** `class file version 69.0, this version only recognizes up to 61.0`
 **Solution:** Set `JAVA_HOME` to Java 25 as shown in Build Requirements section above
 
-### Issue 2: Maven Wrapper Fails
-
-**Symptom:** `ProvisionException: Unable to provision` or `No implementation for TargetPlatformArtifactResolver was bound`
-**Solution:** Use system `mvn` command instead of `./mvnw`
-
-### Issue 3: Eclipse Mirror Download Errors
+### Issue 2: Eclipse Mirror Download Errors
 
 **Symptom:** `Error processing mirrors URL` in build log
 **Impact:** Build continues successfully; these are transient warnings
 **Action:** No workaround needed
 
-### Issue 4: Target Platform Resolution Slow
+### Issue 3: Target Platform Resolution Slow
 
 **Symptom:** First build takes 5-10 minutes
 **Cause:** Downloading ~2+ GB of Eclipse platform artifacts
@@ -203,12 +197,12 @@ After making code changes:
 
 1. **Compile check:**
    ```bash
-   mvn clean compile -ntp
+   ./mvnw clean compile -ntp
    ```
 
 2. **Full verification:**
    ```bash
-   mvn clean verify -ntp
+   ./mvnw clean verify -ntp
    ```
 
 3. **Check for compilation errors** in bundles - look for `BUILD FAILURE` in output
@@ -274,8 +268,7 @@ To add a dependency to a bundle:
 ## Trust These Instructions
 
 These instructions have been validated by:
-- Successful clean build from scratch (Java 25, Maven 3.9.11)
-- Testing both system Maven and wrapper (wrapper fails, system works)
+- Successful clean build from scratch (Java 25, Maven wrapper)
 - Reviewing GitHub Actions workflow configuration
 - Examining all configuration files and project structure
 - Measuring actual build times

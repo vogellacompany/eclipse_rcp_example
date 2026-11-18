@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: com.vogella.tasks.services.tests
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: VOGELLA
+Bundle-Vendor: vogella GmbH
 Require-Bundle: com.vogella.tasks.services;bundle-version="1.0.0",
  com.vogella.tasks.model;bundle-version="1.0.0",
  org.eclipse.e4.core.contexts;bundle-version="1.8.400",

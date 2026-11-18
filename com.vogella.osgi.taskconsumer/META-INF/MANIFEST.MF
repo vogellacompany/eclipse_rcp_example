@@ -5,7 +5,7 @@ Bundle-SymbolicName: com.vogella.osgi.taskconsumer
 Bundle-Version: 1.0.0.qualifier
 Import-Package: com.vogella.tasks.model,
  org.osgi.service.event;version="1.4.1"
-Bundle-Vendor: VOGELLA
+Bundle-Vendor: vogella GmbH
 Automatic-Module-Name: com.vogella.osgi.taskconsumer
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-25
