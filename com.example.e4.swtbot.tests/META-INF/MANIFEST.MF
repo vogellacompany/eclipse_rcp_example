@@ -4,7 +4,7 @@ Bundle-Name: Swtbottests
 Bundle-SymbolicName: com.example.e4.swtbot.tests
 Bundle-Version: 1.0.0.qualifier
 Import-Package: org.junit.jupiter.api;version="5.12.2"
-Bundle-Vendor: EXAMPLE
+Bundle-Vendor: vogella GmbH
 Require-Bundle: org.eclipse.swt,
  org.eclipse.jface,
  org.eclipse.swtbot.e4.finder;bundle-version="4.3.0",

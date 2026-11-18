@@ -22,10 +22,6 @@ jobs:
        distribution: 'temurin'
        java-version: '25'
        cache: 'maven'
-    - name: Set up Maven
-      uses: stCarolas/setup-maven@v4.5
-      with:
-        maven-version: '3.9.9'   
     - name: Start Xvfb
       run: |
         sudo apt-get update
@@ -34,7 +30,7 @@ jobs:
         export DISPLAY=:99
         echo "DISPLAY=:99" >> $GITHUB_ENV
     - name: Build with Maven
-      run: mvn clean verify -ntp
+      run: ./mvnw clean verify -ntp
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"

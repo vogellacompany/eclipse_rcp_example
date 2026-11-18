@@ -5,9 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Build System
 
 This project uses **Apache Maven with Tycho 5.0.4** to build Eclipse OSGi bundles, features, and products.
-The Tycho version is set centrally in `.mvn/maven.config`, which also sets `tycho.localArtifacts=ignore`, and `.mvn/extensions.xml` picks it up via `${tycho.version}`.
+The Tycho version is set centrally in `.mvn/maven.config`, which also sets a parallel build with one thread per core (`-T1C`) and `tycho.localArtifacts=ignore`, and `.mvn/extensions.xml` picks it up via `${tycho.version}`.
 The build targets **Java 25** (`maven.compiler.release` in the root `pom.xml`).
-Use the Maven wrapper (Maven 3.9.16) for consistent builds.
+Use the Maven wrapper (Maven 3.10.1) for consistent builds, locally and in CI.
 
 ```bash
 # Build entire project
