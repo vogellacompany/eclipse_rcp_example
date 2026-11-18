@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Swt
 Bundle-SymbolicName: com.example.e4.renderer.swt
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: EXAMPLE
+Bundle-Vendor: vogella GmbH
 Automatic-Module-Name: com.example.e4.renderer.swt
 Bundle-RequiredExecutionEnvironment: JavaSE-25
 Require-Bundle: org.eclipse.e4.core.contexts;bundle-version="1.8.400",
