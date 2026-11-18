@@ -13,7 +13,7 @@
       <vmArgs>-Xms256m -Xmx2048m
 -XX:+UseG1GC
 -XX:MaxGCPauseMillis=200
--Dosgi.requiredJavaVersion=21
+-Dosgi.requiredJavaVersion=25
 -Dfile.encoding=UTF-8
 -Dsun.java.command=Taskman
 --add-modules=ALL-SYSTEM

@@ -10,6 +10,9 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <maven.compiler.release>25</maven.compiler.release>
+        <!-- the super POM of Maven 3.10 and later pins this to 1980, and Tycho takes the build qualifier from it -->
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+        <project.build.outputTimestamp>${maven.build.timestamp}</project.build.outputTimestamp>
     </properties>
 
 
@@ -21,6 +24,17 @@
                     <groupId>org.eclipse.tycho</groupId>
                     <artifactId>tycho-p2-director-plugin</artifactId>
                     <version>${tycho.version}</version>
+                </plugin>
+                <!-- Tycho does not pin these, so without a version they come from the defaults of whichever Maven runs the build -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.5.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.5.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -66,6 +80,7 @@
                     <target>
                         <file>../target-platform/target-platform.target</file>
                     </target>
+                    <executionEnvironment>JavaSE-25</executionEnvironment>
                     <resolveWithExecutionEnvironmentConstraints>false</resolveWithExecutionEnvironmentConstraints>
 
                     <environments>
@@ -73,6 +88,12 @@
                             <os>linux</os>
                             <ws>gtk</ws>
                             <arch>x86_64</arch>
+                        </environment>
+                        <!-- without it the target resolves no SWT fragment for linux aarch64 build machines and tests cannot run there -->
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>aarch64</arch>
                         </environment>
                         <environment>
                             <os>win32</os>
@@ -82,7 +103,7 @@
                         <environment>
                             <os>macosx</os>
                             <ws>cocoa</ws>
-                            <arch>x86_64</arch>
+                            <arch>aarch64</arch>
                         </environment>
                     </environments>
                 </configuration>
@@ -95,6 +116,11 @@
       <configuration>
           <application>org.eclipse.e4.ui.workbench.swt.E4Application</application>
           <product>com.example.e4.rcp.product</product>
+          <providerHint>junit5</providerHint>
+          <!-- a test bundle that runs no test must fail the build instead of passing silently -->
+          <failIfNoTests>true</failIfNoTests>
+          <!-- keeps the test JVM from taking a quarter of the build server's RAM -->
+          <argLine>-Xmx1g</argLine>
       </configuration>
     </plugin>
             

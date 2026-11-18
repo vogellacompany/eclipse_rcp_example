@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Model
 Bundle-SymbolicName: com.vogella.tasks.model
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: VOGELLA
+Bundle-Vendor: vogella GmbH
 Automatic-Module-Name: com.vogella.tasks.model
 Bundle-RequiredExecutionEnvironment: JavaSE-25
 Export-Package: com.vogella.tasks.model
